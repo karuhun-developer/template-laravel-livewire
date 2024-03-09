@@ -14,7 +14,7 @@
         @can('update.' . $originRoute)
             <button
                 class="btn btn-warning"
-                wire:click="{{ $editFunction }}({{ $id }})"
+                wire:click="{{ $editFunction }}('{{ $id }}')"
                 @click="new bootstrap.Modal(document.getElementById('{{ $modal }}')).show()"
             >
                 <i class="align-middle" data-feather="edit"></i>
@@ -25,7 +25,7 @@
         @can('delete.' . $originRoute)
             <button
                 class="btn btn-danger"
-                wire:click="{{ $deleteFunction }}({{ $id }})"
+                wire:click="{{ $deleteFunction }}('{{ $id }}')"
             >
                 <i class="align-middle" data-feather="trash"></i>
             </button>

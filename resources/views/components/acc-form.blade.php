@@ -1,4 +1,4 @@
-@props(['submit'])
+@props(['submit', 'reset' => 'resetAll'])
 
 <div {{ $attributes->merge(['class' => 'container mt-2']) }}>
     <form wire:submit="{{ $submit }}">
@@ -19,7 +19,7 @@
                         <button
                             class="btn btn-warning"
                             wire:loading.attr="disabled"
-                            wire:target="{{ $submit }}"
+                            wire:click="{{ $reset }}"
                             type="reset">
                             <i class="align-middle" data-feather="refresh-ccw"></i>
                             Reset

@@ -32,19 +32,14 @@ class RoleSeeder extends Seeder
         'password.update',
         'logout',
     ];
-    public $routeNotulen = [
-        'cms.dashboard',
-    ];
-    public $routePegawai = [
+    public $routeUser = [
         'cms.dashboard',
     ];
 
     public function run(): void
     {
-        // Hotel app
         $admin = Role::findOrCreate('admin', 'web');
-        $notulen = Role::findOrCreate('notulen', 'web');
-        $pegawai = Role::findOrCreate('pegawai', 'web');
+        $user = Role::findOrCreate('user', 'web');
 
         // Generate Permission
         // Get all route names
@@ -59,27 +54,11 @@ class RoleSeeder extends Seeder
                     $permission = Permission::findOrCreate($permission, 'web');
 
                     // Give admin permission
-                    // if(!in_array($route, [
-                    //     'cms.',
-                    // ])) {
-                        $admin->givePermissionTo($permission);
-                    // }
-
-                    // Give notulen permission
-                    if(in_array($route, $this->routeNotulen)) {
-                        // if($route == 'cms.master.hotel' ) {
-                            // Where menu hotel, give permission only to view and edit
-                            // if($type == 'view' || $type == 'update') {
-                                $notulen->givePermissionTo($permission);
-                            // }
-                        // } else {
-                        //     $notulen->givePermissionTo($permission);
-                        // }
-                    }
+                    $admin->givePermissionTo($permission);
 
                     // Give pegawai permission
-                    if(in_array($route, $this->routePegawai)) {
-                        $pegawai->givePermissionTo($permission);
+                    if(in_array($route, $this->routeUser)) {
+                        $user->givePermissionTo($permission);
                     }
                 }
             }
