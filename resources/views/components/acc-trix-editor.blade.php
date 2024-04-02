@@ -8,16 +8,18 @@
 <div wire:ignore>
     <input id="{{ $id }}" type="hidden" name="{{ $model_name }}" value="{{ $model }}">
     <trix-editor input="{{ $id }}" class="trix-content"></trix-editor>
+
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
+    <script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
 </div>
 
-<link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
-<script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
 <script>
     const trixEditor = document.getElementById('{{ $id }}')
     const mimeTypes = ['image/png', 'image/jpeg', 'image/jpg']
     const onHoldAttachments = []
 
     addEventListener('trix-blur', ev => {
+        console.log(trixEditor.getAttribute('value'))
         @this.set('{{ $model_name }}', trixEditor.getAttribute('value'))
     })
 
@@ -49,8 +51,7 @@
                 // This event will create a pause in thread execution until we get the Response URL from the Trix Component completeUpload
                 const trixUploadCompletedEvent = `trix-upload-completed:${btoa(uploadedURL)}`
                 const trixUploadCompletedListener = function(event) {
-                    console.log(event.detail)
-                    attachment.setAttributes(event.detail)
+                    attachment.setAttributes(event.detail[0])
                     window.removeEventListener(trixUploadCompletedEvent, trixUploadCompletedListener)
                 }
 
