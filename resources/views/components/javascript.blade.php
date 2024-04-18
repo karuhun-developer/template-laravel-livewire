@@ -63,5 +63,11 @@
             modal?.classList?.remove('show')
             modalBackdrop?.remove()
         })
+
+        Livewire.on('setValueById', params => {
+            setTimeout(() => {
+                document.getElementById(params.id).value = params.value
+            }, 500);
+        })
     })
 </script>
