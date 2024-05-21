@@ -1,7 +1,3 @@
-{{-- @props([
-    'id' => 'acc-modal',
-    'title' => 'Title',
-]) --}}
 <div x-data="{ uploading: false, progress: 0 }"
     x-on:livewire-upload-start="uploading = true"
     x-on:livewire-upload-finish="uploading = false"
