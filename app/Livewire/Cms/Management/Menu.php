@@ -47,6 +47,33 @@ class Menu extends BaseComponent
         $orderBy = 'ordering',
         $order = 'asc';
 
+    public function mount() {
+        $this->form->meta = [
+            'description' => '',
+            'keywords' => '',
+        ];
+    }
+
+    public function customCreate() {
+        $this->create();
+
+        $this->form->meta = [
+            'description' => '',
+            'keywords' => '',
+        ];
+    }
+
+    public function customEdit($id) {
+        $this->edit($id);
+
+        if($this->form->meta == null) {
+            $this->form->meta = [
+                'description' => '',
+                'keywords' => '',
+            ];
+        }
+    }
+
     public function render()
     {
         $model = MenuModel::where('on', $this->on);

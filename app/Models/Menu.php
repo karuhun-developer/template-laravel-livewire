@@ -16,5 +16,11 @@ class Menu extends Model
         'icon',
         'route',
         'ordering',
+        'meta',
     ];
+
+    public function getMetaAttribute($value)
+    {
+        return json_decode($value, true);
+    }
 }

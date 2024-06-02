@@ -29,6 +29,9 @@ class FormMenu extends Form
     #[Validate('required|numeric')]
     public $ordering = 0;
 
+    #[Validate('nullable')]
+    public $meta;
+
     // Get the data
     public function getDetail($id) {
         $data = Menu::find($id);
@@ -40,10 +43,15 @@ class FormMenu extends Form
         $this->icon = $data->icon;
         $this->route = $data->route;
         $this->ordering = $data->ordering;
+        $this->meta = $data->meta;
     }
 
     // Save the data
     public function save() {
+        if(is_array($this->meta)) {
+            $this->meta = json_encode($this->meta);
+        }
+
         $this->validate();
 
         if ($this->id) {
@@ -64,6 +72,7 @@ class FormMenu extends Form
             'icon',
             'route',
             'ordering',
+            'meta',
         ]));
     }
 

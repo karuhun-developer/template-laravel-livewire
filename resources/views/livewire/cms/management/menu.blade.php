@@ -9,7 +9,7 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <x-acc-header :$originRoute>
+                <x-acc-header :$originRoute createAction="customCreate">
                     <div class="col-md-6">
                         <div class="mt-3">
                             <label class="form-label fw-bold">Menu On</label>
@@ -38,7 +38,7 @@
                                 <td>{{ $d->icon ?? '' }}</td>
                                 <td>{{ $d->route }}</td>
                                 <td>{{ $d->ordering }}</td>
-                                <x-acc-update-delete :id="$d->id" :$originRoute />
+                                <x-acc-update-delete :id="$d->id" :$originRoute editFunction="customEdit" />
                             </tr>
                         @empty
                             <tr>
@@ -70,7 +70,7 @@
             <div class="col-md-12">
                 <div class="mb-3">
                     <label class="form-label">On</label>
-                    <select wire:model="form.on" class="form-control">
+                    <select wire:model.live="form.on" class="form-control">
                         <option value="">--Select Type--</option>
                         <option value="cms">Cms</option>
                         <option value="web">Web</option>
@@ -110,6 +110,27 @@
                     <x-acc-input-error for="form.ordering" />
                 </div>
             </div>
+            @if($form->on == 'web')
+                <div class="col-md-12">
+                    <div class="mb-3 text-center">
+                        <h4>Meta Tag</h4>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="mb-3">
+                        <label class="form-label">Website Description</label>
+                        <textarea wire:model="form.meta.description" class="form-control" placeholder="Description"></textarea>
+                        <x-acc-input-error for="form.meta.description" />
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="mb-3">
+                        <label class="form-label">Website Keywords</label>
+                        <textarea wire:model="form.meta.keywords" class="form-control" placeholder="Keywords"></textarea>
+                        <x-acc-input-error for="form.meta.keywords" />
+                    </div>
+                </div>
+            @endif
         </x-acc-form>
     </x-acc-modal>
 </div>
