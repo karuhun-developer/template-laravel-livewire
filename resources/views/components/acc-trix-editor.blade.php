@@ -3,14 +3,15 @@
     'model' => '',
     'model_name' => 'trix_description',
     'file_model_name' => 'trix_photos',
+    'can_upload' => true,
 ])
 
-<div wire:ignore>
+<div>
     <input id="{{ $id }}" type="hidden" name="{{ $model_name }}" value="{{ $model }}">
-    <trix-editor input="{{ $id }}" class="trix-content"></trix-editor>
+    <trix-editor wire:ignore input="{{ $id }}" class="trix-content"></trix-editor>
 
-    <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
-    <script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
+    <link wire:ignore rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
+    <script wire:ignore type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
 </div>
 
 <script>
@@ -32,7 +33,9 @@
     })
 
     addEventListener('trix-attachment-add', ev => {
-        uploadTrixImage(ev.attachment)
+        @if($can_upload)
+            uploadTrixImage(ev.attachment)
+        @endif
     })
 
     addEventListener('trix-attachment-remove', ev => {
