@@ -13,7 +13,7 @@
                 @if($isCreate)
                     <x-acc-create-btn
                         :route="$originRoute"
-                        :createFunction="$createFunction"
+                        :$createFunction
                     />
                 @endif
             </div>
