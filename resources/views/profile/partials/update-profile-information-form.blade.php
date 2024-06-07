@@ -25,6 +25,9 @@
                 <x-acc-input-error for="email" />
 
                 @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
+                    <form id="send-verification" method="post" action="{{ route('verification.send') }}">
+                        @csrf
+                    </form>
                     <div>
                         <p class="text-sm mt-2">
                             {{ __('Your email address is unverified.') }}
