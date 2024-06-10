@@ -5,6 +5,7 @@ namespace App\Livewire\Forms\Cms\Management;
 use App\Models\Setting;
 use Livewire\Attributes\Validate;
 use App\Traits\WithSaveFile;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use Livewire\Form;
 
 class FormSetting extends Form
@@ -92,14 +93,14 @@ class FormSetting extends Form
         $save_path = Setting::$FILE_PATH;
 
         // Save logo
-        if($this->logo) {
+        if($this->logo instanceof TemporaryUploadedFile) {
             $this->logo = $this->saveFile($this->logo, $save_path, $save_path)['filename'];
         } else {
             $this->logo = $this->old_data->logo;
         }
 
         // Save favicon
-        if($this->favicon) {
+        if($this->favicon instanceof TemporaryUploadedFile) {
             $this->favicon = $this->saveFile($this->favicon, $save_path, $save_path)['filename'];
         } else {
             $this->favicon = $this->old_data->favicon;
