@@ -107,7 +107,7 @@ class FormSetting extends Form
         }
 
         // Save open graph image
-        if($this->opengraph['image']) {
+        if($this->opengraph['image'] instanceof TemporaryUploadedFile) {
             $this->opengraph['image'] = $this->saveFile($this->opengraph['image'], $save_path, $save_path)['filename'];
         } else {
             $this->opengraph['image'] = json_decode($this->old_data->opengraph, true)['image'];
