@@ -67,11 +67,11 @@ class FormUser extends Form
 
         // Assign new role
         $user->assignRole($this->role);
-        $user->update([
+        $user->update($this->only([
             'name',
             'email',
             'password',
-        ]);
+        ]));
     }
 
     // Delete data
