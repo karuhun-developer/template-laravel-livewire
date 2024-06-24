@@ -3,7 +3,7 @@
     'model' => '',
     'model_name' => 'trix_description',
     'file_model_name' => 'trix_photos',
-    'can_upload' => true,
+    'can_upload' => false,
 ])
 
 <div>
