@@ -8,10 +8,14 @@
                 <div class="d-table-cell align-middle">
 
                     <div class="text-center mt-4">
-                        <h1 class="h2">Welcome back!</h1>
-                        <p class="lead">
-                            Sign in to your account to continue
-                        </p>
+                        @if($settings->logo)
+                            <img src="{{ asset('storage/settings/' . $settings->logo) }}" class="img-fluid" style="width: 200px">
+                        @else
+                            <h1 class="h2">Welcome back!</h1>
+                            <p class="lead">
+                                Sign in to your account to continue
+                            </p>
+                        @endif
                     </div>
 
                     <div class="card">
