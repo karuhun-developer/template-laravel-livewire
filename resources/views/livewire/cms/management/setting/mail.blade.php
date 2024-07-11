@@ -16,64 +16,55 @@
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="form-label">Email (show)</label>
-                                <input type="text" wire:model="form.mail_email_show" class="form-control" placeholder="Email to show">
-                                <x-acc-input-error for="form.mail_email_show" />
+                                <x-acc-input type="email" model="form.mail_email_show" placeholder="Email to show" />
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="form-label">Driver</label>
-                                <input wire:model="form.mail_driver" class="form-control" placeholder="Driver" />
-                                <x-acc-input-error for="form.mail_driver" />
+                                <x-acc-input type="text" model="form.mail_driver" placeholder="Driver" />
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">Host</label>
-                                <input wire:model="form.mail_host" class="form-control" placeholder="Host" />
-                                <x-acc-input-error for="form.mail_host" />
+                                <x-acc-input type="text" model="form.mail_host" placeholder="Host" />
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">Port</label>
-                                <input wire:model="form.mail_port" class="form-control" placeholder="Port" />
-                                <x-acc-input-error for="form.mail_port" />
+                                <x-acc-input type="number" model="form.mail_port" placeholder="Port" />
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="form-label">Encryption</label>
-                                <input wire:model="form.mail_encryption" class="form-control" placeholder="Encryption" />
-                                <x-acc-input-error for="form.mail_encryption" />
+                                <x-acc-input type="text" model="form.mail_encryption" placeholder="Encryption" />
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="form-label">Username</label>
-                                <input wire:model="form.mail_username" class="form-control" placeholder="Username" />
-                                <x-acc-input-error for="form.mail_username" />
+                                <x-acc-input type="email" model="form.mail_username" placeholder="Username" />
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="form-label">Password</label>
-                                <input wire:model="form.mail_password" class="form-control" placeholder="Password" />
-                                <x-acc-input-error for="form.mail_password" />
+                                <x-acc-input type="password" model="form.mail_password" placeholder="Password" />
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="form-label">From Name</label>
-                                <input wire:model="form.mail_from_name" class="form-control" placeholder="From Name" />
-                                <x-acc-input-error for="form.mail_from_name" />
+                                <x-acc-input type="text" model="form.mail_from_name" placeholder="From Name" />
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="form-label">From Address</label>
-                                <input wire:model="form.mail_from_address" class="form-control" placeholder="From Address" />
-                                <x-acc-input-error for="form.mail_from_address" />
+                                <x-acc-input type="text" model="form.mail_from_address" placeholder="From Address" />
                             </div>
                         </div>
                     </x-acc-form>

@@ -3,24 +3,18 @@
 namespace App\Livewire\Forms\Cms\Management;
 
 use App\Models\User;
-use Livewire\Attributes\Validate;
 use Livewire\Form;
 
 class FormUser extends Form
 {
-    #[Validate('nullable|numeric')]
     public $id;
 
-    #[Validate('required')]
     public $role;
 
-    #[Validate('required')]
     public $name;
 
-    #[Validate('required|email')]
     public $email;
 
-    #[Validate('required')]
     public $password;
 
     // Get the data
@@ -35,8 +29,6 @@ class FormUser extends Form
 
     // Save the data
     public function save() {
-        $this->validate();
-
         if ($this->id) {
             $this->update();
         } else {
@@ -48,6 +40,14 @@ class FormUser extends Form
 
     // Store data
     public function store() {
+        $this->validate([
+            'id' => 'nullable',
+            'role' => 'required',
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+
         $user = User::create($this->only([
             'name',
             'email',
@@ -60,6 +60,13 @@ class FormUser extends Form
 
     // Update data
     public function update() {
+        $this->validate([
+            'id' => 'required',
+            'role' => 'required',
+            'name' => 'required',
+            'email' => 'required',
+        ]);
+
         $user = User::find($this->id);
 
         // Remove all role
@@ -70,12 +77,18 @@ class FormUser extends Form
         $user->update($this->only([
             'name',
             'email',
-            'password',
         ]));
     }
 
     // Delete data
     public function delete($id) {
         User::find($id)->delete();
+    }
+
+    // Change password
+    public function changePassword() {
+        User::find($this->id)->update([
+            'password' => $this->password,
+        ]);
     }
 }

@@ -16,60 +16,51 @@
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="form-label">App Name</label>
-                                <input type="text" wire:model="form.name" class="form-control" placeholder="App Name">
-                                <x-acc-input-error for="form.name" />
+                                <x-acc-input type="text" model="form.name" placeholder="App Name" />
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">App Logo</label>
                                 <x-acc-image-preview :image="$logo" :form_image="asset('storage/settings/' . $form->old_data->logo)"  />
-                                <input type="file" wire:model="logo" class="form-control">
-                                <x-acc-input-error for="logo" />
+                                <x-acc-input type="file" model="logo" />
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">App Icon</label>
                                 <x-acc-image-preview :image="$favicon" :form_image="asset('storage/settings/' . $form->old_data->favicon)"  />
-                                <input type="file" wire:model="favicon" class="form-control">
-                                <x-acc-input-error for="favicon" />
+                                <x-acc-input type="file" model="favicon" />
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="form-label">Email</label>
-                                <input type="text" wire:model="form.email" class="form-control" placeholder="Email">
-                                <x-acc-input-error for="form.email" />
+                                <x-acc-input type="email" model="form.email" placeholder="Email" />
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="form-label">Phone</label>
-                                <input type="number" wire:model="form.phone" class="form-control" placeholder="Phone">
-                                <x-acc-input-error for="form.phone" />
+                                <x-acc-input type="number" model="form.phone" placeholder="Phone" />
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="form-label">Address</label>
-                                <textarea wire:model="form.address" class="form-control" placeholder="Address"></textarea>
-                                <x-acc-input-error for="form.address" />
+                                <x-acc-input type="textarea" model="form.address" placeholder="Address" />
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="form-label">About Us</label>
-                                <textarea wire:model="form.about" class="form-control" placeholder="About Us"></textarea>
-                                <x-acc-input-error for="form.about" />
+                                <x-acc-input type="textarea" model="form.about" placeholder="About Us" />
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">Vision</label>
-                                <textarea wire:model.live="form.vision" class="form-control" placeholder="Vision" rows="5"></textarea>
-                                <x-acc-input-error for="form.vision" />
-
+                                <x-acc-input type="textarea" :live="true" model="form.vision" placeholder="Vision" />
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -81,8 +72,7 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">Mission</label>
-                                <textarea id="mission" wire:model="form.mission" class="form-control" placeholder="Mission" rows="5"></textarea>
-                                <x-acc-input-error for="form.mission" />
+                                <x-acc-input type="textarea" :live="true" model="form.mission" placeholder="Mission" />
                             </div>
                         </div>
                         <div class="col-md-6">

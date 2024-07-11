@@ -57,4 +57,9 @@ class User extends BaseComponent
 
         return view('livewire.cms.management.user', compact('get'))->title($this->title);
     }
+
+    public function changePassword() {
+        $this->form->changePassword();
+        $this->save(modal: 'acc-modal-password');
+    }
 }

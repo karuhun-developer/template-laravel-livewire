@@ -63,51 +63,45 @@
             <div class="col-md-12">
                 <div class="mb-3">
                     <label class="form-label">Name</label>
-                    <input type="text" wire:model="form.name" class="form-control" placeholder="Name">
-                    <x-acc-input-error for="form.name" />
+                    <x-acc-input type="text" model="form.name" placeholder="Name" />
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="mb-3">
                     <label class="form-label">On</label>
-                    <select wire:model.live="form.on" class="form-control">
+                    <x-acc-input type="select" :live="true" model="form.on">
                         <option value="">--Select Type--</option>
                         <option value="cms">Cms</option>
                         <option value="web">Web</option>
-                    </select>
-                    <x-acc-input-error for="form.on" />
+                    </x-acc-input>
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="mb-3">
                     <label class="form-label">Type</label>
-                    <select wire:model="form.type" class="form-control">
+                    <x-acc-input type="select" model="form.type">
                         <option value="">--Select Type--</option>
                         <option value="header">Header</option>
                         <option value="item">Item</option>
-                    </select>
-                    <x-acc-input-error for="form.type" />
+                    </x-acc-input>
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="mb-3">
                     <label class="form-label">Icon</label>
-                    <input type="text" wire:model="form.icon" class="form-control" placeholder="Icon">
-                    <x-acc-input-error for="form.icon" />
+                    <x-acc-input type="text" model="form.icon" placeholder="Icon" />
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="mb-3">
                     <label class="form-label">Route</label>
-                    <input type="text" wire:model="form.route" class="form-control" placeholder="Route">
-                    <x-acc-input-error for="form.route" />
+                    <x-acc-input type="text" model="form.route" placeholder="Route" />
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="mb-3">
                     <label class="form-label">Ordering</label>
-                    <input type="number" wire:model="form.ordering" class="form-control" placeholder="Ordering">
-                    <x-acc-input-error for="form.ordering" />
+                    <x-acc-input type="number" model="form.ordering" placeholder="Ordering" />
                 </div>
             </div>
             @if($form->on == 'web')
@@ -119,15 +113,13 @@
                 <div class="col-md-12">
                     <div class="mb-3">
                         <label class="form-label">Website Description</label>
-                        <textarea wire:model="form.meta.description" class="form-control" placeholder="Description"></textarea>
-                        <x-acc-input-error for="form.meta.description" />
+                        <x-acc-input type="textarea" model="form.meta.description" placeholder="Description" />
                     </div>
                 </div>
                 <div class="col-md-12">
                     <div class="mb-3">
                         <label class="form-label">Website Keywords</label>
-                        <textarea wire:model="form.meta.keywords" class="form-control" placeholder="Keywords"></textarea>
-                        <x-acc-input-error for="form.meta.keywords" />
+                        <x-acc-input type="textarea" model="form.meta.keywords" placeholder="Keywords" />
                     </div>
                 </div>
             @endif

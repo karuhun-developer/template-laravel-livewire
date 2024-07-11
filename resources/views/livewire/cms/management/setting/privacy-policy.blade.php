@@ -13,9 +13,7 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">Privacy Policy</label>
-                                <textarea wire:model.live="form.privacy_policy" class="form-control" placeholder="Privacy Policy" rows="15"></textarea>
-                                <x-acc-input-error for="form.privacy_policy" />
-
+                                <x-acc-input type="textarea" :live="true" model="form.privacy_policy" placeholder="Privacy Policy" rows="15" />
                             </div>
                         </div>
                         <div class="col-md-6">

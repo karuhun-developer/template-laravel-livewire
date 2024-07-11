@@ -16,8 +16,7 @@
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="form-label">Google Analytic</label>
-                                <input type="text" wire:model="form.google_analytics" class="form-control" placeholder="Google Analytic">
-                                <x-acc-input-error for="form.google_analytics" />
+                                <x-acc-input type="text" model="form.google_analytics" placeholder="Google Analytic" />
                             </div>
                         </div>
                     </x-acc-form>

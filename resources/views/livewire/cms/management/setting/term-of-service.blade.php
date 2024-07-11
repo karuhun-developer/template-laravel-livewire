@@ -13,9 +13,7 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">Term Of Service</label>
-                                <textarea wire:model.live="form.term_of_service" class="form-control" placeholder="Term Of Service" rows="15"></textarea>
-                                <x-acc-input-error for="form.term_of_service" />
-
+                                <x-acc-input type="textarea" :live="true" model="form.term_of_service" placeholder="Term Of Service" rows="15" />
                             </div>
                         </div>
                         <div class="col-md-6">

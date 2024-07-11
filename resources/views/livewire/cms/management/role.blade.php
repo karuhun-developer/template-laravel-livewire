@@ -56,8 +56,7 @@
             <div class="col-md-12">
                 <div class="mb-3">
                     <label class="form-label">Name</label>
-                    <input type="text" wire:model="form.name" class="form-control" placeholder="Name">
-                    <x-acc-input-error for="form.name" />
+                    <x-acc-input type="text" model="form.name" placeholder="Name" />
                 </div>
             </div>
         </x-acc-form>
