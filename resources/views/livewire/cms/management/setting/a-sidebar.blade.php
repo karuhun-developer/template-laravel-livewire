@@ -41,7 +41,7 @@
             <a
                 class="custom-list-group-item list-group-item list-group-item-action {{ $routeActive }}"
                 href="{{ route($setting['route']) }}"
-                role="tab">
+                role="tab" wire:navigate>
                 {{ ucfirst($setting['name']) }}
             </a>
         @endforeach
