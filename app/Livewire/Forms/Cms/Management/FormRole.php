@@ -9,10 +9,10 @@ use Livewire\Form;
 class FormRole extends Form
 {
     #[Validate('nullable|numeric')]
-    public $id = '';
+    public $id;
 
     #[Validate('required')]
-    public $name = '';
+    public $name;
 
     // Get the data
     public function getDetail($id) {

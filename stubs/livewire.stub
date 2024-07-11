@@ -1,0 +1,13 @@
+<?php
+
+namespace [namespace];
+
+use BaseComponent;
+
+class [class] extends BaseComponent
+{
+    public function render()
+    {
+        return view('[view]');
+    }
+}

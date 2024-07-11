@@ -22,11 +22,6 @@ return new class extends Migration
             $table->text('about')->nullable();
             $table->text('vision')->nullable();
             $table->text('mission')->nullable();
-            $table->string('author')->nullable();
-            $table->text('description')->nullable();
-            $table->text('keywords')->nullable();
-            $table->text('opengraph')->nullable()->comment('Open Graph (site_name, title, description, type "website", image)');
-            $table->text('dulbincore')->nullable()->comment('Dublin Core (title, publisher, publisher.url, description, creator.name, subject, language)');
             $table->string('google_analytics')->nullable();
             $table->timestamps();
         });

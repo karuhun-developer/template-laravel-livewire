@@ -9,7 +9,7 @@ use Livewire\Form;
 class FormTermOfService extends Form
 {
     #[Validate('required')]
-    public $term_of_service = '';
+    public $term_of_service;
 
     public function getData() {
         $setting = Setting::first();

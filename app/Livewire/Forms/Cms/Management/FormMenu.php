@@ -9,22 +9,22 @@ use Livewire\Form;
 class FormMenu extends Form
 {
     #[Validate('nullable|numeric')]
-    public $id = '';
+    public $id;
 
     #[Validate('required')]
-    public $name = '';
+    public $name;
 
     #[Validate('required')]
-    public $on = '';
+    public $on;
 
     #[Validate('required')]
-    public $type = '';
+    public $type;
 
     #[Validate('required')]
-    public $icon = '';
+    public $icon;
 
     #[Validate('required')]
-    public $route = '';
+    public $route;
 
     #[Validate('required|numeric')]
     public $ordering = 0;

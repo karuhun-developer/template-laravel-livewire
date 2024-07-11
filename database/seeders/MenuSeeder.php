@@ -57,11 +57,11 @@ class MenuSeeder extends Seeder
                 'ordering' => '34',
             ],
             [
-                'name' => 'Website',
+                'name' => 'Setting',
                 'on' => 'cms',
                 'type' => 'item',
                 'icon' => 'settings',
-                'route' => 'cms.management.setting',
+                'route' => 'cms.management.general-setting',
                 'ordering' => '35',
             ],
             [

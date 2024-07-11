@@ -9,7 +9,7 @@ use Livewire\Form;
 class FormPrivacyPolicy extends Form
 {
     #[Validate('required')]
-    public $privacy_policy = '';
+    public $privacy_policy;
 
     public function getData() {
         $setting = Setting::first();

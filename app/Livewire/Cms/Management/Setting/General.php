@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Livewire\Cms\Management;
+namespace App\Livewire\Cms\Management\Setting;
 
-use App\Livewire\Forms\Cms\Management\FormSetting;
+use App\Livewire\Forms\Cms\Management\Setting\FormGeneral;
 use Livewire\Attributes\Validate;
 use Livewire\WithFileUploads;
 use BaseComponent;
 
-class Setting extends BaseComponent
+class General extends BaseComponent
 {
     use WithFileUploads;
 
-    public FormSetting $form;
+    public FormGeneral $form;
     public $title = 'Setting';
 
     #[Validate('nullable|image:jpeg,png,jpg,svg|max:2048')]
@@ -19,9 +19,6 @@ class Setting extends BaseComponent
 
     #[Validate('nullable|image:jpeg,png,jpg,svg|max:2048')]
     public $favicon;
-
-    #[Validate('nullable|image:jpeg,png,jpg,svg|max:2048')]
-    public $opengraph_image;
 
     public $isUpdate = true;
 
@@ -31,13 +28,12 @@ class Setting extends BaseComponent
 
     public function render()
     {
-        return view('livewire.cms.management.setting')->title($this->title);
+        return view('livewire.cms.management.setting.general')->title($this->title);
     }
 
     public function saveWithUpload() {
         $this->form->logo = $this->logo;
         $this->form->favicon = $this->favicon;
-        $this->form->opengraph['image'] = $this->opengraph_image;
 
         $this->save();
     }

@@ -9,19 +9,19 @@ use Livewire\Form;
 class FormUser extends Form
 {
     #[Validate('nullable|numeric')]
-    public $id = '';
+    public $id;
 
     #[Validate('required')]
-    public $role = '';
+    public $role;
 
     #[Validate('required')]
-    public $name = '';
+    public $name;
 
     #[Validate('required|email')]
-    public $email = '';
+    public $email;
 
     #[Validate('required')]
-    public $password = '';
+    public $password;
 
     // Get the data
     public function getDetail($id) {
