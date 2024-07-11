@@ -22,4 +22,5 @@ Route::group([
     // Setting
     Route::get('/management/setting-general', App\Livewire\Cms\Management\Setting\General::class)->name('management.general-setting');
     Route::get('/management/setting-misc', App\Livewire\Cms\Management\Setting\Misc::class)->name('management.misc-setting');
+    Route::get('/management/setting-mail', App\Livewire\Cms\Management\Setting\Mail::class)->name('management.mail-setting');
 });

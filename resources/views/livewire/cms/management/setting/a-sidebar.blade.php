@@ -18,10 +18,14 @@
             [
                 'name' => 'Misc Setting',
                 'route' => 'cms.management.misc-setting',
-            ]
+            ],
+            [
+                'name' => 'Mail Setting',
+                'route' => 'cms.management.mail-setting',
+            ],
         ];
     @endphp
-    <div class="list-group list-group-flush" role="tablist">
+    <div class="list-group list-group-flush" role="tablist" wire:ignore>
         @foreach($listSetting as $setting)
             @php
                 $routeActive = request()->routeIs($setting['route']) ? 'active' : '';

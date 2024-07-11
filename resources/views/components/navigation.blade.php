@@ -11,7 +11,7 @@
                         $isActive = false;
 
                         // Check if menu is active
-                        $isActive = request()->routeIs($menu->route);
+                        $isActive = request()->routeIs($menu->route) || str_contains(request()->path(), strtolower($menu->name));
                     @endphp
                     @if($menu->type != 'header')
                         @can('view.'.$menu->route)
