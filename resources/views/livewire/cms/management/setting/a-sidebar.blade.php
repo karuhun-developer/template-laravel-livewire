@@ -23,6 +23,14 @@
                 'name' => 'Mail Setting',
                 'route' => 'cms.management.mail-setting',
             ],
+            [
+                'name' => 'Privacy Policy',
+                'route' => 'cms.management.privacy-policy-setting',
+            ],
+            [
+                'name' => 'Term Of Service',
+                'route' => 'cms.management.term-of-service-setting',
+            ],
         ];
     @endphp
     <div class="list-group list-group-flush" role="tablist" wire:ignore>

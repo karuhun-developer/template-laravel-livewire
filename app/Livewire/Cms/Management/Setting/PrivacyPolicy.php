@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Livewire\Cms\Management;
+namespace App\Livewire\Cms\Management\Setting;
 
-use App\Livewire\Forms\Cms\Management\FormPrivacyPolicy;
+use App\Livewire\Forms\Cms\Management\Setting\FormPrivacyPolicy;
 use BaseComponent;
 
 class PrivacyPolicy extends BaseComponent
@@ -18,6 +18,6 @@ class PrivacyPolicy extends BaseComponent
 
     public function render()
     {
-        return view('livewire.cms.management.privacy-policy')->title($this->title);
+        return view('livewire.cms.management.setting.privacy-policy')->title($this->title);
     }
 }

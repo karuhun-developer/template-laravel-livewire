@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Livewire\Cms\Management;
+namespace App\Livewire\Cms\Management\Setting;
 
-use App\Livewire\Forms\Cms\Management\FormTermOfService;
+use App\Livewire\Forms\Cms\Management\Setting\FormTermOfService;
 use BaseComponent;
 
 class TermOfService extends BaseComponent
@@ -17,7 +17,7 @@ class TermOfService extends BaseComponent
 
     public function render()
     {
-        return view('livewire.cms.management.term-of-service')->title($this->title);
+        return view('livewire.cms.management.setting.term-of-service')->title($this->title);
     }
 }
 

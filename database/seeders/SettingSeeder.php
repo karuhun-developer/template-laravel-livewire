@@ -14,8 +14,8 @@ class SettingSeeder extends Seeder
     {
         Setting::create([
             'name' => 'Dulbin Core',
-            'logo' => 'logo.png',
-            'favicon' => 'favicon.png',
+            'logo' => null,
+            'favicon' => null,
             'email' => 'email@email.com',
             'phone' => '081234567890',
             'address' => 'Jl. Jalan No. 1',

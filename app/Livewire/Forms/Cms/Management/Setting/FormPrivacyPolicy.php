@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Forms\Cms\Management;
+namespace App\Livewire\Forms\Cms\Management\Setting;
 
 use App\Models\Setting;
 use Livewire\Attributes\Validate;
