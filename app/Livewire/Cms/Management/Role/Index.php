@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Livewire\Cms\Management;
+namespace App\Livewire\Cms\Management\Role;
 
 use App\Livewire\Forms\Cms\Management\FormRole;
 use Spatie\Permission\Models\Role as RoleModel;
 use BaseComponent;
 
-class Role extends BaseComponent
+class Index extends BaseComponent
 {
     public FormRole $form;
     public $title = 'Management Role';
@@ -17,7 +17,6 @@ class Role extends BaseComponent
                 'field' => 'name',
             ],
         ],
-        $isUpdate = false,
         $search = '',
         $paginate = 10,
         $orderBy = 'name',
@@ -36,6 +35,6 @@ class Role extends BaseComponent
             $this->resetPage();
         }
 
-        return view('livewire.cms.management.role', compact('get'))->title($this->title);
+        return view('livewire.cms.management.role.index', compact('get'))->title($this->title);
     }
 }

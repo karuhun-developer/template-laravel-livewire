@@ -14,9 +14,9 @@ trait WithDeleteAction {
     public function delete($id) {
         try {
             $this->form->delete($id);
-            $this->dispatch('alert', type: Alert::success, message: 'Data deleted successfully');
+            $this->dispatch('alert', type: Alert::success->value, message: 'Data deleted successfully');
         } catch (\Exception $exception) {
-            $this->dispatch('alert', type: Alert::error, message: $exception->getMessage());
+            $this->dispatch('alert', type: Alert::error->value, message: $exception->getMessage());
         }
     }
 }

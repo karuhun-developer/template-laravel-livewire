@@ -3,8 +3,9 @@
 namespace App\Traits;
 
 trait WithEditAction {
-    public function edit($id) {
-        $this->isUpdate = true;
-        $this->form->getDetail($id);
+    public function edit($id, $navigate = true) {
+        $this->redirectRoute($this->originRoute . '.manage', [
+            'id' => $id,
+        ], navigate: $navigate);
     }
 }

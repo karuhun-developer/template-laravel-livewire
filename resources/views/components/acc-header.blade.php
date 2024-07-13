@@ -3,7 +3,7 @@
     'isSearch' => true,
     'isPaginate' => true,
     'originRoute' => '',
-    'createFunction' => 'create'
+    'createClick' => 'create',
 ])
 
 <div>
@@ -13,7 +13,7 @@
                 @if($isCreate)
                     <x-acc-create-btn
                         :route="$originRoute"
-                        :$createFunction
+                        :$createClick
                     />
                 @endif
             </div>

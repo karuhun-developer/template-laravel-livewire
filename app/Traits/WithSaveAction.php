@@ -5,13 +5,16 @@ namespace App\Traits;
 use App\Enums\Alert;
 
 trait WithSaveAction {
-    public function save($modal = 'acc-modal') {
+    public function save($redirect = null, $navigate = true) {
         $this->form->save();
 
-        // Image iteration to prevent duplicate image
-        $this->imageIttr++;
+        session()->flash(Alert::success->value, $this->isUpdate ? 'Data Updated' : 'Data Created');
 
-        $this->dispatch('closeModal', modal: $modal);
-        $this->dispatch('alert', type: Alert::success, message: $this->isUpdate ? 'Data Updated' : 'Data Created');
+        // Redirect
+        if($redirect) {
+            $this->redirectRoute($redirect, navigate: $navigate);
+        } else {
+            $this->redirectRoute(substr($this->originRoute, 0, -7), navigate: $navigate);
+        }
     }
 }

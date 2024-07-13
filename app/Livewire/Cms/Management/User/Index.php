@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Livewire\Cms\Management;
+namespace App\Livewire\Cms\Management\User;
 
 use App\Livewire\Forms\Cms\Management\FormUser;
-use Spatie\Permission\Models\Role;
 use App\Models\User as UserModel;
 use BaseComponent;
 
-class User extends BaseComponent
+class Index extends BaseComponent
 {
     public FormUser $form;
     public $title = 'Management User';
@@ -26,17 +25,10 @@ class User extends BaseComponent
                 'field' => 'roles.name',
             ],
         ],
-        $isUpdate = false,
         $search = '',
         $paginate = 10,
         $orderBy = 'users.name',
         $order = 'asc';
-
-    public $roles = [];
-
-    public function mount() {
-        $this->roles = Role::all();
-    }
 
     public function render()
     {
@@ -55,11 +47,18 @@ class User extends BaseComponent
             $this->resetPage();
         }
 
-        return view('livewire.cms.management.user', compact('get'))->title($this->title);
+        return view('livewire.cms.management.user.index', compact('get'))->title($this->title);
+    }
+
+    public function getDetail($id) {
+        $this->form->getDetail($id);
     }
 
     public function changePassword() {
         $this->form->changePassword();
-        $this->save(modal: 'acc-modal-password');
+
+        session()->flash('success', 'Password has been changed');
+
+        $this->dispatch('closeModal', modal: 'acc-modal-password');
     }
 }

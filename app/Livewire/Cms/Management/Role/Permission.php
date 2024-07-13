@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Livewire\Cms\Management;
+namespace App\Livewire\Cms\Management\Role;
 
 
 use BaseComponent;
 use Illuminate\Support\Facades\Route;
-use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Permission as PermissionModel;
 use Spatie\Permission\Models\Role;
 
-class RolePermission extends BaseComponent
+class Permission extends BaseComponent
 {
     public $title = '';
     public $role = null;
@@ -46,7 +46,7 @@ class RolePermission extends BaseComponent
 
     public function render()
     {
-        return view('livewire.cms.management.role-permission')->title($this->title);
+        return view('livewire.cms.management.role.permission')->title($this->title);
     }
 
     // Get role permission
@@ -57,7 +57,7 @@ class RolePermission extends BaseComponent
         foreach ($routes as $value) {
             $route = $value->getName();
             // Except route
-            if(!in_array($route, $this->routeExcept) && !is_null($route)) {
+            if(!in_array($route, $this->routeExcept) && !is_null($route) && substr($route, -6) != 'manage') {
                 $this->permissions[$route] = [];
                 foreach($this->permissionType as $type) {
                     $this->permissions[$route][$type . '.' . $route] = false;
@@ -115,9 +115,9 @@ class RolePermission extends BaseComponent
 
     // Is Permission Exist
     public function isPermissionExist($permission) {
-        $isPermissionExist = Permission::where('name', $permission)->first();
+        $isPermissionExist = PermissionModel::where('name', $permission)->first();
         if(is_null($isPermissionExist)) {
-            Permission::create([
+            PermissionModel::create([
                 'name' => $permission,
             ]);
         }

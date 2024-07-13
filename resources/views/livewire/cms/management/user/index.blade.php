@@ -9,6 +9,7 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
+                <x-acc-alert />
                 <x-acc-header :$originRoute />
                 <table class="table table-hover table-striped" style="width:100%">
                     <thead>
@@ -23,14 +24,14 @@
                         @forelse($get as $d)
                             <tr>
                                 <td>{{ $d->name }}</td>
+                                <td>{{ $d->email }}</td>
+                                <td>{{ $d->role }}</td>
                                 <x-acc-update-delete :id="$d->id" :$originRoute>
-                                    <a
-                                        href="{{ route('cms.management.role-permission', ['role' => $d->name]) }}"
-                                        class="btn btn-primary"
-                                        wire:navigate
-                                    >
-                                        <i class="align-middle" data-feather="lock"></i> Permission
-                                    </a>
+                                    <button class="btn btn-primary"
+                                        wire:click="getDetail('{{ $d->id }}')"
+                                        x-on:click="new bootstrap.Modal(document.getElementById('acc-modal-password')).show()">
+                                        <i class="align-middle" data-feather="key"></i>
+                                    </button>
                                 </x-acc-update-delete>
                             </tr>
                         @empty
@@ -50,13 +51,13 @@
         </div>
     </div>
 
-    {{-- Create / Update Modal --}}
-    <x-acc-modal title="{{ $isUpdate ? 'Update' : 'Create' }} {{ $title }}">
-        <x-acc-form submit="save">
+    {{-- Change password --}}
+    <x-acc-modal title="Change Password {{ $form->name }}" id="acc-modal-password">
+        <x-acc-form submit="changePassword">
             <div class="col-md-12">
                 <div class="mb-3">
-                    <label class="form-label">Name</label>
-                    <x-acc-input type="text" model="form.name" placeholder="Name" />
+                    <label class="form-label">Password</label>
+                    <x-acc-input type="password" model="form.password" placeholder="Password" />
                 </div>
             </div>
         </x-acc-form>

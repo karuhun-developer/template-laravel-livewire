@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Livewire\Cms\Management;
+namespace App\Livewire\Cms\Management\Menu;
 
-use Livewire\Attributes\Url;
 use App\Livewire\Forms\Cms\Management\FormMenu;
+use Livewire\Attributes\Url;
 use App\Models\Menu as MenuModel;
 use BaseComponent;
 
-class Menu extends BaseComponent
+class Index extends BaseComponent
 {
     public FormMenu $form;
     public $title = 'Management Menu';
@@ -41,38 +41,10 @@ class Menu extends BaseComponent
                 'field' => 'ordering',
             ],
         ],
-        $isUpdate = false,
         $search = '',
         $paginate = 10,
         $orderBy = 'ordering',
         $order = 'asc';
-
-    public function mount() {
-        $this->form->meta = [
-            'description' => '',
-            'keywords' => '',
-        ];
-    }
-
-    public function customCreate() {
-        $this->create();
-
-        $this->form->meta = [
-            'description' => '',
-            'keywords' => '',
-        ];
-    }
-
-    public function customEdit($id) {
-        $this->edit($id);
-
-        if($this->form->meta == null) {
-            $this->form->meta = [
-                'description' => '',
-                'keywords' => '',
-            ];
-        }
-    }
 
     public function render()
     {
@@ -89,6 +61,6 @@ class Menu extends BaseComponent
             $this->resetPage();
         }
 
-        return view('livewire.cms.management.menu', compact('get'))->title($this->title);
+        return view('livewire.cms.management.menu.index', compact('get'))->title($this->title);
     }
 }

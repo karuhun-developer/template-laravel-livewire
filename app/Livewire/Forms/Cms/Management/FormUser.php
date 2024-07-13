@@ -45,7 +45,7 @@ class FormUser extends Form
             'role' => 'required',
             'name' => 'required',
             'email' => 'required',
-            'password' => 'required',
+            'password' => 'required|unique:users,email',
         ]);
 
         $user = User::create($this->only([
@@ -64,7 +64,7 @@ class FormUser extends Form
             'id' => 'required',
             'role' => 'required',
             'name' => 'required',
-            'email' => 'required',
+            'email' => 'required|unique:users,email,' . $this->id,
         ]);
 
         $user = User::find($this->id);
