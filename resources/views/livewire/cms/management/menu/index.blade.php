@@ -39,13 +39,15 @@
                                 <td>{{ $d->route }}</td>
                                 <td>{{ $d->ordering }}</td>
                                 <x-acc-update-delete :id="$d->id" :$originRoute>
-                                    <a
-                                        href="{{ route('cms.management.menu.child', ['menu' => $d->id]) }}"
-                                        class="btn btn-primary"
-                                        wire:navigate
-                                    >
-                                        <i class="align-middle" data-feather="menu"></i> Child
-                                    </a>
+                                    @if($d->type != 'header')
+                                        <a
+                                            href="{{ route('cms.management.menu.child', ['menu' => $d->id]) }}"
+                                            class="btn btn-primary"
+                                            wire:navigate
+                                        >
+                                            <i class="align-middle" data-feather="menu"></i> Child
+                                        </a>
+                                    @endif
                                 </x-acc-update-delete>
                             </tr>
                         @empty

@@ -24,7 +24,7 @@ class Menu extends Model
         return json_decode($value, true);
     }
 
-    public function mennuChildren()
+    public function menuChildren()
     {
         return $this->hasMany(MenuChild::class, 'menu_id');
     }

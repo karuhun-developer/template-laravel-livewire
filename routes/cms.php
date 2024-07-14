@@ -9,6 +9,7 @@ Route::group([
 ], function () {
 
     Route::get('/', App\Livewire\Dashboard::class)->name('dashboard');
+    Route::get('/ggwp', App\Livewire\Dashboard::class)->name('dashboard.ggwp');
 
     // Management Menu
     Route::get('/management/menu', App\Livewire\Cms\Management\Menu\Index::class)->name('management.menu');
