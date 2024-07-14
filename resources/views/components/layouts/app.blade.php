@@ -19,9 +19,7 @@
 
 <body>
     <div class="wrapper">
-        @persist('nav')
-            <x-navigation />
-        @endpersist
+        <x-navigation />
 
 		<div class="main">
             <x-header />

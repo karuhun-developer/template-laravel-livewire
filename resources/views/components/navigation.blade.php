@@ -24,6 +24,7 @@
                                     @endif
                                     @if(count($menu->menuChildren) == 0)
                                         href="{{ \Illuminate\Support\Facades\Route::has($menu->route) ? route($menu->route) : '#' }}"
+                                        wire:navigate
                                     @endif>
 
                                     {{-- Icon --}}
@@ -46,7 +47,7 @@
                                                     \Illuminate\Support\Facades\Route::has($children->route)
                                                     ? route($menu->route)
                                                     : '#'
-                                                }}">
+                                                }}" wire:navigate>
                                                     {{ $children->name }}
                                                 </a>
                                             </li>
