@@ -39,8 +39,11 @@ class ValidateRolePermission
                     'message' => 'You do not have permission.'
                 ], 403));
             } else {
+                session()->flash('error', 'You do not have permission.');
+                dd('ggwp');
+
                 // redirect to dashboard
-                return redirect()->route('cms.dashboard');
+                return redirect()->back();
             }
         }
 

@@ -5,27 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Menu extends Model
+class MenuChild extends Model
 {
     use HasFactory;
 
     protected $fillable = [
+        'menu_id',
         'name',
-        'on',
-        'type',
         'icon',
         'route',
         'ordering',
-        'meta',
     ];
 
-    public function getMetaAttribute($value)
+    public function menu()
     {
-        return json_decode($value, true);
-    }
-
-    public function mennuChildren()
-    {
-        return $this->hasMany(MenuChild::class, 'menu_id');
+        return $this->belongsTo(Menu::class);
     }
 }

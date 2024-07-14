@@ -1,4 +1,4 @@
-<div>
+<x-acc-with-alert>
     <h1 class="h3 mb-3">
         {{ $title ?? '' }}
     </h1>
@@ -8,7 +8,6 @@
             <h5 class="card-title">{{ $title ?? '' }} Data</h5>
         </div>
         <div class="card-body">
-            <x-acc-alert />
             <div class="table-responsive">
                 <x-acc-header :$originRoute>
                     <div class="col-md-6">
@@ -39,7 +38,15 @@
                                 <td>{{ $d->icon ?? '' }}</td>
                                 <td>{{ $d->route }}</td>
                                 <td>{{ $d->ordering }}</td>
-                                <x-acc-update-delete :id="$d->id" :$originRoute />
+                                <x-acc-update-delete :id="$d->id" :$originRoute>
+                                    <a
+                                        href="{{ route('cms.management.menu.child', ['menu' => $d->id]) }}"
+                                        class="btn btn-primary"
+                                        wire:navigate
+                                    >
+                                        <i class="align-middle" data-feather="menu"></i> Child
+                                    </a>
+                                </x-acc-update-delete>
                             </tr>
                         @empty
                             <tr>
@@ -57,4 +64,4 @@
             </div>
         </div>
     </div>
-</div>
+</x-acc-with-alert>

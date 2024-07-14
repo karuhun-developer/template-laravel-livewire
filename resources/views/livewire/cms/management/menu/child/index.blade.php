@@ -1,5 +1,6 @@
 <x-acc-with-alert>
-    <h1 class="h3 mb-3">
+    <x-acc-back route="cms.management.menu" />
+    <h1 class="h3 mb-3 mt-3">
         {{ $title ?? '' }}
     </h1>
 
@@ -23,15 +24,10 @@
                         @forelse($get as $d)
                             <tr>
                                 <td>{{ $d->name }}</td>
-                                <x-acc-update-delete :id="$d->id" :$originRoute>
-                                    <a
-                                        href="{{ route('cms.management.role-permission', ['role' => $d->name]) }}"
-                                        class="btn btn-primary"
-                                        wire:navigate
-                                    >
-                                        <i class="align-middle" data-feather="lock"></i> Permission
-                                    </a>
-                                </x-acc-update-delete>
+                                <td>{{ $d->icon ?? '' }}</td>
+                                <td>{{ $d->route }}</td>
+                                <td>{{ $d->ordering }}</td>
+                                <x-acc-update-delete :id="$d->id" :$originRoute />
                             </tr>
                         @empty
                             <tr>

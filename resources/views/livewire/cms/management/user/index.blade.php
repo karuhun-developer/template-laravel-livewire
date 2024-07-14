@@ -1,4 +1,4 @@
-<div>
+<x-acc-with-alert>
     <h1 class="h3 mb-3">
         {{ $title ?? '' }}
     </h1>
@@ -9,7 +9,6 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <x-acc-alert />
                 <x-acc-header :$originRoute />
                 <table class="table table-hover table-striped" style="width:100%">
                     <thead>
@@ -62,4 +61,4 @@
             </div>
         </x-acc-form>
     </x-acc-modal>
-</div>
+</x-acc-with-alert>
