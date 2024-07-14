@@ -40,7 +40,6 @@ class ValidateRolePermission
                 ], 403));
             } else {
                 session()->flash('error', 'You do not have permission.');
-                dd('ggwp');
 
                 // redirect to dashboard
                 return redirect()->back();

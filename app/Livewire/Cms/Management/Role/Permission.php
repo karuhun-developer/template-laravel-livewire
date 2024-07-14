@@ -87,6 +87,10 @@ class Permission extends BaseComponent
                 $this->permissions[$key][$k] = true;
             }
         }
+
+        $this->redirectRoute('cms.management.role-permission', [
+            'role' => $this->role->name,
+        ], navigate: true);
     }
 
     // Uncheck all
@@ -97,6 +101,10 @@ class Permission extends BaseComponent
                 $this->permissions[$key][$k] = false;
             }
         }
+
+        $this->redirectRoute('cms.management.role-permission', [
+            'role' => $this->role->name,
+        ], navigate: true);
     }
 
     // Check
