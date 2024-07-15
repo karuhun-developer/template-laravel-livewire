@@ -15,7 +15,6 @@
             <button
                 class="btn btn-warning"
                 wire:click="{{ $editFunction }}('{{ $id }}')"
-                @click="new bootstrap.Modal(document.getElementById('{{ $modal }}')).show()"
             >
                 <i class="align-middle" data-feather="edit"></i>
             </button>
