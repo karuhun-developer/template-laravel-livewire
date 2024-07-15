@@ -56,7 +56,7 @@
                                 @endif
                             </li>
                         @endcan
-                    @elseif(!auth()->user()->hasRole('receptionist'))
+                    @else
                         <li class="sidebar-header">{{ $menu->name }}</li>
                     @endif
                 @endforeach
