@@ -13,6 +13,9 @@ trait WithDeleteAction {
     #[On('delete')]
     public function delete($id) {
         try {
+            // Check permission
+            if(!auth()->user()->can('delete', $this->originRoute)) throw new \Exception('Unauthorized');
+
             $this->form->delete($id);
             $this->dispatch('alert', type: Alert::success->value, message: 'Data deleted successfully');
         } catch (\Exception $exception) {

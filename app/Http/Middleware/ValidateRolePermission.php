@@ -17,36 +17,55 @@ class ValidateRolePermission
         // Default permission
         $permission = 'view.' . $route;
 
-        // If manage page
-        if(substr($route, -6) == 'manage') {
-            $route = substr($route, 0, -7);
-
-            // Check permission for create or update
-            $url = explode('/', $request->path());
-            $lastUrl = $url[count($url) - 1];
-
-            if($lastUrl == 'manage') {
+        // If API
+        if($request->is('api/*')) {
+            if($request->isMethod('post')) {
                 $permission = 'create.' . $route;
-            } else {
+            }
+
+            if($request->isMethod('put')) {
                 $permission = 'update.' . $route;
             }
-        }
 
-        if(!Auth::user()->can($permission)) {
-            if($request->is('api/*')) {
+            if($request->isMethod('delete')) {
+                $permission = 'delete.' . $route;
+            }
+
+            // Check permission
+            if(!Auth::user()->can($permission)) {
                 throw new HttpResponseException(response()->json([
                     'code' => 403,
                     'message' => 'You do not have permission.'
                 ], 403));
-            } else {
+            }
+
+            return $next($request);
+        } else {
+            // If manage page
+            if(substr($route, -6) == 'manage') {
+                $route = substr($route, 0, -7);
+
+                // Check permission for create or update
+                $url = explode('/', $request->path());
+                $lastUrl = $url[count($url) - 1];
+
+                if($lastUrl == 'manage') {
+                    $permission = 'create.' . $route;
+                } else {
+                    $permission = 'update.' . $route;
+                }
+            }
+
+            // Check permission
+            if(!Auth::user()->can($permission)) {
                 session()->flash('error', 'You do not have permission.');
 
                 // redirect to dashboard
                 return redirect()->back();
             }
-        }
 
-        return $next($request);
+            return $next($request);
+        }
     }
 }
 
