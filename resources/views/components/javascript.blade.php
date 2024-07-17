@@ -11,6 +11,8 @@
         sideBarCollapse()
 
         feather.replace()
+
+        document.body.setAttribute("data-scroll-x", window.scrollX)
     });
 
     document.addEventListener('livewire:initialized', () => {

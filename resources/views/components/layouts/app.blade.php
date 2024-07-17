@@ -18,7 +18,7 @@
 </head>
 
 <body>
-    <div class="wrapper">
+    <div class="wrapper" data-scroll-x="0">
         <x-navigation />
 
 		<div class="main">
