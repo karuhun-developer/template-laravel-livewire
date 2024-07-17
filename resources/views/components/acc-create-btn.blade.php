@@ -2,7 +2,7 @@
     'route' => '',
     'createClick' => 'create',
 ])
-<div x-data>
+<div>
     @can('create.' . $route)
         <div class="float-end">
             <button

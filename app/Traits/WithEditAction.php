@@ -8,7 +8,7 @@ trait WithEditAction {
     public function edit($id, $navigate = true) {
         try {
             // Check permission
-            if(!auth()->user()->can('update', $this->originRoute)) throw new \Exception('Unauthorized');
+            if(!auth()->user()->can('update.' . $this->originRoute)) throw new \Exception('Unauthorized');
 
             $this->redirectRoute($this->originRoute . '.manage', [
                 'id' => $id,

@@ -43,12 +43,14 @@ class ValidateRolePermission
         } else {
             // If manage page
             if(substr($route, -6) == 'manage') {
+                // Delete the .manage from route
                 $route = substr($route, 0, -7);
 
                 // Check permission for create or update
                 $url = explode('/', $request->path());
                 $lastUrl = $url[count($url) - 1];
 
+                // Check if last is manage or has the parameters
                 if($lastUrl == 'manage') {
                     $permission = 'create.' . $route;
                 } else {

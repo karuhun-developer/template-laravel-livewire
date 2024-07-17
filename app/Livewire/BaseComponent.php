@@ -23,6 +23,7 @@ class BaseComponent extends Component {
         WithSaveAction;
 
     public $originRoute = '';
+    public $previousUrl = '';
 
     // Image iterator for image set null after save
     public $imageIttr = 1;
@@ -30,5 +31,6 @@ class BaseComponent extends Component {
     public function __construct()
     {
         $this->originRoute = request()->route()->getName();
+        $this->previousUrl = url()->previous();
     }
 }
