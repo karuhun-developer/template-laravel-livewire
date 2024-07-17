@@ -3,6 +3,7 @@
 namespace App\Traits;
 
 use App\Enums\Alert;
+use Spatie\Permission\Exceptions\UnauthorizedException;
 use Illuminate\Support\Facades\Route;
 
 trait WithSaveAction {
@@ -14,13 +15,13 @@ trait WithSaveAction {
             // If redirect is null
             if($redirect) {
                 // Check permission
-                if(!auth()->user()->can($permission . $this->originRoute)) throw new \Exception('Unauthorized');
+                if(!auth()->user()->can($permission . $this->originRoute)) throw new UnauthorizedException(403, 'You do not have permission.');
             } else {
                 // Delete the .manage from route
                 $redirect = substr($this->originRoute, 0, -7);
 
                 // Check permission
-                if(!auth()->user()->can($permission . $redirect)) throw new \Exception('Unauthorized');
+                if(!auth()->user()->can($permission . $redirect)) throw new UnauthorizedException(403, 'You do not have permission.');
             }
 
             $this->form->save();
@@ -37,7 +38,7 @@ trait WithSaveAction {
                 // Default
                 $this->redirect($this->previousUrl, navigate: $navigate);
             }
-        } catch (\Exception $exception) {
+        } catch (UnauthorizedException $exception) {
             $this->dispatch('alert', type: Alert::error->value, message: $exception->getMessage());
         }
     }

@@ -2,10 +2,11 @@
 
 namespace App\Livewire\Forms\Cms\Management;
 
+use App\Livewire\Contracts\FormCrudInterface;
 use App\Models\User;
 use Livewire\Form;
 
-class FormUser extends Form
+class FormUser extends Form implements FormCrudInterface
 {
     public $id;
 

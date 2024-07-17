@@ -1,26 +1,19 @@
 <?php
 
-namespace App\Livewire\Forms\Cms\Management;
+namespace DummyNamespace;
 
 use App\Livewire\Contracts\FormCrudInterface;
-use Spatie\Permission\Models\Role;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
 
-class FormRole extends Form implements FormCrudInterface
+class DummyClass extends Form implements FormCrudInterface
 {
     #[Validate('nullable|numeric')]
     public $id;
 
-    #[Validate('required')]
-    public $name;
-
     // Get the data
     public function getDetail($id) {
-        $data = Role::find($id);
-
         $this->id = $id;
-        $this->name = $data->name;
     }
 
     // Save the data
@@ -38,19 +31,16 @@ class FormRole extends Form implements FormCrudInterface
 
     // Store data
     public function store() {
-        $data['name'] = $this->name;
-        $data['guard_name'] = 'web';
 
-        Role::create($data);
     }
 
     // Update data
     public function update() {
-        Role::find($this->id)->update($this->all());
+
     }
 
     // Delete data
     public function delete($id) {
-        Role::find($id)->delete();
+
     }
 }

@@ -2,11 +2,12 @@
 
 namespace App\Livewire\Forms\Cms\Management;
 
+use App\Livewire\Contracts\FormCrudInterface;
 use App\Models\MenuChild;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
 
-class FormMenuChild extends Form
+class FormMenuChild extends Form implements FormCrudInterface
 {
     #[Validate('nullable|numeric')]
     public $id;
