@@ -14,7 +14,7 @@
                         $isActive = request()->routeIs($menu->route) || str_contains(request()->path(), strtolower($menu->name));
                     @endphp
                     @if($menu->type != 'header')
-                        @can('view.'.$menu->route)
+                        @if(auth()->user()->can('view.'.$menu->route) || $menu->route == '#')
                             <li class="sidebar-{{ $menu->type }} {{ $isActive ? 'active' : '' }}">
                                 <a class="sidebar-link @if(count($menu->menuChildren) > 0) {{ $isActive ? '' : 'collapsed' }} @endif"
                                     @if(count($menu->menuChildren) > 0)
@@ -42,20 +42,28 @@
 
                                         {{-- Loop child --}}
                                         @foreach ($menu->menuChildren as $children)
-                                            <li class="sidebar-item {{ $isActive ? 'active' : '' }}">
-                                                <a class="sidebar-link" href="{{
-                                                    \Illuminate\Support\Facades\Route::has($children->route)
-                                                    ? route($menu->route)
-                                                    : '#'
-                                                }}" wire:navigate>
-                                                    {{ $children->name }}
-                                                </a>
-                                            </li>
+                                            @can('view.'.$children->route)
+                                                @php
+                                                    $childIsActive = request()->routeIs($children->route);
+                                                @endphp
+                                                <li class="sidebar-item {{ $childIsActive ? 'active' : '' }}">
+                                                    <a class="sidebar-link" href="{{
+                                                        \Illuminate\Support\Facades\Route::has($children->route)
+                                                        ? route($children->route)
+                                                        : '#'
+                                                    }}" wire:navigate>
+                                                        @if($children->icon != '#')
+                                                            <i class="align-middle" data-feather="{{ $children->icon }}"></i>
+                                                        @endif
+                                                        {{ $children->name }}
+                                                    </a>
+                                                </li>
+                                            @endcan
                                         @endforeach
                                     </ul>
                                 @endif
                             </li>
-                        @endcan
+                        @endif
                     @else
                         <li class="sidebar-header">{{ $menu->name }}</li>
                     @endif

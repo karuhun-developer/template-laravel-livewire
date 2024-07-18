@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Setting;
 use App\Models\Menu;
+use App\Models\MenuChild;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -17,5 +18,6 @@ class TruncateTable extends Seeder
         Setting::truncate();
         User::truncate();
         Menu::truncate();
+        MenuChild::truncate();
     }
 }
