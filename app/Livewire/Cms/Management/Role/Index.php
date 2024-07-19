@@ -24,12 +24,14 @@ class Index extends BaseComponent
 
     public function render()
     {
-        $get = $this->getDataWithFilter(new Role, [
-            'orderBy' => $this->orderBy,
-            'order' => $this->order,
-            'paginate' => $this->paginate,
-            's' => $this->search,
-        ], $this->searchBy);
+        $get = $this->getDataWithFilter(
+            model: new Role,
+            searchBy: $this->searchBy,
+            orderBy: $this->orderBy,
+            order: $this->order,
+            paginate: $this->paginate,
+            s: $this->search
+        );
 
         if ($this->search != null) {
             $this->resetPage();

@@ -7,17 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 trait WithGetFilterData {
 
-    public function getDataWithFilter(Model|Builder $model, array $data, array $searchBy = [
+    public function getDataWithFilter(Model|Builder $model, array $searchBy = [
         [
             'name' => '',
             'field' => '',
             'no_search' => true,
         ]
-    ]) {
-        $orderBy = $data['orderBy'] ?? 'id';
-        $order = $data['order'] ?? 'asc';
-        $paginate = $data['paginate'] ?? 10;
-        $s = $data['s'] ?? '';
+    ], string $orderBy = 'id', string $order = 'asc', int $paginate = 10, string $s = '') {
 
         $model = $model->where(function ($query) use ($s, $searchBy) {
             foreach ($searchBy as $key => $value) {

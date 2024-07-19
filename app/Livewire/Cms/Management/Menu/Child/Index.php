@@ -51,12 +51,14 @@ class Index extends BaseComponent
     {
         $model = MenuChild::where('menu_id', $this->menu->id);
 
-        $get = $this->getDataWithFilter($model, [
-            'orderBy' => $this->orderBy,
-            'order' => $this->order,
-            'paginate' => $this->paginate,
-            's' => $this->search,
-        ], $this->searchBy);
+        $get = $this->getDataWithFilter(
+            model: $model,
+            searchBy: $this->searchBy,
+            orderBy: $this->orderBy,
+            order: $this->order,
+            paginate: $this->paginate,
+            s: $this->search
+        );
 
         if ($this->search != null) {
             $this->resetPage();

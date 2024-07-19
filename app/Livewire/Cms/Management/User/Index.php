@@ -36,12 +36,14 @@ class Index extends BaseComponent
             ->join('roles', 'roles.id', '=', 'model_has_roles.role_id')
             ->select('users.*', 'roles.name as role');
 
-        $get = $this->getDataWithFilter($model, [
-            'orderBy' => $this->orderBy,
-            'order' => $this->order,
-            'paginate' => $this->paginate,
-            's' => $this->search,
-        ], $this->searchBy);
+        $get = $this->getDataWithFilter(
+            model: $model,
+            searchBy: $this->searchBy,
+            orderBy: $this->orderBy,
+            order: $this->order,
+            paginate: $this->paginate,
+            s: $this->search
+        );
 
         if ($this->search != null) {
             $this->resetPage();
