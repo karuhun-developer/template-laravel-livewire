@@ -20,4 +20,8 @@ class Misc extends BaseComponent
     {
         return view('livewire.cms.management.setting.misc')->title($this->title);
     }
+
+    public function customSave() {
+        $this->save(redirect: 'cms.management.misc-setting');
+    }
 }

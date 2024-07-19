@@ -39,7 +39,7 @@ class RoleSeeder extends Seeder
     public function run(): void
     {
         $admin = Role::findOrCreate('admin', 'web');
-        $user = Role::findOrCreate('user', 'web');
+        $user = Role::findOrCreate('default', 'web');
 
         // Generate Permission
         // Get all route names

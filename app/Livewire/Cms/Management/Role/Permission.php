@@ -112,6 +112,16 @@ class Permission extends BaseComponent
         $this->isPermissionExist($permission);
         $this->role->givePermissionTo($permission);
         $this->permissions[$route][$permission] = true;
+
+        activity()
+            ->causedBy(auth()->user())
+            ->performedOn($this->role)
+            ->withProperties([
+                'route' => $route,
+                'permission' => $permission,
+            ])
+            ->event('check-permission')
+            ->log('Add permission');
     }
 
     // Uncheck
@@ -119,6 +129,16 @@ class Permission extends BaseComponent
         $this->isPermissionExist($permission);
         $this->role->revokePermissionTo($permission);
         $this->permissions[$route][$permission] = false;
+
+        activity()
+            ->causedBy(auth()->user())
+            ->performedOn($this->role)
+            ->withProperties([
+                'route' => $route,
+                'permission' => $permission,
+            ])
+            ->event('uncheck-permission')
+            ->log('Remove permission');
     }
 
     // Is Permission Exist

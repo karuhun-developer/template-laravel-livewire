@@ -14,6 +14,7 @@
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^3.2",
+        "spatie/laravel-activitylog": "^4.8",
         "spatie/laravel-markdown": "^2.4",
         "spatie/laravel-permission": "^6.1"
     },

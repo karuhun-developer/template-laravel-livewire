@@ -28,6 +28,9 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        // Save activity
+        activity()->performedOn(Auth::user())->causedBy(Auth::user())->log('Login');
+
         return redirect()->intended(route('dashboard', absolute: false));
     }
 
@@ -36,6 +39,9 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
+        // Save activity
+        activity()->performedOn(Auth::user())->causedBy(Auth::user())->log('Logout');
+
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();

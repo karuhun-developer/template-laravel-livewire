@@ -19,5 +19,9 @@ class TermOfService extends BaseComponent
     {
         return view('livewire.cms.management.setting.term-of-service')->title($this->title);
     }
+
+    public function customSave() {
+        $this->save(redirect: 'cms.management.term-of-service-setting');
+    }
 }
 

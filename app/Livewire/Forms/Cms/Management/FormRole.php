@@ -3,7 +3,7 @@
 namespace App\Livewire\Forms\Cms\Management;
 
 use App\Livewire\Contracts\FormCrudInterface;
-use Spatie\Permission\Models\Role;
+use App\Models\Role;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
 

@@ -3,7 +3,7 @@
 namespace App\Livewire\Cms\Management\User;
 
 use App\Livewire\Forms\Cms\Management\FormUser;
-use Spatie\Permission\Models\Role;
+use App\Models\Role;
 use BaseComponent;
 
 class Manage extends BaseComponent

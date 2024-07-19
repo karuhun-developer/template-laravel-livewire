@@ -3,7 +3,7 @@
 namespace App\Livewire\Cms\Management\Role;
 
 use App\Livewire\Forms\Cms\Management\FormRole;
-use Spatie\Permission\Models\Role as RoleModel;
+use App\Models\Role;
 use BaseComponent;
 
 class Index extends BaseComponent
@@ -24,7 +24,7 @@ class Index extends BaseComponent
 
     public function render()
     {
-        $get = $this->getDataWithFilter(new RoleModel, [
+        $get = $this->getDataWithFilter(new Role, [
             'orderBy' => $this->orderBy,
             'order' => $this->order,
             'paginate' => $this->paginate,
