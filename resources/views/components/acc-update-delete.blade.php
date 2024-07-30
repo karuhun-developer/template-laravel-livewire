@@ -16,7 +16,7 @@
                 class="btn btn-warning"
                 wire:click="{{ $editFunction }}('{{ $id }}')"
             >
-                <i class="align-middle" data-feather="edit"></i>
+                <i class="fa fa-pencil"></i>
             </button>
         @endcan
     @endif
@@ -26,7 +26,7 @@
                 class="btn btn-danger"
                 wire:click="{{ $deleteFunction }}('{{ $id }}')"
             >
-                <i class="align-middle" data-feather="trash"></i>
+                <i class="fa fa-trash"></i>
             </button>
         @endcan
     @endif

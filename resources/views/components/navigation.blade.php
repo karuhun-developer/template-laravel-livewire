@@ -28,7 +28,7 @@
 
                                 {{-- Icon --}}
                                 @if($menu->type != 'header')
-                                    <i class="align-middle" data-feather="{{ $menu->icon }}"></i>
+                                    <i class="{{ $menu->icon }}"></i>
                                 @endif
                                 <span class="align-middle">{{ $menu->name }}</span>
                             </a>
@@ -52,7 +52,7 @@
                                                     : '#'
                                                 }}" wire:navigate>
                                                     @if($children->icon != '#')
-                                                        <i class="align-middle" data-feather="{{ $children->icon }}"></i>
+                                                        <i class="{{ $children->icon }}"></i>
                                                     @endif
                                                     {{ $children->name }}
                                                 </a>

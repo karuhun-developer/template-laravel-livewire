@@ -48,7 +48,7 @@ class RoleSeeder extends Seeder
         foreach ($routes as $value) {
             $route = $value->getName();
             // Except route
-            if(!in_array($route, $this->routeExcept) && !is_null($route) && substr($route, -6) != 'manage') {
+            if(!in_array($route, $this->routeExcept) && !is_null($route)) {
                 foreach($this->permissionType as $type) {
                     $permission = $type . '.' . $route;
                     $permission = Permission::findOrCreate($permission, 'web');

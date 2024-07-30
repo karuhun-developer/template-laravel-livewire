@@ -29,7 +29,7 @@
                                         class="btn btn-primary"
                                         wire:navigate
                                     >
-                                        <i class="align-middle" data-feather="lock"></i> Permission
+                                        <i class="fa fa-lock"></i> Permission
                                     </a>
                                 </x-acc-update-delete>
                             </tr>
@@ -49,4 +49,16 @@
             </div>
         </div>
     </div>
+
+    {{-- Create / Update Modal --}}
+    <x-acc-modal title="{{ $isUpdate ? 'Update' : 'Create' }} {{ $title }}" :$isModaOpen>
+        <x-acc-form submit="save">
+            <div class="col-md-12">
+                <div class="mb-3">
+                    <label class="form-label">Name</label>
+                    <x-acc-input type="text" model="form.name" placeholder="Name" />
+                </div>
+            </div>
+        </x-acc-form>
+    </x-acc-modal>
 </x-acc-with-alert>

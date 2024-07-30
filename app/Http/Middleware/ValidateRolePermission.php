@@ -41,29 +41,9 @@ class ValidateRolePermission
 
             return $next($request);
         } else {
-            // If manage page
-            if(substr($route, -6) == 'manage') {
-                // Delete the .manage from route
-                $route = substr($route, 0, -7);
-
-                // Check permission for create or update
-                $url = explode('/', $request->path());
-                $lastUrl = $url[count($url) - 1];
-
-                // Check if last is manage or has the parameters
-                if($lastUrl == 'manage') {
-                    $permission = 'create.' . $route;
-                } else {
-                    $permission = 'update.' . $route;
-                }
-            }
-
             // Check permission
             if(!Auth::user()->can($permission)) {
                 session()->flash('error', 'You do not have permission.');
-
-                // redirect to dashboard
-                return redirect()->back();
             }
 
             return $next($request);

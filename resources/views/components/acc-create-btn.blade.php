@@ -9,7 +9,7 @@
                 class="btn btn-success"
                 wire:click="{{ $createClick }}"
             >
-                <i class="align-middle" data-feather="plus-circle"></i>
+                <i class="fa fa-plus-circle"></i>
                 Create
             </button>
         </div>

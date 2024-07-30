@@ -11,6 +11,7 @@ use App\Traits\WithCreateAction;
 use App\Traits\WithDeleteAction;
 use App\Traits\WithEditAction;
 use App\Traits\WithSaveAction;
+use App\Traits\InteractWithModal;
 
 class BaseComponent extends Component {
     use WithPagination,
@@ -20,13 +21,17 @@ class BaseComponent extends Component {
         WithCreateAction,
         WithEditAction,
         WithDeleteAction,
-        WithSaveAction;
+        WithSaveAction,
+        InteractWithModal;
 
     public $originRoute = '';
     public $previousUrl = '';
 
     // Image iterator for image set null after save
     public $imageIttr = 1;
+
+    // Modal
+    public $isModaOpen = false;
 
     public function __construct()
     {

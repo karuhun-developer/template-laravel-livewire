@@ -10,8 +10,6 @@
     document.addEventListener("livewire:navigated", function() {
         sideBarCollapse()
 
-        feather.replace()
-
         document.body.setAttribute("data-scroll-x", window.scrollX)
     });
 
@@ -29,10 +27,6 @@
                 toast.addEventListener('mouseenter', Swal.stopTimer)
                 toast.addEventListener('mouseleave', Swal.resumeTimer)
             }
-        })
-
-        Livewire.hook('morph.updated', ({ el, component }) => {
-            feather.replace()
         })
 
         Livewire.on('alert', params => {
@@ -56,14 +50,6 @@
                     Livewire.dispatch(params.function, {id: params.id})
                 }
             })
-        })
-
-        Livewire.on('closeModal', params => {
-            const modal = document.getElementById(params.modal)
-            const modalBackdrop = document.getElementsByClassName('modal-backdrop')[0]
-
-            modal?.classList?.remove('show')
-            modalBackdrop?.remove()
         })
 
         Livewire.on('setValueById', params => {

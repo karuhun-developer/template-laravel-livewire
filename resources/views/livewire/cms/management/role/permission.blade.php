@@ -12,11 +12,11 @@
                 <div class="col-md-12">
                     <div class="float-start">
                         <button class="btn btn-primary" wire:click="checkAll" wire:loading.attr="disabled">
-                            <i class="align-middle" data-feather="check"></i>
+                            <i class="fa fa-check"></i>
                             Check All
                         </button>
                         <button class="btn btn-danger" wire:click="uncheckAll" wire:loading.attr="disabled">
-                            <i class="align-middle" data-feather="x"></i>
+                            <i class="fa fa-x"></i>
                             Uncheck All
                         </button>
                     </div>

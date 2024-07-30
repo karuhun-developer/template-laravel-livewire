@@ -1,14 +1,16 @@
 <?php
 
-namespace App\Livewire\Cms\Management\Menu\Child;
+namespace App\Livewire\Cms\Management\Menu;
 
+use Spatie\Permission\Exceptions\UnauthorizedException;
 use App\Livewire\Forms\Cms\Management\FormMenuChild;
 use App\Models\MenuChild;
 use App\Models\Menu;
+use App\Enums\Alert;
 use BaseComponent;
 use Override;
 
-class Index extends BaseComponent
+class Child extends BaseComponent
 {
     public FormMenuChild $form;
     public $title;
@@ -32,6 +34,7 @@ class Index extends BaseComponent
             ],
         ],
         $search = '',
+        $isUpdate = false,
         $paginate = 10,
         $orderBy = 'ordering',
         $order = 'asc';
@@ -64,21 +67,27 @@ class Index extends BaseComponent
             $this->resetPage();
         }
 
-        return view('livewire.cms.management.menu.child.index', compact('get'))->title($this->title);
+        return view('livewire.cms.management.menu.child', compact('get'))->title($this->title);
     }
 
     #[Override]
-    public function create($navigate = true) {
-        $this->redirectRoute($this->originRoute . '.manage', [
-            'menu' => $this->menu->id,
-        ], navigate: $navigate);
-    }
+    public function save() {
+        try {
+            // Check permission
+            $permission = $this->isUpdate ? 'update.' : 'create.';
 
-    #[Override]
-    public function edit($id, $navigate = true) {
-        $this->redirectRoute($this->originRoute . '.manage', [
-            'menu' => $this->menu->id,
-            'id' => $id,
-        ], navigate: $navigate);
+            // Check permission
+            if(!auth()->user()->can($permission . $this->originRoute)) throw new UnauthorizedException(403, 'You do not have permission.');
+
+            $this->form->menu_id = $this->menu->id;
+            $this->form->save();
+
+            session()->flash(Alert::success->value, $this->isUpdate ? 'Data Updated' : 'Data Created');
+
+            // Redirect
+            $this->closeModal();
+        } catch (UnauthorizedException $exception) {
+            $this->dispatch('alert', type: Alert::error->value, message: $exception->getMessage());
+        }
     }
 }

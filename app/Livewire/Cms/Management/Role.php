@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Livewire\Cms\Management\Role;
+namespace App\Livewire\Cms\Management;
 
 use App\Livewire\Forms\Cms\Management\FormRole;
-use App\Models\Role;
+use App\Models\Role as RoleModel;
 use BaseComponent;
 
-class Index extends BaseComponent
+class Role extends BaseComponent
 {
     public FormRole $form;
     public $title = 'Management Role';
@@ -18,6 +18,7 @@ class Index extends BaseComponent
             ],
         ],
         $search = '',
+        $isUpdate = false,
         $paginate = 10,
         $orderBy = 'name',
         $order = 'asc';
@@ -25,7 +26,7 @@ class Index extends BaseComponent
     public function render()
     {
         $get = $this->getDataWithFilter(
-            model: new Role,
+            model: new RoleModel,
             searchBy: $this->searchBy,
             orderBy: $this->orderBy,
             order: $this->order,
@@ -37,6 +38,6 @@ class Index extends BaseComponent
             $this->resetPage();
         }
 
-        return view('livewire.cms.management.role.index', compact('get'))->title($this->title);
+        return view('livewire.cms.management.role', compact('get'))->title($this->title);
     }
 }

@@ -21,7 +21,7 @@
                             wire:loading.attr="disabled"
                             wire:click="{{ $reset }}"
                             type="reset">
-                            <i class="align-middle" data-feather="refresh-ccw"></i>
+                            <i class="fa fa-redo"></i>
                             Reset
                         </button>
                         <button
@@ -29,7 +29,7 @@
                             wire:loading.attr="disabled"
                             wire:target="{{ $submit }}"
                             type="submit">
-                            <i class="align-middle" data-feather="save"></i>
+                            <i class="fa fa-save"></i>
                             Save
                         </button>
                     </div>

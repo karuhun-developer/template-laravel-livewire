@@ -4,6 +4,6 @@
     'routeParams' => [],
 ])
 <a href="{{ route($route, $routeParams) }}" wire:navigate {!! $attributes !!} class="{{ $class }}">
-    <i class="align-middle" data-feather="arrow-left"></i>
+    <i class="fa fa-arrow-left"></i>
     Back
 </a>

@@ -27,9 +27,8 @@
                                 <td>{{ $d->role }}</td>
                                 <x-acc-update-delete :id="$d->id" :$originRoute>
                                     <button class="btn btn-primary"
-                                        wire:click="getDetail('{{ $d->id }}')"
-                                        x-on:click="new bootstrap.Modal(document.getElementById('acc-modal-password')).show()">
-                                        <i class="align-middle" data-feather="key"></i>
+                                        wire:click="editPassword('{{ $d->id }}')">
+                                        <i class="fa fa-key"></i>
                                     </button>
                                 </x-acc-update-delete>
                             </tr>
@@ -50,8 +49,45 @@
         </div>
     </div>
 
+    {{-- Create / Update Modal --}}
+    <x-acc-modal title="{{ $isUpdate ? 'Update' : 'Create' }} {{ $title }}" :$isModaOpen>
+        <x-acc-form submit="save">
+            <div class="col-md-12">
+                <div class="mb-3">
+                    <label class="form-label">Role</label>
+                    <x-acc-input type="select" :live="true" model="form.role">
+                        <option value="">--Select Role--</option>
+                        @foreach($roles as $role)
+                            <option value="{{ $role->name }}">{{ $role->name }}</option>
+                        @endforeach
+                    </x-acc-input>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="mb-3">
+                    <label class="form-label">Name</label>
+                    <x-acc-input type="text" model="form.name" placeholder="Name" />
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <x-acc-input type="email" model="form.email" placeholder="Email" />
+                </div>
+            </div>
+            @if(!$isUpdate)
+                <div class="col-md-12">
+                    <div class="mb-3">
+                        <label class="form-label">Password</label>
+                        <x-acc-input type="password" model="form.password" placeholder="Password" />
+                    </div>
+                </div>
+            @endif
+        </x-acc-form>
+    </x-acc-modal>
+
     {{-- Change password --}}
-    <x-acc-modal title="Change Password {{ $form->name }}" id="acc-modal-password">
+    <x-acc-modal title="Change Password {{ $form->name }}" id="acc-modal-password" :isModaOpen="$isModalPasswordOpen" closeModalFunction="closeModalPassword">
         <x-acc-form submit="changePassword">
             <div class="col-md-12">
                 <div class="mb-3">

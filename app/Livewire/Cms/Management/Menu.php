@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Livewire\Cms\Management\Menu;
+namespace App\Livewire\Cms\Management;
 
 use App\Livewire\Forms\Cms\Management\FormMenu;
 use Livewire\Attributes\Url;
 use App\Models\Menu as MenuModel;
 use BaseComponent;
 
-class Index extends BaseComponent
+class Menu extends BaseComponent
 {
     public FormMenu $form;
     public $title = 'Management Menu';
@@ -42,6 +42,7 @@ class Index extends BaseComponent
             ],
         ],
         $search = '',
+        $isUpdate = false,
         $paginate = 10,
         $orderBy = 'ordering',
         $order = 'asc';
@@ -63,6 +64,6 @@ class Index extends BaseComponent
             $this->resetPage();
         }
 
-        return view('livewire.cms.management.menu.index', compact('get'))->title($this->title);
+        return view('livewire.cms.management.menu', compact('get'))->title($this->title);
     }
 }

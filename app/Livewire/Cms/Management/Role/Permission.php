@@ -57,7 +57,7 @@ class Permission extends BaseComponent
         foreach ($routes as $value) {
             $route = $value->getName();
             // Except route
-            if(!in_array($route, $this->routeExcept) && !is_null($route) && substr($route, -6) != 'manage') {
+            if(!in_array($route, $this->routeExcept) && !is_null($route)) {
                 $this->permissions[$route] = [];
                 foreach($this->permissionType as $type) {
                     $this->permissions[$route][$type . '.' . $route] = false;
