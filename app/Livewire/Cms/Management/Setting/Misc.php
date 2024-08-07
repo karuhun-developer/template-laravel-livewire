@@ -22,6 +22,6 @@ class Misc extends BaseComponent
     }
 
     public function customSave() {
-        $this->save(redirect: 'cms.management.misc-setting');
+        $this->save();
     }
 }

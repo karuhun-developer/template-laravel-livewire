@@ -6,16 +6,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\LogOptions;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Setting extends Model
+class Setting extends Model implements HasMedia
 {
-    use HasFactory, LogsActivity;
+    use HasFactory, LogsActivity, InteractsWithMedia;
 
     public static $FILE_PATH = 'settings';
     protected $fillable = [
         'name',
-        'logo',
-        'favicon',
         'email',
         'phone',
         'address',
@@ -41,8 +41,6 @@ class Setting extends Model
     {
         return LogOptions::defaults()->logOnly([
             'name',
-            'logo',
-            'favicon',
             'email',
             'phone',
             'address',

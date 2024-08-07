@@ -3,14 +3,14 @@
 namespace App\Livewire\Forms\Cms\Management\Setting;
 
 use App\Models\Setting;
+use App\Traits\WithMediaCollection;
 use Livewire\Attributes\Validate;
-use App\Traits\WithSaveFile;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use Livewire\Form;
 
 class FormGeneral extends Form
 {
-    use WithSaveFile;
+    use WithMediaCollection;
 
     #[Validate('required')]
     public $name;
@@ -61,22 +61,36 @@ class FormGeneral extends Form
 
         $save_path = Setting::$FILE_PATH;
 
+        // Save data
+        $setting =Setting::first();
+
         // Save logo
         if($this->logo instanceof TemporaryUploadedFile) {
-            $this->logo = $this->saveFile($this->logo, $save_path, $save_path)['filename'];
-        } else {
-            $this->logo = $this->old_data->logo;
+            $this->saveFile(
+                model: $setting,
+                file: $this->logo,
+                collection: 'logo'
+            );
         }
 
         // Save favicon
         if($this->favicon instanceof TemporaryUploadedFile) {
-            $this->favicon = $this->saveFile($this->favicon, $save_path, $save_path)['filename'];
-        } else {
-            $this->favicon = $this->old_data->favicon;
+            $this->saveFile(
+                model: $setting,
+                file: $this->favicon,
+                collection: 'favicon'
+            );
         }
 
-        // Save data
-        Setting::first()->update($this->all());
+        $setting->update($this->only([
+            'name',
+            'email',
+            'phone',
+            'address',
+            'about',
+            'vision',
+            'mission',
+        ]));
 
         $this->getData();
     }

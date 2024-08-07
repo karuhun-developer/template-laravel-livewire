@@ -22,14 +22,14 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">App Logo</label>
-                                <x-acc-image-preview :image="$logo" :form_image="asset('storage/settings/' . $form->old_data->logo)"  />
+                                <x-acc-image-preview :image="$logo" :form_image="$form->old_data->getFirstMediaUrl('logo')"  />
                                 <x-acc-input type="file" model="logo" />
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">App Icon</label>
-                                <x-acc-image-preview :image="$favicon" :form_image="asset('storage/settings/' . $form->old_data->favicon)"  />
+                                <x-acc-image-preview :image="$favicon" :form_image="$form->old_data->getFirstMediaUrl('favicon')" />
                                 <x-acc-input type="file" model="favicon" />
                             </div>
                         </div>

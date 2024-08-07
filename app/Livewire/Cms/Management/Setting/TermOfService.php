@@ -21,7 +21,7 @@ class TermOfService extends BaseComponent
     }
 
     public function customSave() {
-        $this->save(redirect: 'cms.management.term-of-service-setting');
+        $this->save();
     }
 }
 

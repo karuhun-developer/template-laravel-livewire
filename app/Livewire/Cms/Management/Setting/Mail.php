@@ -22,6 +22,6 @@ class Mail extends BaseComponent
     }
 
     public function customSave() {
-        $this->save(redirect: 'cms.management.mail-setting');
+        $this->save();
     }
 }

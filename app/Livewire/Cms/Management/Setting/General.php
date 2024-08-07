@@ -35,6 +35,9 @@ class General extends BaseComponent
         $this->form->logo = $this->logo;
         $this->form->favicon = $this->favicon;
 
-        $this->save(redirect: 'cms.management.general-setting');
+        $this->save();
+
+        $this->logo = null;
+        $this->favicon = null;
     }
 }

@@ -21,6 +21,6 @@ class PrivacyPolicy extends BaseComponent
     }
 
     public function customSave() {
-        $this->save(redirect: 'cms.management.privacy-policy-setting');
+        $this->save();
     }
 }
