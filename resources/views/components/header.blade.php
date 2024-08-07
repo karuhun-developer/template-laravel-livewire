@@ -140,7 +140,7 @@
                 </li> --}}
                 <li class="nav-item dropdown">
                     <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
-                        <i class="align-middle" data-feather="settings"></i>
+                        <i class="fa fa-cog"></i>
                     </a>
 
                     <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
@@ -149,7 +149,7 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-end">
                         <a class="dropdown-item" href="{{ route('profile.edit') }}" wire:navigate>
-                            <i class="align-middle me-1" data-feather="user"></i> Profile
+                            <i class="fa fa-user"></i> Profile
                         </a>
                         <div class="dropdown-divider"></div>
                         <a x-data class="dropdown-item" href="#" @click="
@@ -174,7 +174,7 @@
                                     })
                                 }
                             })
-                        ">Log out</a>
+                        "><i class="fa fa-sign-out"></i> Log out</a>
                     </div>
                 </li>
             </ul>

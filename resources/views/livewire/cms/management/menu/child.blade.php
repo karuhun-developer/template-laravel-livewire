@@ -11,7 +11,7 @@
         <div class="card-body">
             <div class="table-responsive">
                 <x-acc-header :$originRoute />
-                <table class="table table-hover table-striped" style="width:100%">
+                <x-acc-table>
                     <thead>
                         <tr>
                             <x-acc-loop-th :$searchBy :$orderBy :$order />
@@ -37,7 +37,7 @@
                             </tr>
                         @endforelse
                     </tbody>
-                </table>
+                </x-acc-table>
 
                 <div class="float-end">
                     {{ $get->links() }}
