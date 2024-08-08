@@ -14,6 +14,9 @@ class AccessControl extends Component
     {
         $user = Auth::guard('web')->user()->toArray();
 
+        unset($user['permissions']);
+        unset($user['roles']);
+
         $apikey = Crypt::encrypt($user);
 
         return view('livewire.cms.management.access-control', compact('apikey'))->title($this->title);

@@ -10,15 +10,12 @@
 <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
 <script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
 <script>
-    const trixEditor = document.getElementById('{{ $id }}')
-    const mimeTypes = ['image/png', 'image/jpeg', 'image/jpg']
-
     addEventListener('trix-blur', ev => {
-        @this.set('{{ $model_name }}', trixEditor.getAttribute('value'))
+        @this.set('{{ $model_name }}', document.getElementById('{{ $id }}').getAttribute('value'))
     })
 
     addEventListener('trix-file-accept', ev => {
-        if (!mimeTypes.includes(ev.file.type)) {
+        if (!['image/png', 'image/jpeg', 'image/jpg'].includes(ev.file.type)) {
             // file type not allowed, prevent default upload
             return ev.preventDefault()
         }
