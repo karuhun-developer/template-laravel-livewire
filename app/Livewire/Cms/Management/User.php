@@ -36,6 +36,10 @@ class User extends BaseComponent
     public $roles = [];
 
     public function mount() {
+        // Add modal for update password
+        $this->addModal('updatePasswordModal');
+
+        // Get roles
         $this->roles = Role::all();
     }
 
@@ -62,20 +66,18 @@ class User extends BaseComponent
     }
 
     public function editPassword($id) {
-        $this->isModalPasswordOpen = true;
         $this->form->getDetail($id);
+        $this->openModal('updatePasswordModal');
     }
 
-    public function closeModalPassword() {
-        $this->isModalPasswordOpen = false;
+    public function closeModalUpdatePassword() {
+        $this->closeModal('updatePasswordModal');
     }
 
     public function changePassword() {
         $this->form->changePassword();
-        $this->closeModalPassword();
+        $this->closeModalUpdatePassword();
 
         session()->flash('success', 'Password has been changed');
-
-        $this->dispatch('closeModal', modal: 'acc-modal-password');
     }
 }

@@ -50,7 +50,7 @@
     </div>
 
     {{-- Create / Update Modal --}}
-    <x-acc-modal title="{{ $isUpdate ? 'Update' : 'Create' }} {{ $title }}" :$isModaOpen>
+    <x-acc-modal title="{{ $isUpdate ? 'Update' : 'Create' }} {{ $title }}" :isModaOpen="$modals['defaultModal']">
         <x-acc-form submit="save">
             <div class="col-md-12">
                 <div class="mb-3">
@@ -87,7 +87,7 @@
     </x-acc-modal>
 
     {{-- Change password --}}
-    <x-acc-modal title="Change Password {{ $form->name }}" id="acc-modal-password" :isModaOpen="$isModalPasswordOpen" closeModalFunction="closeModalPassword">
+    <x-acc-modal title="Change Password {{ $form->name }}" :isModaOpen="$modals['updatePasswordModal']" closeModalFunction="closeModalUpdatePassword">
         <x-acc-form submit="changePassword">
             <div class="col-md-12">
                 <div class="mb-3">

@@ -3,11 +3,19 @@
 namespace App\Traits;
 
 trait InteractWithModal {
-    public function openModal() {
-        $this->isModaOpen = true;
+    public $modals = [
+        'defaultModal' => false,
+    ];
+
+    public function addModal(string $modal) {
+        $this->modals[$modal] = false;
     }
 
-    public function closeModal() {
-        $this->isModaOpen = false;
+    public function openModal(string $modal = 'defaultModal') {
+        $this->modals[$modal] = true;
+    }
+
+    public function closeModal(string $modal = 'defaultModal') {
+        $this->modals[$modal] = false;
     }
 }
