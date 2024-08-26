@@ -9,8 +9,8 @@
             <h5 class="card-title">{{ $title ?? '' }} Data</h5>
         </div>
         <div class="card-body">
+            <x-acc-header :$originRoute />
             <div class="table-responsive">
-                <x-acc-header :$originRoute />
                 <x-acc-table>
                     <thead>
                         <tr>

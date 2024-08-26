@@ -8,18 +8,18 @@
             <h5 class="card-title">{{ $title ?? '' }} Data</h5>
         </div>
         <div class="card-body">
-            <div class="table-responsive">
-                <x-acc-header :$originRoute>
-                    <div class="col-md-6">
-                        <div class="mt-3">
-                            <label class="form-label fw-bold">Menu On</label>
-                            <select wire:model.live="on" class="form-control">
-                                <option value="cms">CMS</option>
-                                <option value="web">Web</option>
-                            </select>
-                        </div>
+            <x-acc-header :$originRoute>
+                <div class="col-md-6">
+                    <div class="mt-3">
+                        <label class="form-label fw-bold">Menu On</label>
+                        <select wire:model.live="on" class="form-control">
+                            <option value="cms">CMS</option>
+                            <option value="web">Web</option>
+                        </select>
                     </div>
-                </x-acc-header>
+                </div>
+            </x-acc-header>
+            <div class="table-responsive">
                 <x-acc-table>
                     <thead>
                         <tr>
