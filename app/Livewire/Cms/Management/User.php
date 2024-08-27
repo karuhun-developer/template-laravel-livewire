@@ -15,11 +15,11 @@ class User extends BaseComponent
     public $searchBy = [
             [
                 'name' => 'Name',
-                'field' => 'users.name',
+                'field' => 'name',
             ],
             [
                 'name' => 'Email',
-                'field' => 'users.email',
+                'field' => 'email',
             ],
             [
                 'name' => 'Role',
@@ -29,7 +29,7 @@ class User extends BaseComponent
         $search = '',
         $isUpdate = false,
         $paginate = 10,
-        $orderBy = 'users.name',
+        $orderBy = 'name',
         $order = 'asc';
 
     public $isModalPasswordOpen = false;
@@ -45,12 +45,8 @@ class User extends BaseComponent
 
     public function render()
     {
-        $model = UserModel::join('model_has_roles', 'model_has_roles.model_id', '=', 'users.id')
-            ->join('roles', 'roles.id', '=', 'model_has_roles.role_id')
-            ->select('users.*', 'roles.name as role');
-
         $get = $this->getDataWithFilter(
-            model: $model,
+            model: UserModel::with('roles'),
             searchBy: $this->searchBy,
             orderBy: $this->orderBy,
             order: $this->order,

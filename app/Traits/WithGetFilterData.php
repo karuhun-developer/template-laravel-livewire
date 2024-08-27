@@ -18,10 +18,17 @@ trait WithGetFilterData {
         $model = $model->where(function ($query) use ($s, $searchBy) {
             foreach ($searchBy as $key => $value) {
                 if(!isset($value['no_search'])) {
-                    if ($key == 0) {
-                        $query->where($value['field'], 'like', "%$s%");
+                    $field = $value['field'];
+
+                    if(str_contains($field, '.')) {
+                        // Relationship search
+                        [$relation, $relatedAttribute] = explode('.', $field);
+                        $query->orWhereHas($relation, function ($q) use ($relatedAttribute, $s) {
+                            $q->where($relatedAttribute, 'like', "%$s%");
+                        });
                     } else {
-                        $query->orWhere($value['field'], 'like', "%$s%");
+                        // Normal search
+                        $query->orWhere($field, 'like', "%$s%");
                     }
                 }
             }
