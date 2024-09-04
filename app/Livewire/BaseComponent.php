@@ -30,9 +30,6 @@ class BaseComponent extends Component {
     // Image iterator for image set null after save
     public $imageIttr = 1;
 
-    // Modal
-    public $isModaOpen = false;
-
     public function __construct()
     {
         $this->originRoute = request()->route()->getName();
