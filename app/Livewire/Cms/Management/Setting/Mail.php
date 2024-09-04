@@ -20,8 +20,4 @@ class Mail extends BaseComponent
     {
         return view('livewire.cms.management.setting.mail')->title($this->title);
     }
-
-    public function customSave() {
-        $this->save();
-    }
 }

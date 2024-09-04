@@ -12,7 +12,7 @@
                     <div class="card-header">
                         <h5 class="card-title">{{ $title ?? '' }} Data</h5>
                     </div>
-                    <x-acc-form submit="customSave">
+                    <x-acc-form submit="save">
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="form-label">Email (show)</label>

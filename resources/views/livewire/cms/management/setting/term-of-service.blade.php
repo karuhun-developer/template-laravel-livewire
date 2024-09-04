@@ -9,7 +9,7 @@
         <div class="col-md-9 col-xl-10">
             <div class="card">
                 <div class="card-body">
-                    <x-acc-form submit="customSave">
+                    <x-acc-form submit="save">
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">Term Of Service</label>

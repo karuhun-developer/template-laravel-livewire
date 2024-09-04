@@ -19,8 +19,4 @@ class PrivacyPolicy extends BaseComponent
     {
         return view('livewire.cms.management.setting.privacy-policy')->title($this->title);
     }
-
-    public function customSave() {
-        $this->save();
-    }
 }

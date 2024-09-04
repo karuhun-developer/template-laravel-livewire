@@ -43,7 +43,7 @@
                                     @foreach ($menu->menuChildren as $children)
                                         @can('view.'.$children->route)
                                             @php
-                                                $childIsActive = request()->routeIs($children->route);
+                                                $childIsActive = request()->routeIs($children->route) || str_contains(request()->path(), strtolower($children->name));
                                             @endphp
                                             <li class="sidebar-item {{ $childIsActive ? 'active' : '' }}">
                                                 <a class="sidebar-link" href="{{
