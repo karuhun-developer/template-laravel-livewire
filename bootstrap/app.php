@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 return Application::configure(basePath: dirname(__DIR__))
     ->withProviders([
         \App\Providers\ViewServiceProvider::class,
+        \Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
     ])
     ->withRouting(
         commands: __DIR__.'/../routes/console.php',

@@ -44,6 +44,9 @@ class ValidateRolePermission
             // Check permission
             if(!Auth::user()->can($permission)) {
                 session()->flash('error', 'You do not have permission.');
+
+                // Redirect back
+                return redirect()->back();
             }
 
             return $next($request);
