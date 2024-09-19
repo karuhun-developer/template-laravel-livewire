@@ -26,7 +26,7 @@
                                 <x-acc-update-delete :id="$d->id" :$originRoute>
                                     <a
                                         href="{{ route('cms.management.role-permission', ['role' => $d->name]) }}"
-                                        class="btn btn-primary"
+                                        class="dropdown-item"
                                         wire:navigate
                                     >
                                         <i class="fa fa-lock"></i> Permission

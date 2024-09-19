@@ -42,10 +42,10 @@
                                     @if($d->type != 'header')
                                         <a
                                             href="{{ route('cms.management.menu.child', ['menu' => $d->id]) }}"
-                                            class="btn btn-primary"
+                                            class="dropdown-item"
                                             wire:navigate
                                         >
-                                            <i class="fa fa-list"></i> Child
+                                            <i class="fa fa-list"></i> Child Menu
                                         </a>
                                     @endif
                                 </x-acc-update-delete>
