@@ -35,5 +35,14 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('viewPulse', function (User $user) {
             return $user->hasRole('admin');
         });
+
+        // Timezone
+        Carbon::macro('inApplicationTimezone', function() {
+            return $this->tz(config('app.timezone_display'));
+        });
+
+        Carbon::macro('inUserTimezone', function() {
+            return $this->tz(auth()->user()?->timezone ?? config('app.timezone_display'));
+        });
     }
 }
