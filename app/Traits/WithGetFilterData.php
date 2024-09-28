@@ -21,8 +21,12 @@ trait WithGetFilterData {
                     $field = $value['field'];
 
                     if(str_contains($field, '.')) {
+                        // Find the relationship and attribute parts
+                        $lastDotPos = strrpos($field, '.');
+                        $relation = substr($field, 0, $lastDotPos); // (relationship)
+                        $relatedAttribute = substr($field, $lastDotPos + 1); // name (attribute)
+
                         // Relationship search
-                        [$relation, $relatedAttribute] = explode('.', $field);
                         $query->orWhereHas($relation, function ($q) use ($relatedAttribute, $s) {
                             $q->where($relatedAttribute, 'like', "%$s%");
                         });
