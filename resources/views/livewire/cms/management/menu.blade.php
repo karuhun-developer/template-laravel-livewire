@@ -59,10 +59,9 @@
                         @endforelse
                     </tbody>
                 </x-acc-table>
-
-                <div class="float-end">
-                    {{ $get->links() }}
-                </div>
+            </div>
+            <div class="float-end">
+                {{ $get->links() }}
             </div>
         </div>
     </div>
