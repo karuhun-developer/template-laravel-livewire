@@ -24,16 +24,14 @@ class ViewServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Facades\View::composer('components.navigation', function(View $view) {
-            $view->with('menus', Menu::orderBy('ordering', 'asc')->where('on', 'cms')->get());
+            $view->with('menus', Menu::orderBy('ordering', 'asc')->with('menuChildren')->where('on', 'cms')->get());
         });
 
         // Pas setting
-        Facades\View::composer('*', function(View $view) {
-            $settings = Setting::first();
-            $settings->opengraph = json_decode($settings->opengraph, true);
-            $settings->dulbincore = json_decode($settings->dulbincore, true);
-            $settings->social_media = json_decode($settings->social_media, true);
-            $view->with('settings', $settings);
-        });
+        $settings = Setting::first();
+        $settings->opengraph = json_decode($settings->opengraph, true);
+        $settings->dulbincore = json_decode($settings->dulbincore, true);
+        $settings->social_media = json_decode($settings->social_media, true);
+        Facades\View::share('settings', $settings);
     }
 }

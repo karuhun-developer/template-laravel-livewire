@@ -24,7 +24,7 @@
                             <tr>
                                 <td>{{ $d->name }}</td>
                                 <td>{{ $d->email }}</td>
-                                <td>{{ $d->roles[0]?->name }}</td>
+                                <td>{{ $d->role }}</td>
                                 <x-acc-update-delete :id="$d->id" :$originRoute>
                                     <button class="dropdown-item"
                                         wire:click="editPassword('{{ $d->id }}')">
