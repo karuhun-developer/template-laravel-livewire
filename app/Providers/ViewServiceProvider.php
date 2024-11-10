@@ -6,6 +6,7 @@ use App\Models\Menu;
 use App\Models\Setting;
 use Illuminate\View\View;
 use Illuminate\Support\Facades;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
 
 class ViewServiceProvider extends ServiceProvider
@@ -28,10 +29,14 @@ class ViewServiceProvider extends ServiceProvider
         });
 
         // Pas setting
-        $settings = Setting::first();
-        $settings->opengraph = json_decode($settings->opengraph, true);
-        $settings->dulbincore = json_decode($settings->dulbincore, true);
-        $settings->social_media = json_decode($settings->social_media, true);
-        Facades\View::share('settings', $settings);
+        try {
+            $settings = Setting::first();
+            $settings->opengraph = json_decode($settings->opengraph, true);
+            $settings->dulbincore = json_decode($settings->dulbincore, true);
+            $settings->social_media = json_decode($settings->social_media, true);
+            Facades\View::share('settings', $settings);
+        } catch (\Exception $e) {
+            Facades\View::share('settings', null);
+        }
     }
 }
