@@ -10,7 +10,7 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
 
-    public function respondWithSuccess($data = null, $message = 'Success', $code = 200)
+    public function responseWithSuccess($data = null, $message = 'Success', $code = 200)
     {
         return response()->json([
             'code' => $code,
@@ -21,10 +21,10 @@ class Controller extends BaseController
 
     public function responseWithCreated($data = null, $message = 'Created')
     {
-        return $this->respondWithSuccess($data, $message, 201);
+        return $this->responseWithSuccess($data, $message, 201);
     }
 
-    public function respondWithError($message = 'Error', $code = 400)
+    public function responseWithError($message = 'Error', $code = 400)
     {
         return response()->json([
             'code' => $code,
@@ -32,13 +32,13 @@ class Controller extends BaseController
         ], $code);
     }
 
-    public function respondNotFound($message = 'Not Found')
+    public function responseNotFound($message = 'Not Found')
     {
-        return $this->respondWithError($message, 404);
+        return $this->responseWithError($message, 404);
     }
 
-    public function respondUnauthorized($message = 'Unauthorized')
+    public function responseUnauthorized($message = 'Unauthorized')
     {
-        return $this->respondWithError($message, 401);
+        return $this->responseWithError($message, 401);
     }
 }
