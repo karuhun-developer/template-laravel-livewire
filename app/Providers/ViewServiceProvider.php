@@ -6,7 +6,6 @@ use App\Models\Menu;
 use App\Models\Setting;
 use Illuminate\View\View;
 use Illuminate\Support\Facades;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
 
 class ViewServiceProvider extends ServiceProvider
