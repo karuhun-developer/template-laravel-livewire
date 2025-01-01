@@ -55,17 +55,32 @@
         })
 
         Livewire.on('confirm', params => {
-            Swal.fire({
+            let swalParams = {
                 title: params.title ?? 'Are you sure?',
                 text: params.message ?? `You won't be able to revert this`,
                 icon: params.icon ?? 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes'
-            }).then((result) => {
+                confirmButtonText: params.confirmText ?? 'Yes',
+                cancelButtonText: params.cancelText ?? 'Cancel'
+            }
+
+            // If params withDenyButton
+            if(params?.withDenyButton) {
+                swalParams.showDenyButton = true
+                swalParams.denyButtonColor = params?.denyColor ?? '#ffc107'
+                swalParams.denyButtonText = params?.denyText ?? 'Deny'
+            }
+
+            Swal.fire(swalParams).then((result) => {
                 if (result.isConfirmed) {
                     Livewire.dispatch(params.function, {id: params.id})
+                }
+
+                // If params withDenyButton
+                if(result?.isDenied) {
+                    Livewire.dispatch(params?.denyFunction, {id: params?.denyId})
                 }
             })
         })
