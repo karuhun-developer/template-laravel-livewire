@@ -21,6 +21,10 @@ class MenuSeeder extends Seeder
             'ordering' => '1',
         ]);
 
+        $this->adminMenu();
+    }
+
+    public function adminMenu() {
         // Website Setting
         $admin = Menu::create([
             'name' => 'Management',
@@ -62,4 +66,4 @@ class MenuSeeder extends Seeder
             'ordering' => '5',
         ]);
     }
-}
+ }
