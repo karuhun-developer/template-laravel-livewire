@@ -18,8 +18,6 @@ class SettingSeeder extends Seeder
             'phone' => '081234567890',
             'address' => 'Jl. Jalan No. 1',
             'about' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.',
-            'vision' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.',
-            'mission' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.',
             'google_analytics' => 'UA-123456789-1',
             'mail_email_show' => 'info@example.com',
             'mail_driver' => 'smtp',
