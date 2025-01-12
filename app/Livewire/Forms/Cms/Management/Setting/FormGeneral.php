@@ -33,12 +33,6 @@ class FormGeneral extends Form
     #[Validate('nullable')]
     public $about;
 
-    #[Validate('nullable')]
-    public $vision;
-
-    #[Validate('nullable')]
-    public $mission;
-
     public $old_data;
 
     public function getData() {
@@ -52,17 +46,13 @@ class FormGeneral extends Form
         $this->phone = $data->phone;
         $this->address = $data->address;
         $this->about = $data->about;
-        $this->vision = $data->vision;
-        $this->mission = $data->mission;
     }
 
     public function save() {
         $this->validate();
 
-        $save_path = Setting::$FILE_PATH;
-
         // Save data
-        $setting =Setting::first();
+        $setting = Setting::first();
 
         // Save logo
         if($this->logo instanceof TemporaryUploadedFile) {
@@ -82,15 +72,7 @@ class FormGeneral extends Form
             );
         }
 
-        $setting->update($this->only([
-            'name',
-            'email',
-            'phone',
-            'address',
-            'about',
-            'vision',
-            'mission',
-        ]));
+        $setting->update($this->all());
 
         $this->getData();
     }

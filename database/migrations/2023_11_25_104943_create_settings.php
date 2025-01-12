@@ -20,8 +20,6 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
             $table->text('about')->nullable();
-            $table->text('vision')->nullable();
-            $table->text('mission')->nullable();
             $table->string('google_analytics')->nullable();
             $table->timestamps();
         });

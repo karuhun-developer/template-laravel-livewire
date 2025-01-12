@@ -13,15 +13,12 @@ class Setting extends Model implements HasMedia
 {
     use HasFactory, LogsActivity, InteractsWithMedia;
 
-    public static $FILE_PATH = 'settings';
     protected $fillable = [
         'name',
         'email',
         'phone',
         'address',
         'about',
-        'vision',
-        'mission',
         'google_analytics',
         'privacy_policy',
         'term_of_service',
@@ -45,8 +42,6 @@ class Setting extends Model implements HasMedia
             'phone',
             'address',
             'about',
-            'vision',
-            'mission',
             'google_analytics',
             'privacy_policy',
             'term_of_service',

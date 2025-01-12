@@ -66,15 +66,7 @@ class FormMenu extends Form implements FormCrudInterface
 
     // Store data
     public function store() {
-        Menu::create($this->only([
-            'name',
-            'on',
-            'type',
-            'icon',
-            'route',
-            'ordering',
-            'meta',
-        ]));
+        Menu::create($this->all());
     }
 
     // Update data

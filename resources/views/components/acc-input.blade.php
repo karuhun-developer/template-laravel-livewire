@@ -24,8 +24,6 @@
 
     </select>
 
-    <x-acc-input-error for="{{ $model }}" />
-
 @elseif($type == 'textarea')
     <textarea
         @if($live)
@@ -38,8 +36,6 @@
         class="{{ $class }} @error($model) is-invalid @enderror"
         placeholder="{{ $placeholder }}"
         rows="{{ $rows }}" {!! $attributes !!}></textarea>
-
-    <x-acc-input-error for="{{ $model }}" />
 
 @else
     <input
@@ -54,6 +50,6 @@
         class="{{ $class }} @error($model) is-invalid @enderror"
         placeholder="{{ $placeholder }}" {!! $attributes !!} />
 
-    <x-acc-input-error for="{{ $model }}" />
-
 @endif
+
+<x-acc-input-error for="{{ $model }}" />

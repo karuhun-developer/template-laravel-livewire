@@ -20,7 +20,7 @@
                             class="btn btn-warning"
                             wire:loading.attr="disabled"
                             wire:click="{{ $reset }}"
-                            type="reset">
+                            type="button">
                             <i class="fa fa-redo"></i>
                             Reset
                         </button>

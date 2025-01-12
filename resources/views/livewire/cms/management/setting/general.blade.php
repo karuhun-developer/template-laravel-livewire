@@ -12,7 +12,7 @@
                     <div class="card-header">
                         <h5 class="card-title">{{ $title ?? '' }} Data</h5>
                     </div>
-                    <x-acc-form submit="saveWithUpload">
+                    <x-acc-form submit="save">
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="form-label">App Name</label>
@@ -22,15 +22,15 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">App Logo</label>
-                                <x-acc-image-preview :image="$logo" :form_image="$form->old_data->getFirstMediaUrl('logo')"  />
-                                <x-acc-input type="file" model="logo" />
+                                <x-acc-image-preview :image="$form->logo" :form_image="$form->old_data->getFirstMediaUrl('logo')"  />
+                                <x-acc-input type="file" model="form.logo" accept="image/*" />
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">App Icon</label>
-                                <x-acc-image-preview :image="$favicon" :form_image="$form->old_data->getFirstMediaUrl('favicon')" />
-                                <x-acc-input type="file" model="favicon" />
+                                <x-acc-image-preview :image="$form->favicon" :form_image="$form->old_data->getFirstMediaUrl('favicon')" />
+                                <x-acc-input type="file" model="form.favicon" accept="image/*" />
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -55,30 +55,6 @@
                             <div class="mb-3">
                                 <label class="form-label">About Us</label>
                                 <x-acc-input type="textarea" model="form.about" placeholder="About Us" />
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label class="form-label">Vision</label>
-                                <x-acc-input type="textarea" :live="true" model="form.vision" placeholder="Vision" />
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label class="form-label">Preview Vision</label>
-                                <x-markdown>{{ $form->vision }}</x-markdown>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label class="form-label">Mission</label>
-                                <x-acc-input type="textarea" :live="true" model="form.mission" placeholder="Mission" />
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label class="form-label">Preview Mission</label>
-                                <x-markdown>{{ $form->mission }}</x-markdown>
                             </div>
                         </div>
                     </x-acc-form>

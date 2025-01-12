@@ -54,13 +54,7 @@ class FormMenuChild extends Form implements FormCrudInterface
 
     // Store data
     public function store() {
-        MenuChild::create($this->only([
-            'menu_id',
-            'name',
-            'icon',
-            'route',
-            'ordering',
-        ]));
+        MenuChild::create($this->all());
     }
 
     // Update data
