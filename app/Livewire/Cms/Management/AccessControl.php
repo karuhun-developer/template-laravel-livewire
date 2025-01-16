@@ -14,6 +14,10 @@ class AccessControl extends Component
     {
         $user = Auth::guard('web')->user()->toArray();
 
+        unset($user['id']);
+        unset($user['email_verified_at']);
+        unset($user['created_at']);
+        unset($user['updated_at']);
         unset($user['permissions']);
         unset($user['roles']);
 
