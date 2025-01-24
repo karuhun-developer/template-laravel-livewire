@@ -23,14 +23,14 @@
                             <div class="mb-3">
                                 <label class="form-label">App Logo</label>
                                 <x-acc-image-preview :image="$form->logo" :form_image="$form->old_data->getFirstMediaUrl('logo')"  />
-                                <x-acc-input type="file" model="form.logo" accept="image/*" />
+                                <x-acc-input-file model="form.logo" accept="image/*" :$imageIttr />
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">App Icon</label>
                                 <x-acc-image-preview :image="$form->favicon" :form_image="$form->old_data->getFirstMediaUrl('favicon')" />
-                                <x-acc-input type="file" model="form.favicon" accept="image/*" />
+                                <x-acc-input-file model="form.favicon" accept="image/*" :$imageIttr />
                             </div>
                         </div>
                         <div class="col-md-12">
