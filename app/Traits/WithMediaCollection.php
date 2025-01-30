@@ -12,4 +12,8 @@ trait WithMediaCollection {
 
         $model->addMedia($file)->toMediaCollection($collection);
     }
+
+    public function deleteFile(Model $model, $collection = 'images') {
+        $model->clearMediaCollection($collection);
+    }
 }
