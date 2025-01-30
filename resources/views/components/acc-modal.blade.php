@@ -3,11 +3,12 @@
     'title' => 'Title',
     'isModaOpen' => false,
     'closeModalFunction' => 'closeModal',
+    'size' => 'md',
 ])
 
 <div class="{{ $isModaOpen ? 'd-block' : 'd-none' }}">
     <div class="modal fade show" id="{{ $id }}" tabindex="-1" aria-labelledby="{{ $id }}-label" aria-hidden="true" wire:ignore.self style="display: block">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-{{ $size }}">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="{{ $id }}-label">{{ $title }}</h5>
