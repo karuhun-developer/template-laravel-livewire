@@ -5,23 +5,17 @@
 ])
 
 <input id="{{ $id }}" type="hidden" name="{{ $model_name }}" value="{{ $model }}">
-<trix-editor wire:ignore input="{{ $id }}" class="trix-content"></trix-editor>
+<trix-editor wire:ignore input="{{ $id }}" class="trix-content"
+    x-data
+    x-on:trix-blur="
+        @this.set('{{ $model_name }}', document.getElementById('{{ $id }}').getAttribute('value'))
+    "
+    x-on:trix-file-accept="if (!['image/png', 'image/jpeg', 'image/jpg'].includes($event.file.type)) {
+        // file type not allowed, prevent default upload
+        return $event.preventDefault()
+    }"
+    x-on:trix-attachment-add="console.log('Gabisa bg')"
+></trix-editor>
 
 <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
 <script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
-<script>
-    addEventListener('trix-blur', ev => {
-        @this.set('{{ $model_name }}', document.getElementById('{{ $id }}').getAttribute('value'))
-    })
-
-    addEventListener('trix-file-accept', ev => {
-        if (!['image/png', 'image/jpeg', 'image/jpg'].includes(ev.file.type)) {
-            // file type not allowed, prevent default upload
-            return ev.preventDefault()
-        }
-    })
-
-    addEventListener('trix-attachment-add', ev => {
-        console.log('Gabisa bg')
-    })
-</script>
