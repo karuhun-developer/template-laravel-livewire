@@ -16,7 +16,7 @@ trait WithSaveAction {
 
             $this->form->save();
 
-            session()->flash(Alert::success->value, $this->isUpdate ? 'Data Updated' : 'Data Created');
+            $this->dispatch('alert', type: Alert::success->value, message: $this->isUpdate ? 'Data Updated' : 'Data Created');
 
             // Redirect
             $this->closeModal();
