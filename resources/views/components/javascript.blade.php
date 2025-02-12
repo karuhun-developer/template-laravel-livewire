@@ -1,39 +1,9 @@
 <script data-navigate-once="true">
-    function sideBarCollapse() {
-        const sidebar = document.getElementById('sidebar')
-        const toogleSideBar = document.getElementsByClassName('sidebar-toggle')[0]
-
-        toogleSideBar.addEventListener('click', () => {
-            sidebar.classList.toggle('collapsed')
-        })
-    }
-    function fixDropdown() {
-        // Select the .table-responsive element
-        const tableResponsive = document.querySelector('.table-responsive')
-
-        if(tableResponsive === null) return
-
-        // When the dropdown is shown, change the overflow to 'inherit'
-        tableResponsive.addEventListener('show.bs.dropdown', function () {
-            tableResponsive.style.overflow = 'inherit'
-        })
-
-        // When the dropdown is hidden, change the overflow back to 'auto'
-        tableResponsive.addEventListener('hide.bs.dropdown', function () {
-            tableResponsive.style.overflow = 'auto'
-        })
-    }
     document.addEventListener("livewire:navigated", function() {
-        sideBarCollapse()
-        fixDropdown()
-
         document.body.setAttribute("data-scroll-x", window.scrollX)
     });
 
     document.addEventListener('livewire:initialized', () => {
-        sideBarCollapse()
-        fixDropdown()
-
         // Toast initialization
         const Toast = Swal.mixin({
             toast: true,

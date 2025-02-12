@@ -1,158 +1,34 @@
-<div>
-    <nav class="navbar navbar-expand navbar-light navbar-bg">
-        <a class="sidebar-toggle js-sidebar-toggle">
-            <i class="hamburger align-self-center"></i>
-        </a>
-
-        <div class="navbar-collapse collapse">
-            <ul class="navbar-nav navbar-align">
-                {{-- <li class="nav-item dropdown">
-                    <a class="nav-icon dropdown-toggle" href="#" id="alertsDropdown" data-bs-toggle="dropdown">
-                        <div class="position-relative">
-                            <i class="align-middle" data-feather="bell"></i>
-                            <span class="indicator">4</span>
-                        </div>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0" aria-labelledby="alertsDropdown">
-                        <div class="dropdown-menu-header">
-                            4 New Notifications
-                        </div>
-                        <div class="list-group">
-                            <a href="#" class="list-group-item">
-                                <div class="row g-0 align-items-center">
-                                    <div class="col-2">
-                                        <i class="text-danger" data-feather="alert-circle"></i>
-                                    </div>
-                                    <div class="col-10">
-                                        <div class="text-dark">Update completed</div>
-                                        <div class="text-muted small mt-1">Restart server 12 to complete the update.</div>
-                                        <div class="text-muted small mt-1">30m ago</div>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <div class="row g-0 align-items-center">
-                                    <div class="col-2">
-                                        <i class="text-warning" data-feather="bell"></i>
-                                    </div>
-                                    <div class="col-10">
-                                        <div class="text-dark">Lorem ipsum</div>
-                                        <div class="text-muted small mt-1">Aliquam ex eros, imperdiet vulputate hendrerit et.</div>
-                                        <div class="text-muted small mt-1">2h ago</div>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <div class="row g-0 align-items-center">
-                                    <div class="col-2">
-                                        <i class="text-primary" data-feather="home"></i>
-                                    </div>
-                                    <div class="col-10">
-                                        <div class="text-dark">Login from 192.186.1.8</div>
-                                        <div class="text-muted small mt-1">5h ago</div>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <div class="row g-0 align-items-center">
-                                    <div class="col-2">
-                                        <i class="text-success" data-feather="user-plus"></i>
-                                    </div>
-                                    <div class="col-10">
-                                        <div class="text-dark">New connection</div>
-                                        <div class="text-muted small mt-1">Christina accepted your request.</div>
-                                        <div class="text-muted small mt-1">14h ago</div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="dropdown-menu-footer">
-                            <a href="#" class="text-muted">Show all notifications</a>
-                        </div>
-                    </div>
-                </li> --}}
-                {{-- <li class="nav-item dropdown">
-                    <a class="nav-icon dropdown-toggle" href="#" id="messagesDropdown" data-bs-toggle="dropdown">
-                        <div class="position-relative">
-                            <i class="align-middle" data-feather="message-square"></i>
-                        </div>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0" aria-labelledby="messagesDropdown">
-                        <div class="dropdown-menu-header">
-                            <div class="position-relative">
-                                4 New Messages
+<nav class="navbar navbar-top navbar-expand navbar-dashboard navbar-dark ps-0 pe-2 pb-0">
+    <div class="container-fluid px-0">
+        <div class="d-flex justify-content-between w-100" id="navbarSupportedContent">
+            <div class="d-flex align-items-center">
+            </div>
+            <!-- Navbar links -->
+            <ul class="navbar-nav align-items-center">
+                <li class="nav-item dropdown ms-lg-3">
+                    <a class="nav-link dropdown-toggle pt-1 px-0" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <div class="media d-flex align-items-center">
+                            <img
+                                class="avatar rounded-circle"
+                                alt="{{ auth()->user()->name }}"
+                                src="{{ asset('admin/img/avatars/avatar.jpg') }}"
+                            />
+                            <div class="media-body ms-2 text-dark align-items-center d-none d-lg-block">
+                                <span class="mb-0 font-small fw-bold text-gray-900">
+                                    {{ auth()->user()->name }}
+                                </span>
                             </div>
                         </div>
-                        <div class="list-group">
-                            <a href="#" class="list-group-item">
-                                <div class="row g-0 align-items-center">
-                                    <div class="col-2">
-                                        <img src="{{ asset('admin') }}/img/avatars/avatar-5.jpg" class="avatar img-fluid rounded-circle" alt="Vanessa Tucker">
-                                    </div>
-                                    <div class="col-10 ps-2">
-                                        <div class="text-dark">Vanessa Tucker</div>
-                                        <div class="text-muted small mt-1">Nam pretium turpis et arcu. Duis arcu tortor.</div>
-                                        <div class="text-muted small mt-1">15m ago</div>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <div class="row g-0 align-items-center">
-                                    <div class="col-2">
-                                        <img src="{{ asset('admin') }}/img/avatars/avatar-2.jpg" class="avatar img-fluid rounded-circle" alt="William Harris">
-                                    </div>
-                                    <div class="col-10 ps-2">
-                                        <div class="text-dark">William Harris</div>
-                                        <div class="text-muted small mt-1">Curabitur ligula sapien euismod vitae.</div>
-                                        <div class="text-muted small mt-1">2h ago</div>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <div class="row g-0 align-items-center">
-                                    <div class="col-2">
-                                        <img src="{{ asset('admin') }}/img/avatars/avatar-4.jpg" class="avatar img-fluid rounded-circle" alt="Christina Mason">
-                                    </div>
-                                    <div class="col-10 ps-2">
-                                        <div class="text-dark">Christina Mason</div>
-                                        <div class="text-muted small mt-1">Pellentesque auctor neque nec urna.</div>
-                                        <div class="text-muted small mt-1">4h ago</div>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <div class="row g-0 align-items-center">
-                                    <div class="col-2">
-                                        <img src="{{ asset('admin') }}/img/avatars/avatar-3.jpg" class="avatar img-fluid rounded-circle" alt="Sharon Lessman">
-                                    </div>
-                                    <div class="col-10 ps-2">
-                                        <div class="text-dark">Sharon Lessman</div>
-                                        <div class="text-muted small mt-1">Aenean tellus metus, bibendum sed, posuere ac, mattis non.</div>
-                                        <div class="text-muted small mt-1">5h ago</div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="dropdown-menu-footer">
-                            <a href="#" class="text-muted">Show all messages</a>
-                        </div>
-                    </div>
-                </li> --}}
-                <li class="nav-item dropdown">
-                    <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
-                        <i class="fa fa-cog"></i>
                     </a>
-
-                    <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-                        <img src="{{ asset('admin') }}/img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1" alt="{{ auth()->user()->name }}" />
-                        <span class="text-dark">{{ auth()->user()->name }}</span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-end">
-                        <a class="dropdown-item" href="{{ route('profile.edit') }}" wire:navigate>
-                            <i class="fa fa-user"></i> Profile
+                    <div class="dropdown-menu dashboard-dropdown dropdown-menu-end mt-2 py-1">
+                        <a class="dropdown-item d-flex align-items-center" href="{{ route('profile.edit') }}" wire:navigate>
+                            <span class="dropdown-icon text-gray-400 me-2">
+                                <i class="fas fa-user"></i>
+                            </span>
+                            My Profile
                         </a>
-                        <div class="dropdown-divider"></div>
-                        <a x-data class="dropdown-item" href="#" @click="
+                        <div role="separator" class="dropdown-divider my-1"></div>
+                        <a class="dropdown-item d-flex align-items-center" href="#" x-on:click.prevent="
                             Swal.fire({
                                 title: 'Are you sure?',
                                 text: '',
@@ -174,10 +50,15 @@
                                     })
                                 }
                             })
-                        "><i class="fa fa-sign-out"></i> Log out</a>
+                        ">
+                            <span class="dropdown-icon text-gray-400 me-2">
+                                <i class="fas fa-cog"></i>
+                            </span>
+                            Logout
+                        </a>
                     </div>
                 </li>
             </ul>
         </div>
-    </nav>
-</div>
+    </div>
+</nav>
