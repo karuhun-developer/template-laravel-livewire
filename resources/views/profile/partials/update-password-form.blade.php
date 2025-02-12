@@ -16,7 +16,13 @@
         <div class="row">
             <div class="col-md-12 mb-3">
                 <label class="form-label">Current Password</label>
-                <input id="current_password" name="current_password" type="password" class="form-control" autocomplete="current-password" />
+                <x-acc-input
+                    type="password"
+                    model="current_password"
+                    placeholder="Enter your current password"
+                    :livewire="false"
+                    icon="fas fa-key"
+                />
                 <div>
                     @if($errors->updatePassword->get('current_password'))
                         <span class="text-danger text-sm">{{ $errors->updatePassword->get('current_password')[0] }}</span>
@@ -28,7 +34,13 @@
         <div class="row">
             <div class="col-md-12 mb-3">
                 <label class="form-label">New Password</label>
-                <input id="password" name="password" type="password" class="form-control" autocomplete="new-password" />
+                <x-acc-input
+                    type="password"
+                    model="password"
+                    placeholder="Enter your new password"
+                    :livewire="false"
+                    icon="fas fa-key"
+                />
                 <div>
                     @if($errors->updatePassword->get('password'))
                         <span class="text-danger text-sm">{{ $errors->updatePassword->get('password')[0] }}</span>
@@ -40,10 +52,18 @@
         <div class="row">
             <div class="col-md-12 mb-3">
                 <label class="form-label">Confirm Password</label>
-                <input id="password_confirmation" name="password_confirmation" type="password" class="form-control" autocomplete="new-password" />
-                @if($errors->updatePassword->get('password_confirmation'))
+                <x-acc-input
+                    type="password"
+                    model="password_confirmation"
+                    placeholder="Confirm your new password"
+                    :livewire="false"
+                    icon="fas fa-key"
+                />
+                <div>
+                    @if($errors->updatePassword->get('password_confirmation'))
                         <span class="text-danger text-sm">{{ $errors->updatePassword->get('password_confirmation')[0] }}</span>
                     @endif
+                </div>
             </div>
         </div>
 
@@ -52,13 +72,10 @@
                 <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
 
                 @if (session('status') === 'password-updated')
-                    <p
-                        x-data="{ show: true }"
-                        x-show="show"
-                        x-transition
-                        x-init="setTimeout(() => show = false, 2000)"
-                        class="text-sm text-success text-lg"
-                    >{{ __('Saved.') }}</p>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ __('Saved.') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
                 @endif
             </div>
         </div>

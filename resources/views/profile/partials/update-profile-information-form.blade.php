@@ -14,15 +14,31 @@
         @method('patch')
 
         <div class="row">
+            @if (session('status') === 'profile-updated')
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ __('Saved.') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
             <div class="col-md-12 mb-3">
                 <label class="form-label">Name</label>
-                <input id="name" name="name" type="text" class="form-control" value="{{ old('name', $user->name) }}" required autofocus autocomplete="name" />
-                <x-acc-input-error for="name" />
+                <x-acc-input
+                    model="name"
+                    autofocus
+                    :livewire="false"
+                    old="{{ old('name', $user->name) }}"
+                    icon="fas fa-user"
+                />
             </div>
             <div class="col-md-12 mb-3">
                 <label class="form-label">Email</label>
-                <input id="email" name="email" type="email" class="form-control" value="{{ old('email', $user->email) }}" required autocomplete="username" />
-                <x-acc-input-error for="email" />
+                <x-acc-input
+                    type="email"
+                    model="email"
+                    :livewire="false"
+                    old="{{ old('email', $user->email) }}"
+                    icon="fas fa-envelope"
+                />
 
                 @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
                     <form id="send-verification" method="post" action="{{ route('verification.send') }}">
@@ -48,21 +64,9 @@
 
             <div class="row">
                 <div class="col-md-12 mb-3">
-                <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
-
-                @if (session('status') === 'profile-updated')
-                    <p
-                        x-data="{ show: true }"
-                        x-show="show"
-                        x-transition
-                        x-init="setTimeout(() => show = false, 2000)"
-                        class="text-sm text-success text-lg"
-                    >{{ __('Saved.') }}</p>
-                @endif
+                    <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
                 </div>
             </div>
         </div>
-
-
     </form>
 </section>
