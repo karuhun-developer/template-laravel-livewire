@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Cms;
 
 use Livewire\Component;
 
@@ -8,6 +8,6 @@ class Dashboard extends Component
 {
     public function render()
     {
-        return view('livewire.dashboard');
+        return view('livewire.cms.dashboard');
     }
 }
