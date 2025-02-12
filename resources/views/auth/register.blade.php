@@ -1,76 +1,81 @@
 <x-layouts.auth>
     <x-slot:title>
-        LOGIN
+        Sign Up
     </x-slot:title>
-    <div class="container d-flex flex-column">
-        <div class="row">
-            <div class="col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-auto d-table h-100">
-                <div class="d-table-cell align-middle">
-
-                    <div class="text-center mt-4">
-                        <h1 class="h2">Welcome back!</h1>
-                        <p class="lead">
-                            Sign in to your account to continue
-                        </p>
-                    </div>
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="m-sm-3">
-                                <form method="POST" action="{{ route('register') }}">
-                                    @csrf
-
-                                    <!-- Name -->
-                                    <div>
-                                        <label class="form-label">Name</label>
-                                        <input id="name" class="form-control" type="text" name="name" value="{{ old('name') }}" required autofocus autocomplete="name" />
-                                        <x-acc-input-error for="name" />
-                                    </div>
-
-                                    <!-- Email Address -->
-                                    <div class="mt-4">
-                                        <label class="form-label">Email</label>
-                                        <input id="email" class="form-control" type="email" name="email" value="{{ old('email') }}" required autocomplete="username" />
-                                        <x-acc-input-error for="email" />
-                                    </div>
-
-                                    <!-- Password -->
-                                    <div class="mt-4">
-                                        <label class="form-label">Password</label>
-
-                                        <input id="password" class="form-control"
-                                                        type="password"
-                                                        name="password"
-                                                        required autocomplete="new-password" />
-
-                                        <x-acc-input-error for="password" />
-                                    </div>
-
-                                    <!-- Confirm Password -->
-                                    <div class="mt-4">
-                                        <label class="form-label">Confirm Password</label>
-
-                                        <input id="password_confirmation" class="form-control"
-                                                        type="password"
-                                                        name="password_confirmation" required autocomplete="new-password" />
-
-                                        <x-acc-input-error for="password_confirmation" />
-                                    </div>
-
-                                    <div class="flex items-center justify-end mt-4">
-                                        <a href="{{ route('login') }}">
-                                            {{ __('Already registered?') }}
-                                        </a>
-
-                                        <button class="btn btn-primary float-end">
-                                            {{ __('Register') }}
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
+    <section class="vh-lg-100 mt-5 mt-lg-0 bg-soft d-flex align-items-center">
+        <div class="container">
+            <p class="text-center">
+                <a href="{{ route('login') }}" class="d-flex align-items-center justify-content-center">
+                    <i class="fas fa-angle-left me-2"></i>
+                    Back to login
+                </a>
+            </p>
+            <div class="row justify-content-center form-bg-image" data-background-lg="{{ asset('admin/img/illustrations/signin.svg') }}">
+                <div class="col-12 d-flex align-items-center justify-content-center">
+                    <div class="bg-white shadow border-0 rounded border-light p-4 p-lg-5 w-100 fmxw-500">
+                        <div class="text-center text-md-center mb-4 mt-md-0">
+                            <h1 class="mb-0 h3">Sign up to continue</h1>
                         </div>
+                        <form action="{{ route('register') }}" class="mt-4">
+                            @csrf
+                            <div class="form-group mb-4">
+                                <label for="name">Your Name</label>
+                                <x-acc-input type="name"
+                                    model="name"
+                                    autofocus
+                                    autocomplete="name"
+                                    placeholder="Enter your name"
+                                    :livewire="false"
+                                    old="{{ old('name') }}"
+                                    icon="fas fa-user"
+                                />
+                            </div>
+                            <div class="form-group mb-4">
+                                <label for="email">Your Email</label>
+                                <x-acc-input type="email"
+                                    model="email"
+                                    autocomplete="email"
+                                    placeholder="Enter your email"
+                                    :livewire="false"
+                                    old="{{ old('email') }}"
+                                    icon="fas fa-envelope"
+                                />
+                            </div>
+                            <div class="form-group mb-4">
+                                <label for="password">Password</label>
+                                <x-acc-input type="password"
+                                    model="password"
+                                    autocomplete="new-password"
+                                    placeholder="Enter your password"
+                                    :livewire="false"
+                                    icon="fas fa-key"
+                                />
+                            </div>
+                            <div class="form-group mb-4">
+                                <label for="password_confirmation">Confirm Password</label>
+                                <x-acc-input type="password"
+                                    model="password_confirmation"
+                                    autocomplete="new-password"
+                                    placeholder="Confirm your password"
+                                    :livewire="false"
+                                    icon="fas fa-key"
+                                />
+                            </div>
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-gray-800">
+                                    Sign Up
+                                </button>
+                            </div>
+                            <div class="mt-3 small text-right">
+                                Already have an account?
+                                <a href="{{ route('login') }}">
+                                    Sign in
+                                </a>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 </x-layouts.auth>

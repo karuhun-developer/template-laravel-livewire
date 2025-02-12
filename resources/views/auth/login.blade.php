@@ -1,93 +1,89 @@
 <x-layouts.auth>
     <x-slot:title>
-        LOGIN
+        Sign In
     </x-slot:title>
-    <div class="container d-flex flex-column">
-        <div class="row">
-            <div class="col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-auto d-table h-100">
-                <div class="d-table-cell align-middle">
-
-                    <div class="text-center mt-4">
-                        @if($settings->getFirstMediaUrl('logo') != '')
-                            <img src="{{ $settings->getFirstMediaUrl('logo') }}" class="img-fluid" style="width: 400px">
-                        @else
-                            <h1 class="h2">Welcome back!</h1>
-                            <p class="lead">
-                                Sign in to your account to continue
-                            </p>
-                        @endif
-                    </div>
-
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="m-sm-3">
-                                <form method="POST" action="{{ route('login') }}">
-                                    @csrf
-                                    <div class="mb-3">
-                                        <label class="form-label">Email</label>
-                                        <input
-                                            class="form-control form-control-lg @error('email') is-invalid @enderror"
-                                            type="email"
-                                            name="email"
-                                            value="{{ old('email') }}"
-                                            required
-                                            autocomplete="email"
-                                            autofocus
-                                            placeholder="Enter your email"
+    <section class="vh-lg-100 mt-5 mt-lg-0 bg-soft d-flex align-items-center">
+        <div class="container">
+            {{-- <p class="text-center">
+                <a href="#" class="d-flex align-items-center justify-content-center">
+                    <i class="fas fa-angle-left me-2"></i>
+                    Back to homepage
+                </a>
+            </p> --}}
+            <div class="row justify-content-center form-bg-image" data-background-lg="{{ asset('admin/img/illustrations/signin.svg') }}">
+                <div class="col-12 d-flex align-items-center justify-content-center">
+                    <div class="bg-white shadow border-0 rounded border-light p-4 p-lg-5 w-100 fmxw-500">
+                        <div class="text-center text-md-center mb-4 mt-md-0">
+                            @if($settings->getFirstMediaUrl('logo') != '')
+                                <img src="{{ $settings->getFirstMediaUrl('logo') }}" class="img-fluid" style="width: 400px">
+                            @else
+                                <h1 class="mb-0 h3">Sign in to continue</h1>
+                            @endif
+                        </div>
+                        <form action="{{ route('login') }}" method="post" class="mt-4">
+                            @csrf
+                            <div class="form-group mb-4">
+                                <label for="email">Your Email</label>
+                                <x-acc-input type="email"
+                                    model="email"
+                                    autofocus
+                                    autocomplete="email"
+                                    placeholder="Enter your email"
+                                    :livewire="false"
+                                    old="{{ old('email') }}"
+                                    icon="fas fa-envelope"
+                                />
+                            </div>
+                            <!-- End of Form -->
+                            <div class="form-group">
+                                <!-- Form -->
+                                <div class="form-group mb-4">
+                                    <label for="password">Your Password</label>
+                                    <x-acc-input type="password"
+                                        model="password"
+                                        placeholder="********"
+                                        :livewire="false"
+                                        icon="fas fa-lock"
+                                    />
+                                </div>
+                                <!-- End of Form -->
+                                <div class="d-flex justify-content-between align-items-top mb-4">
+                                    <div class="form-check">
+                                        <input type="checkbox"
+                                            name="remember"
+                                            class="form-check-input"
+                                            placeholder="********"
                                         />
-
-
-                                        <x-acc-input-error for="email" />
+                                        <label class="form-check-label mb-0" for="remember">
+                                            Remember me
+                                        </label>
                                     </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Password</label>
-                                        <input
-                                            type="password"
-                                            class="form-control form-control-lg @error('password') is-invalid @enderror"
-                                            name="password"
-                                            required
-                                            autocomplete="current-password"
-                                            placeholder="Enter your password"
-                                        />
-
-                                        <x-acc-input-error for="password" />
-                                    </div>
-                                    <div>
-                                        <div class="form-check align-items-center">
-                                            <input type="checkbox" class="form-check-input" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                            <label class="form-check-label text-small" for="remember">
-                                                {{ __('Remember Me') }}
-                                            </label>
-                                        </div>
-                                    </div>
-
-                                    <div class="flex items-center justify-end mt-4">
-                                        @if (Route::has('password.request'))
-                                            <a href="{{ route('password.request') }}">
-                                                {{ __('Forgot Your Password?') }}
+                                    @if (Route::has('password.request'))
+                                        <div>
+                                            <a href="{{ route('password.request') }}" class="small text-right">
+                                                Forgot Password?
                                             </a>
-                                        @endif
-
-                                        <button type="submit" class="btn btn-primary float-end">
-                                            {{ __('Login') }}
-                                        </button>
-                                    </div>
-                                </form>
-
-                                <div class="flex items-center justify-end mt-4">
-                                    @if (Route::has('register'))
-                                        {{ __("Don't have an account ?") }}
-                                        <a href="{{ route('register') }}">
-                                            {{ __('Register') }}
-                                        </a>
+                                        </div>
                                     @endif
                                 </div>
                             </div>
-                        </div>
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-gray-800">
+                                    Sign in
+                                </button>
+                            </div>
+                            @if (Route::has('register'))
+                                <div class="mt-3 small text-right">
+                                    Don't have an account?
+                                    <a href="{{ route('register') }}">
+                                        Sign up
+                                    </a>
+                                </div>
+                            @endif
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 </x-layouts.auth>
