@@ -1,9 +1,8 @@
-<x-acc-with-alert>
-    <x-acc-back route="cms.management.menu" />
-    <h1 class="h3 mb-3 mt-3">
+<div>
+    <x-slot:page-title>
         {{ $title ?? '' }}
-    </h1>
-
+    </x-slot:page-title>
+    <x-acc-back route="cms.management.menu" />
     <div class="card">
         <div class="card-header">
             <h5 class="card-title">{{ $title ?? '' }} Data</h5>
@@ -51,27 +50,27 @@
             <div class="col-md-12">
                 <div class="mb-3">
                     <label class="form-label">Name</label>
-                    <x-acc-input type="text" model="form.name" placeholder="Name" />
+                    <x-acc-input type="text" model="form.name" placeholder="Name" icon="fa fa-cog" />
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="mb-3">
                     <label class="form-label">Icon</label>
-                    <x-acc-input type="text" model="form.icon" placeholder="Icon" />
+                    <x-acc-input type="text" model="form.icon" placeholder="Icon" icon="fa fa-cog" />
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="mb-3">
                     <label class="form-label">Route</label>
-                    <x-acc-input type="text" model="form.route" placeholder="Route" />
+                    <x-acc-input type="text" model="form.route" placeholder="Route" icon="fa fa-route" />
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="mb-3">
                     <label class="form-label">Ordering</label>
-                    <x-acc-input type="number" model="form.ordering" placeholder="Ordering" />
+                    <x-acc-input type="number" model="form.ordering" placeholder="Ordering" icon="fa fa-sort-numeric-up" />
                 </div>
             </div>
         </x-acc-form>
     </x-acc-modal>
-</x-acc-with-alert>
+</div>

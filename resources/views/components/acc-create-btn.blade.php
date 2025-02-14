@@ -1,16 +1,21 @@
 @props([
     'route' => '',
+    'createClass' => 'btn btn-success',
     'createClick' => 'create',
+    'createIcon' => 'fa fa-plus-circle',
+    'createText' => 'Create',
 ])
 <div>
     @can('create.' . $route)
         <div class="float-end">
             <button
-                class="btn btn-success"
+                class="{{ $createClass }}"
                 wire:click="{{ $createClick }}"
             >
-                <i class="fa fa-plus-circle"></i>
-                Create
+                <i class="{{ $createIcon }}"></i>
+                <span class="ms-2">
+                    {{ $createText }}
+                </span>
             </button>
         </div>
     @endcan

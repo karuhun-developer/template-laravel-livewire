@@ -1,4 +1,4 @@
-<x-acc-with-alert>
+<div>
     <h1 class="h3 mb-3">
         {{ $title ?? '' }}
     </h1>
@@ -16,7 +16,7 @@
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="form-label">App Name</label>
-                                <x-acc-input type="text" model="form.name" placeholder="App Name" />
+                                <x-acc-input model="form.name" placeholder="App Name" icon="fa fa-mobile" />
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -36,25 +36,25 @@
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="form-label">Email</label>
-                                <x-acc-input type="email" model="form.email" placeholder="Email" />
+                                <x-acc-input type="email" model="form.email" placeholder="Email" icon="fa fa-envelope" />
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="form-label">Phone</label>
-                                <x-acc-input type="number" model="form.phone" placeholder="Phone" />
+                                <x-acc-input type="number" model="form.phone" placeholder="Phone" icon="fa fa-phone" />
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="form-label">Address</label>
-                                <x-acc-input type="textarea" model="form.address" placeholder="Address" />
+                                <x-acc-input type="textarea" model="form.address" placeholder="Address" icon="fa fa-map-marker" />
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="mb-3">
-                                <label class="form-label">About Us</label>
-                                <x-acc-input type="textarea" model="form.about" placeholder="About Us" />
+                                <label class="form-label">Introduction</label>
+                                <x-acc-input type="textarea" model="form.about" placeholder="About Us" icon="fa fa-info" />
                             </div>
                         </div>
                     </x-acc-form>
@@ -62,4 +62,4 @@
             </div>
         </div>
     </div>
-</x-acc-with-alert>
+</div>

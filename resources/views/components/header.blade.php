@@ -1,35 +1,48 @@
-<nav class="navbar navbar-top navbar-expand navbar-dashboard navbar-dark ps-0 pe-2 pb-0">
-    <div class="container-fluid px-0">
-        <div class="d-flex justify-content-between w-100" id="navbarSupportedContent">
-            <div class="d-flex align-items-center">
+@props([
+    'preTitle' => null,
+    'title' => null,
+])
+<div class="page-header d-print-none">
+    <div class="container-xl">
+        <div class="row g-2 align-items-center">
+            <div class="col">
+                <!-- Page pre-title -->
+                @if ($preTitle)
+                    <div class="page-pretitle">
+                        {{ $preTitle }}
+                    </div>
+                @endif
+                <!-- Page title -->
+                @if($title)
+                    <h2 class="page-title">
+                        {{ $title }}
+                    </h2>
+                @endif
             </div>
-            <!-- Navbar links -->
-            <ul class="navbar-nav align-items-center">
-                <li class="nav-item dropdown ms-lg-3">
-                    <a class="nav-link dropdown-toggle pt-1 px-0" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <div class="media d-flex align-items-center">
-                            <img
-                                class="avatar rounded-circle"
-                                alt="{{ auth()->user()->name }}"
-                                src="{{ asset('admin/img/avatars/avatar.jpg') }}"
-                            />
-                            <div class="media-body ms-2 text-dark align-items-center d-none d-lg-block">
-                                <span class="mb-0 font-small fw-bold text-gray-900">
-                                    {{ auth()->user()->name }}
-                                </span>
+            <!-- Page title actions -->
+            <div class="col-auto ms-auto d-print-none">
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown"
+                        aria-label="Open user menu">
+                        <span class="avatar avatar-sm"
+                            style="background-image: url({{ asset('img/person.jpg') }})"></span>
+                        <div class="d-none d-xl-block ps-2">
+                            <div>
+                                {{ auth()->user()->name }}
+                            </div>
+                            <div class="mt-1 small text-secondary">
+                                {{ auth()->user()->email }}
                             </div>
                         </div>
                     </a>
-                    <div class="dropdown-menu dashboard-dropdown dropdown-menu-end mt-2 py-1">
-                        <a class="dropdown-item d-flex align-items-center" href="{{ route('profile.edit') }}" wire:navigate>
-                            <span class="dropdown-icon text-gray-400 me-2">
-                                <i class="fas fa-user"></i>
-                            </span>
+                    <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                        <a href="./profile.html" class="dropdown-item">
+                            <i class="fas fa-user"></i>
                             My Profile
                         </a>
-                        <div role="separator" class="dropdown-divider my-1"></div>
-                        <a class="dropdown-item d-flex align-items-center" href="#" x-on:click.prevent="
-                            Swal.fire({
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item" x-on:click.prevent="
+                            window.Swal.fire({
                                 title: 'Are you sure?',
                                 text: '',
                                 icon: 'warning',
@@ -51,14 +64,12 @@
                                 }
                             })
                         ">
-                            <span class="dropdown-icon text-gray-400 me-2">
-                                <i class="fas fa-cog"></i>
-                            </span>
+                            <i class="fas fa-sign-out-alt"></i>
                             Logout
                         </a>
                     </div>
-                </li>
-            </ul>
+                </div>
+            </div>
         </div>
     </div>
-</nav>
+</div>

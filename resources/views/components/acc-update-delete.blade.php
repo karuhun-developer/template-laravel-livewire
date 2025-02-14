@@ -3,43 +3,49 @@
     'modal' => 'acc-modal',
     'edit' => true,
     'delete' => true,
-    'editFunction' => 'edit',
-    'deleteFunction' => 'confirmDelete',
+    'text' => 'Actions',
+    'editClick' => 'edit',
+    'editIcon' => 'fa fa-pencil',
+    'editText' => 'Edit',
+    'deleteClick' => 'confirmDelete',
+    'deleteIcon' => 'fa fa-trash',
+    'deleteText' => 'Delete',
     'originRoute' => '',
 ])
 
 <td>
     {{ $slotOutside ?? '' }}
     <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="update-delete-dropdown-{{ $id }}" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="fa fa-ellipsis-v"></i>
+        <button class="btn dropdown-toggle align-text-top" data-bs-toggle="dropdown" aria-expanded="false">
+            {{ $text }}
         </button>
-        <ul class="dropdown-menu" aria-labelledby="update-delete-dropdown-{{ $id }}">
+        <div class="dropdown-menu dropdown-menu-end">
+            {{-- Edit button --}}
             @if($edit)
                 @can('update.' . $originRoute)
-                    <li>
-                        <button
-                            class="dropdown-item"
-                            wire:click="{{ $editFunction }}('{{ $id }}')"
-                        >
-                            <i class="fa fa-pencil"></i> Edit
-                        </button>
-                    </li>
+                    <a class="dropdown-item"
+                        wire:click="{{ $editClick }}('{{ $id }}')">
+                        <i class="{{ $editIcon }}"></i>
+                        <span class="ms-2">
+                            {{ $editText }}
+                        </span>
+                    </a>
                 @endcan
             @endif
+            {{-- Delete button --}}
             @if($delete)
                 @can('delete.' . $originRoute)
-                    <li>
-                        <button
-                            class="dropdown-item"
-                            wire:click="{{ $deleteFunction }}('{{ $id }}')"
-                        >
-                            <i class="fa fa-trash"></i> Delete
-                        </button>
-                    </li>
+                    <a class="dropdown-item"
+                        wire:click="{{ $deleteClick }}('{{ $id }}')">
+                        <i class="{{ $deleteIcon }}"></i>
+                        <span class="ms-2">
+                            {{ $deleteText }}
+                        </span>
+                    </a>
                 @endcan
             @endif
             {{ $slot ?? '' }}
-        </ul>
+        </div>
     </div>
+    {{ $slotInside ?? '' }}
 </td>

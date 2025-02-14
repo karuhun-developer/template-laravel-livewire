@@ -6,16 +6,8 @@
         "build": "vite build"
     },
     "devDependencies": {
-        "@popperjs/core": "^2.11.8",
-        "bootstrap": "^5.3.3",
         "laravel-vite-plugin": "^1.0.0",
-        "notyf": "^3.10.0",
-        "nouislider": "^15.8.1",
-        "onscreen": "^1.4.0",
-        "simplebar": "^6.3.0",
-        "smooth-scroll": "^16.1.3",
-        "sweetalert2": "^11.15.10",
-        "vanillajs-datepicker": "^1.3.4",
+        "sweetalert2": "^11.16.1",
         "vite": "^5.0.0"
     },
     "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"

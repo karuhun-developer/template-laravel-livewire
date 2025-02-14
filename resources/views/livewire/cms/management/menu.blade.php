@@ -1,8 +1,7 @@
-<x-acc-with-alert>
-    <h1 class="h3 mb-3">
+<div>
+    <x-slot:page-title>
         {{ $title ?? '' }}
-    </h1>
-
+    </x-slot:page-title>
     <div class="card">
         <div class="card-header">
             <h5 class="card-title">{{ $title ?? '' }} Data</h5>
@@ -12,10 +11,10 @@
                 <div class="col-md-6">
                     <div class="mt-3">
                         <label class="form-label fw-bold">Menu On</label>
-                        <select wire:model.live="on" class="form-control">
+                        <x-acc-input type="select" model="on" :live="true" icon="fa fa-list">
                             <option value="cms">CMS</option>
                             <option value="web">Web</option>
-                        </select>
+                        </x-acc-input>
                     </div>
                 </div>
             </x-acc-header>
@@ -40,12 +39,13 @@
                                 <td>{{ $d->ordering }}</td>
                                 <x-acc-update-delete :id="$d->id" :$originRoute>
                                     @if($d->type != 'header')
-                                        <a
+                                        <a class="dropdown-item"
                                             href="{{ route('cms.management.menu.child', ['menu' => $d->id]) }}"
-                                            class="dropdown-item"
-                                            wire:navigate
-                                        >
-                                            <i class="fa fa-list"></i> Child Menu
+                                            wire:navigate>
+                                            <i class="fa fa-list"></i>
+                                            <span class="ms-2">
+                                                Child Menu
+                                            </span>
                                         </a>
                                     @endif
                                 </x-acc-update-delete>
@@ -72,13 +72,13 @@
             <div class="col-md-12">
                 <div class="mb-3">
                     <label class="form-label">Name</label>
-                    <x-acc-input type="text" model="form.name" placeholder="Name" />
+                    <x-acc-input model="form.name" placeholder="Name" icon="fa fa-cog" />
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="mb-3">
                     <label class="form-label">On</label>
-                    <x-acc-input type="select" :live="true" model="form.on">
+                    <x-acc-input type="select" :live="true" model="form.on" icon="fa fa-toggle-on">
                         <option value="">--Select Type--</option>
                         <option value="cms">Cms</option>
                         <option value="web">Web</option>
@@ -88,7 +88,7 @@
             <div class="col-md-12">
                 <div class="mb-3">
                     <label class="form-label">Type</label>
-                    <x-acc-input type="select" model="form.type">
+                    <x-acc-input type="select" model="form.type" icon="fa fa-list">
                         <option value="">--Select Type--</option>
                         <option value="header">Header</option>
                         <option value="item">Item</option>
@@ -98,19 +98,19 @@
             <div class="col-md-12">
                 <div class="mb-3">
                     <label class="form-label">Icon</label>
-                    <x-acc-input type="text" model="form.icon" placeholder="Icon" />
+                    <x-acc-input type="text" model="form.icon" placeholder="Icon" icon="fa fa-cog" />
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="mb-3">
                     <label class="form-label">Route</label>
-                    <x-acc-input type="text" model="form.route" placeholder="Route" />
+                    <x-acc-input type="text" model="form.route" placeholder="Route" icon="fa fa-route" />
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="mb-3">
                     <label class="form-label">Ordering</label>
-                    <x-acc-input type="number" model="form.ordering" placeholder="Ordering" />
+                    <x-acc-input type="number" model="form.ordering" placeholder="Ordering" icon="fa fa-sort-numeric-up" />
                 </div>
             </div>
             @if($form->on == 'web')
@@ -134,4 +134,4 @@
             @endif
         </x-acc-form>
     </x-acc-modal>
-</x-acc-with-alert>
+</div>

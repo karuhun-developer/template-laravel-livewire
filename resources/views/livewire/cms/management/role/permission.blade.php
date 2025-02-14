@@ -1,8 +1,8 @@
 <div>
-    <h1 class="h3 mb-3">
+    <x-slot:page-title>
         {{ $title ?? '' }}
-    </h1>
-
+    </x-slot:page-title>
+    <x-acc-back route="cms.management.role" />
     <div class="card">
         <div class="card-header">
             <h5 class="card-title">{{ $title ?? '' }} Data</h5>
@@ -13,11 +13,15 @@
                     <div class="float-start">
                         <button class="btn btn-primary" wire:click="checkAll" wire:loading.attr="disabled">
                             <i class="fa fa-check"></i>
-                            Check All
+                            <span class="ms-2">
+                                Check All
+                            </span>
                         </button>
                         <button class="btn btn-danger" wire:click="uncheckAll" wire:loading.attr="disabled">
                             <i class="fa fa-x"></i>
-                            Uncheck All
+                            <span class="ms-2">
+                                Uncheck All
+                            </span>
                         </button>
                     </div>
                 </div>

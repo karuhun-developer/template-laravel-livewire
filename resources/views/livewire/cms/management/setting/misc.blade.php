@@ -1,4 +1,4 @@
-<x-acc-with-alert>
+<div>
     <h1 class="h3 mb-3">
         {{ $title ?? '' }}
     </h1>
@@ -16,7 +16,7 @@
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="form-label">Google Analytic</label>
-                                <x-acc-input type="text" model="form.google_analytics" placeholder="Google Analytic" />
+                                <x-acc-input model="form.google_analytics" placeholder="Google Analytic" icon="fa fa-chart-line" />
                             </div>
                         </div>
                     </x-acc-form>
@@ -24,4 +24,4 @@
             </div>
         </div>
     </div>
-</x-acc-with-alert>
+</div>

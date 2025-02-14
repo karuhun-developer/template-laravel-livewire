@@ -1,4 +1,4 @@
-<x-acc-with-alert>
+<div>
     <h1 class="h3 mb-3">
         {{ $title ?? '' }}
     </h1>
@@ -29,7 +29,10 @@
                                         class="dropdown-item"
                                         wire:navigate
                                     >
-                                        <i class="fa fa-lock"></i> Permission
+                                        <i class="fa fa-lock"></i>
+                                        <span class="ms-2">
+                                            Permission
+                                        </span>
                                     </a>
                                 </x-acc-update-delete>
                             </tr>
@@ -55,9 +58,9 @@
             <div class="col-md-12">
                 <div class="mb-3">
                     <label class="form-label">Name</label>
-                    <x-acc-input type="text" model="form.name" placeholder="Name" />
+                    <x-acc-input model="form.name" placeholder="Name" icon="fa fa-lock" />
                 </div>
             </div>
         </x-acc-form>
     </x-acc-modal>
-</x-acc-with-alert>
+</div>

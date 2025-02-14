@@ -35,6 +35,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->replace(TrimStrings::class, \App\Http\Middleware\TrimStrings::class);
         $middleware->replaceInGroup('web', ValidateCsrfToken::class, \App\Http\Middleware\VerifyCsrfToken::class);
         $middleware->redirectGuestsTo('/login');
+        $middleware->redirectUsersTo('/cms');
 
         $middleware->alias([
             'role' => \Spatie\Permission\Middleware\RoleMiddleware::class,

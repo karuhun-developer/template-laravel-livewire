@@ -1,6 +1,4 @@
 /* resources/css/app.css */
-@import "bootstrap";
 @import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css";
-@import "notyf/notyf.min.css";
-@import "simplebar/dist/simplebar.css";
-@import "./volt.css";
+@import "./tabler.css";
+@import url("https://rsms.me/inter/inter.css");

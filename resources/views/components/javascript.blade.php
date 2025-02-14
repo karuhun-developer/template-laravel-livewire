@@ -1,24 +1,30 @@
 <script data-navigate-once="true">
+    function fixDropdown() {
+        // Select the .table-responsive element
+        const tableResponsive = document.querySelector('.table-responsive')
+
+        if(!tableResponsive) return
+
+        // When the dropdown is shown, change the overflow to 'inherit'
+        tableResponsive.addEventListener('show.bs.dropdown', function () {
+            tableResponsive.style.overflow = 'inherit'
+        })
+
+        // When the dropdown is hidden, change the overflow back to 'auto'
+        tableResponsive.addEventListener('hide.bs.dropdown', function () {
+            tableResponsive.style.overflow = 'auto'
+        })
+    }
+
     document.addEventListener("livewire:navigated", function() {
+        fixDropdown()
         document.body.setAttribute("data-scroll-x", window.scrollX)
     });
 
     document.addEventListener('livewire:initialized', () => {
-        // Toast initialization
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-        })
-
+        fixDropdown()
         Livewire.on('alert', params => {
-            Toast.fire({
+            window.Toast.fire({
                 icon: params.type ?? 'success',
                 title: params.message
             })
@@ -43,7 +49,7 @@
                 swalParams.denyButtonText = params?.denyText ?? 'Deny'
             }
 
-            Swal.fire(swalParams).then((result) => {
+            window.Swal.fire(swalParams).then((result) => {
                 if (result.isConfirmed) {
                     Livewire.dispatch(params.function, {id: params.id})
                 }

@@ -22,7 +22,9 @@
                             wire:click="{{ $reset }}"
                             type="button">
                             <i class="fa fa-redo"></i>
-                            Reset
+                            <span class="ms-2">
+                                Reset
+                            </span>
                         </button>
                         <button
                             class="btn btn-success"
@@ -30,7 +32,9 @@
                             wire:target="{{ $submit }}"
                             type="submit">
                             <i class="fa fa-save"></i>
-                            Save
+                            <span class="ms-2">
+                                Save
+                            </span>
                         </button>
                     </div>
                 </div>

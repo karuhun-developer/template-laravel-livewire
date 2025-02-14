@@ -1,4 +1,4 @@
-<x-acc-with-alert>
+<div>
     <h1 class="h3 mb-3">
         {{ $title ?? '' }}
     </h1>
@@ -28,7 +28,10 @@
                                 <x-acc-update-delete :id="$d->id" :$originRoute>
                                     <button class="dropdown-item"
                                         wire:click="editPassword('{{ $d->id }}')">
-                                        <i class="fa fa-key"></i> Change Password
+                                        <i class="fa fa-key"></i>
+                                        <span class="ms-2">
+                                            Change Password
+                                        </span>
                                     </button>
                                 </x-acc-update-delete>
                             </tr>
@@ -54,7 +57,7 @@
             <div class="col-md-12">
                 <div class="mb-3">
                     <label class="form-label">Role</label>
-                    <x-acc-input type="select" :live="true" model="form.role">
+                    <x-acc-input type="select" :live="true" model="form.role" icon="fa fa-lock">
                         <option value="">--Select Role--</option>
                         @foreach($roles as $role)
                             <option value="{{ $role->name }}">{{ $role->name }}</option>
@@ -65,20 +68,20 @@
             <div class="col-md-12">
                 <div class="mb-3">
                     <label class="form-label">Name</label>
-                    <x-acc-input type="text" model="form.name" placeholder="Name" />
+                    <x-acc-input model="form.name" placeholder="Name" icon="fa fa-user" />
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="mb-3">
                     <label class="form-label">Email</label>
-                    <x-acc-input type="email" model="form.email" placeholder="Email" />
+                    <x-acc-input type="email" model="form.email" placeholder="Email" icon="fa fa-envelope" />
                 </div>
             </div>
             @if(!$isUpdate)
                 <div class="col-md-12">
                     <div class="mb-3">
                         <label class="form-label">Password</label>
-                        <x-acc-input type="password" model="form.password" placeholder="Password" />
+                        <x-acc-input type="password" model="form.password" placeholder="********" icon="fa fa-key" />
                     </div>
                 </div>
             @endif
@@ -91,9 +94,9 @@
             <div class="col-md-12">
                 <div class="mb-3">
                     <label class="form-label">Password</label>
-                    <x-acc-input type="password" model="form.password" placeholder="Password" />
+                    <x-acc-input type="password" model="form.password" placeholder="********" icon="fa fa-key" />
                 </div>
             </div>
         </x-acc-form>
     </x-acc-modal>
-</x-acc-with-alert>
+</div>

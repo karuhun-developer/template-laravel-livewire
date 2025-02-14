@@ -7,74 +7,74 @@
     'class' => 'form-control',
     'placeholder' => 'Input',
     'rows' => 5,
-    'livewire' => false,
+    'livewire' => true,
     'old' => null,
     'icon' => null,
     'error' => true,
 ])
 
-@if($type == 'select')
-    <select
-        @if($livewire)
-            @if($live)
-                wire:model.live="{{ $model }}"
-            @elseif($debounce)
-                wire:model.debounce.{{ $debounceMs }}="{{ $model }}"
+<div class="input-group input-group-flat">
+    @if($icon)
+        <span class="input-group-text">
+            <i class="{{ $icon }}"></i>
+        </span>
+    @endif
+    @if($type == 'select')
+        <select
+            @if($livewire)
+                @if($live)
+                    wire:model.live="{{ $model }}"
+                @elseif($debounce)
+                    wire:model.live.debounce.{{ $debounceMs }}="{{ $model }}"
+                @else
+                    wire:model="{{ $model }}"
+                @endif
             @else
-                wire:model="{{ $model }}"
+                name="{{ $model }}"
             @endif
-        @else
-            name="{{ $model }}"
-        @endif
-        class="{{ $class }} @error($model) is-invalid @enderror" {!! $attributes !!}>
+            class="{{ $class }} @error($model) is-invalid @enderror" {!! $attributes !!}>
 
-        {{ $slot }}
+            {{ $slot }}
 
-    </select>
+        </select>
 
-@elseif($type == 'textarea')
-    <textarea
-        @if($livewire)
-            @if($live)
-                wire:model.live="{{ $model }}"
-            @elseif($debounce)
-                wire:model.debounce.{{ $debounceMs }}="{{ $model }}"
+    @elseif($type == 'textarea')
+        <textarea
+            @if($livewire)
+                @if($live)
+                    wire:model.live="{{ $model }}"
+                @elseif($debounce)
+                    wire:model.live.debounce.{{ $debounceMs }}="{{ $model }}"
+                @else
+                    wire:model="{{ $model }}"
+                @endif
             @else
-                wire:model="{{ $model }}"
+                name="{{ $model }}"
             @endif
-        @else
-            name="{{ $model }}"
-        @endif
-        class="{{ $class }} @error($model) is-invalid @enderror"
-        placeholder="{{ $placeholder }}"
-        rows="{{ $rows }}" {!! $attributes !!}>{{ $old }}</textarea>
+            class="{{ $class }} @error($model) is-invalid @enderror"
+            placeholder="{{ $placeholder }}"
+            rows="{{ $rows }}" {!! $attributes !!}>{{ $old }}</textarea>
 
-@else
-    <div class="input-group">
-        @if($icon)
-            <span class="input-group-text">
-                <i class="{{ $icon }}"></i>
-            </span>
-        @endif
+    @else
         <input
-        @if($livewire)
-            @if($live)
-                wire:model.live="{{ $model }}"
-            @elseif($debounce)
-                wire:model.debounce.{{ $debounceMs }}="{{ $model }}"
+            @if($livewire)
+                @if($live)
+                    wire:model.live="{{ $model }}"
+                @elseif($debounce)
+                    wire:model.live.debounce.{{ $debounceMs }}="{{ $model }}"
+                @else
+                    wire:model="{{ $model }}"
+                @endif
             @else
-                wire:model="{{ $model }}"
+                name="{{ $model }}"
             @endif
-        @else
-            name="{{ $model }}"
-        @endif
-        value="{{ $old }}"
-        type="{{ $type }}"
-        class="{{ $class }} @error($model) is-invalid @enderror"
-        placeholder="{{ $placeholder }}" {!! $attributes !!} />
-    </div>
+            value="{{ $old }}"
+            type="{{ $type }}"
+            class="{{ $class }} @error($model) is-invalid @enderror"
+            placeholder="{{ $placeholder }}" {!! $attributes !!} />
 
-@endif
+    @endif
+</div>
 
 @if($error)
     <x-acc-input-error for="{{ $model }}" />

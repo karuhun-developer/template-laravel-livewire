@@ -19,15 +19,15 @@
                 <div class="modal-body">
                     {{ $slot }}
                 </div>
-                <div class="modal-footer">
-                    {{-- <button type="button" class="btn btn-secondary" data-bs-dismiss="acc-modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save</button> --}}
-                    @if (isset($actions))
+                @if (isset($actions))
+                    <div class="modal-footer">
+                        {{-- <button type="button" class="btn btn-secondary" data-bs-dismiss="acc-modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save</button> --}}
                         <div class="text-center">
                             {{ $actions }}
                         </div>
-                    @endif
-                </div>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
