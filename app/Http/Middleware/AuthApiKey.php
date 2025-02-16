@@ -21,7 +21,7 @@ class AuthApiKey
             $user = Crypt::decrypt($request->header('X-API-KEY'));
 
             // Check data
-            $user = User::where($user)->first();
+            $user = User::find($user);
 
             // Check if user exists
             if(!$user) return $this->checkAuth($request, $next);
