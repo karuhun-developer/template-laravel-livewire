@@ -45,7 +45,8 @@ class User extends BaseComponent
 
     public function render()
     {
-        $model = UserModel::join('model_has_roles', 'model_has_roles.model_id', '=', 'users.id')
+        $model = UserModel::query()
+            ->join('model_has_roles', 'model_has_roles.model_id', '=', 'users.id')
             ->join('roles', 'roles.id', '=', 'model_has_roles.role_id')
             ->select('users.*', 'roles.name as role');
 

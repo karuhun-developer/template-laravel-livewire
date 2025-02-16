@@ -57,7 +57,7 @@
         <x-acc-form submit="save">
             <div class="col-md-12">
                 <div class="mb-3">
-                    <label class="form-label">Name</label>
+                    <label class="form-label">Name <x-acc-required /></label>
                     <x-acc-input model="form.name" placeholder="Name" icon="fa fa-lock" />
                 </div>
             </div>
