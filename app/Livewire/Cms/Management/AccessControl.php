@@ -12,9 +12,9 @@ class AccessControl extends Component
 
     public function render()
     {
-        $user = Auth::guard('web')->user()->pluck('id')->toArray();
+        $user = Auth::guard('web')->user()->first();
 
-        $apikey = Crypt::encrypt($user);
+        $apikey = Crypt::encrypt($user->id);
 
         return view('livewire.cms.management.access-control', compact('apikey'))->title($this->title);
     }
