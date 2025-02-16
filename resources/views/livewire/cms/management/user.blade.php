@@ -56,7 +56,7 @@
         <x-acc-form submit="save">
             <div class="col-md-12">
                 <div class="mb-3">
-                    <label class="form-label">Role</label>
+                    <label class="form-label">Role <x-acc-required /></label>
                     <x-acc-input type="select" :live="true" model="form.role" icon="fa fa-lock">
                         <option value="">--Select Role--</option>
                         @foreach($roles as $role)
@@ -67,20 +67,20 @@
             </div>
             <div class="col-md-12">
                 <div class="mb-3">
-                    <label class="form-label">Name</label>
+                    <label class="form-label">Name <x-acc-required /></label>
                     <x-acc-input model="form.name" placeholder="Name" icon="fa fa-user" />
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="mb-3">
-                    <label class="form-label">Email</label>
+                    <label class="form-label">Email <x-acc-required /></label>
                     <x-acc-input type="email" model="form.email" placeholder="Email" icon="fa fa-envelope" />
                 </div>
             </div>
             @if(!$isUpdate)
                 <div class="col-md-12">
                     <div class="mb-3">
-                        <label class="form-label">Password</label>
+                        <label class="form-label">Password <x-acc-required /></label>
                         <x-acc-input type="password" model="form.password" placeholder="********" icon="fa fa-key" />
                     </div>
                 </div>
@@ -93,7 +93,7 @@
         <x-acc-form submit="changePassword">
             <div class="col-md-12">
                 <div class="mb-3">
-                    <label class="form-label">Password</label>
+                    <label class="form-label">Password <x-acc-required /></label>
                     <x-acc-input type="password" model="form.password" placeholder="********" icon="fa fa-key" />
                 </div>
             </div>

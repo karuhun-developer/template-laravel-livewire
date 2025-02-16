@@ -71,13 +71,13 @@
         <x-acc-form submit="save">
             <div class="col-md-12">
                 <div class="mb-3">
-                    <label class="form-label">Name</label>
+                    <label class="form-label">Name <x-acc-required /></label>
                     <x-acc-input model="form.name" placeholder="Name" icon="fa fa-cog" />
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="mb-3">
-                    <label class="form-label">On</label>
+                    <label class="form-label">On <x-acc-required /></label>
                     <x-acc-input type="select" :live="true" model="form.on" icon="fa fa-toggle-on">
                         <option value="">--Select Type--</option>
                         <option value="cms">Cms</option>
@@ -87,7 +87,7 @@
             </div>
             <div class="col-md-12">
                 <div class="mb-3">
-                    <label class="form-label">Type</label>
+                    <label class="form-label">Type <x-acc-required /></label>
                     <x-acc-input type="select" model="form.type" icon="fa fa-list">
                         <option value="">--Select Type--</option>
                         <option value="header">Header</option>
@@ -97,19 +97,19 @@
             </div>
             <div class="col-md-12">
                 <div class="mb-3">
-                    <label class="form-label">Icon</label>
+                    <label class="form-label">Icon <x-acc-required /></label>
                     <x-acc-input type="text" model="form.icon" placeholder="Icon" icon="fa fa-cog" />
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="mb-3">
-                    <label class="form-label">Route</label>
+                    <label class="form-label">Route <x-acc-required /></label>
                     <x-acc-input type="text" model="form.route" placeholder="Route" icon="fa fa-route" />
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="mb-3">
-                    <label class="form-label">Ordering</label>
+                    <label class="form-label">Ordering <x-acc-required /></label>
                     <x-acc-input type="number" model="form.ordering" placeholder="Ordering" icon="fa fa-sort-numeric-up" />
                 </div>
             </div>
@@ -121,13 +121,13 @@
                 </div>
                 <div class="col-md-12">
                     <div class="mb-3">
-                        <label class="form-label">Website Description</label>
+                        <label class="form-label">Website Description <x-acc-required /></label>
                         <x-acc-input type="textarea" model="form.meta.description" placeholder="Description" />
                     </div>
                 </div>
                 <div class="col-md-12">
                     <div class="mb-3">
-                        <label class="form-label">Website Keywords</label>
+                        <label class="form-label">Website Keywords <x-acc-required /></label>
                         <x-acc-input type="textarea" model="form.meta.keywords" placeholder="Keywords" />
                     </div>
                 </div>

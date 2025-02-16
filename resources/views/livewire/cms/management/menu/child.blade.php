@@ -49,25 +49,25 @@
         <x-acc-form submit="save">
             <div class="col-md-12">
                 <div class="mb-3">
-                    <label class="form-label">Name</label>
+                    <label class="form-label">Name <x-acc-required /></label>
                     <x-acc-input type="text" model="form.name" placeholder="Name" icon="fa fa-cog" />
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="mb-3">
-                    <label class="form-label">Icon</label>
+                    <label class="form-label">Icon <x-acc-required /></label>
                     <x-acc-input type="text" model="form.icon" placeholder="Icon" icon="fa fa-cog" />
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="mb-3">
-                    <label class="form-label">Route</label>
+                    <label class="form-label">Route <x-acc-required /></label>
                     <x-acc-input type="text" model="form.route" placeholder="Route" icon="fa fa-route" />
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="mb-3">
-                    <label class="form-label">Ordering</label>
+                    <label class="form-label">Ordering <x-acc-required /></label>
                     <x-acc-input type="number" model="form.ordering" placeholder="Ordering" icon="fa fa-sort-numeric-up" />
                 </div>
             </div>

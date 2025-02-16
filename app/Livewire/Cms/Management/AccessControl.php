@@ -12,14 +12,7 @@ class AccessControl extends Component
 
     public function render()
     {
-        $user = Auth::guard('web')->user()->toArray();
-
-        unset($user['id']);
-        unset($user['email_verified_at']);
-        unset($user['created_at']);
-        unset($user['updated_at']);
-        unset($user['permissions']);
-        unset($user['roles']);
+        $user = Auth::guard('web')->user()->pluck('id')->toArray();
 
         $apikey = Crypt::encrypt($user);
 
