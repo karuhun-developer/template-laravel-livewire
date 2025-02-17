@@ -3,6 +3,7 @@
     'model' => '',
     'model_name' => 'trix_description',
     'file_model_name' => 'trix_photos',
+    'function' => 'completeUpload',
 ])
 
 <div wire:ignore>
@@ -29,7 +30,8 @@
                         window.addEventListener(trixUploadCompletedEvent, trixUploadCompletedListener)
 
                         // call the Trix Component @completeUpload below
-                        @this.call('completeUpload', uploadedURL, trixUploadCompletedEvent)
+                        const call = '{{ $function }}'
+                        @this.call(call, uploadedURL, trixUploadCompletedEvent)
                     },
                     function() {
                         // Error callback
@@ -50,7 +52,7 @@
             return $event.preventDefault()
         }"
         x-on:trix-attachment-add="uploadTrixImage($event.attachment)"
-        x-on:trix-attachment-remove="@this.removeUpload('{{ $file_model_name }}', ev.attachment.attachment.previewURL)"
+        {{-- x-on:trix-attachment-remove="@this.removeUpload('{{ $file_model_name }}', $event.attachment.attachment.previewURL)" --}}
     ></trix-editor>
 
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
