@@ -45,8 +45,8 @@ class FormUser extends Form implements FormCrudInterface
             'id' => 'nullable',
             'role' => 'required',
             'name' => 'required',
-            'email' => 'required',
-            'password' => 'required|unique:users,email',
+            'email' => 'required|unique:users,email',
+            'password' => 'required',
         ]);
 
         $user = User::create($this->only([
