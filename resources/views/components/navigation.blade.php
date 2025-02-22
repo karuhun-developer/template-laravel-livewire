@@ -118,6 +118,29 @@
                     @else
                     @endif
                 @endforeach
+
+                @role('admin')
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('pulse') }}" target="_blank">
+                            <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                <i class="fas fa-external-link-alt"></i>
+                            </span>
+                            <span class="nav-link-title">
+                                Laravel Pulse
+                            </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('cms.logs') }}" target="_blank">
+                            <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                <i class="fas fa-clipboard-list"></i>
+                            </span>
+                            <span class="nav-link-title">
+                                Laravel Log
+                            </span>
+                        </a>
+                    </li>
+                @endrole
             </ul>
         </div>
     </div>
