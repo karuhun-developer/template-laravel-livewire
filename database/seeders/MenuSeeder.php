@@ -21,12 +21,12 @@ class MenuSeeder extends Seeder
             'ordering' => '1',
         ]);
 
-        $this->adminMenu();
+        $this->managementMenu();
     }
 
-    public function adminMenu() {
+    public function managementMenu() {
         // Website Setting
-        $admin = Menu::create([
+        $management = Menu::create([
             'name' => 'Management',
             'on' => 'cms',
             'type' => 'item',
@@ -34,36 +34,36 @@ class MenuSeeder extends Seeder
             'route' => '#',
             'ordering' => '90',
         ]);
-        $admin->menuChildren()->create([
+        $management->menuChildren()->create([
             'name' => 'Menu',
             'icon' => '#',
             'route' => 'cms.management.menu',
             'ordering' => '1',
         ]);
 
-        $admin->menuChildren()->create([
+        $management->menuChildren()->create([
             'name' => 'Role',
             'icon' => '#',
             'route' => 'cms.management.role',
             'ordering' => '2',
         ]);
-        $admin->menuChildren()->create([
+        $management->menuChildren()->create([
             'name' => 'User',
             'icon' => '#',
             'route' => 'cms.management.user',
             'ordering' => '3',
         ]);
-        $admin->menuChildren()->create([
+        $management->menuChildren()->create([
             'name' => 'Setting',
             'icon' => '#',
             'route' => 'cms.management.general-setting',
             'ordering' => '4',
         ]);
-        $admin->menuChildren()->create([
+        $management->menuChildren()->create([
             'name' => 'Access Control',
             'icon' => '#',
             'route' => 'cms.management.access-control',
             'ordering' => '5',
         ]);
     }
- }
+}
