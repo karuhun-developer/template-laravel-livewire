@@ -15,8 +15,8 @@ enum CommonStatusEnum: int {
 
     public function color(): string {
         return match($this) {
-            self::ACTIVE => 'badge bg-success',
-            self::INACTIVE => 'badge bg-danger',
+            self::ACTIVE => 'badge bg-success text-white',
+            self::INACTIVE => 'badge bg-danger text-white',
         };
     }
 }
