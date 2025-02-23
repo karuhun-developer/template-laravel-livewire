@@ -33,8 +33,11 @@ class User extends Authenticatable
     ];
 
     // Get the activity log options.
-    public function getActivitylogOptions(): LogOptions
-    {
+    public function getActivitylogOptions(): LogOptions {
         return LogOptions::defaults()->logOnly(['name', 'email']);
+    }
+
+    public function apiKeys() {
+        return $this->hasMany(ApiKey::class);
     }
 }

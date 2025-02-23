@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Http\Exceptions\HttpResponseException;
-use App\Models\User;
+use App\Models\ApiKey;
 use Laravel\Sanctum\PersonalAccessToken;
 
 class AuthApiKey
@@ -20,8 +20,18 @@ class AuthApiKey
             if(!$request->headers->has('X-API-KEY')) return $this->checkAuth($request, $next);
             $user = Crypt::decrypt($request->header('X-API-KEY'));
 
+            // Validate API KEY
+            if(!isset($user['salt']) || !isset($user['id'])) return $this->checkAuth($request, $next);
+
+            // Check if API KEY exists
+            $apiKey = ApiKey::where('user_id', $user['id'])->first();
+            if(!$apiKey) return $this->checkAuth($request, $next);
+
+            // Check salt
+            if(!password_verify($user['salt'], $apiKey->salt)) return $this->checkAuth($request, $next);
+
             // Check data
-            $user = User::find($user);
+            $user = $apiKey->user;
 
             // Check if user exists
             if(!$user) return $this->checkAuth($request, $next);
@@ -66,4 +76,3 @@ class AuthApiKey
         }
     }
 }
-
