@@ -26,21 +26,21 @@ class AccessControl extends Component
         // Create a new API key
         $salt = Str::password(15);
 
-        $apiKey = [
-            'id' => Auth::id(),
-            'salt' => $salt,
-        ];
-
-        $this->latestApiKey = Crypt::encrypt($apiKey);
-
         // Save the API key to the user
-        Auth::user()->apiKeys()->create([
+        $apiKey = Auth::user()->apiKeys()->create([
             'name' => $this->apiKeyName,
             'salt' => bcrypt($salt),
             'expired_at' => null,
             'last_used_at' => null,
             'status' => CommonStatusEnum::ACTIVE->value,
         ]);
+
+        $apiKey = [
+            'id' => $apiKey->id,
+            'salt' => $salt,
+        ];
+
+        $this->latestApiKey = Crypt::encrypt($apiKey);
 
         $this->dispatch('alert', type: Alert::success->value, message: 'API Key generated successfully.');
     }
@@ -69,7 +69,7 @@ class AccessControl extends Component
         ]);
 
         $this->latestApiKey = Crypt::encrypt([
-            'id' => Auth::id(),
+            'id' => $id,
             'salt' => $salt,
         ]);
 
@@ -91,6 +91,8 @@ class AccessControl extends Component
         $apiKey = Auth::user()->apiKeys()->find($id);
 
         $apiKey->delete();
+
+        $this->latestApiKey = null;
 
         $this->dispatch('alert', type: Alert::success->value, message: 'API Key deleted successfully.');
     }

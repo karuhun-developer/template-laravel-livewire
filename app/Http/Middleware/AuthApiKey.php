@@ -24,7 +24,7 @@ class AuthApiKey
             if(!isset($user['salt']) || !isset($user['id'])) return $this->checkAuth($request, $next);
 
             // Check if API KEY exists
-            $apiKey = ApiKey::where('user_id', $user['id'])->first();
+            $apiKey = ApiKey::find($user['id']);
             if(!$apiKey) return $this->checkAuth($request, $next);
 
             // Check salt
