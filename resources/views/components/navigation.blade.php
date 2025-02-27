@@ -89,11 +89,12 @@
                                                         @can('view.' . $children->route)
                                                             @php
                                                                 $childIsActive =
-                                                                    request()->routeIs($children->route) ||
-                                                                    str_contains(
-                                                                        request()->path(),
-                                                                        strtolower($children->name),
-                                                                    );
+                                                                    request()->routeIs($children->route)
+                                                                    // ||
+                                                                    // str_contains(
+                                                                    //     request()->path(),
+                                                                    //     strtolower($children->name),
+                                                                    // );
                                                             @endphp
                                                             <a class="dropdown-item {{ $childIsActive ? 'active' : '' }}"
                                                                 href="{{ \Illuminate\Support\Facades\Route::has($children->route) ? route($children->route) : '#' }}"
