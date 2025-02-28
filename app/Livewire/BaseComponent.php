@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Traits\WithChangeOrder;
 use App\Traits\WithGetFilterData;
 use App\Traits\WithResetAction;
+use Livewire\WithoutUrlPagination;
 use Livewire\WithPagination;
 use Livewire\Component;
 use App\Traits\WithCreateAction;
@@ -15,6 +16,7 @@ use App\Traits\InteractWithModal;
 
 class BaseComponent extends Component {
     use WithPagination,
+        WithoutUrlPagination,
         WithChangeOrder,
         WithGetFilterData,
         WithResetAction,
