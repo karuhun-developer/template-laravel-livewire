@@ -1,7 +1,7 @@
 <div>
-    <h1 class="h3 mb-3">
+    <x-slot:page-title>
         {{ $title ?? '' }}
-    </h1>
+    </x-slot:page-title>
     <div class="row">
         <div class="col-md-3 col-xl-2">
             @include('livewire.cms.management.setting.a-sidebar')
