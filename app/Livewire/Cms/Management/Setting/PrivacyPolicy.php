@@ -9,9 +9,9 @@ class PrivacyPolicy extends BaseComponent
 {
     public FormPrivacyPolicy $form;
     public $title = 'Privacy Policy';
-    public $isUpdate = true;
 
     public function mount() {
+        $this->isUpdate = true;
         $this->form->getData();
     }
 

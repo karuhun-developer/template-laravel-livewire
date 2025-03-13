@@ -38,7 +38,9 @@
                     <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                         <a href="{{ route('profile.edit') }}" class="dropdown-item">
                             <i class="fas fa-user"></i>
-                            My Profile
+                            <span class="ms-2">
+                                My Profile
+                            </span>
                         </a>
                         <div class="dropdown-divider"></div>
                         <a href="#" class="dropdown-item" x-on:click.prevent="
@@ -65,7 +67,9 @@
                             })
                         ">
                             <i class="fas fa-sign-out-alt"></i>
-                            Logout
+                            <span class="ms-2">
+                                Logout
+                            </span>
                         </a>
                     </div>
                 </div>

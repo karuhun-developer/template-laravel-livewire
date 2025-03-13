@@ -34,7 +34,6 @@ class Child extends BaseComponent
             ],
         ],
         $search = '',
-        $isUpdate = false,
         $paginate = 10,
         $orderBy = 'ordering',
         $order = 'asc';

@@ -31,6 +31,8 @@ class BaseComponent extends Component {
 
     // Image iterator for image set null after save
     public $imageIttr = 1;
+    public $isUpdate = false;
+    public $isView = false;
 
     public function __construct()
     {

@@ -12,6 +12,7 @@ trait WithEditAction {
             if(!auth()->user()->can('update.' . $this->originRoute)) throw new UnauthorizedException(403, 'You do not have permission.');
 
             $this->isUpdate = true;
+            $this->isView = false;
 
             $this->form->getDetail($id);
 

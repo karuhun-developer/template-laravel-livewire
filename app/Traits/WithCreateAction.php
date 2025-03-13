@@ -11,6 +11,7 @@ trait WithCreateAction {
             if(!auth()->user()->can('create.' . $this->originRoute)) throw new UnauthorizedException(403, 'You do not have permission.');
 
             $this->isUpdate = false;
+            $this->isView = false;
 
             $this->form->reset();
 

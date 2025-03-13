@@ -10,9 +10,8 @@ class Mail extends BaseComponent
     public FormMail $form;
     public $title = 'Mail Settings';
 
-    public $isUpdate = true;
-
     public function mount() {
+        $this->isUpdate = true;
         $this->form->getData();
     }
 

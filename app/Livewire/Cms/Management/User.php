@@ -27,12 +27,10 @@ class User extends BaseComponent
             ],
         ],
         $search = '',
-        $isUpdate = false,
         $paginate = 10,
         $orderBy = 'users.name',
         $order = 'asc';
 
-    public $isModalPasswordOpen = false;
     public $roles = [];
 
     public function mount() {

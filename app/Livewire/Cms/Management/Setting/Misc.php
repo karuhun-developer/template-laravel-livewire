@@ -10,9 +10,8 @@ class Misc extends BaseComponent
     public FormMisc $form;
     public $title = 'Misc Setting';
 
-    public $isUpdate = true;
-
     public function mount() {
+        $this->isUpdate = true;
         $this->form->getData();
     }
 

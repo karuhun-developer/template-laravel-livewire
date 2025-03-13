@@ -9,9 +9,9 @@ class TermOfService extends BaseComponent
 {
     public FormTermOfService $form;
     public $title = 'Term Of Service';
-    public $isUpdate = true;
 
     public function mount() {
+        $this->isUpdate = true;
         $this->form->getData();
     }
 

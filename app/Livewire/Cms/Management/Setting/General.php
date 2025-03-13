@@ -13,9 +13,8 @@ class General extends BaseComponent
     public FormGeneral $form;
     public $title = 'Setting';
 
-    public $isUpdate = true;
-
     public function mount() {
+        $this->isUpdate = true;
         $this->form->getData();
     }
 

@@ -9,13 +9,9 @@ use Livewire\Form;
 class FormUser extends Form implements FormCrudInterface
 {
     public $id;
-
     public $role;
-
     public $name;
-
     public $email;
-
     public $password;
 
     // Get the data
