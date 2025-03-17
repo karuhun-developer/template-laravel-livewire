@@ -120,7 +120,7 @@
                     @endif
                 @endforeach
 
-                @role('admin')
+                @role('superadmin')
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('pulse') }}" target="_blank">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">

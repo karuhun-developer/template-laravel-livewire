@@ -32,14 +32,17 @@ class RoleSeeder extends Seeder
         'password.update',
         'logout',
     ];
+    public $superadminExcept = [
+        // 'cms.dashboard',
+    ];
     public $routeUser = [
         'cms.dashboard',
     ];
 
     public function run(): void
     {
-        $admin = Role::findOrCreate('admin', 'web');
-        $user = Role::findOrCreate('default', 'web');
+        $superadmin = Role::findOrCreate('superadmin', 'web');
+        $user = Role::findOrCreate('user', 'web');
 
         // Generate Permission
         // Get all route names
@@ -53,10 +56,12 @@ class RoleSeeder extends Seeder
                     $permission = $type . '.' . $route;
                     $permission = Permission::findOrCreate($permission, 'web');
 
-                    // Give admin permission
-                    $admin->givePermissionTo($permission);
+                    // Give superadmin permission
+                    if(!in_array($route, $this->superadminExcept)) {
+                        $superadmin->givePermissionTo($permission);
+                    }
 
-                    // Give pegawai permission
+                    // Give user permission
                     if(in_array($route, $this->routeUser)) {
                         $user->givePermissionTo($permission);
                     }
