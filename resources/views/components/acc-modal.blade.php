@@ -1,12 +1,12 @@
 @props([
     'id' => 'acc-modal',
     'title' => 'Title',
-    'isModaOpen' => false,
+    'modal' => 'modals.defaultModal',
     'closeModalFunction' => 'closeModal',
     'size' => 'md',
 ])
 
-<div class="{{ $isModaOpen ? 'd-block' : 'd-none' }}">
+<div x-data="{ open: @entangle($modal) }" style="display: none" x-show.important="open">
     <div class="modal fade show" id="{{ $id }}" tabindex="-1" aria-labelledby="{{ $id }}-label" aria-hidden="true" wire:ignore.self style="display: block">
         <div class="modal-dialog modal-{{ $size }}">
             <div class="modal-content">

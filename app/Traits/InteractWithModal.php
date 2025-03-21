@@ -2,6 +2,8 @@
 
 namespace App\Traits;
 
+use Livewire\Attributes\Renderless;
+
 trait InteractWithModal {
     public $modals = [
         'defaultModal' => false,
@@ -11,10 +13,12 @@ trait InteractWithModal {
         $this->modals[$modal] = false;
     }
 
+    #[Renderless]
     public function openModal(string $modal = 'defaultModal') {
         $this->modals[$modal] = true;
     }
 
+    #[Renderless]
     public function closeModal(string $modal = 'defaultModal') {
         $this->modals[$modal] = false;
     }
