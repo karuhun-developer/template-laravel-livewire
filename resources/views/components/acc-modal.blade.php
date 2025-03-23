@@ -2,7 +2,6 @@
     'id' => 'acc-modal',
     'title' => 'Title',
     'modal' => 'modals.defaultModal',
-    'closeModalFunction' => 'closeModal',
     'size' => 'md',
 ])
 
@@ -12,7 +11,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="{{ $id }}-label">{{ $title }}</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" wire:click="{{ $closeModalFunction }}">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" x-on:click="open = false">
                         <span aria-hidden="true"></span>
                     </button>
                 </div>

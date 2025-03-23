@@ -89,7 +89,7 @@
     </x-acc-modal>
 
     {{-- Change password --}}
-    <x-acc-modal title="Change Password {{ $form->name }}" modal="modals.updatePasswordModal" closeModalFunction="closeModalUpdatePassword">
+    <x-acc-modal title="Change Password {{ $form->name }}" modal="modals.updatePasswordModal">
         <x-acc-form submit="changePassword">
             <div class="col-md-12">
                 <div class="mb-3">

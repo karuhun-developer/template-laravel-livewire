@@ -69,10 +69,6 @@ class User extends BaseComponent
         $this->openModal('updatePasswordModal');
     }
 
-    public function closeModalUpdatePassword() {
-        $this->closeModal('updatePasswordModal');
-    }
-
     public function changePassword() {
         $this->form->changePassword();
         $this->closeModalUpdatePassword();
