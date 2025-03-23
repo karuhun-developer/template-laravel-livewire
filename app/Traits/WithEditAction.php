@@ -3,11 +3,9 @@
 namespace App\Traits;
 
 use App\Enums\Alert;
-use Livewire\Attributes\Renderless;
 use Spatie\Permission\Exceptions\UnauthorizedException;
 
 trait WithEditAction {
-    #[Renderless]
     public function edit($id) {
         try {
             // Check permission

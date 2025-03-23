@@ -3,10 +3,8 @@
 namespace App\Traits;
 
 use App\Enums\Alert;
-use Livewire\Attributes\Renderless;
 use Spatie\Permission\Exceptions\UnauthorizedException;
 trait WithCreateAction {
-    #[Renderless]
     public function create() {
         try {
             // Check permission
