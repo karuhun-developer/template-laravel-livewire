@@ -2,24 +2,20 @@
 
 namespace App\Traits;
 
-use Livewire\Attributes\Renderless;
-
 trait InteractWithModal {
     public $modals = [
-        'defaultModal' => false,
+        'acc-modal' => false,
     ];
 
     public function addModal(string $modal) {
         $this->modals[$modal] = false;
     }
 
-    #[Renderless]
-    public function openModal(string $modal = 'defaultModal') {
+    public function openModal(string $modal = 'acc-modal') {
         $this->modals[$modal] = true;
     }
 
-    #[Renderless]
-    public function closeModal(string $modal = 'defaultModal') {
+    public function closeModal(string $modal = 'acc-modal') {
         $this->modals[$modal] = false;
     }
 }

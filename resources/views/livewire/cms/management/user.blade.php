@@ -52,7 +52,7 @@
     </div>
 
     {{-- Create / Update Modal --}}
-    <x-acc-modal title="{{ $isUpdate ? 'Update' : 'Create' }} {{ $title }}" modal="modals.defaultModal">
+    <x-acc-modal title="{{ $isUpdate ? 'Update' : 'Create' }} {{ $title }}" modal="acc-modal">
         <x-acc-form submit="save">
             <div class="col-md-12">
                 <div class="mb-3">
@@ -89,7 +89,7 @@
     </x-acc-modal>
 
     {{-- Change password --}}
-    <x-acc-modal title="Change Password {{ $form->name }}" modal="modals.updatePasswordModal">
+    <x-acc-modal title="Change Password {{ $form->name }}" modal="updatePasswordModal">
         <x-acc-form submit="changePassword">
             <div class="col-md-12">
                 <div class="mb-3">

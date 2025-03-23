@@ -5,10 +5,8 @@ namespace App\Traits;
 use App\Enums\Alert;
 use Spatie\Permission\Exceptions\UnauthorizedException;
 use Livewire\Attributes\On;
-use Livewire\Attributes\Renderless;
 
 trait WithDeleteAction {
-    #[Renderless]
     public function confirmDelete($id) {
         $this->dispatch('confirm', function: 'delete', id: $id);
     }
