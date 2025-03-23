@@ -1,16 +1,15 @@
 @props([
-    'id' => 'acc-modal',
     'title' => 'Title',
     'modal' => 'acc-modal',
     'size' => 'md',
 ])
 
 <div x-data="{ open: @entangle('modals.'.$modal) }" style="display: none" x-show.important="open" x-on:keydown.escape.window="open = false">
-    <div class="modal fade show mt-5" id="{{ $id }}" tabindex="-1" aria-labelledby="{{ $id }}-label" aria-hidden="true" wire:ignore.self style="display: block">
+    <div class="modal fade show mt-5" id="{{ $modal }}" tabindex="-1" aria-labelledby="{{ $modal }}-label" aria-hidden="true" wire:ignore.self style="display: block">
         <div class="modal-dialog modal-{{ $size }}">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="{{ $id }}-label">{{ $title }}</h5>
+                    <h5 class="modal-title" id="{{ $modal }}-label">{{ $title }}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" x-on:click="open = false">
                         <span aria-hidden="true"></span>
                     </button>
