@@ -27,9 +27,16 @@ class RoleSeeder extends Seeder
         'profile.edit',
         'profile.update',
         'profile.destroy',
-        'login',
+        'storage.local',
+        'debugbar.queries.explain',
+        'debugbar.cache.delete',
+        'debugbar.assets.css',
+        'debugbar.assets.js',
+        'debugbar.clockwork',
+        'debugbar.openhandler',
         'password.confirm',
         'password.update',
+        'login',
         'logout',
     ];
     public $superadminExcept = [
