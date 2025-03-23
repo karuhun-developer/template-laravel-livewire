@@ -6,29 +6,26 @@ use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 trait WithGetFilterData {
-
     public function getDataWithFilter(Model|Builder $model, array $searchBy = [
         [
             'name' => '',
             'field' => '',
             'no_search' => true,
         ]
-    ], string $orderBy = 'id', string $order = 'asc', int $paginate = 10, string $s = '') {
-
-        $model = $model->where(function ($query) use ($s, $searchBy) {
-            foreach ($searchBy as $key => $value) {
-                if(!isset($value['no_search'])) {
-                    $field = $value['field'];
-
-                    $query->orWhere($field, 'like', "%$s%");
+    ], string $orderBy = 'id', string $order = 'desc', int $paginate = 10, string $s = '') {
+        $model = $model->when(!empty($s) && !empty($searchBy), function ($query) use ($s, $searchBy) {
+            $query->where(function ($query) use ($s, $searchBy) {
+                foreach ($searchBy as $value) {
+                    if (isset($value['field']) && (!isset($value['no_search']) || $value['no_search'] !== true)) {
+                        $field = $value['field'];
+                        $query->orWhere($field, 'like', "%{$s}%");
+                    }
                 }
-            }
+            });
         });
 
         $model = $model->orderBy($orderBy, $order);
 
-        // $model = $model->latest();
-
-        return $model->paginate($paginate);
+        return $model->fastPaginate($paginate);
     }
 }
