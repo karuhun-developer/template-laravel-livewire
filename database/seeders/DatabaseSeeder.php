@@ -13,14 +13,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        /**
-         *
-         * Mysql Foreign Key Check
-         * DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-         * DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-         *
-         */
-        DB::statement('PRAGMA foreign_keys = OFF;');
+        // Check if the database is SQLite
+        if (config('database.default') === 'sqlite') {
+            // If the database is SQLite, then I need to set the foreign key constraints to off
+            DB::statement('PRAGMA foreign_keys = OFF;');
+        } else {
+            // If the database is not SQLite, then I need to disable foreign key constraints
+            DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        }
 
         $this->call([
             TruncateTable::class,
@@ -30,6 +30,12 @@ class DatabaseSeeder extends Seeder
             SettingSeeder::class,
         ]);
 
-        DB::statement('PRAGMA foreign_keys = ON;');
+        if(config('database.default') === 'sqlite') {
+            // If the database is SQLite, then I need to set the foreign key constraints to on
+            DB::statement('PRAGMA foreign_keys = ON;');
+        } else {
+            // If the database is not SQLite, then I need to enable foreign key constraints
+            DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        }
     }
 }
