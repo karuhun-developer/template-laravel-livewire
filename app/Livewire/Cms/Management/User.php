@@ -73,6 +73,6 @@ class User extends BaseComponent
         $this->form->changePassword();
         $this->closeModalUpdatePassword();
 
-        session()->flash('success', 'Password has been changed');
+        $this->dispatch('alert', type: 'success', message: 'Password has been changed');
     }
 }
