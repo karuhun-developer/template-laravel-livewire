@@ -31,6 +31,6 @@ trait WithGetFilterDataApi {
 
         // $model = $model->latest();
 
-        return $model->paginate($paginate);
+        return $model->fastPaginate($paginate);
     }
 }
