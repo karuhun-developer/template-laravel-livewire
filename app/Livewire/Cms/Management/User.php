@@ -71,7 +71,7 @@ class User extends BaseComponent
 
     public function changePassword() {
         $this->form->changePassword();
-        $this->closeModalUpdatePassword();
+        $this->closeModal('updatePasswordModal');
 
         $this->dispatch('alert', type: 'success', message: 'Password has been changed');
     }
