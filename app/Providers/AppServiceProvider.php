@@ -42,7 +42,7 @@ class AppServiceProvider extends ServiceProvider
 
         // Gate pulse
         Gate::define('viewPulse', function (User $user) {
-            return $user->hasRole('admin');
+            return $user->hasRole('superadmin');
         });
 
         // Timezone
