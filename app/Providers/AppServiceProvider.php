@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
@@ -31,6 +32,12 @@ class AppServiceProvider extends ServiceProvider
         // Laravel IDE Helper
         if ($this->app->isLocal()) {
             $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
+        }
+
+        // Production force HTTPS`
+        if ($this->app->isProduction()) {
+            URL::forceHttps();
+            $this->app['request']->server->set('HTTPS', true);
         }
 
         // Gate pulse
