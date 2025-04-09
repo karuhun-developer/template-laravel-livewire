@@ -22,12 +22,12 @@
             <!--  Notification -->
             <div class="col-auto d-none d-sm-block">
                 <div class="nav-item dropdown d-none d-md-flex me-3">
-                    <a href="#" class="nav-link px-0 show" data-bs-toggle="dropdown" tabindex="-1"
+                    <a href="#" class="nav-link px-0" data-bs-toggle="dropdown" tabindex="-1"
                         aria-label="Show notifications" aria-expanded="true">
                         <i class="fas fa-bell icon icon-1"></i>
                         <span class="badge bg-red"></span>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-end dropdown-menu-card show"
+                    <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-end dropdown-menu-card"
                         data-bs-popper="static">
                         <div class="card">
                             <div class="card-header">
