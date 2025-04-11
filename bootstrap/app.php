@@ -2,9 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
-use Illuminate\Auth\AuthenticationException;
-use Illuminate\Validation\ValidationException;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Illuminate\Foundation\Http\Middleware\TrimStrings;
 use Illuminate\Foundation\Http\Middleware\ValidateCsrfToken;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -51,30 +48,7 @@ return Application::configure(basePath: dirname(__DIR__))
 
 
     ->withExceptions(function (Exceptions $exceptions) {
-        $exceptions->stopIgnoring(AuthenticationException::class);
-        $exceptions->render(function (AuthenticationException $exception, Request $request) {
-            if($request->expectsJson() || $request->is('api/*')) {
-                return response()->json([
-                    'code' => 401,
-                    'message' => $exception->getMessage(),
-                ], 401);
-            }
-        });
-        $exceptions->render(function (NotFoundHttpException $exception, Request $request) {
-            if($request->expectsJson() || $request->is('api/*')) {
-                return response()->json([
-                    'code' => 404,
-                    'message' => $exception->getMessage(),
-                ], 404);
-            }
-        });
-        $exceptions->render(function (ValidationException $exception, Request $request) {
-            if($request->expectsJson() || $request->is('api/*')) {
-                return response()->json([
-                    'code' => 422,
-                    'message' => $exception->getMessage(),
-                    'errors' => $exception->errors(),
-                ], 422);
-            }
+        $exceptions->shouldRenderJsonWhen(function (Request $request, Throwable $e) {
+            return ($request->is('api/*')) || $request->expectsJson();
         });
     })->create();
