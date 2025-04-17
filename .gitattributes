@@ -12,3 +12,4 @@ CHANGELOG.md export-ignore
 
 /resources/css/** linguist-vendored
 /resources/js/** linguist-vendored
+/.docs/** linguist-vendored
