@@ -8,6 +8,7 @@
     'model',
     'customOptions',
     'placeholder' => 'Select item...',
+    'setTomValue' => 'set-tom-select',
 ])
 <div wire:ignore>
     @php
@@ -17,18 +18,21 @@
         id="{{ $ref }}"
         x-ref="{{ $ref }}"
         x-data="{
+            setTomValue(params) {
+                const element = document.getElementById(params.ref)
+                element.tomselect.clear(true)
+                element.tomselect.clearOptions()
+                element.tomselect.addOption(params.data)
+                element.tomselect.addItem(params.value)
+                element.tomselect.setValue(params.value)
+            },
+            clearTomValue(params) {
+                let element = document.getElementById(params.ref)
+                element.tomselect.clear(true)
+                element.tomselect.clearOptions()
+                element.tomselect.setValue(null)
+            },
             init() {
-                $wire.on('setTomValue', params => {
-                    let element = document.getElementById(params.ref)
-                    element.tomselect.addOption(params.data)
-                    element.tomselect.addItem(params.value)
-                    element.tomselect.setValue(params.value)
-                })
-                $wire.on('clearTomValue', params => {
-                    let element = document.getElementById(params.ref)
-                    element.tomselect.clear(true)
-                    element.tomselect.setValue(null)
-                })
                 new TomSelect(this.$refs.{{ $ref }}, {
                     valueField: '{{ $valueField }}',
                     labelField: '{{ $labelField }}',
@@ -44,7 +48,11 @@
                 })
             }
         }"
-        wire:model.live="{{ $model }}" {{ $attributes ?? '' }}>
+        wire:model.live="{{ $model }}"
+        x-on:set-tom-value.window="setTomValue($event.detail)"
+        x-on:clear-tom-value.window="clearTomValue($event.detail)"
+        {{ $attributes->merge(['class' => 'form-control']) }}
+        {{ $attributes ?? '' }}>
     </select>
 </div>
 @once
