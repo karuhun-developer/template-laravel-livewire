@@ -11,11 +11,11 @@ trait WithSaveFile {
         if(!$file) return false;
 
         $filename = $base_file_name . uniqid() . '.' . $file->extension();
-        $file->storeAs('public/' . $path, $filename);
+        $file->storeAs($path, $filename);
 
         return [
             'filename' => $filename,
-            'path' => 'public/' . $path,
+            'path' => $path,
         ];
     }
 }
