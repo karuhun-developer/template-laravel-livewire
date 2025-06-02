@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\Anggota;
 use App\Models\User;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Http\Request;
@@ -36,13 +35,6 @@ class AuthGoogleController extends Controller
                     'email' => $google->email,
                     'password' => bcrypt(Str::random(16)), // Set a random password
                     'email_verified_at' => now()
-                ]);
-
-                // Create anggota
-                Anggota::create([
-                    'user_id' => $user->id,
-                    'name' => $user->name,
-                    'email' => $user->email,
                 ]);
             }
 
