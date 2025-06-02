@@ -1,1 +1,0 @@
-@dd('Reset Password')
