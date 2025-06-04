@@ -5,13 +5,16 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="favicon icon" href="{{ asset('img/favicon.ico') }}" />
+    <link rel="favicon icon" href="{{
+        $settings->getFirstMediaUrl('favicon') != '' ? $settings->getFirstMediaUrl('favicon') : asset('img/favicon.ico')
+    }}" />
     <title>
         {{ $settings->name }} - {{ $title ?? '' }}
     </title>
     <!-- CSS files -->
     <x-styles />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @livewireStyles
     {{ $styles ?? '' }}
 </head>
 
@@ -35,7 +38,7 @@
         </div>
     </div>
     <x-javascript />
+    @livewireScripts
     {{ $scripts ?? '' }}
 </body>
-
 </html>
