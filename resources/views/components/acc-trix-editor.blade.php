@@ -3,7 +3,9 @@
     'model' => '',
     'model_name' => 'trix_description',
 ])
-
+<style>
+    .trix-button-group--file-tools { display: none !important; }
+</style>
 <input id="{{ $id }}" type="hidden" name="{{ $model_name }}" value="{{ $model }}">
 <trix-editor wire:ignore input="{{ $id }}" class="trix-content"
     x-data
