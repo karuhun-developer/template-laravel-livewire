@@ -19,10 +19,10 @@
                 'name' => 'Misc Setting',
                 'route' => 'cms.management.misc-setting',
             ],
-            [
-                'name' => 'Mail Setting',
-                'route' => 'cms.management.mail-setting',
-            ],
+            // [
+            //     'name' => 'Mail Setting',
+            //     'route' => 'cms.management.mail-setting',
+            // ],
             [
                 'name' => 'Privacy Policy',
                 'route' => 'cms.management.privacy-policy-setting',

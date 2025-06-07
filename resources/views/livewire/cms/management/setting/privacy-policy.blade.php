@@ -9,17 +9,11 @@
         <div class="col-md-9 col-xl-10">
             <div class="card">
                 <div class="card-body">
-                    <x-acc-form submit="save">
-                        <div class="col-md-6">
+                    <x-acc-form submit="customSave">
+                        <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="form-label">Privacy Policy</label>
-                                <x-acc-input type="textarea" :live="true" model="form.privacy_policy" placeholder="Privacy Policy" rows="15" />
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label class="form-label">Preview Privacy Policy</label>
-                                <x-markdown>{{ $form->privacy_policy }}</x-markdown>
+                                <x-acc-trix-editor :model="$trix" model_name="trix" />
                             </div>
                         </div>
                     </x-acc-form>
