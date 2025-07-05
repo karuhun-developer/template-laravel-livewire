@@ -13,9 +13,6 @@ trait WithSaveFile {
         $filename = $base_file_name . uniqid() . '.' . $file->extension();
         $file->storeAs($path, $filename);
 
-        return [
-            'filename' => $filename,
-            'path' => $path,
-        ];
+        return $path . '/' . $filename;
     }
 }
