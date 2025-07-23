@@ -6,13 +6,21 @@ use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 trait WithGetFilterData {
-    public function getDataWithFilter(Model|Builder $model, array $searchBy = [
-        [
-            'name' => '',
-            'field' => '',
-            'no_search' => true,
-        ]
-    ], string $orderBy = 'id', string $order = 'desc', int $paginate = 10, string $s = '') {
+    public function getDataWithFilter(
+        Model|Builder $model,
+        array $searchBy = [
+            [
+                'name' => '',
+                'field' => '',
+                'no_search' => true,
+            ]
+        ],
+        string $orderBy = 'id',
+        string $order = 'desc',
+        int $paginate = 10,
+        string $s = '',
+        string $paginateFunction = 'fastPaginate'
+    ) {
         $model = $model->when(!empty($s) && !empty($searchBy), function ($query) use ($s, $searchBy) {
             $query->where(function ($query) use ($s, $searchBy) {
                 foreach ($searchBy as $value) {
@@ -26,6 +34,6 @@ trait WithGetFilterData {
 
         $model = $model->orderBy($orderBy, $order);
 
-        return $model->fastPaginate($paginate);
+        return $model->{$paginateFunction}($paginate);
     }
 }

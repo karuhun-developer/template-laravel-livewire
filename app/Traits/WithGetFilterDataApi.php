@@ -14,9 +14,9 @@ trait WithGetFilterDataApi {
         string $orderBy = 'id',
         string $order = 'asc',
         int $paginate = 10,
-        string $s = ''
+        string $s = '',
+        string $paginateFunction = 'fastPaginate'
     ) {
-
         $model = $model->where(function ($query) use ($s, $searchBy, $searchBySpecific) {
             if($searchBySpecific) {
                 $query->where($searchBySpecific, 'like', "%$s%");
@@ -31,6 +31,6 @@ trait WithGetFilterDataApi {
 
         // $model = $model->latest();
 
-        return $model->fastPaginate($paginate);
+        return $model->{$paginateFunction}($paginate);
     }
 }
