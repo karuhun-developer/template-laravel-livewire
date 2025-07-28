@@ -33,6 +33,14 @@
                             This is a simple and secure way to manage your account. You can easily access your account settings, view your profile, and manage your preferences.
                             <br>
                         </p>
+                        @guest
+                            <a class="btn btn-primary w-100" href="{{ route('login') }}">
+                                <i class="fa fa-sign-in-alt"></i>
+                                <span class="ms-2">
+                                    Sign In
+                                </span>
+                            </a>
+                        @endguest
                         @auth
                             <a class="btn btn-primary w-100" href="{{ route('redirect.main-app') }}">
                                 <i class="fa fa-external-link-alt"></i>
@@ -40,7 +48,35 @@
                                     Redirect To Main App
                                 </span>
                             </a>
-                        @endif
+                            <button class="btn btn-danger w-100 mt-2" x-on:click.prevent="
+                                window.Swal.fire({
+                                    title: 'Are you sure?',
+                                    text: '',
+                                    icon: 'warning',
+                                    showCancelButton: true,
+                                    confirmButtonColor: '#3085d6',
+                                    cancelButtonColor: '#d33',
+                                    confirmButtonText: 'Yes'
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        fetch('{{ route('logout') }}', {
+                                            method: 'POST',
+                                            headers: {
+                                                'Content-Type': 'application/json',
+                                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                                            }
+                                        }).then(() => {
+                                            window.location.href = '/login'
+                                        })
+                                    }
+                                })
+                            ">
+                                <i class="fa fa-sign-out-alt"></i>
+                                <span class="ms-2">
+                                    Sign Out
+                                </span>
+                            </button>
+                        @endauth
                     </div>
                 </div>
             </div>
