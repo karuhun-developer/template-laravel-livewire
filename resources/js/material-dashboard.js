@@ -134,7 +134,7 @@ if (document.querySelector(".fixed-plugin")) {
 }
 
 //Set Sidebar Color
-function sidebarColor(a) {
+window.sidebarColor = (a) => {
     var parent = document.querySelector(".nav-link.active");
     var color = a.getAttribute("data-color");
 
@@ -157,10 +157,10 @@ function sidebarColor(a) {
         parent.classList.remove("bg-gradient-danger");
     }
     parent.classList.add("bg-gradient-" + color);
-}
+};
 
 // Set Sidebar Type
-function sidebarType(a) {
+window.sidebarType = (a) => {
     var parent = a.parentElement.children;
     var color = a.getAttribute("data-class");
     var body = document.querySelector("body");
@@ -250,7 +250,7 @@ function sidebarType(a) {
             navbarBrand.src = navbarBrandImgNew;
         }
     }
-}
+};
 
 // Set Navbar Fixed
 function navbarFixed(el) {
@@ -736,7 +736,9 @@ window.addEventListener("resize", sidenavTypeOnResize);
 window.addEventListener("load", sidenavTypeOnResize);
 
 function sidenavTypeOnResize() {
-    let elements = document.querySelectorAll('[onclick="sidebarType(this)"]');
+    let elements = document.querySelectorAll(
+        '[onclick="window.sidebarType(this)"]'
+    );
     if (window.innerWidth < 1200) {
         elements.forEach(function (el) {
             el.classList.add("disabled");
@@ -749,7 +751,7 @@ function sidenavTypeOnResize() {
 }
 
 // Light Mode / Dark Mode
-function darkMode(el) {
+window.darkMode = (el) => {
     const body = document.getElementsByTagName("body")[0];
     const hr = document.querySelectorAll("div:not(.sidenav) > hr");
     const hr_card = document.querySelectorAll("div:not(.bg-gradient-dark) hr");
@@ -921,7 +923,7 @@ function darkMode(el) {
         }
         el.removeAttribute("checked");
     }
-}
+};
 
 // side bullets
 
