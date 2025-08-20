@@ -24,8 +24,10 @@
     </title>
     <!-- Vendor CSS Files -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @livewireStyles
+    {{ $styles ?? '' }}
 </head>
-<body class="">
+<body class="" x-data>
     <main class="main-content  mt-0">
         <section>
             <div class="page-header min-vh-100">
@@ -35,5 +37,7 @@
             </div>
         </section>
     </main>
+    @livewireScripts
+    {{ $scripts ?? '' }}
 </body>
 </html>

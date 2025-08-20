@@ -25,9 +25,11 @@
     </title>
     <!-- Vendor CSS Files -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @livewireStyles
+    {{ $styles ?? '' }}
 </head>
 
-<body class="g-sidenav-show  bg-gray-100">
+<body class="g-sidenav-show  bg-gray-100" x-data>
     <x-cms.navigation />
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
         <!-- Navbar -->
@@ -45,5 +47,7 @@
         </div>
     </main>
     <x-cms.plugin-settings />
+    @livewireScripts
+    {{ $scripts ?? '' }}
 </body>
 </html>

@@ -72,7 +72,29 @@
             </a>
         </li>
         <li class="nav-item d-flex align-items-center">
-            <a href="#" class="nav-link text-body font-weight-bold px-0">
+            <a href="#" class="nav-link text-body font-weight-bold px-0" x-on:click.prevent="
+                window.Swal.fire({
+                    title: 'Are you sure?',
+                    text: '',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#262626',
+                    cancelButtonColor: '#e91e63',
+                    confirmButtonText: 'Yes'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        fetch('{{ route('logout') }}', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                            }
+                        }).then(() => {
+                            window.location.href = '/login'
+                        })
+                    }
+                })
+            ">
                 <i class="material-symbols-rounded">logout</i>
             </a>
         </li>
