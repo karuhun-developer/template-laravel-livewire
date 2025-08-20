@@ -1,4 +1,4 @@
-// import "bootstrap";
+import "bootstrap";
 import "perfect-scrollbar";
 import "smooth-scrollbar";
 import "@popperjs/core";

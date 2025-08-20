@@ -1,4 +1,4 @@
-<x-layouts.auth>
+<x-layouts.guest>
     <x-slot:title>
         Confirm Password
     </x-slot:title>
@@ -41,4 +41,4 @@
             </div>
         </div>
     </div>
-</x-layouts.auth>
+</x-layouts.guest>

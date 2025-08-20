@@ -1,4 +1,4 @@
-<x-layouts.auth>
+<x-layouts.guest>
     <x-slot:title>
         Forgot Password
     </x-slot:title>
@@ -53,4 +53,4 @@
             </div>
         </div>
     </div>
-</x-layouts.auth>
+</x-layouts.guest>

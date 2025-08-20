@@ -1,4 +1,4 @@
-<x-layouts.auth>
+<x-layouts.guest>
     <x-slot:title>
         Register
     </x-slot:title>
@@ -89,4 +89,4 @@
             </div>
         </div>
     </div>
-</x-layouts.auth>
+</x-layouts.guest>
