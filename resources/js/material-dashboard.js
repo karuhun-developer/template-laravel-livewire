@@ -304,7 +304,7 @@ function navbarBlurOnScroll(id) {
     let toggleClasses = ["shadow-none"];
 
     if (navbarScrollActive == "true") {
-        window.onscroll = debounce(function () {
+        window.onscroll = window.debounce(function () {
             if (window.scrollY > scrollDistance) {
                 blurNavbar();
             } else {
@@ -312,7 +312,7 @@ function navbarBlurOnScroll(id) {
             }
         }, 10);
     } else {
-        window.onscroll = debounce(function () {
+        window.onscroll = window.debounce(function () {
             transparentNavbar();
         }, 10);
     }
@@ -324,7 +324,7 @@ function navbarBlurOnScroll(id) {
         if (navbarScrollActive == "true") {
             content.addEventListener(
                 "ps-scroll-y",
-                debounce(function () {
+                window.debounce(function () {
                     if (content.scrollTop > scrollDistance) {
                         blurNavbar();
                     } else {
@@ -335,7 +335,7 @@ function navbarBlurOnScroll(id) {
         } else {
             content.addEventListener(
                 "ps-scroll-y",
-                debounce(function () {
+                window.debounce(function () {
                     transparentNavbar();
                 }, 10)
             );
@@ -387,7 +387,7 @@ function navbarBlurOnScroll(id) {
 // be triggered. The function will be called after it stops being called for
 // N milliseconds. If `immediate` is passed, trigger the function on the
 // leading edge, instead of the trailing.
-function debounce(func, wait, immediate) {
+window.debounce = (func, wait, immediate) => {
     var timeout;
     return function () {
         var context = this,
@@ -401,33 +401,7 @@ function debounce(func, wait, immediate) {
         timeout = setTimeout(later, wait);
         if (callNow) func.apply(context, args);
     };
-}
-
-// initialization of Toasts
-document.addEventListener("DOMContentLoaded", function () {
-    var toastElList = [].slice.call(document.querySelectorAll(".toast"));
-
-    var toastList = toastElList.map(function (toastEl) {
-        return new bootstrap.Toast(toastEl);
-    });
-
-    var toastButtonList = [].slice.call(
-        document.querySelectorAll(".toast-btn")
-    );
-
-    toastButtonList.map(function (toastButtonEl) {
-        toastButtonEl.addEventListener("click", function () {
-            var toastToTrigger = document.getElementById(
-                toastButtonEl.dataset.target
-            );
-
-            if (toastToTrigger) {
-                var toast = bootstrap.Toast.getInstance(toastToTrigger);
-                toast.show();
-            }
-        });
-    });
-});
+};
 
 // Tabs navigation
 

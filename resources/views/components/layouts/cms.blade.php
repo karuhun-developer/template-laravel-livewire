@@ -29,9 +29,9 @@
     {{ $styles ?? '' }}
 </head>
 
-<body class="g-sidenav-show  bg-gray-100" x-data>
+<body class="g-sidenav-show bg-gray-100" x-data>
     <x-cms.navigation />
-    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
+    <main class="main-content position-relative border-radius-lg d-flex flex-column min-vh-100">
         <!-- Navbar -->
         <nav class="navbar navbar-main navbar-expand-lg px-0 mx-3 shadow-none border-radius-xl" id="navbarBlur"
             data-scroll="true">
@@ -43,8 +43,8 @@
         <!-- End Navbar -->
         <div class="container-fluid py-2">
             {{ $slot ?? '' }}
-            <x-cms.footer />
         </div>
+        <x-cms.footer />
     </main>
     <x-cms.plugin-settings />
     @livewireScripts

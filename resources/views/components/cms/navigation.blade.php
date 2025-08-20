@@ -32,7 +32,7 @@
                     <i class="material-symbols-rounded opacity-5">contract</i>
                     <span class="nav-link-text ms-1 ps-1">Pages</span>
                 </a>
-                <div class="collapse show" id="pagesExamples" style="">
+                <div class="collapse show" id="pagesExamples">
                     <ul class="nav">
                         <li class="nav-item">
                             <a class="nav-link text-dark" data-bs-toggle="collapse" aria-expanded="false"
@@ -105,7 +105,7 @@
                     <i class="fas fa-external-link-alt me-2"></i>
                     Laravel Pulse
                 </a>
-                <a class="btn bg-gradient-dark w-100" href="{{ route('login') }}" target="_blank">
+                <a class="btn bg-gradient-dark w-100" href="{{ route('cms.logs') }}" target="_blank">
                     <i class="fas fa-clipboard-list me-2"></i>
                     Laravel Log
                 </a>

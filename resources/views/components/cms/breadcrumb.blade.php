@@ -11,7 +11,7 @@
         @foreach ($items as $item)
             <li class="breadcrumb-item text-sm {{ $item['active'] ? 'text-dark active' : 'text-secondary' }}"
                 aria-current="{{ $item['active'] ? 'page' : '' }}">
-                <a  class="{{ $item['active'] ? 'text-dark' : 'opacity-5 text-dark' }}"
+                <a class="{{ $item['active'] ? 'text-dark' : 'opacity-5 text-dark' }}"
                     href="{{ $item['url'] }}">
                     {{ $item['label'] }}
                 </a>

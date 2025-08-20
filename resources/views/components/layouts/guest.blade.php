@@ -27,7 +27,7 @@
     @livewireStyles
     {{ $styles ?? '' }}
 </head>
-<body class="" x-data>
+<body x-data>
     <main class="main-content  mt-0">
         <section>
             <div class="page-header min-vh-100">
