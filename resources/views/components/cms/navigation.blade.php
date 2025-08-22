@@ -38,16 +38,16 @@
             'active' => ['cms.management.role', 'cms.management.permission'],
             'children' => [
                 [
-                    'label' => 'Role',
-                    'icon' => null,
-                    'url' => route('cms.management.role'),
-                    'active' => ['cms.management.role'],
-                ],
-                [
                     'label' => 'Permission',
                     'icon' => null,
                     'url' => route('cms.management.permission'),
                     'active' => ['cms.management.permission'],
+                ],
+                [
+                    'label' => 'Role',
+                    'icon' => null,
+                    'url' => route('cms.management.role'),
+                    'active' => ['cms.management.role'],
                 ],
             ],
         ],

@@ -116,6 +116,12 @@ new class extends BaseComponent {
                                             {{ $d->created_at->format('d F Y') }}
                                         </td>
                                         <td class="align-middle">
+                                            <x-cms.action.button permission="view.{{ $model }}" href="{{ route('cms.management.role.permission', [
+                                                'id' => $d->id,
+                                            ]) }}">
+                                                <i class="fas fa-eye me-2"></i>
+                                                Permissions
+                                            </x-cms.action.button>
                                             <x-cms.action.update-btn :$model :link="route('cms.management.role.edit', [
                                                 'id' => $d->id,
                                             ])">
