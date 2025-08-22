@@ -1,45 +1,37 @@
 <?php
 
 use App\Livewire\BaseComponent;
-use App\Models\Spatie\Role;
+use App\Models\Spatie\Permission;
 
 new class extends BaseComponent {
-    public string $title = 'Edit Role';
-    public string $description = 'Edit an existing role for the system.';
-    public string $model = Role::class;
-    public $oldData;
+    public string $title = 'Create Permission';
+    public string $description = 'Create a new permission for the system.';
+    public string $model = Permission::class;
 
-    public function mount($id) {
-        $this->canDo('update.' . $this->model);
-
-        $this->oldData = Role::find($id);
-        if (!$this->oldData) to_route('cms.management.role')->with('error', 'Role not found.');
-
-        // Set properties from the old data
-        $this->name = $this->oldData->name;
-        $this->guard_name = $this->oldData->guard_name;
+    public function mount() {
+        $this->canDo('create.' . $this->model);
     }
 
-    // Properties for role creation
+    // Properties for permission creation
     public string $name;
     public string $guard_name = 'web';
 
     public function save() {
         $this->validate([
-            'name' => 'required|string|max:255|unique:roles,name,' . $this->oldData->id,
+            'name' => 'required|string|max:255|unique:permissions,name',
             'guard_name' => 'required|string|max:255|in:web,api',
         ]);
 
-        // Create a new role with the validated name
-        $this->oldData->update($this->all());
+        // Create a new permission with the validated name
+        Permission::create($this->all());
 
-        // Redirect to the role index page after creation
-        to_route('cms.management.role')->with('success', 'Role updated successfully.');
+        // Redirect to the permission index page after creation
+        to_route('cms.management.permission')->with('success', 'Permission created successfully.');
     }
 }; ?>
 
 <div>
-    <x-acc-back url="{{ route('cms.management.role')  }}" />
+    <x-acc-back url="{{ route('cms.management.permission')  }}" />
     <div class="row">
         <div class="col-12">
             <div class="card my-3">
@@ -59,7 +51,7 @@ new class extends BaseComponent {
                     <form wire:submit.prevent="save">
                         <div class="row">
                             <div class="col-md-12 mb-3">
-                                <x-acc-input model="name" label="Name" :filled="true" />
+                                <x-acc-input model="name" label="Name" />
                             </div>
                             <div class="col-md-12 mb-3">
                                 <label class="form-label fw-bold">
@@ -77,7 +69,7 @@ new class extends BaseComponent {
                                 <i class="fas fa-save me-2"></i>
                                 Save
                             </button>
-                            <a href="{{ route('cms.management.role') }}" class="btn bg-gradient-dark btn-sm me-2">
+                            <a href="{{ route('cms.management.permission') }}" class="btn bg-gradient-dark btn-sm me-2">
                                 <i class="fas fa-arrow-left me-2"></i>
                                 Cancel
                             </a>
