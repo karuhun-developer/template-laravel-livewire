@@ -1,6 +1,64 @@
 @php
-    function menuActive($routeName) {
-        return request()->routeIs($routeName) ? 'active bg-gradient-dark text-white' : 'text-dark';
+    function menuActive($activeRoute = []) {
+        // Check if route name contains the active route
+        foreach ($activeRoute as $route) {
+            if(str_contains(request()->route()->getName(), $route) || request()->routeIs($route)) {
+                return 'active bg-gradient-dark text-white';
+                break;
+            }
+        }
+
+        return 'text-dark';
+    }
+
+    // Show dropdown menu if the route is active
+    function showDropdown($activeRoute = []) {
+        foreach ($activeRoute as $route) {
+            if(str_contains(request()->route()->getName(), $route) || request()->routeIs($route)) {
+                return 'show';
+                break;
+            }
+        }
+
+        return '';
+    }
+
+    // Superadmin Menu
+    $superAdminMenu = [
+        [
+            'label' => 'Dashboard',
+            'icon' => 'fa fa-map',
+            'url' => route('cms.dashboard'),
+            'active' => ['cms.dashboard'],
+        ],
+        [
+            'label' => 'Managements',
+            'icon' => 'fa fa-cogs',
+            'url' => '#',
+            'active' => ['cms.management.role', 'cms.management.permission'],
+            'children' => [
+                [
+                    'label' => 'Role',
+                    'icon' => null,
+                    'url' => route('cms.management.role'),
+                    'active' => ['cms.management.role'],
+                ],
+                [
+                    'label' => 'Permission',
+                    'icon' => null,
+                    'url' => route('cms.management.permission'),
+                    'active' => ['cms.management.permission'],
+                ],
+            ],
+        ],
+    ];
+
+    // Check user roles
+    $listMenus = [];
+
+    // Superadmin menu
+    if (auth()->user()->hasRole('superadmin')) {
+        $listMenus = $superAdminMenu;
     }
 @endphp
 <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-radius-lg fixed-start ms-2 bg-white my-2"
@@ -19,35 +77,47 @@
     <hr class="horizontal dark mt-0 mb-2">
     <div class="collapse navbar-collapse  w-auto" id="sidenav-collapse-main">
         <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link " href="">
-                    <i class="material-symbols-rounded opacity-5">dashboard</i>
-                    <span class="nav-link-text ms-1">Dashboard</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active bg-gradient-dark text-white" href="../pages/tables.html">
-                    <i class="material-symbols-rounded opacity-5">table_view</i>
-                    <span class="nav-link-text ms-1">Tables</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a data-bs-toggle="collapse" href="#pagesExamples" class="nav-link text-dark"
-                    aria-controls="pagesExamples" role="button" aria-expanded="true">
-                    <i class="material-symbols-rounded opacity-5">contract</i>
-                    <span class="nav-link-text ms-1 ps-1">Pages</span>
-                </a>
-                <div class="collapse show" id="pagesExamples">
-                    <ul class="nav">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" href="../../pages/pages/notifications.html">
-                                <span class="sidenav-mini-icon"> N </span>
-                                <span class="sidenav-normal  ms-1  ps-1"> Notifications </span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
+            @foreach ($listMenus as $key => $menu)
+                <li class="nav-item">
+                    <a
+                        class="nav-link {{ menuActive($menu['active']) }}"
+                        @if(isset($menu['children']))
+                            data-bs-toggle="collapse"
+                            href="#pages{{ $key }}"
+                            class="nav-link text-dark"
+                            role="button"
+                            aria-expanded="true"
+                        @else
+                            href="{{ $menu['url'] }}"
+                        @endif
+                        >
+                        <i class="{{ $menu['icon'] }} opacity-5 me-2"></i>
+                        <span class="nav-link-text ms-1">
+                            {{ $menu['label'] }}
+                        </span>
+                    </a>
+                    <!-- Children menu -->
+                    @if(isset($menu['children']))
+                        <div class="collapse {{ showDropdown($menu['active']) }}" id="pages{{ $key }}">
+                            <ul class="nav">
+                                @foreach ($menu['children'] as $child)
+                                    <li class="nav-item">
+                                        <a class="nav-link {{ menuActive($child['active']) }}"
+                                            href="{{ $child['url'] }}">
+                                            @if($child['icon'])
+                                                <i class="{{ $child['icon'] }} text-dark opacity-10 me-2"></i>
+                                            @endif
+                                            <span class="sidenav-normal ms-1 ps-1">
+                                                {{ $child['label'] }}
+                                            </span>
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                </li>
+            @endforeach
         </ul>
     </div>
     <div class="sidenav-footer position-absolute w-100 bottom-0">
