@@ -1,6 +1,6 @@
 <x-layouts.guest>
     <x-slot:title>
-        Reset Password
+        Welcome
     </x-slot:title>
     <div class="row">
         <div
@@ -29,7 +29,7 @@
                             </a>
                         @endguest
                         @auth
-                            <a class="btn btn-lg bg-gradient-dark btn-lg w-100 mt-4 mb-0" href="{{ route('dashboard') }}">
+                            <a class="btn btn-lg bg-gradient-dark btn-lg w-100 mt-4 mb-0" href="{{ url('/cms') }}">
                                 <i class="fa fa-briefcase me-2"></i>
                                 Redirect to Dashboard
                             </a>

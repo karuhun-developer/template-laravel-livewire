@@ -12,9 +12,12 @@
     'old' => null,
     'icon' => null,
     'error' => true,
+    'filled' => false,
 ])
 
-<div class="input-group input-group-outline input-group-flat">
+<div class="input-group input-group-outline input-group-flat
+    @if($filled) is-filled @endif
+" wire:ignore.self>
     @if($icon)
         <span class="input-group-text">
             <i class="{{ $icon }}"></i>

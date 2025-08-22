@@ -15,4 +15,13 @@ class BaseComponent extends Component {
         WithChangeOrder;
 
     public int $imageIttr = 0;
+
+    protected function canDo($permission, $redirect = true) {
+        if (auth()->user()->can($permission)) return true;
+        session()->flash('error', 'You do not have permission to access this page.');
+        if ($redirect) $this->redirect(url()->previous());
+
+        // Prevent further execution
+        die;
+    }
 }

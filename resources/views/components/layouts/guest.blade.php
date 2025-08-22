@@ -28,6 +28,7 @@
     {{ $styles ?? '' }}
 </head>
 <body x-data>
+    <x-acc-alert />
     <main class="main-content  mt-0">
         <section>
             <div class="page-header min-vh-100">
@@ -37,7 +38,7 @@
             </div>
         </section>
     </main>
-    @livewireScripts
+    @livewireScriptConfig
     {{ $scripts ?? '' }}
 </body>
 </html>

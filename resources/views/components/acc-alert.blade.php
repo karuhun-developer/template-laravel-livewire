@@ -1,11 +1,23 @@
-@props([
-    'session' => 'success', // session name
-    'type' => 'success', // info, success, warning, error
-])
-
-@if(session($session))
-    <div class="alert alert-{{ $type }} alert-dismissible fade show text-white" role="alert">
-        {{ session($session) }}qweqweqwe
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-@endif
+<!-- List session flash -->
+@foreach([
+    'success',
+    'error',
+    'warning',
+    'info',
+] as $type)
+    @if(session()->has($type))
+        <div x-data="{
+            show: true,
+            session: '{{ $type }}',
+            init() {
+                $nextTick(() => {
+                    window.Toast.fire({
+                        icon: '{{ $type }}',
+                        title: '{{ session($type) }}',
+                    });
+                });
+            }
+        }">
+        </div>
+    @endif
+@endforeach

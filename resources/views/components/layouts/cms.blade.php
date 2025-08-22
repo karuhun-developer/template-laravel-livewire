@@ -30,6 +30,7 @@
 </head>
 
 <body class="g-sidenav-show bg-gray-100" x-data>
+    <x-acc-alert />
     <x-cms.navigation />
     <main class="main-content position-relative border-radius-lg d-flex flex-column min-vh-100">
         <!-- Navbar -->
@@ -47,7 +48,7 @@
         <x-cms.footer />
     </main>
     <x-cms.plugin-settings />
-    @livewireScripts
+    @livewireScriptConfig
     {{ $scripts ?? '' }}
 </body>
 </html>

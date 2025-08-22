@@ -1,3 +1,10 @@
+<?php
+
+use function Laravel\Folio\name;
+
+name('cms.management.role');
+
+?>
 <x-layouts.cms>
     <x-slot:breadcrumb>
         <x-cms.breadcrumb :items="[
@@ -8,7 +15,7 @@
             ],
             [
                 'label' => 'Role',
-                'url' => route('cms.managements.roles'),
+                'url' => '#',
                 'active' => true,
             ],
         ]" />

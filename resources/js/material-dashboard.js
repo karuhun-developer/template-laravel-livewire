@@ -304,7 +304,7 @@ function navbarBlurOnScroll(id) {
     let toggleClasses = ["shadow-none"];
 
     if (navbarScrollActive == "true") {
-        window.onscroll = window.debounce(function () {
+        window.onscroll = debounce(function () {
             if (window.scrollY > scrollDistance) {
                 blurNavbar();
             } else {
@@ -312,7 +312,7 @@ function navbarBlurOnScroll(id) {
             }
         }, 10);
     } else {
-        window.onscroll = window.debounce(function () {
+        window.onscroll = debounce(function () {
             transparentNavbar();
         }, 10);
     }
@@ -324,7 +324,7 @@ function navbarBlurOnScroll(id) {
         if (navbarScrollActive == "true") {
             content.addEventListener(
                 "ps-scroll-y",
-                window.debounce(function () {
+                debounce(function () {
                     if (content.scrollTop > scrollDistance) {
                         blurNavbar();
                     } else {
@@ -335,7 +335,7 @@ function navbarBlurOnScroll(id) {
         } else {
             content.addEventListener(
                 "ps-scroll-y",
-                window.debounce(function () {
+                debounce(function () {
                     transparentNavbar();
                 }, 10)
             );
@@ -387,7 +387,7 @@ function navbarBlurOnScroll(id) {
 // be triggered. The function will be called after it stops being called for
 // N milliseconds. If `immediate` is passed, trigger the function on the
 // leading edge, instead of the trailing.
-window.debounce = (func, wait, immediate) => {
+function debounce(func, wait, immediate) {
     var timeout;
     return function () {
         var context = this,
@@ -401,7 +401,7 @@ window.debounce = (func, wait, immediate) => {
         timeout = setTimeout(later, wait);
         if (callNow) func.apply(context, args);
     };
-};
+}
 
 // Tabs navigation
 
