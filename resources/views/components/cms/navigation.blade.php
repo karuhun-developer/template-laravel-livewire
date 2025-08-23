@@ -35,7 +35,7 @@
             'label' => 'Managements',
             'icon' => 'fa fa-cogs',
             'url' => '#',
-            'active' => ['cms.management.role', 'cms.management.permission'],
+            'active' => ['cms.management'],
             'children' => [
                 [
                     'label' => 'Permission',
@@ -49,6 +49,12 @@
                     'url' => route('cms.management.role'),
                     'active' => ['cms.management.role'],
                 ],
+                [
+                    'label' => 'User',
+                    'icon' => null,
+                    'url' => route('cms.management.user'),
+                    'active' => ['cms.management.user'],
+                ]
             ],
         ],
     ];

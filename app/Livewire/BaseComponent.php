@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Traits\InteractWithModal;
 use App\Traits\Livewire\WithChangeOrder;
 use App\Traits\WithGetFilterData;
 use Livewire\WithoutUrlPagination;
@@ -12,7 +13,8 @@ class BaseComponent extends Component {
     use WithPagination,
         WithoutUrlPagination,
         WithGetFilterData,
-        WithChangeOrder;
+        WithChangeOrder,
+        InteractWithModal;
 
     public int $imageIttr = 0;
 
