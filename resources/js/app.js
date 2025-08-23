@@ -1,4 +1,4 @@
-import "bootstrap";
+import * as bootstrap from "bootstrap";
 import "perfect-scrollbar";
 import "smooth-scrollbar";
 import "@popperjs/core";
@@ -9,6 +9,7 @@ import {
 } from "../../vendor/livewire/livewire/dist/livewire.esm";
 import Swal from "sweetalert2";
 
+window.bootstrap = bootstrap;
 window.Swal = Swal;
 window.Toast = Swal.mixin({
     toast: true,

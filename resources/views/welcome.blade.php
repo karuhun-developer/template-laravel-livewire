@@ -23,13 +23,13 @@
                 <div class="card-body">
                     <div class="text-center">
                         @guest
-                            <a class="btn btn-lg bg-gradient-dark btn-lg w-100 mt-4 mb-0" href="{{ route('login') }}">
+                            <a class="btn btn-lg bg-gradient-dark w-100 mt-4 mb-0" href="{{ route('login') }}">
                                 <i class="fa fa-sign-in-alt me-2"></i>
                                 Login
                             </a>
                         @endguest
                         @auth
-                            <a class="btn btn-lg bg-gradient-dark btn-lg w-100 mt-4 mb-0" href="{{ url('/cms') }}">
+                            <a class="btn btn-lg bg-gradient-dark w-100 mt-4 mb-0" href="{{ url('/cms') }}">
                                 <i class="fa fa-briefcase me-2"></i>
                                 Redirect to Dashboard
                             </a>

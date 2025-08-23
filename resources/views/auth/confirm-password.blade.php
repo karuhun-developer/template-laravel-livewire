@@ -31,7 +31,7 @@
                             />
                         </div>
                         <div class="text-center">
-                            <button type="submit" class="btn btn-lg bg-gradient-dark btn-lg w-100 mt-4 mb-0">
+                            <button type="submit" class="btn btn-lg bg-gradient-dark w-100 mt-4 mb-0">
                                 <i class="fa fa-lock me-2"></i>
                                 Confirm
                             </button>

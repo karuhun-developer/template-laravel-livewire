@@ -8,7 +8,6 @@
     @if(session()->has($type))
         <div x-data="{
             show: true,
-            session: '{{ $type }}',
             init() {
                 $nextTick(() => {
                     window.Toast.fire({
