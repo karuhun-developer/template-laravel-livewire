@@ -91,19 +91,19 @@ new class extends BaseComponent {
                                 </x-acc-input>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <x-acc-input model="name" label="Name" :filled="true" />
+                                <x-acc-input model="name" label="Name" :filled="$name" />
                             </div>
                             <div class="col-md-6 mb-3">
-                                <x-acc-input model="url" label="URL" :filled="true" />
+                                <x-acc-input model="url" label="URL" :filled="$url" />
                             </div>
                             <div class="col-md-6 mb-3">
-                                <x-acc-input model="icon" label="Icon" :filled="true" />
+                                <x-acc-input model="icon" label="Icon" :filled="$icon" />
                             </div>
                             <div class="col-md-6 mb-3">
-                                <x-acc-input type="number" model="order" label="Order" :filled="true" />
+                                <x-acc-input type="number" model="order" label="Order" :filled="$order" />
                             </div>
                             <div class="col-md-6 mb-3">
-                                <x-acc-input model="active_pattern" label="Active Pattern" :filled="true" />
+                                <x-acc-input model="active_pattern" label="Active Pattern" :filled="$active_pattern" />
                             </div>
                             <div class="col-md-12 mb-3">
                                 <label class="form-label fw-bold">

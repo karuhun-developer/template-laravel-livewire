@@ -68,10 +68,10 @@ new class extends BaseComponent {
                     <form wire:submit.prevent="save">
                         <div class="row">
                             <div class="col-md-12 mb-3">
-                                <x-acc-input model="name" label="Name" :filled="true" />
+                                <x-acc-input model="name" label="Name" :filled="$name" />
                             </div>
                             <div class="col-md-12 mb-3">
-                                <x-acc-input type="email" model="email" label="Email" :filled="true" />
+                                <x-acc-input type="email" model="email" label="Email" :filled="$email" />
                             </div>
                             <div class="col-md-12 mb-3">
                                 <label class="form-label fw-bold">
