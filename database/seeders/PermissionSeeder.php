@@ -46,6 +46,9 @@ class PermissionSeeder extends Seeder
      * @return void
      */
     public function run(): void {
+        // Clear cache
+        app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
+
         // Read all models exists
         $models = $this->getModelLists();
 
