@@ -7,19 +7,18 @@ use App\Models\User;
 new class extends BaseComponent {
     public string $title = 'Edit User';
     public string $description = 'Edit an existing user for the system.';
-    public string $model = User::class;
-    public $oldData;
+    public string $modelInstance = User::class;
+    public $model;
 
-    public function mount($id) {
-        $this->canDo('update.' . $this->model);
+    public function mount(User $model) {
+        $this->canDo('update.' . $this->modelInstance);
 
-        $this->oldData = User::find($id);
-        if (!$this->oldData) to_route('cms.management.user')->with('error', 'User not found.');
+        $this->model = $model;
 
         // Set properties from the old data
-        $this->name = $this->oldData->name;
-        $this->email = $this->oldData->email;
-        $this->role = $this->oldData->getRoleNames()[0];
+        $this->name = $this->model->name;
+        $this->email = $this->model->email;
+        $this->role = $this->model->getRoleNames()[0];
 
         $this->roles = Role::all();
     }
@@ -36,12 +35,12 @@ new class extends BaseComponent {
         $this->validate([
             'role' => 'required|exists:roles,name',
             'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255|unique:users,email,' . $this->oldData->id,
+            'email' => 'required|email|max:255|unique:users,email,' . $this->model->id,
         ]);
 
         // Create a new user with the validated name
-        $this->oldData->syncRoles([$this->role]);
-        $this->oldData->update($this->all());
+        $this->model->syncRoles([$this->role]);
+        $this->model->update($this->all());
 
         // Redirect to the user index page after creation
         to_route('cms.management.user')->with('success', 'User updated successfully.');

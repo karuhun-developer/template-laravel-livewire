@@ -2,7 +2,7 @@
 
 use function Laravel\Folio\name;
 
-name('cms.management.permission.edit');
+name('cms.management.role.permission');
 
 ?>
 <x-layouts.cms>
@@ -14,16 +14,16 @@ name('cms.management.permission.edit');
                 'active' => false,
             ],
             [
-                'label' => 'Permission',
-                'url' => route('cms.management.permission'),
+                'label' => 'Role',
+                'url' => route('cms.management.role'),
                 'active' => false,
             ],
             [
-                'label' => 'Edit',
+                'label' => 'Permissions',
                 'url' => '#',
                 'active' => true,
             ]
         ]" />
     </x-slot:breadcrumb>
-    <livewire:cms.management.permission.edit :$id />
+    <livewire:cms.management.role.permission :$model />
 </x-layouts.cms>

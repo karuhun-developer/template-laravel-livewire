@@ -6,18 +6,16 @@ use App\Models\Spatie\Permission;
 new class extends BaseComponent {
     public string $title = 'Edit Permission';
     public string $description = 'Edit an existing permission for the system.';
-    public string $model = Permission::class;
-    public $oldData;
+    public string $modelInstance = Permission::class;
+    public $model;
 
-    public function mount($id) {
-        $this->canDo('update.' . $this->model);
+    public function mount(Permission $model) {
+        $this->canDo('update.' . $this->modelInstance);
 
-        $this->oldData = Permission::find($id);
-        if (!$this->oldData) to_route('cms.management.permission')->with('error', 'Permission not found.');
-
+        $this->model = $model;
         // Set properties from the old data
-        $this->name = $this->oldData->name;
-        $this->guard_name = $this->oldData->guard_name;
+        $this->name = $this->model->name;
+        $this->guard_name = $this->model->guard_name;
     }
 
     // Properties for permission creation
@@ -26,12 +24,12 @@ new class extends BaseComponent {
 
     public function save() {
         $this->validate([
-            'name' => 'required|string|max:255|unique:permissions,name,' . $this->oldData->id,
+            'name' => 'required|string|max:255|unique:permissions,name,' . $this->model->id,
             'guard_name' => 'required|string|max:255|in:web,api',
         ]);
 
         // Create a new permission with the validated name
-        $this->oldData->update($this->all());
+        $this->model->update($this->all());
 
         // Redirect to the permission index page after creation
         to_route('cms.management.permission')->with('success', 'Permission updated successfully.');

@@ -7,7 +7,7 @@ use Livewire\Attributes\On;
 new class extends BaseComponent {
     public string $title = 'User Management';
     public string $description = 'Manage users for your application.';
-    public string $model = User::class;
+    public string $modelInstance = User::class;
 
     // Pagination and Search
     public array $searchBy = [
@@ -39,7 +39,7 @@ new class extends BaseComponent {
 
     // Check users
     public function mount() {
-        $this->canDo('view.' . $this->model);
+        $this->canDo('view.' . $this->modelInstance);
     }
 
     public function with() {
@@ -47,7 +47,7 @@ new class extends BaseComponent {
             $this->resetPage();
         }
 
-        $model = (new $this->model)->join('model_has_roles', 'model_has_roles.model_id', '=', 'users.id')
+        $model = (new $this->modelInstance)->join('model_has_roles', 'model_has_roles.model_id', '=', 'users.id')
             ->join('roles', 'roles.id', '=', 'model_has_roles.role_id')
             ->select('users.*', 'roles.name as role');
 
@@ -65,7 +65,7 @@ new class extends BaseComponent {
 
     #[On('delete')]
     public function delete($id) {
-        $this->canDo('delete.' . $this->model, false);
+        $this->canDo('delete.' . $this->modelInstance, false);
 
         User::findOrFail($id)->delete();
 
@@ -82,7 +82,7 @@ new class extends BaseComponent {
     }
 
     public function savePassword() {
-        $this->canDo('update.' . $this->model, false);
+        $this->canDo('update.' . $this->modelInstance, false);
 
         $this->validate([
             'password' => 'required|min:8',
@@ -115,8 +115,8 @@ new class extends BaseComponent {
                         </div>
                         <div class="ms-auto my-auto mt-lg-0">
                             <div class="ms-auto my-auto">
-                                <x-cms.action.create-btn :$model :link="route('cms.management.user.create')">
-                                    +&nbsp; New Product
+                                <x-cms.action.create-btn :$modelInstance :link="route('cms.management.user.create')">
+                                    +&nbsp; New User
                                 </x-cms.action.create-btn>
                             </div>
                         </div>
@@ -171,17 +171,17 @@ new class extends BaseComponent {
                                             {{ $d->created_at->format('d F Y') }}
                                         </td>
                                         <td class="align-middle">
-                                            <x-cms.action.button type="button" :permission="'update.' . $model" wire:click="changePassword('{{ $d->id }}')">
+                                            <x-cms.action.button type="button" :permission="'update.' . $modelInstance" wire:click="changePassword('{{ $d->id }}')">
                                                 <i class="fas fa-key me-2"></i>
                                                 Change Password
                                             </x-cms.action.button>
-                                            <x-cms.action.update-btn :$model :link="route('cms.management.user.edit', [
-                                                'id' => $d->id,
+                                            <x-cms.action.update-btn :$modelInstance :link="route('cms.management.user.edit', [
+                                                'model' => $d->id,
                                             ])">
                                                 <i class="fas fa-edit me-2"></i>
                                                 Edit
                                             </x-cms.action.update-btn>
-                                            <x-cms.action.delete-btn :$model :id="$d->id">
+                                            <x-cms.action.delete-btn :$modelInstance :id="$d->id">
                                                 <i class="fas fa-trash me-2"></i>
                                                 Delete
                                             </x-cms.action.delete-btn>

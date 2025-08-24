@@ -6,10 +6,10 @@ use App\Models\Spatie\Permission;
 new class extends BaseComponent {
     public string $title = 'Create Permission';
     public string $description = 'Create a new permission for the system.';
-    public string $model = Permission::class;
+    public string $modelInstance = Permission::class;
 
     public function mount() {
-        $this->canDo('create.' . $this->model);
+        $this->canDo('create.' . $this->modelInstance);
     }
 
     // Properties for permission creation

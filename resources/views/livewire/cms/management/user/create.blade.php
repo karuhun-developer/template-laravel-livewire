@@ -7,10 +7,10 @@ use App\Models\User;
 new class extends BaseComponent {
     public string $title = 'Create User';
     public string $description = 'Create a new user for the system.';
-    public string $model = User::class;
+    public string $modelInstance = User::class;
 
     public function mount() {
-        $this->canDo('create.' . $this->model);
+        $this->canDo('create.' . $this->modelInstance);
 
         $this->roles = Role::all();
     }

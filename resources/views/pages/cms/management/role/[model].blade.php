@@ -2,7 +2,7 @@
 
 use function Laravel\Folio\name;
 
-name('cms.management.user.edit');
+name('cms.management.role.edit');
 
 ?>
 <x-layouts.cms>
@@ -14,8 +14,8 @@ name('cms.management.user.edit');
                 'active' => false,
             ],
             [
-                'label' => 'User',
-                'url' => route('cms.management.user'),
+                'label' => 'Role',
+                'url' => route('cms.management.role'),
                 'active' => false,
             ],
             [
@@ -25,5 +25,5 @@ name('cms.management.user.edit');
             ]
         ]" />
     </x-slot:breadcrumb>
-    <livewire:cms.management.user.edit :$id />
+    <livewire:cms.management.role.edit :$model />
 </x-layouts.cms>

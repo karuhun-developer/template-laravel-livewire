@@ -7,16 +7,15 @@ use App\Models\Spatie\Role;
 new class extends BaseComponent {
     public string $title = 'Role Permission';
     public string $description = 'Manage permissions for a specific role.';
-    public $role;
     public $permissions = [];
+    public $role;
 
-    public function mount($id) {
+    public function mount(Role $model) {
         $this->canDo('create.' . Role::class);
         $this->canDo('update.' . Role::class);
         $this->canDo('delete.' . Role::class);
 
-        $this->role = Role::find($id);
-        if (!$this->role) to_route('cms.management.role')->with('error', 'Role not found.');
+        $this->role = $model;
 
         // Get list of permissions
         $this->getPermissions();

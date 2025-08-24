@@ -6,10 +6,10 @@ use App\Models\Spatie\Role;
 new class extends BaseComponent {
     public string $title = 'Create Role';
     public string $description = 'Create a new role for the system.';
-    public string $model = Role::class;
+    public string $modelInstance = Role::class;
 
     public function mount() {
-        $this->canDo('create.' . $this->model);
+        $this->canDo('create.' . $this->modelInstance);
     }
 
     // Properties for role creation

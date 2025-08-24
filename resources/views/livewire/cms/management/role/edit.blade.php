@@ -6,18 +6,16 @@ use App\Models\Spatie\Role;
 new class extends BaseComponent {
     public string $title = 'Edit Role';
     public string $description = 'Edit an existing role for the system.';
-    public string $model = Role::class;
-    public $oldData;
+    public string $modelInstance = Role::class;
+    public $model;
 
-    public function mount($id) {
-        $this->canDo('update.' . $this->model);
+    public function mount(Role $model) {
+        $this->canDo('update.' . $this->modelInstance);
 
-        $this->oldData = Role::find($id);
-        if (!$this->oldData) to_route('cms.management.role')->with('error', 'Role not found.');
-
+        $this->model = $model;
         // Set properties from the old data
-        $this->name = $this->oldData->name;
-        $this->guard_name = $this->oldData->guard_name;
+        $this->name = $this->model->name;
+        $this->guard_name = $this->model->guard_name;
     }
 
     // Properties for role creation
@@ -26,12 +24,12 @@ new class extends BaseComponent {
 
     public function save() {
         $this->validate([
-            'name' => 'required|string|max:255|unique:roles,name,' . $this->oldData->id,
+            'name' => 'required|string|max:255|unique:roles,name,' . $this->model->id,
             'guard_name' => 'required|string|max:255|in:web,api',
         ]);
 
         // Create a new role with the validated name
-        $this->oldData->update($this->all());
+        $this->model->update($this->all());
 
         // Redirect to the role index page after creation
         to_route('cms.management.role')->with('success', 'Role updated successfully.');

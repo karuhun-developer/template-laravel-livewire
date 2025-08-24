@@ -7,7 +7,7 @@ use Livewire\Attributes\On;
 new class extends BaseComponent {
     public string $title = 'Role Management';
     public string $description = 'Manage roles for your application.';
-    public string $model = Role::class;
+    public string $modelInstance = Role::class;
 
     // Pagination and Search
     public array $searchBy = [
@@ -27,7 +27,7 @@ new class extends BaseComponent {
 
     // Check permissions
     public function mount() {
-        $this->canDo('view.' . $this->model);
+        $this->canDo('view.' . $this->modelInstance);
     }
 
     public function with() {
@@ -37,7 +37,7 @@ new class extends BaseComponent {
 
         return [
             'data' => $this->getDataWithFilter(
-                model: new $this->model,
+                model: new $this->modelInstance,
                 searchBy: $this->searchBy,
                 orderBy: $this->orderBy,
                 order: $this->order,
@@ -49,7 +49,7 @@ new class extends BaseComponent {
 
     #[On('delete')]
     public function delete($id) {
-        $this->canDo('delete.' . $this->model, false);
+        $this->canDo('delete.' . $this->modelInstance, false);
 
         Role::findOrFail($id)->delete();
 
@@ -73,8 +73,8 @@ new class extends BaseComponent {
                         </div>
                         <div class="ms-auto my-auto mt-lg-0">
                             <div class="ms-auto my-auto">
-                                <x-cms.action.create-btn :$model :link="route('cms.management.role.create')">
-                                    +&nbsp; New Product
+                                <x-cms.action.create-btn :$modelInstance :link="route('cms.management.role.create')">
+                                    +&nbsp; New Role
                                 </x-cms.action.create-btn>
                             </div>
                         </div>
@@ -116,19 +116,19 @@ new class extends BaseComponent {
                                             {{ $d->created_at->format('d F Y') }}
                                         </td>
                                         <td class="align-middle">
-                                            <x-cms.action.button permission="view.{{ $model }}" href="{{ route('cms.management.role.permission', [
-                                                'id' => $d->id,
+                                            <x-cms.action.button permission="view.{{ $modelInstance }}" href="{{ route('cms.management.role.permission', [
+                                                'model' => $d->id,
                                             ]) }}">
                                                 <i class="fas fa-eye me-2"></i>
                                                 Permissions
                                             </x-cms.action.button>
-                                            <x-cms.action.update-btn :$model :link="route('cms.management.role.edit', [
-                                                'id' => $d->id,
+                                            <x-cms.action.update-btn :$modelInstance :link="route('cms.management.role.edit', [
+                                                'model' => $d->id,
                                             ])">
                                                 <i class="fas fa-edit me-2"></i>
                                                 Edit
                                             </x-cms.action.update-btn>
-                                            <x-cms.action.delete-btn :$model :id="$d->id">
+                                            <x-cms.action.delete-btn :$modelInstance :id="$d->id">
                                                 <i class="fas fa-trash me-2"></i>
                                                 Delete
                                             </x-cms.action.delete-btn>
