@@ -35,7 +35,7 @@ class Menu extends Model
         return $this->belongsTo(Role::class);
     }
 
-    public function menuSubs() {
-        return $this->hasMany(MenuSub::class);
+    public function subMenu() {
+        return $this->hasMany(MenuSub::class, 'menu_id')->orderBy('order', 'asc');
     }
 }

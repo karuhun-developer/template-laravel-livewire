@@ -23,48 +23,26 @@
         return '';
     }
 
-    // Superadmin Menu
-    $superAdminMenu = [
-        [
-            'label' => 'Dashboard',
-            'icon' => 'fa fa-map',
-            'url' => route('cms.dashboard'),
-            'active' => ['cms.dashboard'],
-        ],
-        [
-            'label' => 'Managements',
-            'icon' => 'fa fa-cogs',
-            'url' => '#',
-            'active' => ['cms.management'],
-            'children' => [
-                [
-                    'label' => 'Permission',
-                    'icon' => null,
-                    'url' => route('cms.management.permission'),
-                    'active' => ['cms.management.permission'],
-                ],
-                [
-                    'label' => 'Role',
-                    'icon' => null,
-                    'url' => route('cms.management.role'),
-                    'active' => ['cms.management.role'],
-                ],
-                [
-                    'label' => 'User',
-                    'icon' => null,
-                    'url' => route('cms.management.user'),
-                    'active' => ['cms.management.user'],
-                ]
-            ],
-        ],
-    ];
+    // Echo route
+    function echoRoute($url) {
+        try {
+            return route($url);
+        } catch (\Exception $e) {
+            return '#';
+        }
+    }
 
     // Check user roles
     $listMenus = [];
 
     // Superadmin menu
     if (auth()->user()->hasRole('superadmin')) {
-        $listMenus = $superAdminMenu;
+        $listMenus = \App\Models\Menu\Menu::query()
+            ->with('subMenu')
+            ->where('role_id', auth()->user()->roles->first()->id)
+            ->where('status', \App\Enums\CommonStatusEnum::ACTIVE)
+            ->orderBy('order', 'asc')
+            ->get();
     }
 @endphp
 <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-radius-lg fixed-start ms-2 bg-white my-2"
@@ -86,35 +64,35 @@
             @foreach ($listMenus as $key => $menu)
                 <li class="nav-item">
                     <a
-                        class="nav-link {{ menuActive($menu['active']) }}"
-                        @if(isset($menu['children']))
+                        class="nav-link {{ menuActive(explode(',', $menu->active_pattern)) }}"
+                        @if(count($menu->subMenu) > 0)
                             data-bs-toggle="collapse"
                             href="#pages{{ $key }}"
                             class="nav-link text-dark"
                             role="button"
                             aria-expanded="true"
                         @else
-                            href="{{ $menu['url'] }}"
+                            href="{{ echoRoute($menu->url) }}"
                         @endif
                         >
-                        <i class="{{ $menu['icon'] }} opacity-5 me-2"></i>
+                        <i class="{{ $menu->icon }} opacity-5 me-2"></i>
                         <span class="nav-link-text ms-1">
-                            {{ $menu['label'] }}
+                            {{ $menu->name }}
                         </span>
                     </a>
                     <!-- Children menu -->
-                    @if(isset($menu['children']))
-                        <div class="collapse {{ showDropdown($menu['active']) }}" id="pages{{ $key }}">
+                    @if(count($menu->subMenu) > 0)
+                        <div class="collapse {{ showDropdown(explode(',', $menu->active_pattern)) }}" id="pages{{ $key }}">
                             <ul class="nav">
-                                @foreach ($menu['children'] as $child)
+                                @foreach ($menu->subMenu as $child)
                                     <li class="nav-item">
-                                        <a class="nav-link {{ menuActive($child['active']) }}"
-                                            href="{{ $child['url'] }}">
-                                            @if($child['icon'])
-                                                <i class="{{ $child['icon'] }} text-dark opacity-10 me-2"></i>
+                                        <a class="nav-link {{ menuActive(explode(',', $child->active_pattern)) }}"
+                                            href="{{ echoRoute($child->url) }}">
+                                            @if($child->icon)
+                                                <i class="{{ $child->icon }} text-dark opacity-10 me-2"></i>
                                             @endif
                                             <span class="sidenav-normal ms-1 ps-1">
-                                                {{ $child['label'] }}
+                                                {{ $child->name }}
                                             </span>
                                         </a>
                                     </li>

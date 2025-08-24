@@ -18,7 +18,7 @@ new class extends BaseComponent {
         $this->guard_name = $this->model->guard_name;
     }
 
-    // Properties for permission creation
+    // Properties for permission update
     public string $name;
     public string $guard_name = 'web';
 
@@ -28,10 +28,10 @@ new class extends BaseComponent {
             'guard_name' => 'required|string|max:255|in:web,api',
         ]);
 
-        // Create a new permission with the validated name
+        // Update the existing permission with the validated name
         $this->model->update($this->all());
 
-        // Redirect to the permission index page after creation
+        // Redirect to the permission index page after update
         to_route('cms.management.permission')->with('success', 'Permission updated successfully.');
     }
 }; ?>

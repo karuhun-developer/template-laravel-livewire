@@ -18,7 +18,7 @@ new class extends BaseComponent {
         $this->guard_name = $this->model->guard_name;
     }
 
-    // Properties for role creation
+    // Properties for role update
     public string $name;
     public string $guard_name = 'web';
 
@@ -28,10 +28,10 @@ new class extends BaseComponent {
             'guard_name' => 'required|string|max:255|in:web,api',
         ]);
 
-        // Create a new role with the validated name
+        // Update the existing role with the validated name
         $this->model->update($this->all());
 
-        // Redirect to the role index page after creation
+        // Redirect to the role index page after update
         to_route('cms.management.role')->with('success', 'Role updated successfully.');
     }
 }; ?>

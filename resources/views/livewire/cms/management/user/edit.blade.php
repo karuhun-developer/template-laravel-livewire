@@ -23,10 +23,10 @@ new class extends BaseComponent {
         $this->roles = Role::all();
     }
 
-    // Define roles for the user creation
+    // Define roles for the user update
     public $roles = [];
 
-    // Properties for user creation
+    // Properties for user update
     public string $role;
     public string $name;
     public string $email;
@@ -38,11 +38,11 @@ new class extends BaseComponent {
             'email' => 'required|email|max:255|unique:users,email,' . $this->model->id,
         ]);
 
-        // Create a new user with the validated name
+        // Update the existing user with the validated name
         $this->model->syncRoles([$this->role]);
         $this->model->update($this->all());
 
-        // Redirect to the user index page after creation
+        // Redirect to the user index page after update
         to_route('cms.management.user')->with('success', 'User updated successfully.');
     }
 }; ?>
