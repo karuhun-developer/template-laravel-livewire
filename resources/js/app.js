@@ -47,8 +47,8 @@ Livewire.on("confirm", (params) => {
         text: params.message ?? `You won't be able to revert this`,
         icon: params.icon ?? "warning",
         showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
+        confirmButtonColor: "#262626",
+        cancelButtonColor: "#e91e63",
         confirmButtonText: params.confirmText ?? "Yes",
         cancelButtonText: params.cancelText ?? "Cancel",
     };
