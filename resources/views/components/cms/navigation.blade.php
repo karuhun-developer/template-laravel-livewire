@@ -54,7 +54,7 @@
             <img src="{{ asset('cassets/img/logo-ct-dark.png') }}" class="navbar-brand-img" width="26" height="26"
                 alt="main_logo" />
             <span class="ms-1 text-sm text-dark">
-                App Name
+                {{ config('app.name') }}
             </span>
         </a>
     </div>

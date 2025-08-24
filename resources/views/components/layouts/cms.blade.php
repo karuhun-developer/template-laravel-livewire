@@ -21,7 +21,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('cassets/img/apple-icon.png') }}">
     <link rel="icon" type="image/png" href="{{ asset('cassets/img/apple-icon.png') }}">
     <title>
-        APP NAME - {{ $title ?? '' }}
+        {{ config('app.name') }} - {{ $title ?? '' }}
     </title>
     <!-- Vendor CSS Files -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
