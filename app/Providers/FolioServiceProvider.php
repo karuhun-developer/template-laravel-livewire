@@ -28,6 +28,7 @@ class FolioServiceProvider extends ServiceProvider
         ->middleware([
             'cms/*' => [
                 'auth',
+                'verified',
             ],
         ]);
     }

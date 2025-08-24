@@ -25,6 +25,7 @@ class UserSeeder extends Seeder
 
         // Add role to the superadmin user
         $superadmin->assignRole('superadmin');
+        $superadmin->markEmailAsVerified();
 
         $user = User::firstOrCreate(
             [

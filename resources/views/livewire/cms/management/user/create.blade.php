@@ -35,6 +35,7 @@ new class extends BaseComponent {
         // Create a new user with the validated name
         $model = User::create($this->all());
         $model->syncRoles($this->role);
+        $model->markEmailAsVerified();
 
         // Redirect to the user index page after creation
         to_route('cms.management.user')->with('success', 'User created successfully.');

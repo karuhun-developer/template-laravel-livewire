@@ -72,6 +72,16 @@ new class extends BaseComponent {
         $this->dispatch('alert', type: 'success', message: 'User deleted successfully.');
     }
 
+    #[On('verifyEmail')]
+    public function verifyEmail($id) {
+        $this->canDo('update.' . $this->modelInstance, false);
+
+        $user = User::findOrFail($id);
+        $user->markEmailAsVerified();
+
+        $this->dispatch('alert', type: 'success', message: 'Email verified successfully.');
+    }
+
     // Change Password
     public $oldData;
     public string $password = '';
@@ -171,6 +181,18 @@ new class extends BaseComponent {
                                             {{ $d->created_at->format('d F Y') }}
                                         </td>
                                         <td class="align-middle">
+                                            <x-cms.action.button type="button" :permission="'update.' . $modelInstance" x-on:click="
+                                                $wire.dispatch('confirm', {
+                                                    title: 'Verify this email?',
+                                                    message: '{{ $d->email }} will be verified now.',
+                                                    icon: 'question',
+                                                    function: 'verifyEmail',
+                                                    id: '{{ $d->id }}',
+                                                })
+                                            ">
+                                                <i class="fas fa-envelope me-2"></i>
+                                                Verify Email
+                                            </x-cms.action.button>
                                             <x-cms.action.button type="button" :permission="'update.' . $modelInstance" wire:click="changePassword('{{ $d->id }}')">
                                                 <i class="fas fa-key me-2"></i>
                                                 Change Password

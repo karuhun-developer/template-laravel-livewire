@@ -1,6 +1,6 @@
 <x-layouts.guest>
     <x-slot:title>
-        Reset Password
+        Verify Email
     </x-slot:title>
     <div class="row">
         <div
