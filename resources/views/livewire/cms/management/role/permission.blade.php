@@ -11,9 +11,11 @@ new class extends BaseComponent {
     public $role;
 
     public function mount(Role $model) {
-        $this->canDo('create.' . Role::class);
-        $this->canDo('update.' . Role::class);
-        $this->canDo('delete.' . Role::class);
+        $this->canDo([
+            'create.' . Role::class,
+            'update.' . Role::class,
+            'delete.' . Role::class,
+        ]);
 
         $this->role = $model;
 
