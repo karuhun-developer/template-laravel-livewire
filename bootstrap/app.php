@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -30,12 +29,21 @@ return Application::configure(basePath: dirname(__DIR__))
         $exceptions->shouldRenderJsonWhen(function (Request $request, Throwable $e) {
             return ($request->is('api/*')) || $request->expectsJson();
         });
-        $exceptions->renderable(function (NotFoundHttpException $e, Request $request) {
+        // Not found, unauthorized, and too many attempts handlers for API
+        $exceptions->renderable(function (Symfony\Component\HttpKernel\Exception\NotFoundHttpException $e, Request $request) {
             if ($request->is('api/*') || $request->expectsJson()) {
                 return response()->json([
                     'code' => 404,
                     'message' => 'Resource not found',
                 ], 404);
+            }
+        });
+        $exceptions->renderable(function (Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException $e, Request $request) {
+            if ($request->is('api/*') || $request->expectsJson()) {
+                return response()->json([
+                    'code' => 403,
+                    'message' => 'This action is unauthorized.',
+                ], 403);
             }
         });
         $exceptions->renderable(function (Illuminate\Http\Exceptions\ThrottleRequestsException $e, Request $request) {
