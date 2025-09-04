@@ -38,4 +38,12 @@ return Application::configure(basePath: dirname(__DIR__))
                 ], 404);
             }
         });
+        $exceptions->renderable(function (Illuminate\Http\Exceptions\ThrottleRequestsException $e, Request $request) {
+            if ($request->is('api/*') || $request->expectsJson()) {
+                return response()->json([
+                    'code' => 429,
+                    'message' => 'Too many attempts, please try again later.',
+                ], 429);
+            }
+        });
     })->create();

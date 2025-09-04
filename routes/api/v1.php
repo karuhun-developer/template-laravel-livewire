@@ -7,3 +7,6 @@ Route::get('/', function () {
         'message' => 'V1 API'
     ]);
 })->name('welcome');
+
+// Authentication Routes
+require 'v1/auth.php';
