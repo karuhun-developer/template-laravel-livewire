@@ -41,4 +41,13 @@ class Controller extends BaseController
     {
         return $this->responseWithError($message, 401);
     }
+
+    protected function authorize(string $ability, $arguments = null)
+    {
+        if (!auth()->user()?->can($ability, $arguments)) {
+            throw new \Illuminate\Auth\Access\AuthorizationException('This action is unauthorized.', 403);
+        }
+
+        return true;
+    }
 }
