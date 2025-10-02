@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class AuthenticatedController extends Controller
 {
@@ -27,8 +28,15 @@ class AuthenticatedController extends Controller
         ]);
     }
 
-    public function me() {
-        $user = auth()->user()->load('roles');
+    public function me(Request $request) {
+        $ttl = now()->addMinutes(10);
+
+        // If force refresh
+        if ($request->has('forceRefresh') && $request?->forceRefresh) Cache::forget('me:user' . $request->user()->id);
+
+        $user = Cache::remember('me:user'.$request->user()->id, $ttl, function() use ($request) {
+            return $request->user()->load('roles');
+        });
 
         return $this->responseWithSuccess($user);
     }
