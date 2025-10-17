@@ -8,7 +8,7 @@
     <button class="btn btn-link text-danger text-gradient mb-0" x-on:click="$wire.dispatch('{{ $dispatch }}', {
         function: '{{ $function }}',
         id: '{{ $id }}',
-    })">
+    })" {!! $attributes !!}>
         {{ $slot }}
     </button>
 @endif

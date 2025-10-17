@@ -19,6 +19,7 @@ class SuperadminMenuSeeder extends Seeder
 
         // Create menu
         $this->dashboardMenu();
+        $this->apiKeyMenu();
         $this->managementMenu();
     }
 
@@ -30,6 +31,18 @@ class SuperadminMenuSeeder extends Seeder
             'icon' => 'fa fa-map',
             'order' => 1,
             'active_pattern' => 'cms.dashboard',
+            'status' => 1,
+        ]);
+    }
+
+    public function apiKeyMenu() {
+        Menu::create([
+            'role_id' => $this->role->id,
+            'name' => 'API Key',
+            'url' => 'cms.api-key.index',
+            'icon' => 'fa fa-key',
+            'order' => 998,
+            'active_pattern' => 'cms.api-key.*',
             'status' => 1,
         ]);
     }
