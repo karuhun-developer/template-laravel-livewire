@@ -60,7 +60,7 @@ test('two factor authentication disabled when confirmation abandoned between req
 
     $this->actingAs($user);
 
-    $component = Livewire::test('settings.two-factor');
+    $component = Livewire::test('setting.two-factor');
 
     $component->assertSet('twoFactorEnabled', false);
 

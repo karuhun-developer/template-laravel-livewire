@@ -49,7 +49,7 @@ new class extends Component
 
         $user->save();
 
-        $this->dispatch('toast-success', message: 'Profile updated successfully.');
+        $this->dispatch('toast', type: 'success', message: 'Profile updated successfully.');
     }
 
     /**
@@ -69,6 +69,6 @@ new class extends Component
 
         Session::flash('status', 'verification-link-sent');
 
-        $this->dispatch('toast-success', message: 'Verification link sent successfully.');
+        $this->dispatch('toast', type: 'success', message: 'A new verification link has been sent to your email address.');
     }
 };

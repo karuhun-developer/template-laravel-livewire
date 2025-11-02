@@ -1,6 +1,5 @@
 <?php
 
-use App\Livewire\Settings\Profile;
 use App\Models\User;
 use Livewire\Livewire;
 
@@ -17,7 +16,7 @@ test('profile information can be updated', function () {
 
     $this->actingAs($user);
 
-    $response = Livewire::test(Profile::class)
+    $response = Livewire::test('setting.profile')
         ->set('name', 'Test User')
         ->set('email', 'test@example.com')
         ->call('updateProfileInformation');
@@ -36,7 +35,7 @@ test('email verification status is unchanged when email address is unchanged', f
 
     $this->actingAs($user);
 
-    $response = Livewire::test(Profile::class)
+    $response = Livewire::test('setting.profile')
         ->set('name', 'Test User')
         ->set('email', $user->email)
         ->call('updateProfileInformation');
@@ -51,7 +50,7 @@ test('user can delete their account', function () {
 
     $this->actingAs($user);
 
-    $response = Livewire::test('settings.delete-user-form')
+    $response = Livewire::test('setting.delete-user-form')
         ->set('password', 'password')
         ->call('deleteUser');
 
@@ -68,7 +67,7 @@ test('correct password must be provided to delete account', function () {
 
     $this->actingAs($user);
 
-    $response = Livewire::test('settings.delete-user-form')
+    $response = Livewire::test('setting.delete-user-form')
         ->set('password', 'wrong-password')
         ->call('deleteUser');
 

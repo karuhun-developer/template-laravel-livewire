@@ -5,7 +5,6 @@
         @livewireStyles
     </head>
     <body class="min-h-screen bg-white dark:bg-zinc-800">
-        <x-ui.alert.index />
         <flux:sidebar sticky stashable class="border-e border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
             <flux:sidebar.toggle class="lg:hidden" icon="x-mark" />
 
@@ -13,21 +12,92 @@
                 <x-app-logo />
             </a>
 
+            @php
+                function menuActive($activeRoute = []): bool {
+                    // Check if route name contains the active route
+                    foreach ($activeRoute as $route) {
+                        if(str_contains(request()->route()->getName(), $route) || request()->routeIs($route)) {
+                            return true;
+                            break;
+                        }
+                    }
+
+                    return false;
+                }
+
+                // Show dropdown menu if the route is active
+                function showDropdown($activeRoute = []): bool {
+                    foreach ($activeRoute as $route) {
+                        if(str_contains(request()->route()->getName(), $route) || request()->routeIs($route)) {
+                            return true;
+                            break;
+                        }
+                    }
+
+                    return false;
+                }
+
+                // Echo route
+                function echoRoute($url) {
+                    try {
+                        return route($url);
+                    } catch (\Exception $e) {
+                        return '#';
+                    }
+                }
+
+                // Check user roles
+                $listMenus = [];
+
+                // Superadmin menu
+                if (auth()->user()->hasRole('superadmin')) {
+                    $listMenus = \App\Models\Menu\Menu::query()
+                        ->with('subMenu')
+                        ->where('role_id', auth()->user()->roles->first()->id)
+                        ->where('status', \App\Enums\CommonStatusEnum::ACTIVE)
+                        ->orderBy('order', 'asc')
+                        ->get();
+                }
+            @endphp
             <flux:navlist variant="outline">
                 <flux:navlist.group :heading="__('Platform')" class="grid">
-                    <flux:navlist.item icon="home" :href="route('cms.dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
+                    @foreach($listMenus as $mainMenu)
+                        @if(count($mainMenu->subMenu) > 0)
+                            <flux:navlist.group
+                                heading="{{ $mainMenu->name }}"
+                                expandable
+                                :expanded="showDropdown(explode(',', $mainMenu->active_pattern))">
+                                @foreach($mainMenu->subMenu as $child)
+                                    <flux:navlist.item
+                                        href="{{ echoRoute($child->url) }}"
+                                        :active="menuActive(explode(',', $child->active_pattern))"
+                                        wire:navigate>
+                                        {{ $child->name }}
+                                    </flux:navlist.item>
+                                @endforeach
+                            </flux:navlist.group>
+                        @else
+                            <flux:navlist.item
+                                icon="{{ $mainMenu->icon }}"
+                                href="{{ echoRoute($mainMenu->url) }}"
+                                :active="menuActive(explode(',', $mainMenu->active_pattern))"
+                                wire:navigate>
+                                {{ $mainMenu->name }}
+                            </flux:navlist.item>
+                        @endif
+                    @endforeach
                 </flux:navlist.group>
             </flux:navlist>
 
             <flux:spacer />
 
             <flux:navlist variant="outline">
-                <flux:navlist.item icon="folder-git-2" href="https://github.com/laravel/livewire-starter-kit" target="_blank">
-                {{ __('Repository') }}
+                <flux:navlist.item icon="screen-share" href="{{ url('pulse') }}" target="_blank">
+                    Laravel Pulse
                 </flux:navlist.item>
 
-                <flux:navlist.item icon="book-open-text" href="https://laravel.com/docs/starter-kits#livewire" target="_blank">
-                {{ __('Documentation') }}
+                <flux:navlist.item icon="scroll-text" href="{{ url('logs') }}" target="_blank">
+                    Laravel Logs
                 </flux:navlist.item>
             </flux:navlist>
 

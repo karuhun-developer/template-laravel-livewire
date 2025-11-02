@@ -73,4 +73,12 @@ Livewire.on("setValueById", (params) => {
     }, 500);
 });
 
+// Livewire toast
+Livewire.on("toast", (params) => {
+    window.Toast.fire({
+        icon: params.type ?? "success",
+        title: params.message,
+    });
+});
+
 Livewire.start();

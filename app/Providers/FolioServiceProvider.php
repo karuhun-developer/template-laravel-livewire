@@ -25,15 +25,15 @@ class FolioServiceProvider extends ServiceProvider
                 //
             ],
         ])
-        ->middleware([
-            'settings/*' => [
-                'auth',
-                'verified',
-            ],
-            'cms/*' => [
-                'auth',
-                'verified',
-            ],
-        ]);
+            ->middleware([
+                'settings/*' => [
+                    'auth',
+                    'verified',
+                ],
+                'cms/*' => [
+                    'auth',
+                    'verified',
+                ],
+            ]);
     }
 }
