@@ -6,6 +6,6 @@ name('profile.edit');
 
 ?>
 
-<x-layouts.app>
+<x-layouts.app title="Edit Profile">
     <livewire:setting.profile />
 </x-layouts.app>

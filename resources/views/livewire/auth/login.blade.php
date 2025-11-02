@@ -1,4 +1,4 @@
-<x-layouts.auth>
+<x-layouts.auth title="Log In">
     <div class="flex flex-col gap-6">
         <x-ui.auth.header :title="__('Log in to your account')" :description="__('Enter your email and password below to log in')" />
 

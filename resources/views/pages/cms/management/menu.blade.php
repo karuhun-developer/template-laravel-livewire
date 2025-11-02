@@ -20,7 +20,7 @@ $breadcrumbs = [
 
 ?>
 
-<x-layouts.app>
+<x-layouts.app :$title>
     <div class="w-full">
         <div class="flex justify-between items-center mb-5">
             <h1 class="text-3xl font-bold">{{ $title }}</h1>

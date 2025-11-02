@@ -6,6 +6,6 @@ name('appearance.edit');
 
 ?>
 
-<x-layouts.app>
+<x-layouts.app title="Appearance Settings">
     <livewire:setting.appearance />
 </x-layouts.app>

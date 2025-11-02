@@ -6,6 +6,6 @@ name('user-password.edit');
 
 ?>
 
-<x-layouts.app>
+<x-layouts.app title="Change Password">
     <livewire:setting.password />
 </x-layouts.app>

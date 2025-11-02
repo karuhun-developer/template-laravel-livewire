@@ -19,6 +19,6 @@ middleware(
 
 ?>
 
-<x-layouts.app>
+<x-layouts.app title="Two-Factor Authentication Settings">
     <livewire:setting.two-factor />
 </x-layouts.app>
