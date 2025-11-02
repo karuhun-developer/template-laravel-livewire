@@ -15,8 +15,8 @@ new class extends BaseComponent
             'field' => 'name',
         ],
         [
-            'name' => 'Created At',
-            'field' => 'created_at',
+            'name' => 'Guard Name',
+            'field' => 'guard_name',
         ],
     ];
 
@@ -28,7 +28,7 @@ new class extends BaseComponent
         }
 
         // Set default order by
-        $this->paginationOrderBy = 'created_at';
+        $this->paginationOrderBy = 'guard_name';
     }
 
     public function render()

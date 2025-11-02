@@ -131,6 +131,8 @@ abstract class BaseComponent extends Component
         } catch (\Exception $e) {
             $this->dispatch('toast', type: 'error', message: 'An error occurred while saving the record.');
         }
+
+        return $record;
     }
 
     public function closeModal(string $modal = 'defaultModal')
