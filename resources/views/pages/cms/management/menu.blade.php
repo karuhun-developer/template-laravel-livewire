@@ -1,24 +1,31 @@
 <?php
 
+use Illuminate\View\View;
+
 use function Laravel\Folio\name;
+use function Laravel\Folio\render;
 
 name('cms.management.menu');
 
 // Page title and breadcrumbs
-$title = 'Management Menu';
-$description = 'Manage the application\'s management menu items here.';
-$breadcrumbs = [
-    [
-        'label' => 'Management',
-        'url' => '#'
-    ],
-    [
-        'label' => 'Menu',
-        'url' => null
-    ],
-];
+render(function (View $view) {
+    // Page title and breadcrumbs
+    $title = 'Management Menu';
+    $description = 'Manage the application\'s management menu items here.';
+    $breadcrumbs = [
+        [
+            'label' => 'Management',
+            'url' => '#'
+        ],
+        [
+            'label' => 'Menu',
+            'url' => null
+        ],
+    ];
 
-?>
+    $view->with(compact('title', 'description', 'breadcrumbs'));
+}); ?>
+
 
 <x-layouts.app :$title>
     <div class="w-full">

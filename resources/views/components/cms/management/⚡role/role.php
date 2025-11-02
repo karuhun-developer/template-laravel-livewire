@@ -66,7 +66,7 @@ new class extends BaseComponent
     {
         // Check permission
         if (! auth()->user()->can('show'.$this->modelInstance)) {
-            $this->dispatch('toast-error', message: 'You do not have permission to perform this action.');
+            $this->dispatch('toast', type: 'error', message: 'You do not have permission to view this record.');
 
             return;
         }

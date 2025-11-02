@@ -67,6 +67,17 @@
                                         Edit
                                     </flux:button>
                                 @endif
+                                @if (auth()->user()->can('validate' . $this->modelInstance))
+                                    <flux:button
+                                        size="sm"
+                                        variant="primary"
+                                        color="yellow"
+                                        icon="shield-check"
+                                        href="{{ route('cms.management.role.permission') }}?role_id={{ $d->id }}"
+                                    >
+                                        Permissions
+                                    </flux:button>
+                                @endif
                                 @if (auth()->user()->can('delete' . $this->modelInstance))
                                     <flux:button
                                         size="sm"

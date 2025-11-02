@@ -1,24 +1,30 @@
 <?php
 
+use Illuminate\View\View;
+
 use function Laravel\Folio\name;
+use function Laravel\Folio\render;
 
 name('cms.management.role');
 
 // Page title and breadcrumbs
-$title = 'Management Role';
-$description = 'Manage the application\'s management role items here.';
-$breadcrumbs = [
-    [
-        'label' => 'Management',
-        'url' => '#'
-    ],
-    [
-        'label' => 'Role',
-        'url' => null
-    ],
-];
+render(function (View $view) {
+    // Page title and breadcrumbs
+    $title = 'Management Role';
+    $description = 'Manage the application\'s management role items here.';
+    $breadcrumbs = [
+        [
+            'label' => 'Management',
+            'url' => '#'
+        ],
+        [
+            'label' => 'Role',
+            'url' => null
+        ],
+    ];
 
-?>
+    $view->with(compact('title', 'description', 'breadcrumbs'));
+}); ?>
 
 <x-layouts.app :$title>
     <div class="w-full">

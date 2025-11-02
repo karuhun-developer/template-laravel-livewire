@@ -1,24 +1,30 @@
 <?php
 
+use Illuminate\View\View;
+
 use function Laravel\Folio\name;
+use function Laravel\Folio\render;
 
 name('cms.management.permission');
 
 // Page title and breadcrumbs
-$title = 'Management Permission';
-$description = 'Manage the application\'s management permission items here.';
-$breadcrumbs = [
-    [
-        'label' => 'Management',
-        'url' => '#'
-    ],
-    [
-        'label' => 'Permission',
-        'url' => null
-    ],
-];
+render(function (View $view) {
+    // Page title and breadcrumbs
+    $title = 'Management Permission';
+    $description = 'Manage the application\'s management permission items here.';
+    $breadcrumbs = [
+        [
+            'label' => 'Management',
+            'url' => '#'
+        ],
+        [
+            'label' => 'Permission',
+            'url' => null
+        ],
+    ];
 
-?>
+    $view->with(compact('title', 'description', 'breadcrumbs'));
+}); ?>
 
 <x-layouts.app :$title>
     <div class="w-full">
