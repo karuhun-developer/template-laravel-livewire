@@ -50,27 +50,10 @@
                 @forelse($data as $d)
                     <tr>
                         <x-ui.table.td>
-                            {{ $d->role_name }}
-                        </x-ui.table.td>
-                        <x-ui.table.td>
                             {{ $d->name }}
                         </x-ui.table.td>
                         <x-ui.table.td>
-                            {{ $d->url }}
-                        </x-ui.table.td>
-                        <x-ui.table.td>
-                            {{ $d->icon }}
-                        </x-ui.table.td>
-                        <x-ui.table.td>
-                            {{ $d->order }}
-                        </x-ui.table.td>
-                        <x-ui.table.td>
-                            {{ $d->active_pattern }}
-                        </x-ui.table.td>
-                        <x-ui.table.td>
-                            <flux:badge color="{{ $d->status->color() }}" size="sm">
-                                {{ $d->status->label() }}
-                            </flux:badge>
+                            {{ $d->guard_name }}
                         </x-ui.table.td>
                         <td class="px-4 py-3">
                             <div class="flex items-center gap-2">
@@ -124,23 +107,12 @@
         <form class="space-y-6" wire:submit.prevent="submit">
             <div>
                 <flux:heading size="lg">
-                    {{ $isUpdate ? 'Update' : 'Create' }} Menu Item
+                    {{ $isUpdate ? 'Update' : 'Create' }} Role Item
                 </flux:heading>
                 <flux:text class="mt-2">
-                    {{ $isUpdate ? 'Update the details of the menu item below.' : 'Fill in the details to create a new menu item.' }}
+                    {{ $isUpdate ? 'Update the details of the role item below.' : 'Fill in the details to create a new role item.' }}
                 </flux:text>
             </div>
-
-            <flux:field>
-                <flux:label>Role</flux:label>
-                <flux:select wire:model="role_id" placeholder="Select role ....">
-                    <flux:select.option value="">-- Select Role --</flux:select.option>
-                    @foreach ($roles as $role)
-                        <flux:select.option value="{{ $role->id }}">{{ $role->name }}</flux:select.option>
-                    @endforeach
-                </flux:select>
-                <flux:error name="role_id" />
-            </flux:field>
 
             <flux:field>
                 <flux:label>Name</flux:label>
@@ -149,53 +121,15 @@
             </flux:field>
 
             <flux:field>
-                <flux:label>URL</flux:label>
-                <flux:text>Use laravel route name ex: cms.dashboard</flux:text>
-                <flux:input wire:model="url" type="text" />
-                <flux:error name="url" />
-            </flux:field>
-
-            <flux:field>
-                <flux:label>Icon</flux:label>
-                @if($icon)
-                    <span class="mb-2">
-                        <flux:icon name="{{ $icon }}" size="lg" />
-                    </span>
-                @endif
-                <flux:select wire:model.live="icon" laceholder="Select icon ....">
-                    @foreach ($icons as $i)
-                        <flux:select.option value="{{ $i }}">
-                            {{ $i }}
-                        </flux:select.option>
-                    @endforeach
+                <flux:label>Guard Name</flux:label>
+                <flux:select wire:model="guard_name" placeholder="Guard Name..">
+                    <flux:select.option value="">-- Select Guard Name --</flux:select.option>
+                    <flux:select.option value="api">api</flux:select.option>
+                    <flux:select.option value="web">web</flux:select.option>
                 </flux:select>
-                <flux:error name="icon" />
+                <flux:error name="guard_name" />
             </flux:field>
 
-            <flux:field>
-                <flux:label>Order</flux:label>
-                <flux:input wire:model="order" type="number" />
-                <flux:error name="order" />
-            </flux:field>
-
-            <flux:field>
-                <flux:label>Active Pattern</flux:label>
-                <flux:text>Use commas to separate multiple patterns.</flux:text>
-                <flux:input wire:model="active_pattern" type="text" />
-                <flux:error name="active_pattern" />
-            </flux:field>
-
-            <flux:field>
-                <flux:label>Status</flux:label>
-                <flux:select wire:model="status" placeholder="Select status ....">
-                    @foreach (\App\Enums\CommonStatusEnum::cases() as $status)
-                        <flux:select.option value="{{ $status->value }}">
-                            {{ $status->label() }}
-                        </flux:select.option>
-                    @endforeach
-                </flux:select>
-                <flux:error name="status" />
-            </flux:field>
 
             <div class="flex">
                 <flux:spacer />

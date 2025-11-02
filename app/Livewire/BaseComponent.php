@@ -79,11 +79,15 @@ abstract class BaseComponent extends Component
 
         // Find record
         $modelClass = new $this->modelInstance;
-        $record = $modelClass->find($id);
 
         // Delete record
         try {
-            $record->delete();
+            // TODO : I DON'T KNOW WHY ERROR (Class name must be a valid object or a string )
+            // $record = $modelClass->find($id);
+            // $record->delete();
+
+            \Illuminate\Support\Facades\DB::delete('delete from '.$modelClass->getTable().' where id = ?', [$id]);
+
             $this->dispatch('toast', type: 'success', message: 'Record deleted successfully.');
         } catch (\Exception $e) {
             $this->dispatch('toast', type: 'error', message: 'An error occurred while deleting the record.');
