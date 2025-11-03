@@ -26,13 +26,14 @@ new class extends BaseComponent
         $this->getPermissions();
     }
 
-    protected function getPermissions() {
+    protected function getPermissions()
+    {
         $permission = Permission::all();
 
         // Get all permission that avaliable
         foreach ($permission as $perm) {
             $perm = explode('App\\', $perm->name);
-            $model = 'App\\' . $perm[1];
+            $model = 'App\\'.$perm[1];
             $permssion = $perm[0];
 
             $this->permissions[$model][$permssion] = false;
@@ -41,7 +42,7 @@ new class extends BaseComponent
         // Check if role has permissions
         foreach ($this->role->permissions->pluck('name') as $permission) {
             $perm = explode('App\\', $permission);
-            $model = 'App\\' . $perm[1];
+            $model = 'App\\'.$perm[1];
             $permssion = $perm[0];
 
             $this->permissions[$model][$permssion] = true;
@@ -49,9 +50,10 @@ new class extends BaseComponent
     }
 
     // Check all
-    public function checkAll() {
-        foreach($this->permissions as $key => $value) {
-            foreach($value as $k => $v) {
+    public function checkAll()
+    {
+        foreach ($this->permissions as $key => $value) {
+            foreach ($value as $k => $v) {
                 $this->check($k, $key);
                 $this->permissions[$key][$k] = true;
             }
@@ -62,9 +64,10 @@ new class extends BaseComponent
     }
 
     // Uncheck all
-    public function uncheckAll() {
-        foreach($this->permissions as $key => $value) {
-            foreach($value as $k => $v) {
+    public function uncheckAll()
+    {
+        foreach ($this->permissions as $key => $value) {
+            foreach ($value as $k => $v) {
                 $this->uncheck($k, $key);
                 $this->permissions[$key][$k] = false;
             }
@@ -75,8 +78,9 @@ new class extends BaseComponent
     }
 
     // Check
-    public function check($action, $model) {
-        $permission = $action . $model;
+    public function check($action, $model)
+    {
+        $permission = $action.$model;
         $this->isPermissionExist($permission);
         $this->role->givePermissionTo($permission);
 
@@ -94,8 +98,9 @@ new class extends BaseComponent
     }
 
     // Uncheck
-    public function uncheck($action, $model) {
-        $permission = $action . $model;
+    public function uncheck($action, $model)
+    {
+        $permission = $action.$model;
         $this->isPermissionExist($permission);
         $this->role->revokePermissionTo($permission);
 
@@ -113,8 +118,11 @@ new class extends BaseComponent
     }
 
     // Is Permission Exist
-    public function isPermissionExist($permission) {
+    public function isPermissionExist($permission)
+    {
         $isPermissionExist = Permission::where('name', $permission)->first();
-        if(is_null($isPermissionExist)) return false;
+        if (is_null($isPermissionExist)) {
+            return false;
+        }
     }
 };

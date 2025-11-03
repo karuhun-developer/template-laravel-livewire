@@ -96,7 +96,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <x-ui.table.td colspan="5">No results found.</x-ui.table.td>
+                        <x-ui.table.td colspan="99" class="px-4 py-3 text-gray-700 dark:text-zinc-300 text-center">No results found.</x-ui.table.td>
                     </tr>
                 @endforelse
             </x-ui.table.tbody>
