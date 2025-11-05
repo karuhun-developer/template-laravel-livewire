@@ -8,13 +8,16 @@ use Illuminate\Support\Facades\Cache;
 
 class AuthenticatedController extends Controller
 {
-    public function login(Request $request) {
+    public function login(Request $request)
+    {
         $request->validate([
             'email' => 'required|email',
             'password' => 'required|string',
         ]);
 
-        if (!auth()->attempt($request->only('email', 'password'))) return $this->responseWithError('Your credentials are incorrect', 422);
+        if (! auth()->attempt($request->only('email', 'password'))) {
+            return $this->responseWithError('Your credentials are incorrect', 422);
+        }
 
         // Save activity
         activity()->performedOn(auth()->user())->causedBy(auth()->user())->event('Login')->log('Login');
@@ -28,20 +31,24 @@ class AuthenticatedController extends Controller
         ]);
     }
 
-    public function me(Request $request) {
+    public function me(Request $request)
+    {
         $ttl = now()->addMinutes(10);
 
         // If force refresh
-        if ($request->has('forceRefresh') && $request?->forceRefresh) Cache::forget('me:user' . $request->user()->id);
+        if ($request->has('forceRefresh') && $request?->forceRefresh) {
+            Cache::forget('me:user'.$request->user()->id);
+        }
 
-        $user = Cache::remember('me:user'.$request->user()->id, $ttl, function() use ($request) {
+        $user = Cache::remember('me:user'.$request->user()->id, $ttl, function () use ($request) {
             return $request->user()->load('roles');
         });
 
         return $this->responseWithSuccess($user);
     }
 
-    public function logout() {
+    public function logout()
+    {
         // Save activity
         activity()->performedOn(auth()->user())->causedBy(auth()->user())->event('Login')->log('Logout');
 
