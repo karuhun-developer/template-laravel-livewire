@@ -16,6 +16,9 @@ Route::middleware('auth:api')->group(function () {
     // Me
     Route::get('/me', [App\Http\Controllers\Api\V1\Auth\AuthenticatedController::class, 'me'])->name('me');
 
+    // Update profile
+    Route::put('/me', [App\Http\Controllers\Api\V1\Auth\AuthenticatedController::class, 'update'])->name('me.update');
+
     // Logout
     Route::post('/logout', [App\Http\Controllers\Api\V1\Auth\AuthenticatedController::class, 'logout'])->name('logout');
 });

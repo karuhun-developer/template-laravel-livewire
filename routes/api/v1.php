@@ -12,4 +12,13 @@ Route::group(['prefix' => 'v1', 'as' => 'api.v1.'], function () {
 
     // Authentication Routes
     require 'v1/auth.php';
+
+    // Role Routes
+    require 'v1/role.php';
+
+    // Settings Routes
+    require 'v1/setting.php';
+
+    // User Routes
+    require 'v1/user.php';
 });

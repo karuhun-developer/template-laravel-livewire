@@ -38,6 +38,7 @@ class PermissionSeeder extends Seeder
     // List user permissions
     private $userPermissions = [
         'view'.User::class,
+        'update'.User::class,
     ];
 
     /**
