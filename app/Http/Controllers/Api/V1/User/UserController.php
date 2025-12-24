@@ -73,11 +73,6 @@ class UserController extends Controller
         // Assign role to user
         $role = Role::find($data['role_id']);
 
-        // If role is teacher, student or guardian reject the request
-        if (in_array($role->name, ['teacher', 'student', 'guardian'])) {
-            return $this->responseWithError('Cannot assign this role to user. Please use specific endpoints for creating teachers, students, or guardians.', 422);
-        }
-
         $model = User::create($data);
 
         $model->syncRoles([$role]);
@@ -102,11 +97,6 @@ class UserController extends Controller
         ]);
         // Assign role to user
         $role = Role::find($data['role_id']);
-
-        // If role is teacher, student or guardian reject the request
-        if (in_array($role->name, ['teacher', 'student', 'guardian'])) {
-            return $this->responseWithError('Cannot assign this role to user. Please use specific endpoints for creating teachers, students, or guardians.', 422);
-        }
 
         $model->syncRoles([$role]);
         $model->update($data);
