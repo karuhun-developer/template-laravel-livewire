@@ -12,5 +12,7 @@ Route::group([
     Route::get('/users/{model}', [App\Http\Controllers\Api\V1\User\UserController::class, 'show'])->name('users.show');
     Route::post('/users', [App\Http\Controllers\Api\V1\User\UserController::class, 'store'])->name('users.store');
     Route::put('/users/{model}', [App\Http\Controllers\Api\V1\User\UserController::class, 'update'])->name('users.update');
+    Route::put('/users/{model}/password', [App\Http\Controllers\Api\V1\User\UserController::class, 'changePassword'])->name('users.change-password');
+    Route::put('/users/{model}/email', [App\Http\Controllers\Api\V1\User\UserController::class, 'validateEmail'])->name('users.validate-email');
     Route::delete('/users/{model}', [App\Http\Controllers\Api\V1\User\UserController::class, 'destroy'])->name('users.destroy');
 });
