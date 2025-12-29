@@ -44,5 +44,19 @@
         @elseif($form_file != null)
             <iframe src="{{ $form_file }}" class="w-full h-96" frameborder="0"></iframe>
         @endif
+
+    @else
+
+        @if($file instanceof \Livewire\Features\SupportFileUploads\TemporaryUploadedFile)
+            <div class="p-4 border border-gray-300 rounded bg-gray-50">
+                <p class="text-gray-700">File Name: {{ $file->getClientOriginalName() }}</p>
+                <p class="text-gray-700">File Size: {{ number_format($file->getSize() / 1024, 2) }} KB</p>
+            </div>
+        @elseif($form_file != null)
+            <div class="p-4 border border-gray-300 rounded bg-gray-50">
+                <p class="text-gray-700">File: <a href="{{ $form_file }}" target="_blank" class="text-blue-600 underline">Download</a></p>
+            </div>
+        @endif
+
     @endif
 </div>
