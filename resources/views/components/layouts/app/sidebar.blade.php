@@ -47,17 +47,7 @@
                 }
 
                 // Check user roles
-                $listMenus = [];
-
-                // Superadmin menu
-                if (auth()->user()->hasRole('superadmin')) {
-                    $listMenus = \App\Models\Menu\Menu::query()
-                        ->with('subMenu')
-                        ->where('role_id', auth()->user()->roles->first()->id)
-                        ->where('status', \App\Enums\CommonStatusEnum::ACTIVE)
-                        ->orderBy('order', 'asc')
-                        ->get();
-                }
+                $listMenus = getMenus();
             @endphp
             <flux:navlist variant="outline">
                 <flux:navlist.group :heading="__('Platform')" class="grid">
