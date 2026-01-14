@@ -17,7 +17,7 @@
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.10.1",
         "livewire/flux": "^2.9.0",
-        "livewire/livewire": "^4.0@beta",
+        "livewire/livewire": "^4.0",
         "predis/predis": "^3.2",
         "rap2hpoutre/laravel-log-viewer": "^2.5",
         "spatie/laravel-activitylog": "^4.10",

@@ -1,7 +1,3 @@
-# TODO
-
-1. Add laravel/pulse package to composer.json after livewire 4 is stable.
-
 # My Starter Template for Laravel
 
 This is a starter template for Laravel applications, designed to provide a solid foundation for building web applications quickly and efficiently.
