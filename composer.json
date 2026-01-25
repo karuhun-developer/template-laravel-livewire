@@ -14,6 +14,7 @@
         "laravel/folio": "^1.1",
         "laravel/fortify": "^1.30",
         "laravel/framework": "^12.0",
+        "laravel/pulse": "^1.5",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.10.1",
         "livewire/flux": "^2.9.0",
