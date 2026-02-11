@@ -27,9 +27,9 @@
         "spatie/laravel-sluggable": "^3.7"
     },
     "require-dev": {
-        "barryvdh/laravel-debugbar": "^3.16",
         "fakerphp/faker": "^1.23",
-        "laravel/boost": "^1.6",
+        "fruitcake/laravel-debugbar": "^4.0",
+        "laravel/boost": "^2.0",
         "laravel/pail": "^1.2.2",
         "laravel/pint": "^1.24",
         "laravel/sail": "^1.41",
