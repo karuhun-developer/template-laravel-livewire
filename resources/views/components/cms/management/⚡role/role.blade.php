@@ -4,7 +4,10 @@
             <flux:button
                 variant="primary"
                 icon="plus"
-                wire:click="create"
+                @click="
+                    $flux.modal('defaultModal').show();
+                    $wire.create();
+                "
             >
                 Create
             </flux:button>
@@ -62,7 +65,10 @@
                                         size="sm"
                                         variant="primary"
                                         icon="pencil"
-                                        @click="$wire.update('{{ $d->id }}')"
+                                        @click="
+                                            $flux.modal('defaultModal').show();
+                                            $wire.update('{{ $d->id }}');
+                                        "
                                     >
                                         Edit
                                     </flux:button>
@@ -113,7 +119,6 @@
     <flux:modal
         name="defaultModal"
         class="max-w-md md:min-w-md"
-        @close="closeModal"
         variant="flyout"
     >
         <form class="space-y-6" wire:submit.prevent="submit">

@@ -23,7 +23,7 @@ abstract class BaseComponent extends Component
 
     public $search = '';
 
-    public function create(string $modal = 'defaultModal', bool $checkPermission = true, ?string $permission = null)
+    public function create(bool $checkPermission = true, ?string $permission = null)
     {
         // Custom permission
         $permission = $permission ?? 'create'.$this->modelInstance;
@@ -40,12 +40,9 @@ abstract class BaseComponent extends Component
 
         // Reset all properties
         $this->resetRecordData();
-
-        // Open modal
-        Flux::modal($modal)->show();
     }
 
-    public function update($id, string $modal = 'defaultModal', bool $checkPermission = true, ?string $permission = null)
+    public function update($id, bool $checkPermission = true, ?string $permission = null)
     {
         // Custom permission
         $permission = $permission ?? 'update'.$this->modelInstance;
@@ -62,9 +59,6 @@ abstract class BaseComponent extends Component
 
         // Get record data
         $this->getRecordData($id);
-
-        // Open modal
-        Flux::modal($modal)->show();
     }
 
     #[On('delete')]
@@ -132,7 +126,12 @@ abstract class BaseComponent extends Component
         return $record;
     }
 
-    public function closeModal(string $modal = 'defaultModal')
+    protected function openModal(string $modal = 'defaultModal')
+    {
+        Flux::modal($modal)->show();
+    }
+
+    protected function closeModal(string $modal = 'defaultModal')
     {
         Flux::modal($modal)->close();
     }

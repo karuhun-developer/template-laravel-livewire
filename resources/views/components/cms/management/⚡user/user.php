@@ -179,7 +179,7 @@ new class extends BaseComponent
         $this->reset(['password']);
 
         // Open change password modal
-        Flux::modal('changePasswordModal')->show();
+        $this->openModal('changePasswordModal');
     }
 
     // Handle change password submit
@@ -197,6 +197,6 @@ new class extends BaseComponent
 
         // Alert success and close modal
         $this->dispatch('toast', type: 'success', message: 'Password changed successfully.');
-        Flux::modal('changePasswordModal')->close();
+        $this->closeModal('changePasswordModal');
     }
 };
