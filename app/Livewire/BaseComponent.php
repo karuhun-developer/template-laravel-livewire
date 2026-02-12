@@ -29,12 +29,7 @@ abstract class BaseComponent extends Component
         // Custom permission
         $permission = $permission ?? 'create'.$this->modelInstance;
 
-        // Check if has permission
-        if ($checkPermission && ! Gate::authorize($permission)) {
-            $this->dispatch('toast', type: 'error', message: 'You do not have permission to perform this action.');
-
-            return;
-        }
+        Gate::authorize($permission);
 
         // Set isUpdate to false
         $this->isUpdate = false;
@@ -48,12 +43,7 @@ abstract class BaseComponent extends Component
         // Custom permission
         $permission = $permission ?? 'update'.$this->modelInstance;
 
-        // Check if has permission
-        if ($checkPermission && ! Gate::authorize($permission)) {
-            $this->dispatch('toast', type: 'error', message: 'You do not have permission to perform this action.');
-
-            return;
-        }
+        Gate::authorize($permission);
 
         // Set isUpdate to true
         $this->isUpdate = true;
@@ -65,12 +55,7 @@ abstract class BaseComponent extends Component
     #[On('delete')]
     public function delete($id)
     {
-        // Check if has permission
-        if (! Gate::authorize('delete'.$this->modelInstance)) {
-            $this->dispatch('toast', type: 'error', message: 'You do not have permission to perform this action.');
-
-            return;
-        }
+        Gate::authorize('delete'.$this->modelInstance);
 
         // Find record
         $modelClass = new $this->modelInstance;
@@ -101,12 +86,7 @@ abstract class BaseComponent extends Component
         // Custom permission
         $permission = $permission ?? $action.$this->modelInstance;
 
-        // Check if has permission
-        if ($checkPermission && ! Gate::authorize($permission)) {
-            $this->dispatch('toast', type: 'error', message: 'You do not have permission to perform this action.');
-
-            return;
-        }
+        Gate::authorize($permission);
 
         // Find or create record
         $modelClass = new $this->modelInstance;
