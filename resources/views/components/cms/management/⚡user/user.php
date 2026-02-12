@@ -3,6 +3,7 @@
 use App\Livewire\BaseComponent;
 use App\Models\Spatie\Role;
 use App\Models\User;
+use Illuminate\Support\Facades\Gate;
 use Livewire\Attributes\On;
 
 new class extends BaseComponent
@@ -39,10 +40,7 @@ new class extends BaseComponent
 
     public function mount()
     {
-        // Check if user has permission to view
-        if (! auth()->user()->can('view'.$this->modelInstance)) {
-            abort(403, 'You do not have permission to view this page.');
-        }
+        Gate::authorize('view'.$this->modelInstance);
 
         // Set default order by
         $this->paginationOrderBy = 'users.created_at';
@@ -91,12 +89,7 @@ new class extends BaseComponent
     // Get record data
     public function getRecordData($id)
     {
-        // Check permission
-        if (! auth()->user()->can('show'.$this->modelInstance)) {
-            $this->dispatch('toast', type: 'error', message: 'You do not have permission to perform this action.');
-
-            return;
-        }
+        Gate::authorize('show'.$this->modelInstance);
 
         $record = User::find($id);
         $this->recordId = $record->id;
@@ -150,11 +143,7 @@ new class extends BaseComponent
     #[On('verifyEmail')]
     public function verifyEmail($id)
     {
-        if (! auth()->user()->can('validate'.$this->modelInstance)) {
-            $this->dispatch('toast', type: 'error', message: 'You do not have permission to perform this action.');
-
-            return;
-        }
+        Gate::authorize('validate'.$this->modelInstance);
 
         $user = User::findOrFail($id);
         $user->markEmailAsVerified();
@@ -165,12 +154,7 @@ new class extends BaseComponent
     // Change password modal
     public function changePassword($id)
     {
-        // Check permission
-        if (! auth()->user()->can('update'.$this->modelInstance)) {
-            $this->dispatch('toast', type: 'error', message: 'You do not have permission to perform this action.');
-
-            return;
-        }
+        Gate::authorize('update'.$this->modelInstance);
 
         // Get record data
         $this->getRecordData($id);

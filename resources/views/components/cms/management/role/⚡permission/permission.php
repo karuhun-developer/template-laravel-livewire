@@ -3,6 +3,7 @@
 use App\Livewire\BaseComponent;
 use App\Models\Spatie\Permission;
 use App\Models\Spatie\Role;
+use Illuminate\Support\Facades\Gate;
 
 new class extends BaseComponent
 {
@@ -17,10 +18,7 @@ new class extends BaseComponent
 
     public function mount()
     {
-        // Check if user has permission to view
-        if (! auth()->user()->can('validate'.$this->modelInstance)) {
-            abort(403, 'You do not have permission to view this page.');
-        }
+        Gate::authorize('view'.$this->modelInstance);
 
         // Get role permissions
         $this->getPermissions();

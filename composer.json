@@ -22,6 +22,7 @@
         "predis/predis": "^3.2",
         "rap2hpoutre/laravel-log-viewer": "^2.5",
         "spatie/laravel-activitylog": "^4.10",
+        "spatie/laravel-data": "^4.19",
         "spatie/laravel-medialibrary": "^11.17",
         "spatie/laravel-permission": "^6.22",
         "spatie/laravel-sluggable": "^3.7"

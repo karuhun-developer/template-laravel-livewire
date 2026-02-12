@@ -1,6 +1,6 @@
 <div>
     <div class="flex items-center justify-between mb-4">
-        @if (auth()->user()->can('create' . $this->modelInstance))
+        @can('create' . $this->modelInstance)
             <flux:button
                 variant="primary"
                 icon="plus"
@@ -11,7 +11,7 @@
             >
                 Create
             </flux:button>
-        @endif
+        @endcan
     </div>
     <div class="flex items-center justify-between mt-5 mb-4 gap-4">
         <div class="flex items-center gap-2">
@@ -60,7 +60,7 @@
                         </x-ui.table.td>
                         <td class="px-4 py-3">
                             <div class="flex items-center gap-2">
-                                @if (auth()->user()->can('update' . $this->modelInstance))
+                                @can('update' . $this->modelInstance)
                                     <flux:button
                                         size="sm"
                                         variant="primary"
@@ -72,8 +72,8 @@
                                     >
                                         Edit
                                     </flux:button>
-                                @endif
-                                @if (auth()->user()->can('validate' . $this->modelInstance))
+                                @endcan
+                                @can('validate' . $this->modelInstance)
                                     <flux:button
                                         size="sm"
                                         variant="primary"
@@ -84,8 +84,8 @@
                                     >
                                         Permissions
                                     </flux:button>
-                                @endif
-                                @if (auth()->user()->can('delete' . $this->modelInstance))
+                                @endcan
+                                @can('delete' . $this->modelInstance)
                                     <flux:button
                                         size="sm"
                                         variant="danger"
@@ -97,7 +97,7 @@
                                     >
                                         Delete
                                     </flux:button>
-                                @endif
+                                @endcan
                             </div>
                         </td>
                     </tr>

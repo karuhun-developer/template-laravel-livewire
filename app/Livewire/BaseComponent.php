@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Traits\Livewire\WithChangeOrder;
 use App\Traits\WithGetFilterData;
 use Flux\Flux;
+use Illuminate\Support\Facades\Gate;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -29,7 +30,7 @@ abstract class BaseComponent extends Component
         $permission = $permission ?? 'create'.$this->modelInstance;
 
         // Check if has permission
-        if ($checkPermission && ! auth()->user()->can($permission)) {
+        if ($checkPermission && ! Gate::authorize($permission)) {
             $this->dispatch('toast', type: 'error', message: 'You do not have permission to perform this action.');
 
             return;
@@ -48,7 +49,7 @@ abstract class BaseComponent extends Component
         $permission = $permission ?? 'update'.$this->modelInstance;
 
         // Check if has permission
-        if ($checkPermission && ! auth()->user()->can($permission)) {
+        if ($checkPermission && ! Gate::authorize($permission)) {
             $this->dispatch('toast', type: 'error', message: 'You do not have permission to perform this action.');
 
             return;
@@ -65,7 +66,7 @@ abstract class BaseComponent extends Component
     public function delete($id)
     {
         // Check if has permission
-        if (! auth()->user()->can('delete'.$this->modelInstance)) {
+        if (! Gate::authorize('delete'.$this->modelInstance)) {
             $this->dispatch('toast', type: 'error', message: 'You do not have permission to perform this action.');
 
             return;
@@ -101,7 +102,7 @@ abstract class BaseComponent extends Component
         $permission = $permission ?? $action.$this->modelInstance;
 
         // Check if has permission
-        if ($checkPermission && ! auth()->user()->can($permission)) {
+        if ($checkPermission && ! Gate::authorize($permission)) {
             $this->dispatch('toast', type: 'error', message: 'You do not have permission to perform this action.');
 
             return;

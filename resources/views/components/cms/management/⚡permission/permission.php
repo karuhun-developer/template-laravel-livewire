@@ -2,6 +2,7 @@
 
 use App\Livewire\BaseComponent;
 use App\Models\Spatie\Permission;
+use Illuminate\Support\Facades\Gate;
 
 new class extends BaseComponent
 {
@@ -22,10 +23,7 @@ new class extends BaseComponent
 
     public function mount()
     {
-        // Check if user has permission to view
-        if (! auth()->user()->can('view'.$this->modelInstance)) {
-            abort(403, 'You do not have permission to view this page.');
-        }
+        Gate::authorize('view'.$this->modelInstance);
 
         // Set default order by
         $this->paginationOrderBy = 'guard_name';
@@ -64,12 +62,7 @@ new class extends BaseComponent
     // Get record data
     public function getRecordData($id)
     {
-        // Check permission
-        if (! auth()->user()->can('show'.$this->modelInstance)) {
-            $this->dispatch('toast', type: 'error', message: 'You do not have permission to perform this action.');
-
-            return;
-        }
+        Gate::authorize('show'.$this->modelInstance);
 
         $record = Permission::find($id);
         $this->recordId = $record->id;
