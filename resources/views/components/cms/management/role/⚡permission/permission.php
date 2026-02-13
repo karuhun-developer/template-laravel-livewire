@@ -50,12 +50,7 @@ new class extends BaseComponent
     // Check all
     public function checkAll()
     {
-        foreach ($this->permissions as $key => $value) {
-            foreach ($value as $k => $v) {
-                $this->check($k, $key);
-                $this->permissions[$key][$k] = true;
-            }
-        }
+        $this->role->syncPermissions(Permission::all()->pluck('name')->toArray());
 
         // Alert success message
         $this->dispatch('toast', type: 'success', message: 'All permissions have been granted.');
@@ -64,12 +59,7 @@ new class extends BaseComponent
     // Uncheck all
     public function uncheckAll()
     {
-        foreach ($this->permissions as $key => $value) {
-            foreach ($value as $k => $v) {
-                $this->uncheck($k, $key);
-                $this->permissions[$key][$k] = false;
-            }
-        }
+        $this->role->syncPermissions([]);
 
         // Alert success message
         $this->dispatch('toast', type: 'success', message: 'All permissions have been revoked.');

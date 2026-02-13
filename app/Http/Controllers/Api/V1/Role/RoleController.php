@@ -2,75 +2,88 @@
 
 namespace App\Http\Controllers\Api\V1\Role;
 
+use App\Actions\Api\User\DeleteRoleAction;
+use App\Actions\Api\User\StoreRoleAction;
+use App\Actions\Api\User\UpdateRoleAction;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\User\StoreRoleRequest;
+use App\Http\Requests\Api\User\UpdateRoleRequest;
 use App\Models\Spatie\Role;
 use App\Traits\WithGetFilterDataApi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class RoleController extends Controller
 {
     use WithGetFilterDataApi;
 
-    protected string $model = Role::class;
+    protected string $resource = Role::class;
 
+    /**
+     * Display a listing of the resource.
+     */
     public function index(Request $request)
     {
-        $this->authorize('view'.$this->model);
+        Gate::authorize('view'.$this->resource);
 
+        $order = $request?->order ?? 'desc';
+        $orderBy = $request?->orderBy ?? 'created_at';
+        $paginate = $request?->paginate ?? 10;
+        $searchBySpecific = $request?->searchBySpecific ?? '';
+        $search = $request?->search ?? '';
         $model = $this->getDataWithFilter(
             model: new Role,
             searchBy: [
                 'name',
                 'guard_name',
-                'created_at',
-                'updated_at',
             ],
-            orderBy: $request?->orderBy ?? 'updated_at',
-            order: $request?->order ?? 'desc',
-            paginate: $request?->paginate ?? 10,
-            searchBySpecific: $request?->searchBySpecific ?? '',
-            s: $request?->search ?? '',
+            order: $order,
+            orderBy: $orderBy,
+            paginate: $paginate,
+            searchBySpecific: $searchBySpecific,
+            s: $search,
         );
 
         return $this->responseWithSuccess($model);
     }
 
-    public function show(Role $model)
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(StoreRoleRequest $request, StoreRoleAction $action)
     {
-        $this->authorize('show'.$this->model);
+        Gate::authorize('create'.$this->resource);
 
-        return $this->responseWithSuccess($model);
+        return $this->responseWithCreated($action->handle($request->validated()));
     }
 
-    public function store(Request $request)
+    /**
+     * Display the specified resource.
+     */
+    public function show(Role $role)
     {
-        $this->authorize('create'.$this->model);
+        Gate::authorize('show'.$this->resource);
 
-        $data = $request->validate([
-            'name' => 'required|string|max:255|unique:roles,name',
-        ]);
-        $data['guard_name'] = 'api';
-        $model = Role::create($data);
-
-        return $this->responseWithCreated($model);
+        return $this->responseWithSuccess($role);
     }
 
-    public function update(Request $request, Role $model)
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(UpdateRoleRequest $request, Role $role, UpdateRoleAction $action)
     {
-        $this->authorize('update'.$this->model);
+        Gate::authorize('update'.$this->resource);
 
-        $data = $request->validate([
-            'name' => 'required|string|max:255|unique:roles,name,'.$model->id,
-        ]);
-        $model->update($data);
-
-        return $this->responseWithSuccess($model);
+        return $this->responseWithSuccess($action->handle($role, $request->validated()));
     }
 
-    public function destroy(Role $model)
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Role $role, DeleteRoleAction $action)
     {
-        $this->authorize('delete'.$this->model);
+        Gate::authorize('delete'.$this->resource);
 
-        return $this->responseWithSuccess($model->delete());
+        return $this->responseWithSuccess($action->handle($role));
     }
 }

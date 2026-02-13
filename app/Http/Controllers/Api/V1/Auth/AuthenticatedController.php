@@ -2,31 +2,26 @@
 
 namespace App\Http\Controllers\Api\V1\Auth;
 
+use App\Actions\Api\V1\Auth\DeleteAuthenticatedAction;
+use App\Actions\Api\V1\Auth\ResendAuthenticatedAction;
+use App\Actions\Api\V1\Auth\StoreAuthenticatedAction;
+use App\Actions\Api\V1\Auth\UpdateAuthenticatedAction;
 use App\Http\Controllers\Controller;
-use App\Traits\WithMediaCollection;
+use App\Http\Requests\Api\V1\Auth\StoreAuthenticatedRequest;
+use App\Http\Requests\Api\V1\Auth\UpdateAuthenticatedRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
 class AuthenticatedController extends Controller
 {
-    use WithMediaCollection;
-
-    public function login(Request $request)
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(StoreAuthenticatedRequest $request, StoreAuthenticatedAction $action)
     {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required|string',
-        ]);
-
-        if (! auth()->attempt($request->only('email', 'password'))) {
+        if (! $action->handle($request->validated())) {
             return $this->responseWithError('Your credentials are incorrect', 422);
         }
-
-        // Save activity
-        activity()->performedOn(auth()->user())->causedBy(auth()->user())->event('Login')->log('Login');
-
-        // Delete all previous tokens
-        auth()->user()->tokens()->delete();
 
         return $this->responseWithSuccess([
             'token' => auth()->user()->createToken('API Token')->plainTextToken,
@@ -34,6 +29,9 @@ class AuthenticatedController extends Controller
         ]);
     }
 
+    /**
+     * Display the authenticated user.
+     */
     public function me(Request $request)
     {
         $ttl = now()->addMinutes(10);
@@ -44,57 +42,44 @@ class AuthenticatedController extends Controller
         }
 
         $user = Cache::remember('me:user'.$request->user()->id, $ttl, function () use ($request) {
-            return $request->user()->load('roles');
+            $user = $request->user()->load('roles', 'media');
+            $user->image = $user->getFirstMediaUrl('image');
+            $user->makeHidden('media');
+
+            return $user;
         });
 
         return $this->responseWithSuccess($user);
     }
 
-    public function update(Request $request) {
-        $user = auth()->user();
-
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email,' . $user->id,
-            'phone' => 'nullable|unique:users,phone,' . $user->id,
-            'password' => 'nullable|string|min:8|confirmed',
-            'image' => 'nullable|image|max:2048', // Optional profile image
-        ]);
-
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->phone = $request->phone;
-
-        if ($request->filled('password')) {
-            $user->password = bcrypt($request->password);
-        }
-
-        // Handle profile image upload
-        if ($request->hasFile('image')) {
-            $this->saveFile(
-                model: $user,
-                file: $request->file('image'),
-                collection: 'image',
-            );
-        }
-
-        $user->save();
-
-        // Clear cache
-        Cache::forget('me:user'.$user->id);
-
-        // Save activity
-        activity()->performedOn($user)->causedBy($user)->log('Update Profile');
+    /**
+     * Update the authenticated user.
+     */
+    public function update(UpdateAuthenticatedRequest $request, UpdateAuthenticatedAction $action)
+    {
+        $user = $action->handle($request->validated());
 
         return $this->responseWithSuccess($user);
     }
 
-    public function logout()
+    /**
+     * Resend the email verification notification.
+     */
+    public function resend(ResendAuthenticatedAction $action)
     {
-        // Save activity
-        activity()->performedOn(auth()->user())->causedBy(auth()->user())->event('Login')->log('Logout');
+        if (! $action->handle()) {
+            return $this->responseWithError('Email is already verified', 400);
+        }
 
-        auth()->user()->tokens()->delete();
+        return $this->responseWithSuccess(message: 'Verification email resent');
+    }
+
+    /**
+     * Logout the authenticated user.
+     */
+    public function delete(DeleteAuthenticatedAction $action)
+    {
+        $action->handle();
 
         return $this->responseWithSuccess(message: 'Successfully logged out');
     }

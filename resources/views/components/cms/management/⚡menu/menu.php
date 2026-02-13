@@ -4,8 +4,10 @@ use App\Enums\CommonStatusEnum;
 use App\Livewire\BaseComponent;
 use App\Models\Menu\Menu;
 use App\Models\Spatie\Role;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Gate;
+use Livewire\Attributes\Computed;
 
 new class extends BaseComponent
 {
@@ -44,11 +46,19 @@ new class extends BaseComponent
         ],
     ];
 
-    // Roles list
-    public $roles;
+    #[Computed]
+    public function roles()
+    {
+        return Role::all();
+    }
 
-    // Icons list
-    public $icons;
+    #[Computed]
+    public function icons()
+    {
+        return collect(File::allFiles(resource_path('views/flux/icon')))->map(function ($file) {
+            return str_replace('.blade.php', '', $file->getFilename());
+        })->values()->toArray();
+    }
 
     public function mount()
     {
@@ -56,13 +66,6 @@ new class extends BaseComponent
 
         // Set default order by
         $this->paginationOrderBy = 'menus.order';
-
-        // Get list of roles
-        $this->roles = Role::all();
-        // Get list of icons
-        $this->icons = collect(File::allFiles(resource_path('views/flux/icon')))->map(function ($file) {
-            return str_replace('.blade.php', '', $file->getFilename());
-        })->values()->toArray();
     }
 
     public function render()
@@ -158,5 +161,8 @@ new class extends BaseComponent
         ]);
 
         $this->save();
+
+        // Flush menu cache
+        Cache::flush();
     }
 };

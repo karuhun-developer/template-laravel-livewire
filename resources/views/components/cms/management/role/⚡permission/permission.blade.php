@@ -9,13 +9,23 @@
                                 <flux:button
                                     variant="primary"
                                     icon="check"
-                                    wire:click="checkAll">
+                                    @click="
+                                        $wire.checkAll();
+                                        setTimeout(() => {
+                                            location.reload();
+                                        }, 500);
+                                    ">
                                     Check All
                                 </flux:button>
                                 <flux:button
                                     variant="danger"
                                     icon="x-mark"
-                                    wire:click="uncheckAll">
+                                    @click="
+                                        $wire.uncheckAll();
+                                        setTimeout(() => {
+                                            location.reload();
+                                        }, 500);
+                                    ">
                                     Uncheck All
                                 </flux:button>
                             </div>

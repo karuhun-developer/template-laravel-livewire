@@ -29,7 +29,10 @@ abstract class BaseComponent extends Component
         // Custom permission
         $permission = $permission ?? 'create'.$this->modelInstance;
 
-        Gate::authorize($permission);
+        // Check permission
+        if ($checkPermission) {
+            Gate::authorize($permission);
+        }
 
         // Set isUpdate to false
         $this->isUpdate = false;
@@ -43,7 +46,9 @@ abstract class BaseComponent extends Component
         // Custom permission
         $permission = $permission ?? 'update'.$this->modelInstance;
 
-        Gate::authorize($permission);
+        if ($checkPermission) {
+            Gate::authorize($permission);
+        }
 
         // Set isUpdate to true
         $this->isUpdate = true;
@@ -71,7 +76,7 @@ abstract class BaseComponent extends Component
         }
     }
 
-    public function save(
+    protected function save(
         string $modal = 'defaultModal',
         bool $checkPermission = true,
         ?string $permission = null,
@@ -86,7 +91,9 @@ abstract class BaseComponent extends Component
         // Custom permission
         $permission = $permission ?? $action.$this->modelInstance;
 
-        Gate::authorize($permission);
+        if ($checkPermission) {
+            Gate::authorize($permission);
+        }
 
         // Find or create record
         $modelClass = new $this->modelInstance;

@@ -159,7 +159,7 @@
                 <flux:label>Role</flux:label>
                 <flux:select wire:model="role" placeholder="Select role ....">
                     <flux:select.option value="">-- Select Role --</flux:select.option>
-                    @foreach ($roles as $role)
+                    @foreach ($this->roles as $role)
                         <flux:select.option value="{{ $role->name }}">{{ $role->name }}</flux:select.option>
                     @endforeach
                 </flux:select>

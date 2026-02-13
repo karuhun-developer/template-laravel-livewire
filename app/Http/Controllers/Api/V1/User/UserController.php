@@ -2,139 +2,126 @@
 
 namespace App\Http\Controllers\Api\V1\User;
 
+use App\Actions\Api\User\DeleteUserAction;
+use App\Actions\Api\User\StoreUserAction;
+use App\Actions\Api\User\UpdateUserAction;
+use App\Actions\Api\User\UpdateUserPasswordAction;
+use App\Actions\Api\User\ValidateUserEmailAction;
 use App\Http\Controllers\Controller;
-use App\Models\Spatie\Role;
+use App\Http\Requests\Api\User\StoreUserRequest;
+use App\Http\Requests\Api\User\UpdateUserPasswordRequest;
+use App\Http\Requests\Api\User\UpdateUserRequest;
 use App\Models\User;
 use App\Traits\WithGetFilterDataApi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
 {
     use WithGetFilterDataApi;
 
-    protected string $model = User::class;
+    protected string $resource = User::class;
 
+    /**
+     * Display a listing of the resource.
+     */
     public function index(Request $request)
     {
-        $this->authorize('view'.$this->model);
+        Gate::authorize('view'.$this->resource);
 
-        $model = User::query()->with('roles');
+        $order = $request?->order ?? 'desc';
+        $orderBy = $request?->orderBy ?? 'users.created_at';
+        $paginate = $request?->paginate ?? 10;
+        $searchBySpecific = $request?->searchBySpecific ?? '';
+        $search = $request?->search ?? '';
 
-        // Filter by role id
-        if ($request?->role_id) {
-            $model->whereHas('roles', function ($query) use ($request) {
-                $query->where('id', $request->role_id);
-            });
-        }
+        // Query
+        $model = User::query()
+            ->join('model_has_roles', 'model_has_roles.model_id', '=', 'users.id')
+            ->join('roles', 'roles.id', '=', 'model_has_roles.role_id')
+            ->select(
+                'users.*',
+                'roles.name as role_name',
+            );
 
         $model = $this->getDataWithFilter(
             model: $model,
             searchBy: [
-                'name',
-                'email',
-                'phone',
-                'created_at',
-                'updated_at',
+                'roles.name',
+                'users.name',
+                'users.email',
+                'users.phone',
+                'users.email_verified_at',
+                'users.created_at',
             ],
-            orderBy: $request?->orderBy ?? 'updated_at',
-            order: $request?->order ?? 'desc',
-            paginate: $request?->paginate ?? 10,
-            searchBySpecific: $request?->searchBySpecific ?? '',
-            s: $request?->search ?? '',
+            order: $order,
+            orderBy: $orderBy,
+            paginate: $paginate,
+            searchBySpecific: $searchBySpecific,
+            s: $search,
         );
 
         return $this->responseWithSuccess($model);
     }
 
-    public function show(User $model)
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(StoreUserRequest $request, StoreUserAction $action)
     {
-        $this->authorize('show'.$this->model);
+        Gate::authorize('create'.$this->resource);
 
-        if (! auth()->user()->isSuperAdmin() && auth()->id() != $model->id) {
-            return $this->responseWithError('You only can view your own profile.', 403);
-        }
-
-        return $this->responseWithSuccess($model->load('roles'));
+        return $this->responseWithCreated($action->handle($request->validated()));
     }
 
-    public function store(Request $request)
+    /**
+     * Display the specified resource.
+     */
+    public function show(User $user)
     {
-        $this->authorize('create'.$this->model);
+        Gate::authorize('show'.$this->resource);
 
-        $data = $request->validate([
-            'role_id' => 'required|exists:roles,id',
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email',
-            'phone' => 'nullable|string|unique:users,phone',
-            'password' => 'required|string|min:8|confirmed',
-            'status' => 'required|boolean',
-        ]);
-        $data['password'] = bcrypt($data['password']);
-        // Assign role to user
-        $role = Role::find($data['role_id']);
-
-        $model = User::create($data);
-
-        $model->syncRoles([$role]);
-
-        return $this->responseWithCreated($model);
+        return $this->responseWithSuccess($user);
     }
 
-    public function update(Request $request, User $model)
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(UpdateUserRequest $request, User $user, UpdateUserAction $action)
     {
-        $this->authorize('update'.$this->model);
+        Gate::authorize('update'.$this->resource);
 
-        if (! auth()->user()->isSuperAdmin() && auth()->id() != $model->id) {
-            return $this->responseWithError('You only can update your own profile.', 403);
-        }
-
-        $data = $request->validate([
-            'role_id' => 'required|exists:roles,id',
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email,'.$model->id,
-            'phone' => 'nullable|string|max:255|unique:users,phone,'.$model->id,
-            'status' => 'required|boolean',
-        ]);
-        // Assign role to user
-        $role = Role::find($data['role_id']);
-
-        $model->syncRoles([$role]);
-        $model->update($data);
-
-        return $this->responseWithSuccess($model);
+        return $this->responseWithSuccess($action->handle($user, $request->validated()));
     }
 
-    public function updatePassword(Request $request, User $model)
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(User $user, DeleteUserAction $action)
     {
-        $this->authorize('update'.$this->model);
+        Gate::authorize('delete'.$this->resource);
 
-        if (! auth()->user()->isSuperAdmin() && auth()->id() != $model->id) {
-            return $this->responseWithError('You only can update your own profile.', 403);
-        }
-
-        $data = $request->validate([
-            'password' => 'required|string|min:8|confirmed',
-        ]);
-
-        $data['password'] = bcrypt($data['password']);
-        $model->update($data);
-
-        return $this->responseWithSuccess($model);
+        return $this->responseWithSuccess($action->handle($user));
     }
 
-    public function validateEmail(User $model)
+
+    /**
+     * Update the password of the specified resource in storage.
+     */
+    public function updatePassword(UpdateUserPasswordRequest $request, User $user, UpdateUserPasswordAction $action)
     {
-        $this->authorize('validate'.$this->model);
+        Gate::authorize('update'.$this->resource);
 
-        $model->markEmailAsVerified();
-
-        return $this->responseWithSuccess($model);
+        return $this->responseWithSuccess($action->handle($user, $request->validated()));
     }
 
-    public function destroy(User $model)
+    /**
+     * Validate the email of the specified resource in storage.
+     */
+    public function validateEmail(User $user, ValidateUserEmailAction $action)
     {
-        $this->authorize('delete'.$this->model);
+        Gate::authorize('update'.$this->resource);
 
-        return $this->responseWithSuccess($model->delete());
+        return $this->responseWithSuccess($action->handle($user));
     }
 }

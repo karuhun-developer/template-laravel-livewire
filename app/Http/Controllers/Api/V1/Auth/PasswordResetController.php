@@ -2,24 +2,21 @@
 
 namespace App\Http\Controllers\Api\V1\Auth;
 
+use App\Actions\Api\V1\Auth\ResendAuthenticatedAction;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Password;
+use App\Http\Requests\Api\V1\Auth\ResetPasswordRequest;
 
 class PasswordResetController extends Controller
 {
-    public function store(Request $request)
+    /**
+     * Handle the incoming password reset request.
+     */
+    public function store(ResetPasswordRequest $request, ResendAuthenticatedAction $action)
     {
-        $request->validate([
-            'email' => 'required|email|exists:users,email',
-        ]);
+        if (! $action->handle($request->validated())) {
+            return $this->responseWithError('Unable to resend verification email.', 422);
+        }
 
-        $status = Password::sendResetLink(
-            $request->only('email')
-        );
-
-        return $status == Password::RESET_LINK_SENT ?
-            $this->responseWithSuccess(null, 'Password reset link sent to your email.') :
-            $this->responseWithError('Unable to send password reset link.', 422);
+        return $this->responseWithSuccess('Password reset link sent successfully.');
     }
 }

@@ -4,6 +4,7 @@ use App\Livewire\BaseComponent;
 use App\Models\Spatie\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Gate;
+use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
 
 new class extends BaseComponent
@@ -35,8 +36,11 @@ new class extends BaseComponent
         ],
     ];
 
-    // Roles list
-    public $roles;
+    #[Computed]
+    public function roles()
+    {
+        return Role::all();
+    }
 
     public function mount()
     {
@@ -44,9 +48,6 @@ new class extends BaseComponent
 
         // Set default order by
         $this->paginationOrderBy = 'users.created_at';
-
-        // Get roles list
-        $this->roles = Role::all();
     }
 
     public function render()
