@@ -60,7 +60,7 @@
                                 @foreach($mainMenu->subMenu as $child)
                                     <flux:navlist.item
                                         href="{{ echoRoute($child->url) }}"
-                                        :active="menuActive(explode(',', $child->active_pattern))"
+                                        :current="menuActive(explode(',', $child->active_pattern))"
                                         wire:navigate>
                                         {{ $child->name }}
                                     </flux:navlist.item>
@@ -70,7 +70,7 @@
                             <flux:navlist.item
                                 icon="{{ $mainMenu->icon }}"
                                 href="{{ echoRoute($mainMenu->url) }}"
-                                :active="menuActive(explode(',', $mainMenu->active_pattern))"
+                                :current="menuActive(explode(',', $mainMenu->active_pattern))"
                                 wire:navigate>
                                 {{ $mainMenu->name }}
                             </flux:navlist.item>
