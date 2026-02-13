@@ -123,8 +123,8 @@
     <!-- Create / Update Modal -->
     <flux:modal
         name="defaultModal"
-        class="max-w-md md:min-w-md"
-        variant="flyout"
+        class="max-w-2xl md:min-w-2xl"
+        flyout
     >
         <form class="space-y-6" wire:submit.prevent="submit">
             <div>
