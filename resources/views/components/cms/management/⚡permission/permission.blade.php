@@ -120,13 +120,13 @@
             </div>
 
             <flux:field>
-                <flux:label>Name</flux:label>
+                <flux:label badge="Required">Name</flux:label>
                 <flux:input wire:model="name" type="text" />
                 <flux:error name="name" />
             </flux:field>
 
             <flux:field>
-                <flux:label>Guard Name</flux:label>
+                <flux:label badge="Required">Guard Name</flux:label>
                 <flux:select wire:model="guard_name" placeholder="Guard Name..">
                     <flux:select.option value="">-- Select Guard Name --</flux:select.option>
                     <flux:select.option value="api">api</flux:select.option>

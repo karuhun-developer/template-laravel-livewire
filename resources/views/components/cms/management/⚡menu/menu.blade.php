@@ -149,7 +149,7 @@
             </div>
 
             <flux:field>
-                <flux:label>Role</flux:label>
+                <flux:label badge="Required">Role</flux:label>
                 <flux:select wire:model="role_id" placeholder="Select role ....">
                     <flux:select.option value="">-- Select Role --</flux:select.option>
                     @foreach ($this->roles as $role)
@@ -160,20 +160,20 @@
             </flux:field>
 
             <flux:field>
-                <flux:label>Name</flux:label>
+                <flux:label badge="Required">Name</flux:label>
                 <flux:input wire:model="name" type="text" />
                 <flux:error name="name" />
             </flux:field>
 
             <flux:field>
-                <flux:label>URL</flux:label>
+                <flux:label badge="Required">URL</flux:label>
                 <flux:text>Use laravel route name ex: cms.dashboard</flux:text>
                 <flux:input wire:model="url" type="text" />
                 <flux:error name="url" />
             </flux:field>
 
             <flux:field>
-                <flux:label>Icon</flux:label>
+                <flux:label badge="Required">Icon</flux:label>
                 @if($icon)
                     <span class="mb-2">
                         <flux:icon name="{{ $icon }}" size="lg" />
@@ -190,20 +190,20 @@
             </flux:field>
 
             <flux:field>
-                <flux:label>Order</flux:label>
+                <flux:label badge="Required">Order</flux:label>
                 <flux:input wire:model="order" type="number" />
                 <flux:error name="order" />
             </flux:field>
 
             <flux:field>
-                <flux:label>Active Pattern</flux:label>
+                <flux:label badge="Required">Active Pattern</flux:label>
                 <flux:text>Use commas to separate multiple patterns.</flux:text>
                 <flux:input wire:model="active_pattern" type="text" />
                 <flux:error name="active_pattern" />
             </flux:field>
 
             <flux:field>
-                <flux:label>Status</flux:label>
+                <flux:label badge="Required">Status</flux:label>
                 <flux:select wire:model="status" placeholder="Select status ....">
                     @foreach (\App\Enums\CommonStatusEnum::cases() as $status)
                         <flux:select.option value="{{ $status->value }}">

@@ -156,7 +156,7 @@
             </div>
 
             <flux:field>
-                <flux:label>Role</flux:label>
+                <flux:label badge="Required">Role</flux:label>
                 <flux:select wire:model="role" placeholder="Select role ....">
                     <flux:select.option value="">-- Select Role --</flux:select.option>
                     @foreach ($this->roles as $role)
@@ -167,20 +167,20 @@
             </flux:field>
 
             <flux:field>
-                <flux:label>Name</flux:label>
+                <flux:label badge="Required">Name</flux:label>
                 <flux:input wire:model="name" type="text" />
                 <flux:error name="name" />
             </flux:field>
 
             <flux:field>
-                <flux:label>Email</flux:label>
+                <flux:label badge="Required">Email</flux:label>
                 <flux:input wire:model="email" type="email" />
                 <flux:error name="email" />
             </flux:field>
 
             @if (!$isUpdate)
                 <flux:field>
-                    <flux:label>Password</flux:label>
+                    <flux:label badge="Required">Password</flux:label>
                     <flux:input wire:model="password" type="password" />
                     <flux:error name="password" />
                 </flux:field>
@@ -211,7 +211,7 @@
             </div>
 
             <flux:field>
-                <flux:label>New Password</flux:label>
+                <flux:label badge="Required">New Password</flux:label>
                 <flux:input wire:model="password" type="password" />
                 <flux:error name="password" />
             </flux:field>
