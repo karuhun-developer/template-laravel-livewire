@@ -15,16 +15,16 @@ new class extends BaseComponent
     // Pagination and Search
     public $searchBy = [
         [
+            'name' => 'Role',
+            'field' => 'roles.name',
+        ],
+        [
             'name' => 'Name',
             'field' => 'users.name',
         ],
         [
             'name' => 'Email',
             'field' => 'users.email',
-        ],
-        [
-            'name' => 'Role',
-            'field' => 'roles.name',
         ],
         [
             'name' => 'Email Verified',
