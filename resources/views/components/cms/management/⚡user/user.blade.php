@@ -53,7 +53,9 @@
                 @forelse($data as $d)
                     <tr>
                         <x-ui.table.td>
-                            {{ $d->role }}
+                            <flux:badge color="blue" size="sm">
+                                {{ $d->role }}
+                            </flux:badge>
                         </x-ui.table.td>
                         <x-ui.table.td>
                             {{ $d->name }}
