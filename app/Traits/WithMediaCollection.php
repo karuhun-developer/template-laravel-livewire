@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 trait WithMediaCollection
 {
-    public function saveFile(Model $model, $file, $collection = 'images', $deleteOlderMedia = true)
+    public function saveMedia(Model $model, $file, $collection = 'images', $deleteOlderMedia = true)
     {
         if ($deleteOlderMedia) {
             $model->clearMediaCollection($collection);
@@ -15,7 +15,7 @@ trait WithMediaCollection
         $model->addMedia($file)->toMediaCollection($collection);
     }
 
-    public function deleteFile(Model $model, $collection = 'images')
+    public function deleteMedia(Model $model, $collection = 'images')
     {
         $model->clearMediaCollection($collection);
     }
