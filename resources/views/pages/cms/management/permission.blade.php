@@ -46,6 +46,6 @@ render(function (View $view) {
                 {{ $description }}
             </flux:text>
         </div>
-        <livewire:cms.management.permission />
+        <livewire:cms.management.permission.table />
     </div>
 </x-layouts.app>

@@ -46,6 +46,6 @@ render(function (View $view) {
                 {{ $description }}
             </flux:text>
         </div>
-        <livewire:cms.management.role />
+        <livewire:cms.management.role.table />
     </div>
 </x-layouts.app>

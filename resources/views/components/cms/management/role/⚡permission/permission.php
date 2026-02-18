@@ -1,5 +1,6 @@
 <?php
 
+use App\Actions\Cms\Management\RolePermission\UpdateRolePermissionsAction;
 use App\Livewire\BaseComponent;
 use App\Models\Spatie\Permission;
 use App\Models\Spatie\Role;
@@ -48,18 +49,18 @@ new class extends BaseComponent
     }
 
     // Check all
-    public function checkAll()
+    public function checkAll(UpdateRolePermissionsAction $action)
     {
-        $this->role->syncPermissions(Permission::all()->pluck('name')->toArray());
+        $action->assignAll($this->role);
 
         // Alert success message
         $this->dispatch('toast', type: 'success', message: 'All permissions have been granted.');
     }
 
     // Uncheck all
-    public function uncheckAll()
+    public function uncheckAll(UpdateRolePermissionsAction $action)
     {
-        $this->role->syncPermissions([]);
+        $action->revokeAll($this->role);
 
         // Alert success message
         $this->dispatch('toast', type: 'success', message: 'All permissions have been revoked.');

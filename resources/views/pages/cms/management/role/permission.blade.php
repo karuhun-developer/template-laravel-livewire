@@ -28,7 +28,7 @@ render(function (View $view) {
     ];
 
     // Get role
-    $role = Role::findOrFail(request()->get('role_id'));
+    $role = Role::findOrFail(request('role_id'));
 
     $view->with(compact('title', 'description', 'breadcrumbs', 'role'));
 }); ?>

@@ -7,8 +7,8 @@ use App\Actions\Api\V1\Auth\ResendAuthenticatedAction;
 use App\Actions\Api\V1\Auth\StoreAuthenticatedAction;
 use App\Actions\Api\V1\Auth\UpdateAuthenticatedAction;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\V1\Auth\StoreAuthenticatedRequest;
-use App\Http\Requests\Api\V1\Auth\UpdateAuthenticatedRequest;
+use App\Http\Requests\Api\V1\Management\Auth\StoreAuthenticatedRequest;
+use App\Http\Requests\Api\V1\Management\Auth\UpdateAuthenticatedRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 

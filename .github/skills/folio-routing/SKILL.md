@@ -45,6 +45,28 @@ Always create new `folio` pages and routes using `php artisan folio:page [name]`
 
 // Creates: resources/views/pages/products/[id].blade.php → /products/{id}
 {{ $assist->artisanCommand('folio:page "products/[id]"') }}
+
+// Creates: resources/views/pages/users/[User].blade.php → /users/{user} (implicit model binding)
+{{ $assist->artisanCommand('folio:page "users/[User]"') }}
+```
+
+## Route Parameters vs. Model Binding
+
+Use the correct filename token based on intent:
+
+- `[id]` (lowercase) captures a plain route parameter string
+- `[User]` (capitalized model class) enables implicit Eloquent model binding
+- `[Post:slug]` binds by a custom key instead of `id`
+
+Model binding is case-sensitive in the filename. Avoid `[user]` when you expect a `User` model instance.
+
+<!-- Route Parameter vs Model Binding Example -->
+```blade
+{{-- pages/users/[id].blade.php --}}
+<div>User ID: {{ $id }}</div>
+
+{{-- pages/users/[User].blade.php --}}
+<div>User ID: {{ $user->id }}</div>
 ```
 
 ## Named Routes
@@ -68,6 +90,41 @@ name('admin.products');
 middleware(['auth', 'verified']);
 ```
 
+## Page Content Patterns
+
+Folio pages are normal Blade files. Include practical data-loading code when creating or editing pages.
+
+<!-- Inline Query Example in a Folio Page -->
+```blade
+@php
+use App\Models\Post;
+
+$posts = Post::query()
+    ->whereNotNull('published_at')
+    ->latest('published_at')
+    ->get();
+@endphp
+
+<ul>
+    @foreach ($posts as $post)
+        <li>{{ $post->title }}</li>
+    @endforeach
+</ul>
+```
+
+<!-- Render Hook Example for View Data -->
+```php
+<?php
+use App\Models\Post;
+use Illuminate\View\View;
+use function Laravel\Folio\render;
+
+render(function (View $view, Post $post) {
+    return $view->with('photos', $post->author->photos);
+});
+?>
+```
+
 ## Verification
 
 1. Run `php artisan folio:list` to verify route registration
@@ -76,5 +133,12 @@ middleware(['auth', 'verified']);
 ## Common Pitfalls
 
 - Forgetting to add named routes to new Folio pages
+- Using `[id]` or `[user]` when model binding requires `[User]`
 - Not following existing naming conventions when creating pages
 - Creating routes manually in `routes/web.php` instead of using Folio's file-based routing
+
+### Folio 404 Debug Checklist
+
+1. Run `php artisan folio:list`
+2. If routes are missing, confirm Folio is mounted (`folio:install` + provider registration, or `Folio::path(...)`) and pages are under the mounted path
+3. Verify filename-to-route mapping (`index.blade.php`, nested paths, `[id]` vs `[Model]`), then rerun `php artisan folio:list`

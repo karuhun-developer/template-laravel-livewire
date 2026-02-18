@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\V1\Auth;
 
 use App\Actions\Api\V1\Auth\ResendAuthenticatedAction;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\V1\Auth\ResetPasswordRequest;
+use App\Http\Requests\Api\V1\Management\Auth\ResetPasswordRequest;
 
 class PasswordResetController extends Controller
 {

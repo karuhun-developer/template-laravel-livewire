@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 // Login
-Route::post('/login', [App\Http\Controllers\Api\V1\Auth\AuthenticatedController::class, 'login'])->name('login');
+Route::post('/login', [App\Http\Controllers\Api\V1\Auth\AuthenticatedController::class, 'store'])->name('login');
 
 // Register
 Route::post('/register', [App\Http\Controllers\Api\V1\Auth\RegisterController::class, 'store'])->name('register');
@@ -18,6 +18,9 @@ Route::middleware('auth:api')->group(function () {
 
     // Update profile
     Route::put('/me', [App\Http\Controllers\Api\V1\Auth\AuthenticatedController::class, 'update'])->name('me.update');
+
+    // Resend verification email
+    Route::post('/email/resend', [App\Http\Controllers\Api\V1\Auth\AuthenticatedController::class, 'resend'])->name('email.resend')->middleware('throttle:6,1');
 
     // Logout
     Route::post('/logout', [App\Http\Controllers\Api\V1\Auth\AuthenticatedController::class, 'logout'])->name('logout');

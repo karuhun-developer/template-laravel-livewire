@@ -63,7 +63,7 @@ render(function (View $view) {
                 {{ $description }}
             </flux:text>
         </div>
-        <livewire:cms.management.menu.sub :$menu />
+        <livewire:cms.management.menu.sub.table :$menu />
     </div>
 </x-layouts.app>
 

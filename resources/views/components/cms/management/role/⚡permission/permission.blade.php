@@ -13,7 +13,7 @@
                                         $wire.checkAll();
                                         setTimeout(() => {
                                             location.reload();
-                                        }, 500);
+                                        }, 1000);
                                     ">
                                     Check All
                                 </flux:button>
@@ -24,7 +24,7 @@
                                         $wire.uncheckAll();
                                         setTimeout(() => {
                                             location.reload();
-                                        }, 500);
+                                        }, 1000);
                                     ">
                                     Uncheck All
                                 </flux:button>
