@@ -38,110 +38,98 @@
         </div>
     </div>
 
-    <div class="overflow-x-auto bg-white dark:bg-zinc-900 rounded shadow-sm">
-        <x-ui.table.index>
-            <x-ui.table.thead>
-                <tr>
-                    <x-loop-th :$searchBy :$paginationOrder :$paginationOrderBy />
-                    <x-ui.table.th>
-                        Actions
-                    </x-ui.table.th>
-                </tr>
-            </x-ui.table.thead>
-
-            <x-ui.table.tbody>
-                @forelse($data as $d)
-                    <tr>
-                        <x-ui.table.td>
-                            <flux:badge color="blue" size="sm">
-                                {{ $d->role }}
-                            </flux:badge>
-                        </x-ui.table.td>
-                        <x-ui.table.td>
-                            {{ $d->name }}
-                        </x-ui.table.td>
-                        <x-ui.table.td>
-                            {{ $d->email }}
-                        </x-ui.table.td>
-                        <x-ui.table.td>
-                            {{ $d->email_verified_at?->format('Y-m-d H:i:s') ?? 'N/A' }}
-                        </x-ui.table.td>
-                        <x-ui.table.td>
-                            {{ $d->created_at->format('Y-m-d H:i:s') }}
-                        </x-ui.table.td>
-                        <td class="px-4 py-3">
-                            <div class="flex items-center gap-2">
+    <flux:table :paginate="$data" class="min-w-full">
+        <flux:table.columns>
+            <flux:table.column>
+                Actions
+            </flux:table.column>
+            <x-loop-th :$searchBy :$paginationOrder :$paginationOrderBy />
+        </flux:table.columns>
+        <flux:table.rows>
+            @forelse($data as $d)
+                <flux:table.row>
+                    <flux:table.cell>
+                        <flux:dropdown>
+                            <flux:button icon:trailing="chevron-down">Options</flux:button>
+                            <flux:menu>
                                 @can('update' . $this->modelInstance)
-                                    <flux:button
-                                        size="sm"
-                                        variant="primary"
+                                    <flux:menu.item
+                                        variant="default"
                                         icon="pencil"
                                         @click="
                                             $flux.modal('defaultModal').show();
                                             $wire.dispatch('set-action', {
                                                 id: '{{ $d->id }}',
                                             });
-                                        "
-                                    >
-                                        Edit
-                                    </flux:button>
-                                    <flux:button
-                                        size="sm"
-                                        variant="primary"
-                                        color="orange"
+                                        ">
+                                        Update
+                                    </flux:menu.item>
+                                    <flux:menu.item
+                                        variant="default"
                                         icon="key"
                                         @click="
                                             $flux.modal('changePasswordModal').show();
                                             $wire.dispatch('set-action', {
                                                 id: '{{ $d->id }}',
                                             });
-                                        "
-                                    >
+                                        ">
                                         Change Password
-                                    </flux:button>
+                                    </flux:menu.item>
                                 @endcan
                                 @can('validate' . $this->modelInstance)
-                                    <flux:button
-                                        size="sm"
-                                        variant="primary"
-                                        color="yellow"
+                                    <flux:menu.item
+                                        variant="default"
                                         icon="envelope-open"
                                         @click="$wire.dispatch('confirm', {
                                             function: 'verifyEmail',
                                             id: '{{ $d->id }}',
-                                        })"
-                                    >
+                                            title: 'Validate Email',
+                                            message: 'Are you sure you want to validate this email?',
+                                        })">
                                         Validate Email
-                                    </flux:button>
+                                    </flux:menu.item>
                                 @endcan
                                 @can('delete' . $this->modelInstance)
-                                    <flux:button
-                                        size="sm"
+                                    <flux:menu.item
                                         variant="danger"
                                         icon="trash"
                                         @click="$wire.dispatch('confirm', {
-                                            function: 'delete',
-                                            id: '{{ $d->id }}',
-                                        })"
-                                    >
+                                                function: 'delete',
+                                                id: '{{ $d->id }}',
+                                        })">
                                         Delete
-                                    </flux:button>
+                                    </flux:menu.item>
                                 @endcan
-                            </div>
-                        </td>
-                    </tr>
-                @empty
-                    <tr>
-                        <x-ui.table.td colspan="99" class="px-4 py-3 text-gray-700 dark:text-zinc-300 text-center">No results found.</x-ui.table.td>
-                    </tr>
-                @endforelse
-            </x-ui.table.tbody>
-        </x-ui.table.index>
-    </div>
-
-    <div class="mt-4">
-        {{ $data->links() }}
-    </div>
+                            </flux:menu>
+                        </flux:dropdown>
+                    </flux:table.cell>
+                    <flux:table.cell>
+                        <flux:badge color="blue" size="sm">
+                            {{ $d->role }}
+                        </flux:badge>
+                    </flux:table.cell>
+                    <flux:table.cell>
+                        {{ $d->name }}
+                    </flux:table.cell>
+                    <flux:table.cell>
+                        {{ $d->email }}
+                    </flux:table.cell>
+                    <flux:table.cell>
+                        {{ $d->email_verified_at?->format('Y-m-d H:i:s') ?? 'N/A' }}
+                    </flux:table.cell>
+                    <flux:table.cell>
+                        {{ $d->created_at->format('Y-m-d H:i:s') }}
+                    </flux:table.cell>
+                </flux:table.row>
+            @empty
+                <flux:table.row>
+                    <flux:table.cell colspan="999" align="center" variant="strong">
+                        No data found.
+                    </flux:table.cell>
+                </flux:table.row>
+            @endforelse
+        </flux:table.rows>
+    </flux:table>
 
     <livewire:cms.management.user.create-update lazy />
 </div>

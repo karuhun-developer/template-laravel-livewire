@@ -20,7 +20,7 @@
     x-on:trix-attachment-add="console.log('Gabisa bg')"
 ></trix-editor>
 
-@once
+@assets
 <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
 <script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
-@endonce
+@endassets

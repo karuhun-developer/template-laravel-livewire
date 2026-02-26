@@ -49,8 +49,8 @@
                 // Check user roles
                 $listMenus = getMenus();
             @endphp
-            <flux:navlist variant="outline">
-                <flux:navlist.group :heading="__('Platform')" class="grid">
+            <flux:navlist>
+                <flux:navlist.group heading="Platform" class="grid">
                     @foreach($listMenus as $mainMenu)
                         @if(count($mainMenu->subMenu) > 0)
                             <flux:navlist.group

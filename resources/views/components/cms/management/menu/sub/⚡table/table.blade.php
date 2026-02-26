@@ -38,88 +38,80 @@
         </div>
     </div>
 
-    <div class="overflow-x-auto bg-white dark:bg-zinc-900 rounded shadow-sm">
-        <x-ui.table.index>
-            <x-ui.table.thead>
-                <tr>
-                    <x-loop-th :$searchBy :$paginationOrder :$paginationOrderBy />
-                    <x-ui.table.th>
-                        Actions
-                    </x-ui.table.th>
-                </tr>
-            </x-ui.table.thead>
-
-            <x-ui.table.tbody>
-                @forelse($data as $d)
-                    <tr>
-                        <x-ui.table.td>
-                            {{ $d->role_name }}
-                        </x-ui.table.td>
-                        <x-ui.table.td>
-                            {{ $d->name }}
-                        </x-ui.table.td>
-                        <x-ui.table.td>
-                            {{ $d->url }}
-                        </x-ui.table.td>
-                        <x-ui.table.td>
-                            {{ $d->icon }}
-                        </x-ui.table.td>
-                        <x-ui.table.td>
-                            {{ $d->order }}
-                        </x-ui.table.td>
-                        <x-ui.table.td>
-                            {{ $d->active_pattern }}
-                        </x-ui.table.td>
-                        <x-ui.table.td>
-                            <flux:badge color="{{ $d->status->color() }}" size="sm">
-                                {{ $d->status->label() }}
-                            </flux:badge>
-                        </x-ui.table.td>
-                        <td class="px-4 py-3">
-                            <div class="flex items-center gap-2">
+    <flux:table :paginate="$data" class="min-w-full">
+        <flux:table.columns>
+            <flux:table.column>
+                Actions
+            </flux:table.column>
+            <x-loop-th :$searchBy :$paginationOrder :$paginationOrderBy />
+        </flux:table.columns>
+        <flux:table.rows>
+            @forelse($data as $d)
+                <flux:table.row>
+                    <flux:table.cell>
+                        <flux:dropdown>
+                            <flux:button icon:trailing="chevron-down">Options</flux:button>
+                            <flux:menu>
                                 @if (auth()->user()->can('update' . $this->modelInstance))
-                                    <flux:button
-                                        size="sm"
-                                        variant="primary"
+                                    <flux:menu.item
+                                        variant="default"
                                         icon="pencil"
                                         @click="
                                             $flux.modal('defaultModal').show();
                                             $wire.dispatch('set-action', {
                                                 id: '{{ $d->id }}',
                                             });
-                                        "
-                                    >
-                                        Edit
-                                    </flux:button>
+                                        ">
+                                        Update
+                                    </flux:menu.item>
                                 @endif
                                 @if (auth()->user()->can('delete' . $this->modelInstance))
-                                    <flux:button
-                                        size="sm"
+                                    <flux:menu.item
                                         variant="danger"
                                         icon="trash"
                                         @click="$wire.dispatch('confirm', {
-                                            function: 'delete',
-                                            id: '{{ $d->id }}',
-                                        })"
-                                    >
+                                                function: 'delete',
+                                                id: '{{ $d->id }}',
+                                        })">
                                         Delete
-                                    </flux:button>
+                                    </flux:menu.item>
                                 @endif
-                            </div>
-                        </td>
-                    </tr>
-                @empty
-                    <tr>
-                        <x-ui.table.td colspan="99" class="px-4 py-3 text-gray-700 dark:text-zinc-300 text-center">No results found.</x-ui.table.td>
-                    </tr>
-                @endforelse
-            </x-ui.table.tbody>
-        </x-ui.table.index>
-    </div>
-
-    <div class="mt-4">
-        {{ $data->links() }}
-    </div>
+                            </flux:menu>
+                        </flux:dropdown>
+                    </flux:table.cell>
+                    <flux:table.cell>
+                        {{ $d->role_name }}
+                    </flux:table.cell>
+                    <flux:table.cell>
+                        {{ $d->name }}
+                    </flux:table.cell>
+                    <flux:table.cell>
+                        {{ $d->url }}
+                    </flux:table.cell>
+                    <flux:table.cell>
+                        {{ $d->icon }}
+                    </flux:table.cell>
+                    <flux:table.cell>
+                        {{ $d->order }}
+                    </flux:table.cell>
+                    <flux:table.cell>
+                        {{ $d->active_pattern }}
+                    </flux:table.cell>
+                    <flux:table.cell>
+                        <flux:badge color="{{ $d->status->color() }}" size="sm">
+                            {{ $d->status->label() }}
+                        </flux:badge>
+                    </flux:table.cell>
+                </flux:table.row>
+            @empty
+                <flux:table.row>
+                    <flux:table.cell colspan="999" align="center" variant="strong">
+                        No data found.
+                    </flux:table.cell>
+                </flux:table.row>
+            @endforelse
+        </flux:table.rows>
+    </flux:table>
 
     <livewire:cms.management.menu.sub.create-update :$menu lazy />
 </div>
