@@ -50,7 +50,7 @@
                 <flux:table.row>
                     <flux:table.cell>
                         <flux:dropdown>
-                            <flux:button icon:trailing="chevron-down">Options</flux:button>
+                            <flux:button icon:trailing="chevron-down" size="sm">Options</flux:button>
                             <flux:menu>
                                 @can('update' . $this->modelInstance)
                                     <flux:menu.item
