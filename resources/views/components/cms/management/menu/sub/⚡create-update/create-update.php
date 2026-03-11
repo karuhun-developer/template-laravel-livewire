@@ -110,6 +110,8 @@ new class extends Component
     // Handle form submit
     public function submit(StoreMenuSubAction $storeAction, UpdateMenuSubAction $updateAction)
     {
+        Gate::authorize(($this->isUpdate ? 'update' : 'create').$this->modelInstance);
+
         $this->validate([
             'role_id' => 'required|exists:roles,id',
             'menu_id' => 'required|exists:menus,id',

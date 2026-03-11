@@ -79,6 +79,8 @@ new class extends Component
     // Handle form submit
     public function submit(StoreUserAction $storeAction, UpdateUserAction $updateAction)
     {
+        Gate::authorize(($this->isUpdate ? 'update' : 'create').$this->modelInstance);
+
         $this->validate([
             'role' => 'required|string|exists:roles,name',
             'name' => 'required|string|max:255',
