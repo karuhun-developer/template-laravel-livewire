@@ -64,7 +64,7 @@ new class extends Component
         $this->reset('password');
     }
 
-    // Reset record data
+    // Reset record dataw
     public function resetRecordData()
     {
         $this->reset([
