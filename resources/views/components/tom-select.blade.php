@@ -37,6 +37,11 @@
                 })
             },
             init() {
+                this.$nextTick(() => {
+                    this.initTomSelect()
+                })
+            },
+            initTomSelect() {
                 new TomSelect(this.$refs.{{ $ref }}, {
                     valueField: '{{ $valueField }}',
                     labelField: '{{ $labelField }}',
@@ -44,7 +49,6 @@
                     load(query, callback) {
                         $wire.{{ $fetchFunction }}(query)
                         .then(menus => {
-                            console.log(menus);
                             callback(menus)
                         })
                         .catch(() => callback())
@@ -63,6 +67,6 @@
     </select>
 </div>
 @assets
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
 @endassets
