@@ -8,14 +8,6 @@ metadata:
 
 # Folio Routing
 
-## When to Apply
-
-Activate this skill when:
-
-- Creating pages with file-based routing
-- Working with route parameters and model binding
-- Adding middleware to Folio pages
-
 ## Documentation
 
 Use `search-docs` for detailed Folio patterns and documentation.
@@ -38,16 +30,16 @@ You may list available Folio routes using `php artisan folio:list` or using the 
 
 Always create new `folio` pages and routes using `php artisan folio:page [name]` following existing naming conventions.
 
-<!-- Example folio:page Commands for Automatic Routing -->
+<!--Example folio:page Commands for Automatic Routing-->
 ```shell
 // Creates: resources/views/pages/products.blade.php → /products
-{{ $assist->artisanCommand('folio:page "products"') }}
+php artisan folio:page "products"
 
 // Creates: resources/views/pages/products/[id].blade.php → /products/{id}
-{{ $assist->artisanCommand('folio:page "products/[id]"') }}
+php artisan folio:page "products/[id]"
 
 // Creates: resources/views/pages/users/[User].blade.php → /users/{user} (implicit model binding)
-{{ $assist->artisanCommand('folio:page "users/[User]"') }}
+php artisan folio:page "users/[User]"
 ```
 
 ## Route Parameters vs. Model Binding

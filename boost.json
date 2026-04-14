@@ -6,21 +6,30 @@
         "claude_code"
     ],
     "guidelines": true,
-    "herd_mcp": false,
     "mcp": true,
     "nightwatch_mcp": false,
     "packages": [
-        "laravel/fortify",
-        "spatie/laravel-medialibrary"
+        "spatie/laravel-medialibrary",
+        "livewire/blaze",
+        "fruitcake/laravel-debugbar"
     ],
     "sail": false,
     "skills": [
         "folio-routing",
+        "fortify-development",
+        "laravel-best-practices",
+        "pulse-development",
         "fluxui-development",
         "livewire-development",
         "pest-testing",
         "tailwindcss-development",
-        "developing-with-fortify",
-        "medialibrary-development"
+        "blaze-optimize",
+        "medialibrary-development",
+        "debug-using-debugbar",
+        "caveman",
+        "caveman-commit",
+        "caveman-compress",
+        "caveman-help",
+        "caveman-review"
     ]
 }

@@ -21,7 +21,7 @@ trait WithGetFilterData
         string $order = 'desc',
         int $paginate = 10,
         string $s = '',
-        string $paginateFunction = 'fastPaginate',
+        string $paginateFunction = 'cursorPaginate',
     ) {
         $model = $model->when(! empty($s) && ! empty($searchBy), function ($query) use ($s, $searchBy) {
             $query->where(function ($query) use ($s, $searchBy) {
