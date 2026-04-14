@@ -25,7 +25,6 @@ Documentation: https://boost.laravel.com/installed
 
 This project uses the following packages:
 
--   [Livewire Volt](https://laravel-livewire.com/)
 -   [Laravel Boost](https://boost.laravel.com/)
 -   [Laravel Folio](https://laravel.com/docs/12.x/folio)
 -   [Spatie Permissions](https://spatie.be/docs/laravel-permission/v6/introduction)
