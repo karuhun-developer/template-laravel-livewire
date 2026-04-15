@@ -15,7 +15,7 @@ trait WithGetFilterDataApi
         string $order = 'asc',
         int $paginate = 10,
         string $s = '',
-        string $paginateFunction = 'cursorPaginate',
+        string $paginateFunction = 'fastPaginate',
     ) {
         $model = $model->where(function ($query) use ($s, $searchBy, $searchBySpecific) {
             if ($searchBySpecific) {
