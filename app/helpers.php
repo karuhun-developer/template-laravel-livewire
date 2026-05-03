@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\CommonStatusEnum;
 use App\Models\Menu\Menu;
 use Illuminate\Support\Facades\Cache;
 
@@ -20,7 +21,7 @@ function getMenus()
     return Cache::remember('menu:'.implode(',', $roles), now()->addDay(), fn () => Menu::query()
         ->with('subMenu')
         ->whereIn('role_id', $roles)
-        ->where('status', \App\Enums\CommonStatusEnum::ACTIVE)
+        ->where('status', CommonStatusEnum::ACTIVE)
         ->orderBy('order', 'asc')
         ->get()
     );

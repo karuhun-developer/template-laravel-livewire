@@ -1,8 +1,13 @@
 <?php
 
+use App\Providers\AppServiceProvider;
+use App\Providers\FastPaginateServiceProvider;
+use App\Providers\FolioServiceProvider;
+use App\Providers\FortifyServiceProvider;
+
 return [
-    App\Providers\AppServiceProvider::class,
-    App\Providers\FolioServiceProvider::class,
-    App\Providers\FortifyServiceProvider::class,
-    App\Providers\FastPaginateServiceProvider::class,
+    AppServiceProvider::class,
+    FolioServiceProvider::class,
+    FortifyServiceProvider::class,
+    FastPaginateServiceProvider::class,
 ];

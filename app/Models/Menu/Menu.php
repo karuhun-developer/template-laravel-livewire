@@ -2,6 +2,8 @@
 
 namespace App\Models\Menu;
 
+use App\Enums\CommonStatusEnum;
+use App\Models\Spatie\Role;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
@@ -21,7 +23,7 @@ class Menu extends Model
     ];
 
     protected $casts = [
-        'status' => \App\Enums\CommonStatusEnum::class,
+        'status' => CommonStatusEnum::class,
     ];
 
     // Get the activity log options.
@@ -32,7 +34,7 @@ class Menu extends Model
 
     public function role()
     {
-        return $this->belongsTo(\App\Models\Spatie\Role::class);
+        return $this->belongsTo(Role::class);
     }
 
     public function subMenu()
