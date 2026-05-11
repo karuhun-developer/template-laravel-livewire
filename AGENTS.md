@@ -12,7 +12,7 @@ This application is a Laravel application and its main Laravel ecosystems packag
 - php - 8.4
 - laravel/folio (FOLIO) - v1
 - laravel/fortify (FORTIFY) - v1
-- laravel/framework (LARAVEL) - v12
+- laravel/framework (LARAVEL) - v13
 - laravel/prompts (PROMPTS) - v0
 - laravel/pulse (PULSE) - v1
 - laravel/sanctum (SANCTUM) - v4
@@ -43,6 +43,7 @@ This project has domain-specific skills available. You MUST activate the relevan
 - `medialibrary-development` — Build and work with spatie/laravel-medialibrary features including associating files with Eloquent models, defining media collections and conversions, generating responsive images, and retrieving media URLs and paths.
 - `debug-using-debugbar` — Use this skill to optimize requests or debug Laravel application issues — slow pages, N+1 queries, exceptions, failed requests, or unexpected behavior — by inspecting data captured by Laravel Debugbar via Artisan CLI commands. Use when the user asks to investigate a bug, diagnose a slow request, find duplicate queries, check what happened on a previous request, or optimize database performance, even if they don't explicitly mention "debugbar" or "profiling."
 
+- `tweakflux-theme-generator` — Generate TweakFlux themes for Flux UI from descriptions, color palettes, screenshots, or brand guidelines.
 - `caveman` — Ultra-compressed communication mode. Cuts token usage ~75% by speaking like caveman while keeping full technical accuracy. Supports intensity levels: lite, full (default), ultra, wenyan-lite, wenyan-full, wenyan-ultra. Use when user says "caveman mode", "talk like caveman", "use caveman", "less tokens", "be brief", or invokes /caveman. Also auto-triggers when token efficiency is requested.
 - `caveman-commit` — Ultra-compressed commit message generator. Cuts noise from commit messages while preserving intent and reasoning. Conventional Commits format. Subject ≤50 chars, body only when "why" isn't obvious. Use when user says "write a commit", "commit message", "generate commit", "/commit", or invokes /caveman-commit. Auto-triggers when staging changes.
 - `caveman-compress` — Compress natural language memory files (CLAUDE.md, todos, preferences) into caveman format to save input tokens. Preserves all technical substance, code, URLs, and structure. Compressed version overwrites the original file. Human-readable backup saved as FILE.original.md. Trigger: /caveman:compress <filepath> or "compress memory file"
@@ -175,31 +176,6 @@ This project has domain-specific skills available. You MUST activate the relevan
 
 - Laravel can be deployed using [Laravel Cloud](https://cloud.laravel.com/), which is the fastest way to deploy and scale production Laravel applications.
 
-=== laravel/v12 rules ===
-
-# Laravel 12
-
-- CRITICAL: ALWAYS use `search-docs` tool for version-specific Laravel documentation and updated code examples.
-- Since Laravel 11, Laravel has a new streamlined file structure which this project uses.
-
-## Laravel 12 Structure
-
-- In Laravel 12, middleware are no longer registered in `app/Http/Kernel.php`.
-- Middleware are configured declaratively in `bootstrap/app.php` using `Application::configure()->withMiddleware()`.
-- `bootstrap/app.php` is the file to register middleware, exceptions, and routing files.
-- `bootstrap/providers.php` contains application specific service providers.
-- The `app/Console/Kernel.php` file no longer exists; use `bootstrap/app.php` or `routes/console.php` for console configuration.
-- Console commands in `app/Console/Commands/` are automatically available and do not require manual registration.
-
-## Database
-
-- When modifying a column, the migration must include all of the attributes that were previously defined on the column. Otherwise, they will be dropped and lost.
-- Laravel 12 allows limiting eagerly loaded records natively, without external packages: `$query->latest()->limit(10);`.
-
-### Models
-
-- Casts can and likely should be set in a `casts()` method on a model rather than the `$casts` property. Follow existing conventions from other models.
-
 === livewire/core rules ===
 
 # Livewire
@@ -229,5 +205,28 @@ This project has domain-specific skills available. You MUST activate the relevan
 
 - `spatie/laravel-medialibrary` associates files with Eloquent models, with support for collections, conversions, and responsive images.
 - Always activate the `medialibrary-development` skill when working with media uploads, conversions, collections, responsive images, or any code that uses the `HasMedia` interface or `InteractsWithMedia` trait.
+
+=== joshcirre/tweakflux rules ===
+
+# TweakFlux
+
+This application uses the TweakFlux package (`joshcirre/tweakflux`) for deep theming of Flux UI components via Tailwind v4 CSS custom properties.
+
+Activate the `tweakflux-theme-generator` skill when the user asks to create, generate, edit, or modify a TweakFlux theme — whether from a description, color palette, screenshot, brand guidelines, or any visual reference.
+
+## Available Commands
+
+- `tweakflux apply {theme?}` — Apply a theme (interactive picker if no name given)
+- `tweakflux apply {theme} --no-effects` — Apply a theme without visual effects (glows, animations)
+- `tweakflux list` — List all available themes
+- `tweakflux create {name}` — Scaffold a new theme JSON file
+- `tweakflux boost` — Copy Boost guidelines and skills into your project
+
+## Theme Files
+
+Themes are JSON files in `resources/themes/{slug}.json`. All colors use `oklch(L C H)` format. Set any value to `null` to keep the Flux default.
+
+- `css` — Structural CSS always included (layout overrides, button shapes).
+- `effects` — Toggleable visual effects (glows, animations) that users can disable with `--no-effects`.
 
 </laravel-boost-guidelines>

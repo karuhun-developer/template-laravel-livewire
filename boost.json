@@ -11,7 +11,8 @@
     "packages": [
         "spatie/laravel-medialibrary",
         "livewire/blaze",
-        "fruitcake/laravel-debugbar"
+        "fruitcake/laravel-debugbar",
+        "joshcirre/tweakflux"
     ],
     "sail": false,
     "skills": [
@@ -26,6 +27,7 @@
         "blaze-optimize",
         "medialibrary-development",
         "debug-using-debugbar",
+        "tweakflux-theme-generator",
         "caveman",
         "caveman-commit",
         "caveman-compress",

@@ -21,12 +21,22 @@ php artisan serve
 
 Documentation: https://boost.laravel.com/installed
 
+# Tweakflux
+
+Documentation: https://tweakflux.com
+
+```
+./vendor/bin/tweakflux apply {theme?}
+```
+
 # Package
 
 This project uses the following packages:
 
--   [Laravel Boost](https://boost.laravel.com/)
--   [Laravel Folio](https://laravel.com/docs/12.x/folio)
--   [Spatie Permissions](https://spatie.be/docs/laravel-permission/v6/introduction)
--   [Spatie Media Library](https://spatie.be/docs/laravel-medialibrary/v10/introduction)
--   [Spatie Activity Log](https://spatie.be/docs/laravel-activitylog/v4/introduction)
+- [Laravel Boost](https://boost.laravel.com/)
+- [Laravel Folio](https://laravel.com/docs/12.x/folio)
+- [Livewire Flux](https://fluxui.dev/)
+- [Tweakflux](https://github.com/joshcirre/tweakflux)
+- [Spatie Permissions](https://spatie.be/docs/laravel-permission/v6/introduction)
+- [Spatie Media Library](https://spatie.be/docs/laravel-medialibrary/v10/introduction)
+- [Spatie Activity Log](https://spatie.be/docs/laravel-activitylog/v4/introduction)
