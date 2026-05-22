@@ -16,7 +16,7 @@ window.debounce = (callback, wait) => {
 // Livewire alert
 Livewire.on("alert", (params) => {
     Flux.toast({
-        heading: params.title ?? "Success",
+        heading: params.title ?? params.type ?? "Success",
         text: params.message,
         variant: params.type ?? "success",
     });
@@ -58,7 +58,7 @@ Livewire.on("setValueById", (params) => {
 // Livewire toast
 Livewire.on("toast", (params) => {
     Flux.toast({
-        heading: params.title ?? "Success",
+        heading: params.title ?? params.type ?? "Success",
         text: params.message,
         variant: params.type ?? "success",
     });
