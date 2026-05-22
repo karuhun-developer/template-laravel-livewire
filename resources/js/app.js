@@ -2,21 +2,7 @@ import {
     Livewire,
     Alpine,
 } from "../../vendor/livewire/livewire/dist/livewire.esm";
-import Swal from "sweetalert2";
 
-window.Swal = Swal;
-window.Toast = Swal.mixin({
-    toast: true,
-    position: "top-end",
-    showConfirmButton: false,
-    timer: 3000,
-    timerProgressBar: true,
-    topLayer: true,
-    didOpen: (toast) => {
-        toast.addEventListener("mouseenter", Swal.stopTimer);
-        toast.addEventListener("mouseleave", Swal.resumeTimer);
-    },
-});
 window.debounce = (callback, wait) => {
     let timeoutId = null;
     return (...args) => {
@@ -29,42 +15,37 @@ window.debounce = (callback, wait) => {
 
 // Livewire alert
 Livewire.on("alert", (params) => {
-    window.Toast.fire({
-        icon: params.type ?? "success",
-        title: params.message,
+    Flux.toast({
+        heading: params.title ?? "Success",
+        text: params.message,
+        variant: params.type ?? "success",
     });
 });
 
 // Livewire confirmation dialog
 Livewire.on("confirm", (params) => {
-    let swalParams = {
-        title: params.title ?? "Are you sure?",
-        text: params.message ?? `You won't be able to revert this`,
-        icon: params.icon ?? "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#262626",
-        cancelButtonColor: "#e91e63",
-        confirmButtonText: params.confirmText ?? "Yes",
-        cancelButtonText: params.cancelText ?? "Cancel",
-    };
+    Flux.modal('confirm').show();
 
-    // If params withDenyButton
-    if (params?.withDenyButton) {
-        swalParams.showDenyButton = true;
-        swalParams.denyButtonColor = params?.denyColor ?? "#ffc107";
-        swalParams.denyButtonText = params?.denyText ?? "Deny";
+    const titleElement = document.getElementById('confirm-title');
+    const messageElement = document.getElementById('confirm-message');
+    const buttonElement = document.getElementById('confirm-button');
+
+    // Update modal content
+    if (titleElement) {
+        titleElement.textContent = params.title ?? "Are you sure?";
+    }
+    if (messageElement) {
+        messageElement.textContent = params.message ?? `You won't be able to revert this`;
+    }
+    if (buttonElement) {
+        buttonElement.textContent = params.confirmText ?? "Yes";
     }
 
-    window.Swal.fire(swalParams).then((result) => {
-        if (result.isConfirmed) {
-            Livewire.dispatch(params.function, { id: params.id });
-        }
-
-        // If params withDenyButton
-        if (result?.isDenied) {
-            Livewire.dispatch(params?.denyFunction, { id: params?.denyId });
-        }
-    });
+    // Dispatch Livewire event when button is clicked
+    buttonElement.onclick = () => {
+        Livewire.dispatch(params.function, { id: params.id });
+        Flux.modal('confirm').close();
+    };
 });
 
 // Livewire setValueById
@@ -76,9 +57,10 @@ Livewire.on("setValueById", (params) => {
 
 // Livewire toast
 Livewire.on("toast", (params) => {
-    window.Toast.fire({
-        icon: params.type ?? "success",
-        title: params.message,
+    Flux.toast({
+        heading: params.title ?? "Success",
+        text: params.message,
+        variant: params.type ?? "success",
     });
 });
 
