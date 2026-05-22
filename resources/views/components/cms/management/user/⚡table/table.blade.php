@@ -69,7 +69,7 @@
                                         icon="key"
                                         @click="
                                             $flux.modal('changePasswordModal').show();
-                                            $wire.dispatch('set-action', {
+                                            $wire.dispatch('set-update-password', {
                                                 id: '{{ $d->id }}',
                                             });
                                         ">
@@ -94,8 +94,8 @@
                                         variant="danger"
                                         icon="trash"
                                         @click="$wire.dispatch('confirm', {
-                                                function: 'delete',
-                                                id: '{{ $d->id }}',
+                                            function: 'delete',
+                                            id: '{{ $d->id }}',
                                         })">
                                         Delete
                                     </flux:menu.item>
@@ -132,4 +132,5 @@
     </flux:table>
 
     <livewire:cms.management.user.create-update lazy />
+    <livewire:cms.management.user.update-password lazy />
 </div>

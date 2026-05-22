@@ -2,7 +2,6 @@
 
 use App\Actions\Cms\Management\User\StoreUserAction;
 use App\Actions\Cms\Management\User\UpdateUserAction;
-use App\Actions\Cms\Management\User\UpdateUserPasswordAction;
 use App\Models\Spatie\Role;
 use App\Models\User;
 use Flux\Flux;
@@ -110,26 +109,5 @@ new class extends Component
 
         // Close modal
         Flux::modal('defaultModal')->close();
-    }
-
-    // Handle change password submit
-    public function changePasswordSubmit(UpdateUserPasswordAction $updatePasswordAction)
-    {
-        // Validation rules
-        $this->validate([
-            'password' => 'required|string|min:8',
-        ]);
-
-        // Find user and update password
-        $updatePasswordAction->handle(
-            user: User::findOrFail($this->id),
-            password: $this->password,
-        );
-
-        // Toast message
-        $this->dispatch('toast', type: 'success', message: 'Password changed successfully.');
-
-        // Close modal
-        Flux::modal('changePasswordModal')->close();
     }
 };
