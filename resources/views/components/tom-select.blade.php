@@ -42,7 +42,7 @@
                 })
             },
             initTomSelect() {
-                new TomSelect(this.$refs.{{ $ref }}, {
+                new window.TomSelect(this.$refs.{{ $ref }}, {
                     valueField: '{{ $valueField }}',
                     labelField: '{{ $labelField }}',
                     searchField: [],
@@ -66,7 +66,3 @@
         {{ $attributes ?? '' }}>
     </select>
 </div>
-@assets
-<link href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
-@endassets

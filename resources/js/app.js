@@ -2,7 +2,9 @@ import {
     Livewire,
     Alpine,
 } from "../../vendor/livewire/livewire/dist/livewire.esm";
+import TomSelect from "tom-select";
 
+window.TomSelect = TomSelect;
 window.debounce = (callback, wait) => {
     let timeoutId = null;
     return (...args) => {

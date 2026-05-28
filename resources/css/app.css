@@ -1,3 +1,4 @@
+@import 'tom-select/dist/css/tom-select.css';
 @import 'tailwindcss';
 @import '../../vendor/livewire/flux/dist/flux.css';
 
