@@ -62,7 +62,7 @@
                             :expanded="showDropdown(explode(',', $mainMenu->active_pattern))">
                             @if ($mainMenu->icon)
                                 <x-slot name="icon">
-                                    <flux:icon name="{{ $mainMenu->icon }}" variant="mini" />
+                                    <flux:icon name="{{ $mainMenu->icon }}" variant="micro" />
                                 </x-slot>
                             @endif
                             @foreach($mainMenu->subMenu as $child)
