@@ -7,9 +7,12 @@
     <body class="min-h-screen bg-white dark:bg-zinc-800">
         <flux:sidebar sticky collapsible class="border-e border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
             <flux:sidebar.header>
-                <a href="{{ route('cms.dashboard') }}" class="me-5 flex items-center space-x-2 rtl:space-x-reverse" wire:navigate>
-                    <x-app-logo />
-                </a>
+                <flux:sidebar.brand
+                    href="#"
+                    logo="https://fluxui.dev/img/demo/logo.png"
+                    logo:dark="https://fluxui.dev/img/demo/dark-mode-logo.png"
+                    :name="config('app.name')"
+                />
                 <flux:sidebar.collapse class="in-data-flux-sidebar-on-desktop:not-in-data-flux-sidebar-collapsed-desktop:-mr-2" />
             </flux:sidebar.header>
 
@@ -57,6 +60,11 @@
                             heading="{{ $mainMenu->name }}"
                             expandable
                             :expanded="showDropdown(explode(',', $mainMenu->active_pattern))">
+                            @if ($mainMenu->icon)
+                                <x-slot name="icon">
+                                    <flux:icon name="{{ $mainMenu->icon }}" variant="mini" />
+                                </x-slot>
+                            @endif
                             @foreach($mainMenu->subMenu as $child)
                                 <flux:sidebar.item
                                     href="{{ echoRoute($child->url) }}"
