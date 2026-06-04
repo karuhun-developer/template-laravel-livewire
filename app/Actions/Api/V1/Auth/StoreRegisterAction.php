@@ -14,9 +14,8 @@ class StoreRegisterAction
     {
         $user = User::create($data);
 
-        if (isset($data['role'])) {
-            $user->syncRoles([$data['role']]);
-        }
+        // Assign as user by default
+        $user->syncRoles(['user']);
 
         // Confirm email if needed
         event(new Registered($user));
