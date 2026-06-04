@@ -26,5 +26,5 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/email/resend', [AuthenticatedController::class, 'resend'])->name('email.resend')->middleware('throttle:6,1');
 
     // Logout
-    Route::post('/logout', [AuthenticatedController::class, 'logout'])->name('logout');
+    Route::post('/logout', [AuthenticatedController::class, 'delete'])->name('logout');
 });
