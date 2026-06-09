@@ -95,13 +95,15 @@
             <flux:spacer />
 
             <flux:sidebar.nav variant="outline">
-                <flux:sidebar.item icon="screen-share" href="{{ url('pulse') }}" target="_blank">
-                    Laravel Pulse
-                </flux:sidebar.item>
+                @role('superadmin')
+                    <flux:sidebar.item icon="screen-share" href="{{ url('pulse') }}" target="_blank">
+                        Laravel Pulse
+                    </flux:sidebar.item>
 
-                <flux:sidebar.item icon="scroll-text" href="{{ url('logs') }}" target="_blank">
-                    Laravel Logs
-                </flux:sidebar.item>
+                    <flux:sidebar.item icon="scroll-text" href="{{ url('logs') }}" target="_blank">
+                        Laravel Logs
+                    </flux:sidebar.item>
+                @endrole
             </flux:sidebar.nav>
 
             <!-- Desktop User Menu -->
