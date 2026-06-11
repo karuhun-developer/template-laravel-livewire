@@ -40,3 +40,4 @@ This project uses the following packages:
 - [Spatie Permissions](https://spatie.be/docs/laravel-permission/v6/introduction)
 - [Spatie Media Library](https://spatie.be/docs/laravel-medialibrary/v10/introduction)
 - [Spatie Activity Log](https://spatie.be/docs/laravel-activitylog/v4/introduction)
+- [Livewire Jodit Editor](https://github.com/Mantix/livewire-jodit-text-editor)
