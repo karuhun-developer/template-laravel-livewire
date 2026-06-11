@@ -7,42 +7,38 @@
 <div class="mb-3 max-w-[95%]">
     @if($type === 'image')
         @if($file instanceof \Livewire\Features\SupportFileUploads\TemporaryUploadedFile)
-            <img src="{{ $file->temporaryUrl() }}" alt="logo" class="w-full h-auto object-contain" loading="lazy">
+            <img src="{{ $file->temporaryUrl() }}" alt="logo" class="w-90 h-auto object-contain" loading="lazy">
         @elseif($form_file != null)
-            <img src="{{ $form_file }}" alt="logo" class="w-full h-auto object-contain" loading="lazy">
+            <img src="{{ $form_file }}" alt="logo" class="w-90 h-auto object-contain" loading="lazy">
         @endif
 
     @elseif($type === 'video')
         @if($file instanceof \Livewire\Features\SupportFileUploads\TemporaryUploadedFile)
-            <video controls class="w-full h-auto object-contain">
-                <source src="{{ $file->temporaryUrl() }}" type="{{ $file->getMimeType() }}">
+            <video controls class="w-90 h-auto object-contain" src="{{ $file->temporaryUrl() }}">
                 Your browser does not support the video tag.
             </video>
         @elseif($form_file != null)
-            <video controls class="w-full h-auto object-contain">
-                <source src="{{ $form_file }}" type="video/mp4">
+            <video controls class="w-90 h-auto object-contain" src="{{ $form_file }}">
                 Your browser does not support the video tag.
             </video>
         @endif
 
     @elseif($type === 'audio')
         @if($file instanceof \Livewire\Features\SupportFileUploads\TemporaryUploadedFile)
-            <audio controls class="w-full">
-                <source src="{{ $file->temporaryUrl() }}" type="{{ $file->getMimeType() }}">
+            <audio controls class="w-90" src="{{ $file->temporaryUrl() }}">
                 Your browser does not support the audio element.
             </audio>
         @elseif($form_file != null)
-            <audio controls class="w-full">
-                <source src="{{ $form_file }}" type="audio/mpeg">
+            <audio controls class="w-90" src="{{ $form_file }}">
                 Your browser does not support the audio element.
             </audio>
         @endif
 
     @elseif($type === 'pdf')
         @if($file instanceof \Livewire\Features\SupportFileUploads\TemporaryUploadedFile)
-            <iframe src="{{ $file->temporaryUrl() }}" class="w-full h-96" frameborder="0"></iframe>
+            <iframe src="{{ $file->temporaryUrl() }}" class="w-90 h-96" frameborder="0"></iframe>
         @elseif($form_file != null)
-            <iframe src="{{ $form_file }}" class="w-full h-96" frameborder="0"></iframe>
+            <iframe src="{{ $form_file }}" class="w-90 h-96" frameborder="0"></iframe>
         @endif
 
     @else
