@@ -433,10 +433,10 @@ jiti@^2.6.1:
   resolved "https://registry.yarnpkg.com/jiti/-/jiti-2.6.1.tgz#178ef2fc9a1a594248c20627cd820187a4d78d92"
   integrity sha512-ekilCSN1jwRvIbgeg/57YFh8qQDNbwDb9xT/qu2DAHbFFZUicIl4ygVaAvzveMhMVr3LnpSKTNnwt8PoOfmKhQ==
 
-jodit@^4.12.22:
-  version "4.12.22"
-  resolved "https://registry.yarnpkg.com/jodit/-/jodit-4.12.22.tgz#8687ea62ca2c5dbddd05291bac13431fc0b57eb6"
-  integrity sha512-N/cZ1Pq0rNewGBT7KycWWWtCljPz4kLZsqCib1jY8FCSRDTothp7zRaQyK9aGvKkoPjj0Zxo1VyfwQjsr2TyoQ==
+jodit@^4.12.26:
+  version "4.12.26"
+  resolved "https://registry.yarnpkg.com/jodit/-/jodit-4.12.26.tgz#2fb2d2427da8da3a77ff18300967610a92d51a2b"
+  integrity sha512-ELAJXtzyQbSlJ4yQT4F6+cOOaO2lQhtw8XZDshrwjhiK50+/mTUbvUGQV06lFprenV7nIiQQj8zMMiYtON+Rhg==
 
 laravel-vite-plugin@^3.1.0:
   version "3.1.0"
