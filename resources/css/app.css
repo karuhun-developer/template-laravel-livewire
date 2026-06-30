@@ -1,7 +1,5 @@
-@import "tom-select/dist/css/tom-select.css";
 @import "tailwindcss";
 @import "../../vendor/livewire/flux/dist/flux.css";
-@import "jodit/es2021/jodit";
 
 @source '../views';
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
@@ -68,3 +66,27 @@ select:focus[data-flux-control] {
 /* \[:where(&)\]:size-4 {
     @apply size-4;
 } */
+
+blockquote {
+    @apply border-l-4 border-gray-300 pl-4 italic text-gray-600;
+}
+
+ul {
+    @apply list-disc list-inside;
+    list-style-position: outside; /* Memastikan nomor/bullet berada di luar blok teks */
+    padding-left: 2rem;
+}
+
+ol {
+    @apply list-decimal list-inside;
+    list-style-position: outside; /* Memastikan nomor/bullet berada di luar blok teks */
+    padding-left: 2rem;
+}
+
+li {
+    margin-bottom: 0.5rem; /* Opsional: memberi jarak antar list item */
+}
+
+.ceviche-one-regular {
+    font-family: "Ceviche One", system-ui;
+}
