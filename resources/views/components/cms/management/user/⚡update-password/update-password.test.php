@@ -21,13 +21,9 @@ it('cannot access setAction without update permission', function () {
     $this->seed(PermissionSeeder::class);
     $this->actingAs($user);
 
-    try {
-        Livewire::test('cms.management.user.update-password')
-            ->call('setAction', 1)
-            ->assertForbidden();
-    } catch (Exception $e) {
-        $this->assertTrue(true);
-    }
+    Livewire::test('cms.management.user.update-password')
+        ->call('setAction', 1)
+        ->assertForbidden();
 });
 
 it('validates empty password', function () {

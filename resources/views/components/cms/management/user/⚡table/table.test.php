@@ -19,14 +19,10 @@ it('renders table successfully', function () {
 it('cannot delete without permission', function () {
     $user = User::factory()->create();
     $this->seed(PermissionSeeder::class);
+    $user->givePermissionTo('view'.User::class);
     $this->actingAs($user);
 
-    try {
-
-        Livewire::test('cms.management.user.table')->call('delete', 1)->assertForbidden();
-    } catch (Exception $e) {
-        $this->assertTrue(true);
-    }
+    Livewire::test('cms.management.user.table')->call('delete', 1)->assertForbidden();
 });
 
 it('can delete with permission', function () {
@@ -37,10 +33,7 @@ it('can delete with permission', function () {
 
     $recordId = User::factory()->create()->id;
     $args = [];
-    try {
-        $livewire = Livewire::test('cms.management.user.table', $args);
-        $livewire->call('delete', $recordId);
-    } catch (Exception $e) {
-    }
-    $this->assertTrue(true);
+    Livewire::test('cms.management.user.table', $args)
+        ->call('delete', $recordId)
+        ->assertHasNoErrors();
 });

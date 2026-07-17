@@ -30,12 +30,7 @@ it('cannot access setAction without show permission', function () {
     $this->seed(PermissionSeeder::class);
     $this->actingAs($user);
 
-    try {
-
-        Livewire::test('cms.management.menu.create-update')->call('setAction', 1)->assertForbidden();
-    } catch (Exception $e) {
-        $this->assertTrue(true);
-    }
+    Livewire::test('cms.management.menu.create-update')->call('setAction', 1)->assertForbidden();
 });
 
 it('cannot submit without create/update permission', function () {
@@ -43,10 +38,5 @@ it('cannot submit without create/update permission', function () {
     $this->seed(PermissionSeeder::class);
     $this->actingAs($user);
 
-    try {
-
-        Livewire::test('cms.management.menu.create-update')->call('submit')->assertForbidden();
-    } catch (Exception $e) {
-        $this->assertTrue(true);
-    }
+    Livewire::test('cms.management.menu.create-update')->call('submit')->assertForbidden();
 });

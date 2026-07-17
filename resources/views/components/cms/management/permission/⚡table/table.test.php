@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Spatie\Permission;
 use App\Models\User;
 use Database\Seeders\PermissionSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -19,14 +20,10 @@ it('renders table successfully', function () {
 it('cannot delete without permission', function () {
     $user = User::factory()->create();
     $this->seed(PermissionSeeder::class);
+    $user->givePermissionTo('view'.Permission::class);
     $this->actingAs($user);
 
-    try {
-
-        Livewire::test('cms.management.permission.table')->call('delete', 1)->assertForbidden();
-    } catch (Exception $e) {
-        $this->assertTrue(true);
-    }
+    Livewire::test('cms.management.permission.table')->call('delete', 1)->assertForbidden();
 });
 
 it('can delete with permission', function () {
@@ -37,10 +34,7 @@ it('can delete with permission', function () {
 
     $recordId = 1;
     $args = [];
-    try {
-        $livewire = Livewire::test('cms.management.permission.table', $args);
-        $livewire->call('delete', $recordId);
-    } catch (Exception $e) {
-    }
-    $this->assertTrue(true);
+    Livewire::test('cms.management.permission.table', $args)
+        ->call('delete', $recordId)
+        ->assertHasNoErrors();
 });

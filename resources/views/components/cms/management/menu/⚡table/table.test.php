@@ -21,14 +21,10 @@ it('renders table successfully', function () {
 it('cannot delete without permission', function () {
     $user = User::factory()->create();
     $this->seed(PermissionSeeder::class);
+    $user->givePermissionTo('view'.Menu::class);
     $this->actingAs($user);
 
-    try {
-
-        Livewire::test('cms.management.menu.table')->call('delete', 1)->assertForbidden();
-    } catch (Exception $e) {
-        $this->assertTrue(true);
-    }
+    Livewire::test('cms.management.menu.table')->call('delete', 1)->assertForbidden();
 });
 
 it('can delete with permission', function () {
@@ -41,10 +37,7 @@ it('can delete with permission', function () {
     $menu = Menu::create(['role_id' => $role->id, 'name' => 'Menu', 'url' => '/menu', 'order' => 1, 'status' => 1]);
     $recordId = $menu->id;
     $args = [];
-    try {
-        $livewire = Livewire::test('cms.management.menu.table', $args);
-        $livewire->call('delete', $recordId);
-    } catch (Exception $e) {
-    }
-    $this->assertTrue(true);
+    Livewire::test('cms.management.menu.table', $args)
+        ->call('delete', $recordId)
+        ->assertHasNoErrors();
 });

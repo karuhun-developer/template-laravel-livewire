@@ -36,13 +36,9 @@ it('cannot access setAction without show permission', function () {
     $this->seed(PermissionSeeder::class);
     $this->actingAs($user);
 
-    try {
-        $role = Role::firstOrCreate(['name' => 'superadmin', 'guard_name' => 'api']);
-        $menu = Menu::create(['role_id' => $role->id, 'name' => 'Menu', 'url' => '/menu', 'order' => 1, 'status' => 1]);
-        Livewire::test('cms.management.menu.sub.create-update', ['menu' => $menu])->call('setAction', 1)->assertForbidden();
-    } catch (Exception $e) {
-        $this->assertTrue(true);
-    }
+    $role = Role::firstOrCreate(['name' => 'superadmin', 'guard_name' => 'api']);
+    $menu = Menu::create(['role_id' => $role->id, 'name' => 'Menu', 'url' => '/menu', 'order' => 1, 'status' => 1]);
+    Livewire::test('cms.management.menu.sub.create-update', ['menu' => $menu])->call('setAction', 1)->assertForbidden();
 });
 
 it('cannot submit without create/update permission', function () {
@@ -50,11 +46,7 @@ it('cannot submit without create/update permission', function () {
     $this->seed(PermissionSeeder::class);
     $this->actingAs($user);
 
-    try {
-        $role = Role::firstOrCreate(['name' => 'superadmin', 'guard_name' => 'api']);
-        $menu = Menu::create(['role_id' => $role->id, 'name' => 'Menu', 'url' => '/menu', 'order' => 1, 'status' => 1]);
-        Livewire::test('cms.management.menu.sub.create-update', ['menu' => $menu])->call('submit')->assertForbidden();
-    } catch (Exception $e) {
-        $this->assertTrue(true);
-    }
+    $role = Role::firstOrCreate(['name' => 'superadmin', 'guard_name' => 'api']);
+    $menu = Menu::create(['role_id' => $role->id, 'name' => 'Menu', 'url' => '/menu', 'order' => 1, 'status' => 1]);
+    Livewire::test('cms.management.menu.sub.create-update', ['menu' => $menu])->call('submit')->assertForbidden();
 });
