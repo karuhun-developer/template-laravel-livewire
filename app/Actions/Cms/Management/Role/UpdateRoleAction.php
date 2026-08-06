@@ -2,6 +2,7 @@
 
 namespace App\Actions\Cms\Management\Role;
 
+use App\DTOs\Cms\Management\Role\UpdateRoleData;
 use App\Models\Spatie\Role;
 
 class UpdateRoleAction
@@ -9,8 +10,8 @@ class UpdateRoleAction
     /**
      * Handle the action.
      */
-    public function handle(Role $role, array $data): bool
+    public function handle(Role $role, UpdateRoleData $data): bool
     {
-        return $role->update($data);
+        return $role->update($data->toArray());
     }
 }

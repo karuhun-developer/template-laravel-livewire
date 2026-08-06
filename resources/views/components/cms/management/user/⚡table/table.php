@@ -4,16 +4,21 @@ use App\Actions\Cms\Management\User\DeleteUserAction;
 use App\Actions\Cms\Management\User\ValidateUserEmailAction;
 use App\Livewire\BaseComponent;
 use App\Models\User;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Gate;
 use Livewire\Attributes\On;
 
 new class extends BaseComponent
 {
-    // Model instance
-    public $modelInstance = User::class;
+    /** @var class-string<User> */
+    public string $modelInstance = User::class;
 
-    // Pagination and Search
-    public $searchBy = [
+    /**
+     * Pagination and Search.
+     *
+     * @var array<int, array{name: string, field: string}>
+     */
+    public array $searchBy = [
         [
             'name' => 'Role',
             'field' => 'roles.name',
@@ -36,7 +41,7 @@ new class extends BaseComponent
         ],
     ];
 
-    public function mount()
+    public function mount(): void
     {
         Gate::authorize('view'.$this->modelInstance);
 
@@ -44,7 +49,7 @@ new class extends BaseComponent
         $this->paginationOrderBy = 'users.created_at';
     }
 
-    public function render()
+    public function render(): View
     {
         if ($this->search != '') {
             $this->resetPage();
@@ -71,7 +76,7 @@ new class extends BaseComponent
     }
 
     #[On('delete')]
-    public function delete($id, DeleteUserAction $deleteAction)
+    public function delete(int $id, DeleteUserAction $deleteAction): void
     {
         Gate::authorize('delete'.$this->modelInstance);
 
@@ -84,7 +89,7 @@ new class extends BaseComponent
     }
 
     #[On('verifyEmail')]
-    public function verifyEmail($id, ValidateUserEmailAction $validateEmailAction)
+    public function verifyEmail(int $id, ValidateUserEmailAction $validateEmailAction): void
     {
         Gate::authorize('validate'.$this->modelInstance);
 

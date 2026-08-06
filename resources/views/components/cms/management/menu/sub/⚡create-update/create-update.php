@@ -2,10 +2,13 @@
 
 use App\Actions\Cms\Management\MenuSub\StoreMenuSubAction;
 use App\Actions\Cms\Management\MenuSub\UpdateMenuSubAction;
+use App\DTOs\Cms\Management\MenuSub\StoreMenuSubData;
+use App\DTOs\Cms\Management\MenuSub\UpdateMenuSubData;
 use App\Models\Menu\Menu;
 use App\Models\Menu\MenuSub;
 use App\Models\Spatie\Role;
 use Flux\Flux;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Gate;
@@ -15,15 +18,34 @@ use Livewire\Component;
 
 new class extends Component
 {
-    // Model instance
-    public $modelInstance = MenuSub::class;
+    /** @var class-string<MenuSub> */
+    public string $modelInstance = MenuSub::class;
 
     public Menu $menu;
 
-    public $isUpdate = false;
+    public bool $isUpdate = false;
+
+    // Record data
+    public ?int $id = null;
+
+    public ?int $role_id = null;
+
+    public ?int $menu_id = null;
+
+    public ?string $name = null;
+
+    public ?string $url = null;
+
+    public ?string $icon = null;
+
+    public ?int $order = null;
+
+    public ?string $active_pattern = null;
+
+    public int $status = 1;
 
     #[On('set-action')]
-    public function setAction($id = null)
+    public function setAction(?int $id = null): void
     {
         $this->resetValidation();
 
@@ -36,41 +58,28 @@ new class extends Component
         }
     }
 
+    /**
+     * @return Collection<int, Role>
+     */
     #[Computed]
-    public function roles()
+    public function roles(): Collection
     {
         return Role::all();
     }
 
+    /**
+     * @return array<int, string>
+     */
     #[Computed]
-    public function icons()
+    public function icons(): array
     {
         return collect(File::allFiles(resource_path('views/flux/icon')))->map(function ($file) {
             return str_replace('.blade.php', '', $file->getFilename());
         })->values()->toArray();
     }
 
-    // Record data
-    public $id;
-
-    public $role_id;
-
-    public $menu_id;
-
-    public $name;
-
-    public $url;
-
-    public $icon;
-
-    public $order;
-
-    public $active_pattern;
-
-    public $status;
-
     // Get record data
-    public function getRecordData($id)
+    public function getRecordData(int $id): void
     {
         Gate::authorize('show'.$this->modelInstance);
 
@@ -91,7 +100,7 @@ new class extends Component
     }
 
     // Reset record data
-    public function resetRecordData()
+    public function resetRecordData(): void
     {
         $this->reset([
             'id',
@@ -110,7 +119,7 @@ new class extends Component
     }
 
     // Handle form submit
-    public function submit(StoreMenuSubAction $storeAction, UpdateMenuSubAction $updateAction)
+    public function submit(StoreMenuSubAction $storeAction, UpdateMenuSubAction $updateAction): void
     {
         Gate::authorize(($this->isUpdate ? 'update' : 'create').$this->modelInstance);
 
@@ -128,11 +137,11 @@ new class extends Component
         if ($this->isUpdate) {
             $updateAction->handle(
                 menuSub: MenuSub::findOrFail($this->id),
-                data: $this->all(),
+                data: UpdateMenuSubData::fromArray($this->all()),
             );
         } else {
             $storeAction->handle(
-                data: $this->all(),
+                data: StoreMenuSubData::fromArray($this->all()),
             );
         }
 

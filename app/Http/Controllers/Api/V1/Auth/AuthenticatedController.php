@@ -6,6 +6,8 @@ use App\Actions\Api\V1\Auth\DeleteAuthenticatedAction;
 use App\Actions\Api\V1\Auth\ResendAuthenticatedAction;
 use App\Actions\Api\V1\Auth\StoreAuthenticatedAction;
 use App\Actions\Api\V1\Auth\UpdateAuthenticatedAction;
+use App\DTOs\Api\V1\Auth\StoreAuthenticatedData;
+use App\DTOs\Api\V1\Auth\UpdateAuthenticatedData;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\V1\Auth\StoreAuthenticatedRequest;
 use App\Http\Requests\Api\V1\Auth\UpdateAuthenticatedRequest;
@@ -19,7 +21,7 @@ class AuthenticatedController extends Controller
      */
     public function store(StoreAuthenticatedRequest $request, StoreAuthenticatedAction $action)
     {
-        if (! $action->handle($request->validated())) {
+        if (! $action->handle(StoreAuthenticatedData::fromArray($request->validated()))) {
             return $this->responseWithError('Your credentials are incorrect', 422);
         }
 
@@ -57,7 +59,7 @@ class AuthenticatedController extends Controller
      */
     public function update(UpdateAuthenticatedRequest $request, UpdateAuthenticatedAction $action)
     {
-        $user = $action->handle($request->validated());
+        $user = $action->handle(UpdateAuthenticatedData::fromArray($request->validated()));
 
         return $this->responseWithSuccess($user);
     }

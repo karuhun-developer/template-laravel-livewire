@@ -2,6 +2,7 @@
 
 namespace App\Actions\Cms\Management\Permission;
 
+use App\DTOs\Cms\Management\Permission\UpdatePermissionData;
 use App\Models\Spatie\Permission;
 
 class UpdatePermissionAction
@@ -9,8 +10,8 @@ class UpdatePermissionAction
     /**
      * Handle the action.
      */
-    public function handle(Permission $permission, array $data): bool
+    public function handle(Permission $permission, UpdatePermissionData $data): bool
     {
-        return $permission->update($data);
+        return $permission->update($data->toArray());
     }
 }

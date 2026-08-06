@@ -8,16 +8,20 @@ use Illuminate\Support\Facades\Gate;
 
 new class extends BaseComponent
 {
-    // Model instance
-    public $modelInstance = Permission::class;
+    /** @var class-string<Permission> */
+    public string $modelInstance = Permission::class;
 
-    // List permissions
-    public $permissions = [];
+    /**
+     * List of permissions grouped by model.
+     *
+     * @var array<string, array<string, bool>>
+     */
+    public array $permissions = [];
 
     // Role instance
     public Role $role;
 
-    public function mount()
+    public function mount(): void
     {
         Gate::authorize('view'.$this->modelInstance);
 
@@ -25,7 +29,7 @@ new class extends BaseComponent
         $this->getPermissions();
     }
 
-    protected function getPermissions()
+    protected function getPermissions(): void
     {
         $permission = Permission::all();
 
@@ -49,7 +53,7 @@ new class extends BaseComponent
     }
 
     // Check all
-    public function checkAll(UpdateRolePermissionsAction $action)
+    public function checkAll(UpdateRolePermissionsAction $action): void
     {
         $action->assignAll($this->role);
 
@@ -58,7 +62,7 @@ new class extends BaseComponent
     }
 
     // Uncheck all
-    public function uncheckAll(UpdateRolePermissionsAction $action)
+    public function uncheckAll(UpdateRolePermissionsAction $action): void
     {
         $action->revokeAll($this->role);
 
@@ -67,7 +71,7 @@ new class extends BaseComponent
     }
 
     // Check
-    public function check($action, $model)
+    public function check(string $action, string $model): void
     {
         $permission = $action.$model;
         $this->isPermissionExist($permission);
@@ -87,7 +91,7 @@ new class extends BaseComponent
     }
 
     // Uncheck
-    public function uncheck($action, $model)
+    public function uncheck(string $action, string $model): void
     {
         $permission = $action.$model;
         $this->isPermissionExist($permission);
@@ -107,11 +111,8 @@ new class extends BaseComponent
     }
 
     // Is Permission Exist
-    public function isPermissionExist($permission)
+    public function isPermissionExist(string $permission): bool
     {
-        $isPermissionExist = Permission::where('name', $permission)->first();
-        if (is_null($isPermissionExist)) {
-            return false;
-        }
+        return Permission::where('name', $permission)->exists();
     }
 };

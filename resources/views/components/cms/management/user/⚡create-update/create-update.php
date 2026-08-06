@@ -2,9 +2,12 @@
 
 use App\Actions\Cms\Management\User\StoreUserAction;
 use App\Actions\Cms\Management\User\UpdateUserAction;
+use App\DTOs\Cms\Management\User\StoreUserData;
+use App\DTOs\Cms\Management\User\UpdateUserData;
 use App\Models\Spatie\Role;
 use App\Models\User;
 use Flux\Flux;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Gate;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
@@ -12,13 +15,24 @@ use Livewire\Component;
 
 new class extends Component
 {
-    // Model instance
-    public $modelInstance = User::class;
+    /** @var class-string<User> */
+    public string $modelInstance = User::class;
 
-    public $isUpdate = false;
+    public bool $isUpdate = false;
+
+    // Record data
+    public ?int $id = null;
+
+    public ?string $role = null;
+
+    public ?string $name = null;
+
+    public ?string $email = null;
+
+    public ?string $password = null;
 
     #[On('set-action')]
-    public function setAction($id = null)
+    public function setAction(?int $id = null): void
     {
         $this->resetValidation();
 
@@ -31,25 +45,17 @@ new class extends Component
         }
     }
 
+    /**
+     * @return Collection<int, Role>
+     */
     #[Computed]
-    public function roles()
+    public function roles(): Collection
     {
         return Role::all();
     }
 
-    // Record data
-    public $id;
-
-    public $role;
-
-    public $name;
-
-    public $email;
-
-    public $password;
-
     // Get record data
-    public function getRecordData($id)
+    public function getRecordData(int $id): void
     {
         Gate::authorize('show'.$this->modelInstance);
 
@@ -65,8 +71,8 @@ new class extends Component
         $this->reset('password');
     }
 
-    // Reset record dataw
-    public function resetRecordData()
+    // Reset record data
+    public function resetRecordData(): void
     {
         $this->reset([
             'id',
@@ -78,7 +84,7 @@ new class extends Component
     }
 
     // Handle form submit
-    public function submit(StoreUserAction $storeAction, UpdateUserAction $updateAction)
+    public function submit(StoreUserAction $storeAction, UpdateUserAction $updateAction): void
     {
         Gate::authorize(($this->isUpdate ? 'update' : 'create').$this->modelInstance);
 
@@ -92,11 +98,11 @@ new class extends Component
         if ($this->isUpdate) {
             $updateAction->handle(
                 user: User::findOrFail($this->id),
-                data: $this->except('password'),
+                data: UpdateUserData::fromArray($this->except('password')),
             );
         } else {
             $storeAction->handle(
-                data: $this->all(),
+                data: StoreUserData::fromArray($this->all()),
             );
         }
 

@@ -2,14 +2,16 @@
 
 namespace App\Actions\Api\V1\Auth;
 
+use App\DTOs\Api\V1\Auth\StoreAuthenticatedData;
+
 class StoreAuthenticatedAction
 {
     /**
      * Handle the action.
      */
-    public function handle(array $data): bool
+    public function handle(StoreAuthenticatedData $data): bool
     {
-        if (! auth()->attempt($data)) {
+        if (! auth()->attempt($data->toArray())) {
             return false;
         }
 

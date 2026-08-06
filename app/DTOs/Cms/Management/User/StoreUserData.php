@@ -1,0 +1,42 @@
+<?php
+
+namespace App\DTOs\Cms\Management\User;
+
+final readonly class StoreUserData
+{
+    public function __construct(
+        public string $name,
+        public string $email,
+        public string $password,
+        public string $role,
+    ) {}
+
+    /**
+     * Create the DTO from an array of data.
+     *
+     * @param  array<string, mixed>  $data
+     */
+    public static function fromArray(array $data): self
+    {
+        return new self(
+            name: $data['name'],
+            email: $data['email'],
+            password: $data['password'],
+            role: $data['role'],
+        );
+    }
+
+    /**
+     * Convert the DTO to the model attributes array.
+     *
+     * @return array{name: string, email: string, password: string}
+     */
+    public function toArray(): array
+    {
+        return [
+            'name' => $this->name,
+            'email' => $this->email,
+            'password' => $this->password,
+        ];
+    }
+}

@@ -2,6 +2,8 @@
 
 use App\Actions\Cms\Management\Role\StoreRoleAction;
 use App\Actions\Cms\Management\Role\UpdateRoleAction;
+use App\DTOs\Cms\Management\Role\StoreRoleData;
+use App\DTOs\Cms\Management\Role\UpdateRoleData;
 use App\Models\Spatie\Role;
 use Flux\Flux;
 use Illuminate\Support\Facades\Gate;
@@ -10,13 +12,20 @@ use Livewire\Component;
 
 new class extends Component
 {
-    // Model instance
-    public $modelInstance = Role::class;
+    /** @var class-string<Role> */
+    public string $modelInstance = Role::class;
 
-    public $isUpdate = false;
+    public bool $isUpdate = false;
+
+    // Record data
+    public ?int $id = null;
+
+    public ?string $name = null;
+
+    public ?string $guard_name = null;
 
     #[On('set-action')]
-    public function setAction($id = null)
+    public function setAction(?int $id = null): void
     {
         $this->resetValidation();
 
@@ -29,15 +38,8 @@ new class extends Component
         }
     }
 
-    // Record data
-    public $id;
-
-    public $name;
-
-    public $guard_name;
-
     // Get record data
-    public function getRecordData($id)
+    public function getRecordData(int $id): void
     {
         Gate::authorize('show'.$this->modelInstance);
 
@@ -52,7 +54,7 @@ new class extends Component
     }
 
     // Reset record data
-    public function resetRecordData()
+    public function resetRecordData(): void
     {
         $this->reset([
             'id',
@@ -64,7 +66,7 @@ new class extends Component
     }
 
     // Handle form submit
-    public function submit(StoreRoleAction $storeAction, UpdateRoleAction $updateAction)
+    public function submit(StoreRoleAction $storeAction, UpdateRoleAction $updateAction): void
     {
         Gate::authorize(($this->isUpdate ? 'update' : 'create').$this->modelInstance);
 
@@ -76,11 +78,11 @@ new class extends Component
         if ($this->isUpdate) {
             $updateAction->handle(
                 role: Role::findOrFail($this->id),
-                data: $this->all(),
+                data: UpdateRoleData::fromArray($this->all()),
             );
         } else {
             $storeAction->handle(
-                data: $this->all(),
+                data: StoreRoleData::fromArray($this->all()),
             );
         }
 

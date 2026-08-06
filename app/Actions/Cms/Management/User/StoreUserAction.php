@@ -2,6 +2,7 @@
 
 namespace App\Actions\Cms\Management\User;
 
+use App\DTOs\Cms\Management\User\StoreUserData;
 use App\Models\User;
 
 class StoreUserAction
@@ -9,13 +10,11 @@ class StoreUserAction
     /**
      * Handle the action.
      */
-    public function handle(array $data): User
+    public function handle(StoreUserData $data): User
     {
-        $user = User::create($data);
+        $user = User::create($data->toArray());
 
-        if (isset($data['role'])) {
-            $user->syncRoles([$data['role']]);
-        }
+        $user->syncRoles([$data->role]);
 
         return $user;
     }

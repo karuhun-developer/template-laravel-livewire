@@ -2,6 +2,7 @@
 
 namespace App\Actions\Api\V1\Auth;
 
+use App\DTOs\Api\V1\Auth\ResetPasswordData;
 use App\Models\User;
 use Illuminate\Support\Facades\Password;
 
@@ -10,9 +11,9 @@ class ResetPasswordAction
     /**
      * Handle the action.
      */
-    public function handle(array $data): bool
+    public function handle(ResetPasswordData $data): bool
     {
-        $user = User::where('email', $data['email'])->first();
+        $user = User::where('email', $data->email)->first();
         $status = Password::sendResetLink(
             $user->email
         );

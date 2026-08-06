@@ -2,6 +2,7 @@
 
 namespace App\Actions\Cms\Management\Menu;
 
+use App\DTOs\Cms\Management\Menu\StoreMenuData;
 use App\Models\Menu\Menu;
 
 class StoreMenuAction
@@ -9,8 +10,8 @@ class StoreMenuAction
     /**
      * Handle the action.
      */
-    public function handle(array $data): Menu
+    public function handle(StoreMenuData $data): Menu
     {
-        return Menu::create($data);
+        return Menu::create($data->toArray());
     }
 }

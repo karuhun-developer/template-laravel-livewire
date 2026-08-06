@@ -2,6 +2,7 @@
 
 namespace App\Actions\Cms\Management\User;
 
+use App\DTOs\Cms\Management\User\UpdateUserData;
 use App\Models\User;
 
 class UpdateUserAction
@@ -9,13 +10,11 @@ class UpdateUserAction
     /**
      * Handle the action.
      */
-    public function handle(User $user, array $data): bool
+    public function handle(User $user, UpdateUserData $data): bool
     {
-        $updated = $user->update($data);
+        $updated = $user->update($data->toArray());
 
-        if (isset($data['role'])) {
-            $user->syncRoles([$data['role']]);
-        }
+        $user->syncRoles([$data->role]);
 
         return $updated;
     }

@@ -2,6 +2,7 @@
 
 namespace App\Actions\Cms\Management\Permission;
 
+use App\DTOs\Cms\Management\Permission\StorePermissionData;
 use App\Models\Spatie\Permission;
 
 class StorePermissionAction
@@ -9,8 +10,8 @@ class StorePermissionAction
     /**
      * Handle the action.
      */
-    public function handle(array $data): Permission
+    public function handle(StorePermissionData $data): Permission
     {
-        return Permission::create($data);
+        return Permission::create($data->toArray());
     }
 }

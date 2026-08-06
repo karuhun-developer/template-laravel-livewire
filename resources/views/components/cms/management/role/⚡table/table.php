@@ -3,16 +3,21 @@
 use App\Actions\Cms\Management\Role\DeleteRoleAction;
 use App\Livewire\BaseComponent;
 use App\Models\Spatie\Role;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Gate;
 use Livewire\Attributes\On;
 
 new class extends BaseComponent
 {
-    // Model instance
-    public $modelInstance = Role::class;
+    /** @var class-string<Role> */
+    public string $modelInstance = Role::class;
 
-    // Pagination and Search
-    public $searchBy = [
+    /**
+     * Pagination and Search.
+     *
+     * @var array<int, array{name: string, field: string}>
+     */
+    public array $searchBy = [
         [
             'name' => 'Name',
             'field' => 'name',
@@ -23,7 +28,7 @@ new class extends BaseComponent
         ],
     ];
 
-    public function mount()
+    public function mount(): void
     {
         Gate::authorize('view'.$this->modelInstance);
 
@@ -31,7 +36,7 @@ new class extends BaseComponent
         $this->paginationOrderBy = 'guard_name';
     }
 
-    public function render()
+    public function render(): View
     {
         if ($this->search != '') {
             $this->resetPage();
@@ -53,7 +58,7 @@ new class extends BaseComponent
     }
 
     #[On('delete')]
-    public function delete($id, DeleteRoleAction $deleteAction)
+    public function delete(int $id, DeleteRoleAction $deleteAction): void
     {
         Gate::authorize('delete'.$this->modelInstance);
 

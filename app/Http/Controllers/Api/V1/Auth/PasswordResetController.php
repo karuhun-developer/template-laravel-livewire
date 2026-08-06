@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1\Auth;
 
 use App\Actions\Api\V1\Auth\ResetPasswordAction;
+use App\DTOs\Api\V1\Auth\ResetPasswordData;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\V1\Auth\ResetPasswordRequest;
 
@@ -13,7 +14,7 @@ class PasswordResetController extends Controller
      */
     public function store(ResetPasswordRequest $request, ResetPasswordAction $action)
     {
-        if (! $action->handle($request->validated())) {
+        if (! $action->handle(ResetPasswordData::fromArray($request->validated()))) {
             return $this->responseWithError('Unable to resend verification email.', 422);
         }
 

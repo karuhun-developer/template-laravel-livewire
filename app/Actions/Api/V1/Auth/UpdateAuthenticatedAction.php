@@ -2,6 +2,7 @@
 
 namespace App\Actions\Api\V1\Auth;
 
+use App\DTOs\Api\V1\Auth\UpdateAuthenticatedData;
 use App\Models\User;
 use App\Traits\WithMediaCollection;
 use Illuminate\Http\UploadedFile;
@@ -14,23 +15,23 @@ class UpdateAuthenticatedAction
     /**
      * Handle the action.
      */
-    public function handle(array $data): User
+    public function handle(UpdateAuthenticatedData $data): User
     {
         $user = auth()->user();
 
-        $user->name = $data['name'];
-        $user->email = $data['email'];
-        $user->phone = $data['phone'] ?? $user->phone;
+        $user->name = $data->name;
+        $user->email = $data->email;
+        $user->phone = $data->phone ?? $user->phone;
 
-        if ($data['password'] ?? false) {
-            $user->password = bcrypt($data['password']);
+        if ($data->password) {
+            $user->password = bcrypt($data->password);
         }
 
         // Handle profile image upload
-        if ($data['image'] ?? false instanceof UploadedFile) {
+        if ($data->image instanceof UploadedFile) {
             $this->saveMedia(
                 model: $user,
-                file: $data['image'],
+                file: $data->image,
                 collection: 'image',
             );
         }

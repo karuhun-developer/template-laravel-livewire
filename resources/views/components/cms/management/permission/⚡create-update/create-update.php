@@ -2,6 +2,8 @@
 
 use App\Actions\Cms\Management\Permission\StorePermissionAction;
 use App\Actions\Cms\Management\Permission\UpdatePermissionAction;
+use App\DTOs\Cms\Management\Permission\StorePermissionData;
+use App\DTOs\Cms\Management\Permission\UpdatePermissionData;
 use App\Models\Spatie\Permission;
 use Flux\Flux;
 use Illuminate\Support\Facades\Gate;
@@ -10,13 +12,20 @@ use Livewire\Component;
 
 new class extends Component
 {
-    // Model instance
-    public $modelInstance = Permission::class;
+    /** @var class-string<Permission> */
+    public string $modelInstance = Permission::class;
 
-    public $isUpdate = false;
+    public bool $isUpdate = false;
+
+    // Record data
+    public ?int $id = null;
+
+    public ?string $name = null;
+
+    public ?string $guard_name = null;
 
     #[On('set-action')]
-    public function setAction($id = null)
+    public function setAction(?int $id = null): void
     {
         $this->resetValidation();
 
@@ -29,15 +38,8 @@ new class extends Component
         }
     }
 
-    // Record data
-    public $id;
-
-    public $name;
-
-    public $guard_name;
-
     // Get record data
-    public function getRecordData($id)
+    public function getRecordData(int $id): void
     {
         Gate::authorize('show'.$this->modelInstance);
 
@@ -52,7 +54,7 @@ new class extends Component
     }
 
     // Reset record data
-    public function resetRecordData()
+    public function resetRecordData(): void
     {
         $this->reset([
             'id',
@@ -64,7 +66,7 @@ new class extends Component
     }
 
     // Handle form submit
-    public function submit(StorePermissionAction $storeAction, UpdatePermissionAction $updateAction)
+    public function submit(StorePermissionAction $storeAction, UpdatePermissionAction $updateAction): void
     {
         Gate::authorize(($this->isUpdate ? 'update' : 'create').$this->modelInstance);
 
@@ -76,11 +78,11 @@ new class extends Component
         if ($this->isUpdate) {
             $updateAction->handle(
                 permission: Permission::findOrFail($this->id),
-                data: $this->all(),
+                data: UpdatePermissionData::fromArray($this->all()),
             );
         } else {
             $storeAction->handle(
-                data: $this->all(),
+                data: StorePermissionData::fromArray($this->all()),
             );
         }
 

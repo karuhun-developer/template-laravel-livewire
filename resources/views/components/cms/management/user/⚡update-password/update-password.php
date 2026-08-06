@@ -9,13 +9,18 @@ use Livewire\Component;
 
 new class extends Component
 {
-    // Model instance
-    public $modelInstance = User::class;
+    /** @var class-string<User> */
+    public string $modelInstance = User::class;
 
-    public $isUpdate = false;
+    public bool $isUpdate = false;
+
+    // Record data
+    public ?int $id = null;
+
+    public ?string $password = null;
 
     #[On('set-update-password')]
-    public function setAction($id = null)
+    public function setAction(?int $id = null): void
     {
         $this->resetValidation();
 
@@ -28,13 +33,8 @@ new class extends Component
         }
     }
 
-    // Record data
-    public $id;
-
-    public $password;
-
     // Get record data
-    public function getRecordData($id)
+    public function getRecordData(int $id): void
     {
         Gate::authorize('show'.$this->modelInstance);
 
@@ -43,8 +43,17 @@ new class extends Component
         $this->reset('password');
     }
 
+    // Reset record data
+    public function resetRecordData(): void
+    {
+        $this->reset([
+            'id',
+            'password',
+        ]);
+    }
+
     // Handle change password submit
-    public function submit(UpdateUserPasswordAction $updatePasswordAction)
+    public function submit(UpdateUserPasswordAction $updatePasswordAction): void
     {
         // Validation rules
         $this->validate([

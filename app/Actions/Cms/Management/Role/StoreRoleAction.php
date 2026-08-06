@@ -2,6 +2,7 @@
 
 namespace App\Actions\Cms\Management\Role;
 
+use App\DTOs\Cms\Management\Role\StoreRoleData;
 use App\Models\Spatie\Role;
 
 class StoreRoleAction
@@ -9,8 +10,8 @@ class StoreRoleAction
     /**
      * Handle the action.
      */
-    public function handle(array $data): Role
+    public function handle(StoreRoleData $data): Role
     {
-        return Role::create($data);
+        return Role::create($data->toArray());
     }
 }
