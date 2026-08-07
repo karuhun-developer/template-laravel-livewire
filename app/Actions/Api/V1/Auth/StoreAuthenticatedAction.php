@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Actions\Api\V1\Auth;
 
 use App\DTOs\Api\V1\Auth\StoreAuthenticatedData;

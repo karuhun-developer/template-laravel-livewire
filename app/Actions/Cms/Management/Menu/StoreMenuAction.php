@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Actions\Cms\Management\Menu;
 
 use App\DTOs\Cms\Management\Menu\StoreMenuData;

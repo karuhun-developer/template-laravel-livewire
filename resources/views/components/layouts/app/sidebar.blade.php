@@ -18,7 +18,7 @@
 
             @php
                 if (! function_exists('menuActive')) {
-                    function menuActive($activeRoute = []): bool {
+                    function menuActive(array $activeRoute = []): bool {
                         // Check if route name contains the active route
                         foreach ($activeRoute as $route) {
                             if(str_contains(request()->route()->getName(), $route) || request()->routeIs($route)) {

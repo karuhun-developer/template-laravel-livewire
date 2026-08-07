@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Actions\Cms\Management\Role\StoreRoleAction;
 use App\Actions\Cms\Management\Role\UpdateRoleAction;
 use App\DTOs\Cms\Management\Role\StoreRoleData;

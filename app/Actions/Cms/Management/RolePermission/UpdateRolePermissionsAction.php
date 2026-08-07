@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Actions\Cms\Management\RolePermission;
 
 use App\Models\Spatie\Permission;

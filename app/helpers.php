@@ -1,20 +1,26 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Enums\CommonStatusEnum;
 use App\Models\Menu\Menu;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Cache;
 
-function numberToCurrency($value)
+function numberToCurrency(int|float $value): string
 {
     return number_format($value, 0, ',', '.');
 }
 
-function currencyToNumber($value)
+function currencyToNumber(string $value): int
 {
     return (int) str_replace('.', '', $value);
 }
 
-function getMenus()
+/**
+ * @return Collection<int, Menu>
+ */
+function getMenus(): Collection
 {
     $roles = auth()->user()->roles->pluck('id')->toArray();
 

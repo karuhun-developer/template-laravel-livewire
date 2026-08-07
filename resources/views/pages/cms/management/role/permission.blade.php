@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\Spatie\Role;
 use Illuminate\View\View;
 
@@ -9,7 +11,7 @@ use function Laravel\Folio\render;
 name('cms.management.role.permission');
 
 // Page title and breadcrumbs
-render(function (View $view) {
+render(function (View $view): void {
     $title = 'Management Role Permissions';
     $description = 'Manage the application\'s management role permission items here.';
     $breadcrumbs = [

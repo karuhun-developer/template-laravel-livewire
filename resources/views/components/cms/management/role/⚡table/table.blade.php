@@ -79,8 +79,8 @@
                                         variant="danger"
                                         icon="trash"
                                         @click="$wire.dispatch('confirm', {
-                                                function: 'delete',
-                                                id: '{{ $d->id }}',
+                                            function: 'delete',
+                                            id: '{{ $d->id }}',
                                         })">
                                         Delete
                                     </flux:menu.item>

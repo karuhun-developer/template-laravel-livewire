@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Actions\Cms\Management\MenuSub\DeleteMenuSubAction;
 use App\Livewire\BaseComponent;
 use App\Models\Menu\Menu;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\Menu\Menu;
 use App\Models\Spatie\Role;
 use Illuminate\View\View;
@@ -10,7 +12,7 @@ use function Laravel\Folio\render;
 name('cms.management.menu.sub');
 
 // Page title and breadcrumbs
-render(function (View $view) {
+render(function (View $view): void {
     // Get menu
     $menu = Menu::findOrFail(request()->get('menu_id'));
 

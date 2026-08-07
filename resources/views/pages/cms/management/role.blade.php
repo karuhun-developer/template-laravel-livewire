@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\View\View;
 
 use function Laravel\Folio\name;
@@ -8,7 +10,7 @@ use function Laravel\Folio\render;
 name('cms.management.role');
 
 // Page title and breadcrumbs
-render(function (View $view) {
+render(function (View $view): void {
     // Page title and breadcrumbs
     $title = 'Management Role';
     $description = 'Manage the application\'s management role items here.';

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Actions\Cms\Management\Menu\StoreMenuAction;
 use App\Actions\Cms\Management\Menu\UpdateMenuAction;
 use App\DTOs\Cms\Management\Menu\StoreMenuData;
@@ -14,6 +16,7 @@ use Illuminate\Support\Facades\Gate;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use Symfony\Component\Finder\SplFileInfo;
 
 new class extends Component
 {
@@ -68,7 +71,7 @@ new class extends Component
     #[Computed]
     public function icons(): array
     {
-        return collect(File::allFiles(resource_path('views/flux/icon')))->map(function ($file) {
+        return collect(File::allFiles(resource_path('views/flux/icon')))->map(function (SplFileInfo $file): string {
             return str_replace('.blade.php', '', $file->getFilename());
         })->values()->toArray();
     }

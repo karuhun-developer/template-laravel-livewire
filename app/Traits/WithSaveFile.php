@@ -1,10 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Traits;
+
+use Illuminate\Http\UploadedFile;
 
 trait WithSaveFile
 {
-    public function saveFile($file, $path = 'file', $base_file_name = 'file')
+    public function saveFile(?UploadedFile $file, string $path = 'file', string $base_file_name = 'file'): string|false
     {
         // Set base file name
         $base_file_name = $base_file_name.'_'.date('d-m-Y').'_';

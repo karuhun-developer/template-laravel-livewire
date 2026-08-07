@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Actions\Cms\Management\Permission\StorePermissionAction;
 use App\Actions\Cms\Management\Permission\UpdatePermissionAction;
 use App\DTOs\Cms\Management\Permission\StorePermissionData;

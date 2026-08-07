@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Actions\Cms\Management\Role;
 
 use App\DTOs\Cms\Management\Role\StoreRoleData;

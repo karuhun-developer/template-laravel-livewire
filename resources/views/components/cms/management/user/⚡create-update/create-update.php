@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Actions\Cms\Management\User\StoreUserAction;
 use App\Actions\Cms\Management\User\UpdateUserAction;
 use App\DTOs\Cms\Management\User\StoreUserData;

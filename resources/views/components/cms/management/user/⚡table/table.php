@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Actions\Cms\Management\User\DeleteUserAction;
 use App\Actions\Cms\Management\User\ValidateUserEmailAction;
 use App\Livewire\BaseComponent;

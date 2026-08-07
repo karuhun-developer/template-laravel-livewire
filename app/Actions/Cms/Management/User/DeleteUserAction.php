@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Actions\Cms\Management\User;
 
 use App\Models\User;

@@ -1,12 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models\Menu;
 
 use App\Enums\CommonStatusEnum;
 use App\Models\Spatie\Role;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Activitylog\LogOptions;
-use Spatie\Activitylog\Traits\LogsActivity;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Spatie\Activitylog\Models\Concerns\LogsActivity;
+use Spatie\Activitylog\Support\LogOptions;
 
 class MenuSub extends Model
 {
@@ -33,12 +36,18 @@ class MenuSub extends Model
         return LogOptions::defaults()->logOnly(['*']);
     }
 
-    public function role()
+    /**
+     * @return BelongsTo<Role, $this>
+     */
+    public function role(): BelongsTo
     {
         return $this->belongsTo(Role::class);
     }
 
-    public function menu()
+    /**
+     * @return BelongsTo<Menu, $this>
+     */
+    public function menu(): BelongsTo
     {
         return $this->belongsTo(Menu::class);
     }
