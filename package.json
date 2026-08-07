@@ -7,7 +7,7 @@
         "dev": "vite"
     },
     "dependencies": {
-        "@tailwindcss/vite": "^4.3.0",
+        "@tailwindcss/vite": "^4.3.3",
         "autoprefixer": "^10.5.0",
         "concurrently": "^9.0.1",
         "jodit": "^4.13.6",
