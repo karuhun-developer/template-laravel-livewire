@@ -70,7 +70,8 @@
                                     <flux:menu.item
                                         variant="default"
                                         icon="list-bullet"
-                                        href="{{ route('cms.management.menu.sub') }}?menu_id={{ $d->id }}">
+                                        href="{{ route('cms.management.menu.sub') }}?menu_id={{ $d->id }}"
+                                        wire:navigate>
                                         Sub Menu
                                     </flux:menu.item>
                                 @endcan

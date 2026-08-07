@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 use App\Models\Menu\Menu;
 use App\Models\Spatie\Role;
 use Illuminate\View\View;
