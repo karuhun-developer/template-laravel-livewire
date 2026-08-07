@@ -13,7 +13,7 @@
         "jodit": "^4.13.6",
         "laravel-vite-plugin": "^3.1.0",
         "tailwindcss": "^4.3.0",
-        "tom-select": "^2.6.1",
+        "tom-select": "^2.6.2",
         "vite": "^8.0.16"
     }
 }
