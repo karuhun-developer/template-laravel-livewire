@@ -18,6 +18,7 @@
 
             <flux:field>
                 <flux:label badge="Required">Role</flux:label>
+                <flux:text>Role is used to specify the role that has access to the menu item.</flux:text>
                 <flux:select wire:model="role_id" placeholder="Select role ....">
                     <flux:select.option value="">-- Select Role --</flux:select.option>
                     @foreach ($this->roles as $role)
@@ -29,6 +30,7 @@
 
             <flux:field>
                 <flux:label badge="Required">Name</flux:label>
+                <flux:text>Menu name is used to identify the menu item in the system.</flux:text>
                 <flux:input wire:model="name" type="text" />
                 <flux:error name="name" />
             </flux:field>
@@ -42,6 +44,7 @@
 
             <flux:field>
                 <flux:label badge="Required">Icon</flux:label>
+                <flux:text>Icon is used to specify the icon for the menu item. You can select an icon from the list below.</flux:text>
                 @if($icon)
                     <span class="mb-2">
                         <flux:icon name="{{ $icon }}" size="lg" />
@@ -59,6 +62,7 @@
 
             <flux:field>
                 <flux:label badge="Required">Order</flux:label>
+                <flux:text>Order is used to specify the order of the menu item in the menu list.</flux:text>
                 <flux:input wire:model="order" type="number" />
                 <flux:error name="order" />
             </flux:field>

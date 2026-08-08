@@ -18,12 +18,14 @@
 
             <flux:field>
                 <flux:label badge="Required">Name</flux:label>
+                <flux:text>It should be unique and descriptive.</flux:text>
                 <flux:input wire:model="name" type="text" />
                 <flux:error name="name" />
             </flux:field>
 
             <flux:field>
                 <flux:label badge="Required">Guard Name</flux:label>
+                <flux:text>Guard name is used to specify the authentication guard for the permission item.</flux:text>
                 <flux:select wire:model="guard_name" placeholder="Guard Name..">
                     <flux:select.option value="">-- Select Guard Name --</flux:select.option>
                     <flux:select.option value="api">api</flux:select.option>

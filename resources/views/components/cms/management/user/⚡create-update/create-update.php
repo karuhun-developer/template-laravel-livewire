@@ -23,15 +23,15 @@ new class extends Component
     public bool $isUpdate = false;
 
     // Record data
-    public ?int $id = null;
+    public int $id;
 
-    public ?string $role = null;
+    public string $role;
 
-    public ?string $name = null;
+    public string $name;
 
-    public ?string $email = null;
+    public string $email;
 
-    public ?string $password = null;
+    public string $password;
 
     #[On('set-action')]
     public function setAction(?int $id = null): void

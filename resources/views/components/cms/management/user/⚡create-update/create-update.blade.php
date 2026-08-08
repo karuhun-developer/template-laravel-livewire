@@ -18,6 +18,7 @@
 
             <flux:field>
                 <flux:label badge="Required">Role</flux:label>
+                <flux:text>Role is used to specify the role that has access to the user item.</flux:text>
                 <flux:select wire:model="role" placeholder="Select role ....">
                     <flux:select.option value="">-- Select Role --</flux:select.option>
                     @foreach ($this->roles as $role)
@@ -35,6 +36,7 @@
 
             <flux:field>
                 <flux:label badge="Required">Email</flux:label>
+                <flux:text>It should be unique.</flux:text>
                 <flux:input wire:model="email" type="email" />
                 <flux:error name="email" />
             </flux:field>

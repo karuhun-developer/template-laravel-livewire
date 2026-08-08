@@ -20,11 +20,11 @@ new class extends Component
     public bool $isUpdate = false;
 
     // Record data
-    public ?int $id = null;
+    public int $id;
 
-    public ?string $name = null;
+    public string $name;
 
-    public ?string $guard_name = null;
+    public string $guard_name;
 
     #[On('set-action')]
     public function setAction(?int $id = null): void

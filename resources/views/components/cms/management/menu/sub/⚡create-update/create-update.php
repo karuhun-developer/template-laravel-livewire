@@ -29,23 +29,23 @@ new class extends Component
     public bool $isUpdate = false;
 
     // Record data
-    public ?int $id = null;
+    public int $id;
 
-    public ?int $role_id = null;
+    public int $role_id;
 
-    public ?int $menu_id = null;
+    public int $menu_id;
 
-    public ?string $name = null;
+    public string $name;
 
-    public ?string $url = null;
+    public string $url;
 
-    public ?string $icon = null;
+    public string $icon;
 
-    public ?int $order = null;
+    public int $order;
 
-    public ?string $active_pattern = null;
+    public string $active_pattern;
 
-    public int $status = 1;
+    public int $status;
 
     #[On('set-action')]
     public function setAction(?int $id = null): void

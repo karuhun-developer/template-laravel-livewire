@@ -17,9 +17,9 @@ new class extends Component
     public bool $isUpdate = false;
 
     // Record data
-    public ?int $id = null;
+    public int $id;
 
-    public ?string $password = null;
+    public string $password;
 
     #[On('set-update-password')]
     public function setAction(?int $id = null): void
