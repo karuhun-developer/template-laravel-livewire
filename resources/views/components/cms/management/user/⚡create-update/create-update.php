@@ -25,15 +25,15 @@ new class extends Component
     public bool $isUpdate = false;
 
     // Record data
-    public int $id;
+    public ?int $id = null;
 
-    public string $role;
+    public ?string $role = null;
 
-    public string $name;
+    public ?string $name = null;
 
-    public string $email;
+    public ?string $email = null;
 
-    public string $password;
+    public ?string $password = null;
 
     #[On('set-action')]
     public function setAction(?int $id = null): void
@@ -45,7 +45,7 @@ new class extends Component
             $this->getRecordData($id);
         } else {
             $this->isUpdate = false;
-            $this->resetRecordData();
+            $this->reset();
         }
     }
 
@@ -73,18 +73,6 @@ new class extends Component
         );
         $this->role = $record->getRoleNames()[0];
         $this->reset('password');
-    }
-
-    // Reset record data
-    public function resetRecordData(): void
-    {
-        $this->reset([
-            'id',
-            'role',
-            'name',
-            'email',
-            'password',
-        ]);
     }
 
     // Handle form submit

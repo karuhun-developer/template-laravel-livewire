@@ -22,11 +22,11 @@ new class extends Component
     public bool $isUpdate = false;
 
     // Record data
-    public int $id;
+    public ?int $id = null;
 
-    public string $name;
+    public ?string $name = null;
 
-    public string $guard_name;
+    public string $guard_name = 'api';
 
     #[On('set-action')]
     public function setAction(?int $id = null): void
@@ -38,7 +38,7 @@ new class extends Component
             $this->getRecordData($id);
         } else {
             $this->isUpdate = false;
-            $this->resetRecordData();
+            $this->reset();
         }
     }
 
@@ -55,18 +55,6 @@ new class extends Component
                 'guard_name',
             )
         );
-    }
-
-    // Reset record data
-    public function resetRecordData(): void
-    {
-        $this->reset([
-            'id',
-            'name',
-            'guard_name',
-        ]);
-
-        $this->guard_name = 'api';
     }
 
     // Handle form submit

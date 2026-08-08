@@ -31,21 +31,21 @@ new class extends Component
     public bool $isUpdate = false;
 
     // Record data
-    public int $id;
+    public ?int $id = null;
 
-    public int $role_id;
+    public ?int $menu_id = null;
 
-    public int $menu_id;
+    public ?int $role_id = null;
 
-    public string $name;
+    public ?string $name = null;
 
-    public string $url;
+    public ?string $url = null;
 
-    public string $icon;
+    public ?string $icon = null;
 
-    public int $order;
+    public int $order = 1;
 
-    public string $active_pattern;
+    public ?string $active_pattern = null;
 
     public int $status;
 
@@ -59,7 +59,10 @@ new class extends Component
             $this->getRecordData($id);
         } else {
             $this->isUpdate = false;
-            $this->resetRecordData();
+            $this->resetExcept('menu');
+
+            $this->role_id = $this->menu->role_id;
+            $this->menu_id = $this->menu->id;
         }
     }
 
@@ -102,25 +105,6 @@ new class extends Component
             )
         );
         $this->status = $record->status->value;
-    }
-
-    // Reset record data
-    public function resetRecordData(): void
-    {
-        $this->reset([
-            'id',
-            'role_id',
-            'menu_id',
-            'name',
-            'url',
-            'icon',
-            'order',
-            'active_pattern',
-        ]);
-
-        $this->role_id = $this->menu->role_id;
-        $this->menu_id = $this->menu->id;
-        $this->status = 1;
     }
 
     // Handle form submit

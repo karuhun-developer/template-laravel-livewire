@@ -19,9 +19,9 @@ new class extends Component
     public bool $isUpdate = false;
 
     // Record data
-    public int $id;
+    public ?int $id = null;
 
-    public string $password;
+    public ?string $password = null;
 
     #[On('set-update-password')]
     public function setAction(?int $id = null): void
@@ -33,7 +33,7 @@ new class extends Component
             $this->getRecordData($id);
         } else {
             $this->isUpdate = false;
-            $this->resetRecordData();
+            $this->reset();
         }
     }
 
@@ -45,15 +45,6 @@ new class extends Component
         $record = User::find($id);
         $this->id = $record->id;
         $this->reset('password');
-    }
-
-    // Reset record data
-    public function resetRecordData(): void
-    {
-        $this->reset([
-            'id',
-            'password',
-        ]);
     }
 
     // Handle change password submit
