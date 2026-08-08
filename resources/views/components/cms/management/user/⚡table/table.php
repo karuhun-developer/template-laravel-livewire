@@ -8,11 +8,13 @@ use App\Livewire\BaseComponent;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Gate;
+use Livewire\Attributes\Locked;
 use Livewire\Attributes\On;
 
 new class extends BaseComponent
 {
     /** @var class-string<User> */
+    #[Locked]
     public string $modelInstance = User::class;
 
     /**

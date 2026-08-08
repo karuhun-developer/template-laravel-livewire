@@ -9,12 +9,14 @@ use App\DTOs\Cms\Management\Role\UpdateRoleData;
 use App\Models\Spatie\Role;
 use Flux\Flux;
 use Illuminate\Support\Facades\Gate;
+use Livewire\Attributes\Locked;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
 new class extends Component
 {
     /** @var class-string<Role> */
+    #[Locked]
     public string $modelInstance = Role::class;
 
     public bool $isUpdate = false;

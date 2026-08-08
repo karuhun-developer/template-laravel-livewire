@@ -11,7 +11,9 @@ and keep new features consistent with the rules below.
    committing.
 2. **Everything is fully typed** — parameters, return types, properties, and array-shape
    PHPDocs (`@return array{...}`, `@param array<string, mixed>`). Eloquent relations use
-   generics (`BelongsTo<Role, $this>`, `HasMany<MenuSub, $this>`).
+   generics (`BelongsTo<Role, $this>`, `HasMany<MenuSub, $this>`). Types are enforced by
+   **Larastan (PHPStan level 5)** — run `composer analyse` before committing; new code must
+   not add errors to `phpstan-baseline.neon`.
 3. **Business logic lives in Action classes, never in components or controllers.**
 4. **Data crossing a boundary is wrapped in a DTO** — never pass raw request arrays into
    Actions.
@@ -134,6 +136,9 @@ Reusable, fully-typed cross-cutting helpers: `WithSaveFile`, `WithMediaCollectio
   `*.test.php` files next to each Livewire component.
 - Feature tests use `RefreshDatabase` and model factories.
 - Run the suite: `php artisan test --compact` or `composer test`.
+- **Static analysis:** run `composer analyse` (Larastan, PHPStan level 5). Config lives in
+  `phpstan.neon.dist`; existing errors are captured in `phpstan-baseline.neon` and should
+  shrink over time, never grow.
 - Use the **TIA engine** while iterating: `vendor/bin/pest --tia` re-runs only the tests
   affected by your changes; `vendor/bin/pest --tia --fresh` re-records the baseline graph.
 - A new Action, DTO transformation, or component branch **must** have a test covering it.
@@ -149,4 +154,4 @@ Reusable, fully-typed cross-cutting helpers: `WithSaveFile`, `WithMediaCollectio
 6. Permissions are auto-generated per model by the `PermissionSeeder` — see
    [RBAC](features/rbac.md).
 7. Write tests (component `*.test.php` + any feature/unit tests).
-8. `vendor/bin/pint` → `php artisan test --compact` → update [CHANGELOG](../CHANGELOG.md).
+8. `vendor/bin/pint` → `composer analyse` → `php artisan test --compact` → update [CHANGELOG](../CHANGELOG.md).

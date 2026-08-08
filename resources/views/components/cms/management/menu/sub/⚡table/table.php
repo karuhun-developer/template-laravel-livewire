@@ -9,11 +9,13 @@ use App\Models\Menu\MenuSub;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Gate;
+use Livewire\Attributes\Locked;
 use Livewire\Attributes\On;
 
 new class extends BaseComponent
 {
     /** @var class-string<MenuSub> */
+    #[Locked]
     public string $modelInstance = MenuSub::class;
 
     public Menu $menu;

@@ -1,0 +1,427 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Parameter \#1 \$credentials of static method Illuminate\\Support\\Facades\\Password\:\:sendResetLink\(\) expects array, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Actions/Api/V1/Auth/ResetPasswordAction.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Model\:\:addMedia\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Actions/Api/V1/Auth/UpdateAuthenticatedAction.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Model\:\:clearMediaCollection\(\)\.$#'
+			identifier: method.notFound
+			count: 2
+			path: app/Actions/Api/V1/Auth/UpdateAuthenticatedAction.php
+
+		-
+			message: '#^Method App\\Actions\\Cms\\Management\\Permission\\StorePermissionAction\:\:handle\(\) should return App\\Models\\Spatie\\Permission but returns Spatie\\Permission\\Contracts\\Permission\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Actions/Cms/Management/Permission/StorePermissionAction.php
+
+		-
+			message: '#^Method App\\Actions\\Cms\\Management\\Role\\StoreRoleAction\:\:handle\(\) should return App\\Models\\Spatie\\Role but returns Spatie\\Permission\\Contracts\\Role\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Actions/Cms/Management/Role/StoreRoleAction.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\User\:\:\$image\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Controllers/Api/V1/Auth/AuthenticatedController.php
+
+		-
+			message: '#^Using nullsafe property access on non\-nullable type Illuminate\\Http\\Request\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: app/Http/Controllers/Api/V1/Auth/AuthenticatedController.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\User\:\:\$timezone\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Providers/AppServiceProvider.php
+
+		-
+			message: '#^Using nullsafe property access "\?\-\>timezone" on left side of \?\? is unnecessary\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: app/Providers/AppServiceProvider.php
+
+		-
+			message: '#^Trait App\\Traits\\WithGenerateReference is used zero times and is not analysed\.$#'
+			identifier: trait.unused
+			count: 1
+			path: app/Traits/WithGenerateReference.php
+
+		-
+			message: '#^Trait App\\Traits\\WithGetFilterDataApi is used zero times and is not analysed\.$#'
+			identifier: trait.unused
+			count: 1
+			path: app/Traits/WithGetFilterDataApi.php
+
+		-
+			message: '#^Trait App\\Traits\\WithSaveFile is used zero times and is not analysed\.$#'
+			identifier: trait.unused
+			count: 1
+			path: app/Traits/WithSaveFile.php
+
+		-
+			message: '#^Class Spatie\\MediaLibraryPro\\Models\\TemporaryUpload not found\.$#'
+			identifier: class.notFound
+			count: 1
+			path: config/media-library.php
+
+		-
+			message: '#^Match expression does not handle remaining value\: string$#'
+			identifier: match.unhandled
+			count: 3
+			path: database/migrations/2026_01_25_113506_create_pulse_tables.php
+
+		-
+			message: '#^Expression "new class extends \\Livewire\\Component…" on a separate line does not do anything\.$#'
+			identifier: expr.resultUnused
+			count: 1
+			path: resources/views/components/cms/management/menu/sub/⚡create-update/create-update.php
+
+		-
+			message: '#^Call to an undefined method Pest\\PendingCalls\\TestCall\:\:actingAs\(\)\.$#'
+			identifier: method.notFound
+			count: 4
+			path: resources/views/components/cms/management/menu/sub/⚡create-update/create-update.test.php
+
+		-
+			message: '#^Call to an undefined method Pest\\PendingCalls\\TestCall\:\:seed\(\)\.$#'
+			identifier: method.notFound
+			count: 4
+			path: resources/views/components/cms/management/menu/sub/⚡create-update/create-update.test.php
+
+		-
+			message: '#^Call to an undefined method App\\Livewire\\BaseComponent@anonymous/resources/views/components/cms/management/menu/sub/⚡table/table\.php\:15\:\:view\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: resources/views/components/cms/management/menu/sub/⚡table/table.php
+
+		-
+			message: '#^Expression "new class extends \\App\\Livewire\\BaseComponent…" on a separate line does not do anything\.$#'
+			identifier: expr.resultUnused
+			count: 1
+			path: resources/views/components/cms/management/menu/sub/⚡table/table.php
+
+		-
+			message: '#^Call to an undefined method Pest\\PendingCalls\\TestCall\:\:actingAs\(\)\.$#'
+			identifier: method.notFound
+			count: 3
+			path: resources/views/components/cms/management/menu/sub/⚡table/table.test.php
+
+		-
+			message: '#^Call to an undefined method Pest\\PendingCalls\\TestCall\:\:seed\(\)\.$#'
+			identifier: method.notFound
+			count: 3
+			path: resources/views/components/cms/management/menu/sub/⚡table/table.test.php
+
+		-
+			message: '#^Expression "new class extends \\Livewire\\Component…" on a separate line does not do anything\.$#'
+			identifier: expr.resultUnused
+			count: 1
+			path: resources/views/components/cms/management/menu/⚡create-update/create-update.php
+
+		-
+			message: '#^Call to an undefined method Pest\\PendingCalls\\TestCall\:\:actingAs\(\)\.$#'
+			identifier: method.notFound
+			count: 4
+			path: resources/views/components/cms/management/menu/⚡create-update/create-update.test.php
+
+		-
+			message: '#^Call to an undefined method Pest\\PendingCalls\\TestCall\:\:seed\(\)\.$#'
+			identifier: method.notFound
+			count: 4
+			path: resources/views/components/cms/management/menu/⚡create-update/create-update.test.php
+
+		-
+			message: '#^Call to an undefined method App\\Livewire\\BaseComponent@anonymous/resources/views/components/cms/management/menu/⚡table/table\.php\:14\:\:view\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: resources/views/components/cms/management/menu/⚡table/table.php
+
+		-
+			message: '#^Expression "new class extends \\App\\Livewire\\BaseComponent…" on a separate line does not do anything\.$#'
+			identifier: expr.resultUnused
+			count: 1
+			path: resources/views/components/cms/management/menu/⚡table/table.php
+
+		-
+			message: '#^Call to an undefined method Pest\\PendingCalls\\TestCall\:\:actingAs\(\)\.$#'
+			identifier: method.notFound
+			count: 3
+			path: resources/views/components/cms/management/menu/⚡table/table.test.php
+
+		-
+			message: '#^Call to an undefined method Pest\\PendingCalls\\TestCall\:\:seed\(\)\.$#'
+			identifier: method.notFound
+			count: 3
+			path: resources/views/components/cms/management/menu/⚡table/table.test.php
+
+		-
+			message: '#^Expression "new class extends \\Livewire\\Component…" on a separate line does not do anything\.$#'
+			identifier: expr.resultUnused
+			count: 1
+			path: resources/views/components/cms/management/permission/⚡create-update/create-update.php
+
+		-
+			message: '#^Call to an undefined method Pest\\PendingCalls\\TestCall\:\:actingAs\(\)\.$#'
+			identifier: method.notFound
+			count: 4
+			path: resources/views/components/cms/management/permission/⚡create-update/create-update.test.php
+
+		-
+			message: '#^Call to an undefined method Pest\\PendingCalls\\TestCall\:\:seed\(\)\.$#'
+			identifier: method.notFound
+			count: 4
+			path: resources/views/components/cms/management/permission/⚡create-update/create-update.test.php
+
+		-
+			message: '#^Call to an undefined method App\\Livewire\\BaseComponent@anonymous/resources/views/components/cms/management/permission/⚡table/table\.php\:13\:\:view\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: resources/views/components/cms/management/permission/⚡table/table.php
+
+		-
+			message: '#^Expression "new class extends \\App\\Livewire\\BaseComponent…" on a separate line does not do anything\.$#'
+			identifier: expr.resultUnused
+			count: 1
+			path: resources/views/components/cms/management/permission/⚡table/table.php
+
+		-
+			message: '#^Call to an undefined method Pest\\PendingCalls\\TestCall\:\:actingAs\(\)\.$#'
+			identifier: method.notFound
+			count: 3
+			path: resources/views/components/cms/management/permission/⚡table/table.test.php
+
+		-
+			message: '#^Call to an undefined method Pest\\PendingCalls\\TestCall\:\:seed\(\)\.$#'
+			identifier: method.notFound
+			count: 3
+			path: resources/views/components/cms/management/permission/⚡table/table.test.php
+
+		-
+			message: '#^Expression "new class extends \\Livewire\\Component…" on a separate line does not do anything\.$#'
+			identifier: expr.resultUnused
+			count: 1
+			path: resources/views/components/cms/management/role/⚡create-update/create-update.php
+
+		-
+			message: '#^Call to an undefined method Pest\\PendingCalls\\TestCall\:\:actingAs\(\)\.$#'
+			identifier: method.notFound
+			count: 4
+			path: resources/views/components/cms/management/role/⚡create-update/create-update.test.php
+
+		-
+			message: '#^Call to an undefined method Pest\\PendingCalls\\TestCall\:\:seed\(\)\.$#'
+			identifier: method.notFound
+			count: 4
+			path: resources/views/components/cms/management/role/⚡create-update/create-update.test.php
+
+		-
+			message: '#^Expression "new class extends \\App\\Livewire\\BaseComponent…" on a separate line does not do anything\.$#'
+			identifier: expr.resultUnused
+			count: 1
+			path: resources/views/components/cms/management/role/⚡permission/permission.php
+
+		-
+			message: '#^Call to an undefined method Pest\\PendingCalls\\TestCall\:\:actingAs\(\)\.$#'
+			identifier: method.notFound
+			count: 2
+			path: resources/views/components/cms/management/role/⚡permission/permission.test.php
+
+		-
+			message: '#^Call to an undefined method Pest\\PendingCalls\\TestCall\:\:seed\(\)\.$#'
+			identifier: method.notFound
+			count: 2
+			path: resources/views/components/cms/management/role/⚡permission/permission.test.php
+
+		-
+			message: '#^Call to an undefined method App\\Livewire\\BaseComponent@anonymous/resources/views/components/cms/management/role/⚡table/table\.php\:13\:\:view\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: resources/views/components/cms/management/role/⚡table/table.php
+
+		-
+			message: '#^Expression "new class extends \\App\\Livewire\\BaseComponent…" on a separate line does not do anything\.$#'
+			identifier: expr.resultUnused
+			count: 1
+			path: resources/views/components/cms/management/role/⚡table/table.php
+
+		-
+			message: '#^Call to an undefined method Pest\\PendingCalls\\TestCall\:\:actingAs\(\)\.$#'
+			identifier: method.notFound
+			count: 3
+			path: resources/views/components/cms/management/role/⚡table/table.test.php
+
+		-
+			message: '#^Call to an undefined method Pest\\PendingCalls\\TestCall\:\:seed\(\)\.$#'
+			identifier: method.notFound
+			count: 3
+			path: resources/views/components/cms/management/role/⚡table/table.test.php
+
+		-
+			message: '#^Expression "new class extends \\Livewire\\Component…" on a separate line does not do anything\.$#'
+			identifier: expr.resultUnused
+			count: 1
+			path: resources/views/components/cms/management/user/⚡create-update/create-update.php
+
+		-
+			message: '#^Call to an undefined method Pest\\PendingCalls\\TestCall\:\:actingAs\(\)\.$#'
+			identifier: method.notFound
+			count: 4
+			path: resources/views/components/cms/management/user/⚡create-update/create-update.test.php
+
+		-
+			message: '#^Call to an undefined method Pest\\PendingCalls\\TestCall\:\:seed\(\)\.$#'
+			identifier: method.notFound
+			count: 4
+			path: resources/views/components/cms/management/user/⚡create-update/create-update.test.php
+
+		-
+			message: '#^Call to an undefined method App\\Livewire\\BaseComponent@anonymous/resources/views/components/cms/management/user/⚡table/table\.php\:14\:\:view\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: resources/views/components/cms/management/user/⚡table/table.php
+
+		-
+			message: '#^Expression "new class extends \\App\\Livewire\\BaseComponent…" on a separate line does not do anything\.$#'
+			identifier: expr.resultUnused
+			count: 1
+			path: resources/views/components/cms/management/user/⚡table/table.php
+
+		-
+			message: '#^Call to an undefined method Pest\\PendingCalls\\TestCall\:\:actingAs\(\)\.$#'
+			identifier: method.notFound
+			count: 3
+			path: resources/views/components/cms/management/user/⚡table/table.test.php
+
+		-
+			message: '#^Call to an undefined method Pest\\PendingCalls\\TestCall\:\:seed\(\)\.$#'
+			identifier: method.notFound
+			count: 3
+			path: resources/views/components/cms/management/user/⚡table/table.test.php
+
+		-
+			message: '#^Expression "new class extends \\Livewire\\Component…" on a separate line does not do anything\.$#'
+			identifier: expr.resultUnused
+			count: 1
+			path: resources/views/components/cms/management/user/⚡update-password/update-password.php
+
+		-
+			message: '#^Call to an undefined method Pest\\PendingCalls\\TestCall\:\:actingAs\(\)\.$#'
+			identifier: method.notFound
+			count: 3
+			path: resources/views/components/cms/management/user/⚡update-password/update-password.test.php
+
+		-
+			message: '#^Call to an undefined method Pest\\PendingCalls\\TestCall\:\:seed\(\)\.$#'
+			identifier: method.notFound
+			count: 3
+			path: resources/views/components/cms/management/user/⚡update-password/update-password.test.php
+
+		-
+			message: '#^Expression "new class extends \\Livewire\\Component…" on a separate line does not do anything\.$#'
+			identifier: expr.resultUnused
+			count: 1
+			path: resources/views/components/setting/two-factor/⚡recovery-codes/recovery-codes.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Testing\\TestResponse\:\:assertSet\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: resources/views/components/setting/two-factor/⚡recovery-codes/recovery-codes.test.php
+
+		-
+			message: '#^Call to an undefined method Pest\\PendingCalls\\TestCall\:\:actingAs\(\)\.$#'
+			identifier: method.notFound
+			count: 2
+			path: resources/views/components/setting/two-factor/⚡recovery-codes/recovery-codes.test.php
+
+		-
+			message: '#^Expression "new class extends \\Livewire\\Component…" on a separate line does not do anything\.$#'
+			identifier: expr.resultUnused
+			count: 1
+			path: resources/views/components/setting/⚡appearance/appearance.php
+
+		-
+			message: '#^Call to an undefined method Pest\\PendingCalls\\TestCall\:\:actingAs\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: resources/views/components/setting/⚡appearance/appearance.test.php
+
+		-
+			message: '#^Expression "new class extends \\Livewire\\Component…" on a separate line does not do anything\.$#'
+			identifier: expr.resultUnused
+			count: 1
+			path: resources/views/components/setting/⚡delete-user-form/delete-user-form.php
+
+		-
+			message: '#^Call to an undefined method Pest\\PendingCalls\\TestCall\:\:actingAs\(\)\.$#'
+			identifier: method.notFound
+			count: 3
+			path: resources/views/components/setting/⚡delete-user-form/delete-user-form.test.php
+
+		-
+			message: '#^Expression "new class extends \\Livewire\\Component…" on a separate line does not do anything\.$#'
+			identifier: expr.resultUnused
+			count: 1
+			path: resources/views/components/setting/⚡password/password.php
+
+		-
+			message: '#^Call to an undefined method Pest\\PendingCalls\\TestCall\:\:actingAs\(\)\.$#'
+			identifier: method.notFound
+			count: 3
+			path: resources/views/components/setting/⚡password/password.test.php
+
+		-
+			message: '#^Expression "new class extends \\Livewire\\Component…" on a separate line does not do anything\.$#'
+			identifier: expr.resultUnused
+			count: 1
+			path: resources/views/components/setting/⚡profile/profile.php
+
+		-
+			message: '#^Call to an undefined method Pest\\PendingCalls\\TestCall\:\:actingAs\(\)\.$#'
+			identifier: method.notFound
+			count: 3
+			path: resources/views/components/setting/⚡profile/profile.test.php
+
+		-
+			message: '#^Expression "new class extends \\Livewire\\Component…" on a separate line does not do anything\.$#'
+			identifier: expr.resultUnused
+			count: 1
+			path: resources/views/components/setting/⚡two-factor/two-factor.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Testing\\TestResponse\:\:assertSet\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: resources/views/components/setting/⚡two-factor/two-factor.test.php
+
+		-
+			message: '#^Call to an undefined method Pest\\PendingCalls\\TestCall\:\:actingAs\(\)\.$#'
+			identifier: method.notFound
+			count: 2
+			path: resources/views/components/setting/⚡two-factor/two-factor.test.php
+
+		-
+			message: '#^Call to an undefined method Pest\\PendingCalls\\TestCall\:\:assertDatabaseHas\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: resources/views/components/setting/⚡two-factor/two-factor.test.php
+
+		-
+			message: '#^Call to an undefined method Pest\\PendingCalls\\TestCall\:\:markTestSkipped\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: resources/views/components/setting/⚡two-factor/two-factor.test.php

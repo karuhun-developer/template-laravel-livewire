@@ -9,12 +9,14 @@ use App\DTOs\Cms\Management\Permission\UpdatePermissionData;
 use App\Models\Spatie\Permission;
 use Flux\Flux;
 use Illuminate\Support\Facades\Gate;
+use Livewire\Attributes\Locked;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
 new class extends Component
 {
     /** @var class-string<Permission> */
+    #[Locked]
     public string $modelInstance = Permission::class;
 
     public bool $isUpdate = false;

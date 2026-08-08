@@ -7,11 +7,13 @@ use App\Livewire\BaseComponent;
 use App\Models\Spatie\Permission;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Gate;
+use Livewire\Attributes\Locked;
 use Livewire\Attributes\On;
 
 new class extends BaseComponent
 {
     /** @var class-string<Permission> */
+    #[Locked]
     public string $modelInstance = Permission::class;
 
     /**
