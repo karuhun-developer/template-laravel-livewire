@@ -12,12 +12,14 @@ use Flux\Flux;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Gate;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\Locked;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
 new class extends Component
 {
     /** @var class-string<User> */
+    #[Locked]
     public string $modelInstance = User::class;
 
     public bool $isUpdate = false;

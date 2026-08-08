@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Gate;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\Locked;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Symfony\Component\Finder\SplFileInfo;
@@ -22,6 +23,7 @@ use Symfony\Component\Finder\SplFileInfo;
 new class extends Component
 {
     /** @var class-string<MenuSub> */
+    #[Locked]
     public string $modelInstance = MenuSub::class;
 
     public Menu $menu;

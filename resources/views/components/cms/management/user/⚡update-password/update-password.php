@@ -6,12 +6,14 @@ use App\Actions\Cms\Management\User\UpdateUserPasswordAction;
 use App\Models\User;
 use Flux\Flux;
 use Illuminate\Support\Facades\Gate;
+use Livewire\Attributes\Locked;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
 new class extends Component
 {
     /** @var class-string<User> */
+    #[Locked]
     public string $modelInstance = User::class;
 
     public bool $isUpdate = false;
