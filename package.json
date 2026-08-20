@@ -9,7 +9,7 @@
     "dependencies": {
         "@tailwindcss/vite": "^4.3.3",
         "autoprefixer": "^10.5.4",
-        "concurrently": "^9.0.1",
+        "concurrently": "^10.0.5",
         "jodit": "^4.13.22",
         "laravel-vite-plugin": "^3.2.0",
         "tailwindcss": "^4.3.0",
