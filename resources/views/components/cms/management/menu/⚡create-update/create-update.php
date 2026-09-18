@@ -103,7 +103,7 @@ new class extends Component
     {
         Gate::authorize(($this->isUpdate ? 'update' : 'create').$this->modelInstance);
 
-        $this->validate([
+        $validated = $this->validate([
             'role_id' => 'required|exists:roles,id',
             'name' => 'required|string|max:255',
             'url' => 'required|string|max:255',
@@ -116,11 +116,11 @@ new class extends Component
         if ($this->isUpdate) {
             $updateAction->handle(
                 menu: Menu::findOrFail($this->id),
-                data: UpdateMenuData::fromArray($this->all()),
+                data: UpdateMenuData::fromArray($validated),
             );
         } else {
             $storeAction->handle(
-                data: StoreMenuData::fromArray($this->all()),
+                data: StoreMenuData::fromArray($validated),
             );
         }
 

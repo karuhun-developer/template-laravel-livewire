@@ -62,7 +62,7 @@ new class extends Component
     {
         Gate::authorize(($this->isUpdate ? 'update' : 'create').$this->modelInstance);
 
-        $this->validate([
+        $validated = $this->validate([
             'name' => 'required|string|max:255',
             'guard_name' => 'required|string|max:255',
         ]);
@@ -70,11 +70,11 @@ new class extends Component
         if ($this->isUpdate) {
             $updateAction->handle(
                 permission: Permission::findOrFail($this->id),
-                data: UpdatePermissionData::fromArray($this->all()),
+                data: UpdatePermissionData::fromArray($validated),
             );
         } else {
             $storeAction->handle(
-                data: StorePermissionData::fromArray($this->all()),
+                data: StorePermissionData::fromArray($validated),
             );
         }
 

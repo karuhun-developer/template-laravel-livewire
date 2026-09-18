@@ -80,7 +80,7 @@ new class extends Component
     {
         Gate::authorize(($this->isUpdate ? 'update' : 'create').$this->modelInstance);
 
-        $this->validate([
+        $validated = $this->validate([
             'role' => 'required|string|exists:roles,name',
             'name' => 'required|string|max:255',
             'email' => $this->isUpdate ? 'required|string|email|max:255|unique:users,email,'.$this->id : 'required|string|email|max:255|unique:users,email',
@@ -94,7 +94,7 @@ new class extends Component
             );
         } else {
             $storeAction->handle(
-                data: StoreUserData::fromArray($this->all()),
+                data: StoreUserData::fromArray($validated),
             );
         }
 

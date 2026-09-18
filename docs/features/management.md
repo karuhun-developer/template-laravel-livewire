@@ -7,13 +7,13 @@ resources. Every resource follows the identical layered pattern from
 
 ## Managed resources
 
-| Resource        | Components (`resources/views/components/cms/management/`) | Actions (`app/Actions/Cms/Management/`) | DTOs (`app/DTOs/Cms/Management/`) |
-| --------------- | -------------------------------------------------------- | --------------------------------------- | --------------------------------- |
-| **Users**       | `user/⚡table`, `⚡create-update`, `⚡update-password`      | `User/` (Store, Update, Delete, UpdateUserPassword, ValidateUserEmail) | `User/` (Store, Update) |
-| **Roles**       | `role/⚡table`, `⚡create-update`, `⚡permission`           | `Role/`, `RolePermission/`              | `Role/` (Store, Update)           |
-| **Permissions** | `permission/⚡table`, `⚡create-update`                    | `Permission/` (Store, Update, Delete)   | `Permission/` (Store, Update)     |
-| **Menus**       | `menu/⚡table`, `⚡create-update`                          | `Menu/` (Store, Update, Delete)         | `Menu/` (Store, Update)           |
-| **Sub-menus**   | `menu/sub/⚡table`, `⚡create-update`                      | `MenuSub/` (Store, Update, Delete)      | `MenuSub/` (Store, Update)        |
+| Resource        | Components (`resources/views/components/cms/management/`) | Actions (`app/Actions/Cms/Management/`)                                | DTOs (`app/DTOs/Cms/Management/`) |
+| --------------- | --------------------------------------------------------- | ---------------------------------------------------------------------- | --------------------------------- |
+| **Users**       | `user/⚡table`, `⚡create-update`, `⚡update-password`    | `User/` (Store, Update, Delete, UpdateUserPassword, ValidateUserEmail) | `User/` (Store, Update)           |
+| **Roles**       | `role/⚡table`, `⚡create-update`, `⚡permission`         | `Role/`, `RolePermission/`                                             | `Role/` (Store, Update)           |
+| **Permissions** | `permission/⚡table`, `⚡create-update`                   | `Permission/` (Store, Update, Delete)                                  | `Permission/` (Store, Update)     |
+| **Menus**       | `menu/⚡table`, `⚡create-update`                         | `Menu/` (Store, Update, Delete)                                        | `Menu/` (Store, Update)           |
+| **Sub-menus**   | `menu/sub/⚡table`, `⚡create-update`                     | `MenuSub/` (Store, Update, Delete)                                     | `MenuSub/` (Store, Update)        |
 
 ## Standard component pattern
 
@@ -24,9 +24,10 @@ Each resource has a **table** component (list/filter/paginate/reorder) and a
 1. `Gate::authorize((isUpdate ? 'update' : 'create').$modelInstance)`
 2. `$this->validate([...])` — rules differ for create vs update (e.g. unique email ignores
    the current record on update; password is `required` on create, `nullable` on update).
-3. Builds a DTO (`StoreXData::fromArray($this->all())` / `UpdateXData::fromArray(...)`) and
+3. `$validated = $this->validate([...])` — store the validated data in a variable to pass to the DTO.
+4. Builds a DTO (`StoreXData::fromArray($validated)` / `UpdateXData::fromArray(...)`) and
    calls the injected Action.
-4. Dispatches a `toast`, fires `reset-parent-page`, and closes the Flux modal.
+5. Dispatches a `toast`, fires `reset-parent-page`, and closes the Flux modal.
 
 ## Menus & navigation
 
