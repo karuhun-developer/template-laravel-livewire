@@ -26,7 +26,7 @@
             <flux:field>
                 <flux:label badge="Required">Guard Name</flux:label>
                 <flux:text>Guard name is used to specify the authentication guard for the permission item.</flux:text>
-                <flux:select wire:model="guard_name" placeholder="Guard Name..">
+                <flux:select wire:model="guard_name">
                     <flux:select.option value="">-- Select Guard Name --</flux:select.option>
                     <flux:select.option value="api">api</flux:select.option>
                     <flux:select.option value="web">web</flux:select.option>
@@ -38,7 +38,7 @@
             <div class="flex">
                 <flux:spacer />
 
-                <flux:button type="submit" variant="primary">Save changes</flux:button>
+                <flux:button type="submit" variant="primary" icon="paper-airplane">Save changes</flux:button>
             </div>
         </form>
     </flux:modal>

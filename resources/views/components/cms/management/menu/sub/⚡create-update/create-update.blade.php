@@ -18,7 +18,7 @@
 
             <flux:field>
                 <flux:label badge="Required">Role</flux:label>
-                <flux:select wire:model="role_id" placeholder="Select role ....">
+                <flux:select wire:model="role_id">
                     <flux:select.option value="">-- Select Role --</flux:select.option>
                     @foreach ($this->roles as $role)
                         <flux:select.option value="{{ $role->id }}">{{ $role->name }}</flux:select.option>
@@ -47,7 +47,8 @@
                         <flux:icon name="{{ $icon }}" size="lg" />
                     </span>
                 @endif
-                <flux:select wire:model.live="icon" laceholder="Select icon ....">
+                <flux:select wire:model.live="icon">
+                    <flux:select.option value="">-- Select Icon --</flux:select.option>
                     @foreach ($this->icons as $i)
                         <flux:select.option value="{{ $i }}">
                             {{ $i }}
@@ -85,7 +86,7 @@
             <div class="flex">
                 <flux:spacer />
 
-                <flux:button type="submit" variant="primary">Save changes</flux:button>
+                <flux:button type="submit" variant="primary" icon="paper-airplane">Save changes</flux:button>
             </div>
         </form>
     </flux:modal>

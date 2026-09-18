@@ -22,3 +22,6 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
+.mcp.json
+/.codex
+.agents/mcp_config.json

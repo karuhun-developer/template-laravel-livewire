@@ -25,7 +25,7 @@
             <div class="flex">
                 <flux:spacer />
 
-                <flux:button type="submit" variant="primary">Change Password</flux:button>
+                <flux:button type="submit" variant="primary" icon="paper-airplane">Change Password</flux:button>
             </div>
         </form>
     </flux:modal>

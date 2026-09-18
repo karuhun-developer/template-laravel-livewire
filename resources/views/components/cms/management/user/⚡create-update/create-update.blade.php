@@ -19,7 +19,7 @@
             <flux:field>
                 <flux:label badge="Required">Role</flux:label>
                 <flux:text>Role is used to specify the role that has access to the user item.</flux:text>
-                <flux:select wire:model="role" placeholder="Select role ....">
+                <flux:select wire:model="role">
                     <flux:select.option value="">-- Select Role --</flux:select.option>
                     @foreach ($this->roles as $role)
                         <flux:select.option value="{{ $role->name }}">{{ $role->name }}</flux:select.option>
@@ -52,7 +52,7 @@
             <div class="flex">
                 <flux:spacer />
 
-                <flux:button type="submit" variant="primary">Save changes</flux:button>
+                <flux:button type="submit" variant="primary" icon="paper-airplane">Save changes</flux:button>
             </div>
         </form>
     </flux:modal>

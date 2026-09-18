@@ -3,7 +3,7 @@
         "laravel-boost": {
             "command": "wsl.exe",
             "args": [
-                "/home/orangkeren/.config/herd-lite/bin/php",
+                "/home/bayur/.config/herd-lite/bin/php",
                 "/var/www/html/template-laravel-livewire/artisan",
                 "boost:mcp"
             ]

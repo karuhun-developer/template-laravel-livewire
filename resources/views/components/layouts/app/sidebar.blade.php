@@ -4,16 +4,21 @@
         @include('components.layouts.partials.head')
         @livewireStyles
     </head>
-    <body class="min-h-screen bg-white dark:bg-zinc-800">
-        <flux:sidebar sticky collapsible class="border-e border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
+    <body class="min-h-screen bg-canvas text-ink-950 antialiased dark:bg-[#080e1a] dark:text-zinc-100">
+        <flux:sidebar sticky collapsible class="border-e border-[#222c3d] bg-[#161c28] text-white dark:border-[#1e293b] dark:bg-[#080e1a]">
             <flux:sidebar.header>
                 <flux:sidebar.brand
-                    href="#"
-                    logo="https://fluxui.dev/img/demo/logo.png"
-                    logo:dark="https://fluxui.dev/img/demo/dark-mode-logo.png"
-                    :name="config('app.name')"
-                />
-                <flux:sidebar.collapse class="in-data-flux-sidebar-on-desktop:not-in-data-flux-sidebar-collapsed-desktop:-mr-2" />
+                    href="{{ route('cms.dashboard') }}"
+                    :name="config('app.name', 'Laravel')"
+                    class="!text-white *:!text-white font-display font-bold"
+                >
+                    <x-slot name="logo">
+                        <div class="flex aspect-square size-7 items-center justify-center rounded-md bg-electric-mint text-[#161c28] shadow-xs">
+                            <x-app-logo-icon class="size-4 fill-current text-[#161c28]" />
+                        </div>
+                    </x-slot>
+                </flux:sidebar.brand>
+                <flux:sidebar.collapse class="in-data-flux-sidebar-on-desktop:not-in-data-flux-sidebar-collapsed-desktop:-mr-2 text-zinc-400 hover:text-white" />
             </flux:sidebar.header>
 
             @php
@@ -120,7 +125,7 @@
                             <div class="flex items-center gap-2 px-1 py-1.5 text-start text-sm">
                                 <span class="relative flex h-8 w-8 shrink-0 overflow-hidden rounded-lg">
                                     <span
-                                        class="flex h-full w-full items-center justify-center rounded-lg bg-neutral-200 text-black dark:bg-neutral-700 dark:text-white"
+                                        class="flex h-full w-full items-center justify-center rounded-lg bg-[#293344] text-electric-mint font-semibold font-display"
                                     >
                                         {{ auth()->user()->initials() }}
                                     </span>
@@ -153,7 +158,7 @@
         </flux:sidebar>
 
         <!-- Mobile User Menu -->
-        <flux:header class="lg:hidden">
+        <flux:header class="lg:hidden border-b border-line bg-surface/90 backdrop-blur-md dark:border-[#222c3d] dark:bg-[#121824]/90">
             <flux:sidebar.toggle class="lg:hidden" icon="bars-2" inset="left" />
 
             <flux:spacer />
@@ -170,7 +175,7 @@
                             <div class="flex items-center gap-2 px-1 py-1.5 text-start text-sm">
                                 <span class="relative flex h-8 w-8 shrink-0 overflow-hidden rounded-lg">
                                     <span
-                                        class="flex h-full w-full items-center justify-center rounded-lg bg-neutral-200 text-black dark:bg-neutral-700 dark:text-white"
+                                        class="flex h-full w-full items-center justify-center rounded-lg bg-[#293344] text-electric-mint font-semibold font-display"
                                     >
                                         {{ auth()->user()->initials() }}
                                     </span>

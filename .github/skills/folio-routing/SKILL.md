@@ -42,6 +42,30 @@ php artisan folio:page "products/[id]"
 php artisan folio:page "users/[User]"
 ```
 
+## Page File Structure
+
+A Folio page has up to two distinct code blocks above the Blade template:
+
+1. Metadata block (required for `name`/`middleware`/`render`/`withTrashed`) — a raw `<?php ?>` block at the very top.
+2. View-data block (optional) — a `` Blade directive below the metadata block, for per-request data loading.
+
+<!-- Folio Page Skeleton -->
+```blade
+<?php
+use function Laravel\Folio\{name, middleware};
+
+name('posts.show');
+middleware(['auth']);
+?>
+
+@php
+    use App\Models\Post;
+    $related = Post::latest()->take(3)->get();
+@endphp
+
+<h1>{{ $post->title }}</h1>
+```
+
 ## Route Parameters vs. Model Binding
 
 Use the correct filename token based on intent:
@@ -67,26 +91,50 @@ Add a `name` at the top of each new Folio page to create a named route that othe
 
 <!-- Named Routes Example -->
 ```php
+<?php
 use function Laravel\Folio\name;
 
 name('products.index');
+?>
 ```
+
+### Generating URLs to Folio Routes
+
+Folio's URL generator requires route parameters as a keyed array. It does not auto-coerce a single Eloquent model the way Laravel's default route helper does — passing a model directly throws `TypeError: Laravel\Folio\FolioRoutes::get(): Argument #2 ($arguments) must be of type array`.
+
+The array key must match the filename token: for `pages/posts/[Post].blade.php` the key is `post`; for `pages/posts/[Post:slug].blade.php` the key is still `post` (the `:slug` part only changes which column Folio resolves by).
+
+<!-- Linking to a Folio Route with Model Binding -->
+```blade
+{{-- Correct: keyed array --}}
+<a href="{{ route('posts.show', ['post' => $post]) }}">{{ $post->title }}</a>
+
+{{-- Also correct: primitive key --}}
+<a href="{{ route('posts.show', ['post' => $post->id]) }}">{{ $post->title }}</a>
+
+{{-- Wrong: throws TypeError at render time --}}
+<a href="{{ route('posts.show', $post) }}">{{ $post->title }}</a>
+```
+
+For routes without parameters, the helper works as usual: `{{ route('posts.index') }}`.
 
 ## Middleware
 
 <!-- Middleware Example -->
 ```php
+<?php
 use function Laravel\Folio\{name, middleware};
 
 name('admin.products');
 middleware(['auth', 'verified']);
+?>
 ```
 
 ## Page Content Patterns
 
 Folio pages are normal Blade files. Include practical data-loading code when creating or editing pages.
 
-<!-- Inline Query Example in a Folio Page -->
+<!-- Per-Request View Data (Blade @php block, below the metadata block) -->
 ```blade
 @php
 use App\Models\Post;
@@ -128,6 +176,8 @@ render(function (View $view, Post $post) {
 - Using `[id]` or `[user]` when model binding requires `[User]`
 - Not following existing naming conventions when creating pages
 - Creating routes manually in `routes/web.php` instead of using Folio's file-based routing
+- Wrapping `name()`, `middleware()`, `render()`, or `withTrashed()` in a `` Blade directive. Folio's scanner only reads raw `<?php ?>` blocks, so those calls are silently ignored — the named route is never registered, middleware is never applied, and `folio:list` will not show the expected route attributes.
+- Calling `route('page.name', $model)` with a single model instance. Folio's URL generator requires a keyed array: `route('page.name', ['model' => $model])`. Passing a model directly throws `TypeError` at render time.
 
 ### Folio 404 Debug Checklist
 

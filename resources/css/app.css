@@ -10,32 +10,89 @@
 
 @theme {
     --font-sans:
-        "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
+        "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif,
         "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
         "Noto Color Emoji";
+    --font-display:
+        "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
 
-    --color-zinc-50: #fafafa;
-    --color-zinc-100: #f5f5f5;
-    --color-zinc-200: #e5e5e5;
-    --color-zinc-300: #d4d4d4;
-    --color-zinc-400: #a3a3a3;
-    --color-zinc-500: #737373;
-    --color-zinc-600: #525252;
-    --color-zinc-700: #404040;
-    --color-zinc-800: #262626;
-    --color-zinc-900: #171717;
-    --color-zinc-950: #0a0a0a;
+    /* HydroBento Precision Tokens (Stitch Design Specification) */
+    --color-canvas: #f8f9fb;
+    --color-surface: #ffffff;
+    --color-surface-low: #f2f4f6;
+    --color-surface-container: #eceef0;
+    --color-surface-high: #e0e3e5;
+    --color-surface-blue: #edf5fa;
+    --color-line: #e2e8ed;
 
-    --color-accent: var(--color-neutral-800);
-    --color-accent-content: var(--color-neutral-800);
-    --color-accent-foreground: var(--color-white);
+    --color-primary: #161c28;
+    --color-primary-container: #161c28;
+    --color-on-primary: #ffffff;
+    --color-on-primary-container: #7e8493;
+
+    --color-secondary: #1e667f;
+    --color-secondary-container: #a1e0fd;
+    --color-on-secondary-container: #1c657e;
+
+    --color-tertiary-fixed-dim: #00e29d;
+    --color-electric-mint: #00e29d;
+    --color-mint-accent: #00e29d;
+    --color-mint-500: #007d58;
+
+    --color-amber-500: #a65b08;
+    --color-red-600: #d92d20;
+
+    --color-ink-950: #161c28;
+    --color-ink-700: #414b5c;
+    --color-ink-500: #626d7b;
+
+    /* Re-mapped Zinc Scale for unified Flux UI in Deep Navy Slate */
+    --color-zinc-50: #f8f9fb;
+    --color-zinc-100: #f2f4f6;
+    --color-zinc-200: #e2e8ed;
+    --color-zinc-300: #c6c6cc;
+    --color-zinc-400: #94a3b8;
+    --color-zinc-500: #626d7b;
+    --color-zinc-600: #414b5c;
+    --color-zinc-700: #293344;
+    --color-zinc-800: #161c28;
+    --color-zinc-900: #121824;
+    --color-zinc-950: #080e1a;
+
+    --color-accent: #161c28;
+    --color-accent-content: #161c28;
+    --color-accent-foreground: #ffffff;
+
+    --shadow-low: 0 2px 4px rgb(22 28 40 / 3%);
+    --shadow-raised: 0 16px 48px rgb(22 28 40 / 12%);
 }
 
 @layer theme {
     .dark {
-        --color-accent: var(--color-white);
-        --color-accent-content: var(--color-white);
-        --color-accent-foreground: var(--color-neutral-800);
+        --color-canvas: #080e1a;
+        --color-surface: #121824;
+        --color-surface-low: #161c28;
+        --color-surface-container: #1a2233;
+        --color-surface-high: #242f44;
+        --color-surface-blue: #162235;
+        --color-line: #222c3d;
+
+        --color-primary: #00e29d;
+        --color-primary-container: #161c28;
+        --color-on-primary: #080e1a;
+        --color-on-primary-container: #f8f9fb;
+
+        --color-secondary: #38bdf8;
+        --color-secondary-container: #0c4a6e;
+        --color-on-secondary-container: #a1e0fd;
+
+        --color-ink-950: #f8f9fb;
+        --color-ink-700: #c4ccd8;
+        --color-ink-500: #7e8493;
+
+        --color-accent: #00e29d;
+        --color-accent-content: #00e29d;
+        --color-accent-foreground: #080e1a;
     }
 }
 
@@ -45,8 +102,43 @@
     ::before,
     ::backdrop,
     ::file-selector-button {
-        border-color: var(--color-gray-200, currentColor);
+        border-color: var(--color-line);
     }
+
+    body {
+        font-family: var(--font-sans);
+        background-color: var(--color-canvas);
+        color: var(--color-ink-950);
+        background-image: none !important;
+        min-height: 100vh;
+    }
+
+    .dark body {
+        background-color: #080e1a;
+        color: #f8f9fb;
+        background-image: none !important;
+    }
+
+    :where(h1, h2, h3, h4, h5, h6, [data-flux-heading]) {
+        font-family: var(--font-display);
+        letter-spacing: -0.025em;
+    }
+
+    :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+        outline: 2px solid var(--color-electric-mint);
+        outline-offset: 2px;
+    }
+}
+
+/* Telemetry Micro-Data Caps Class from .stitch */
+.font-label-caps,
+.label-caps {
+    font-family: var(--font-display);
+    font-size: 11px;
+    line-height: 14px;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    text-transform: uppercase;
 }
 
 [data-flux-field]:not(ui-radio, ui-checkbox) {
@@ -54,15 +146,187 @@
 }
 
 [data-flux-label] {
-    @apply !mb-0 !leading-tight;
+    @apply !mb-0 !leading-tight text-ink-700 dark:text-zinc-400 font-medium text-xs;
 }
 
 input:focus[data-flux-control],
 textarea:focus[data-flux-control],
 select:focus[data-flux-control] {
-    @apply outline-hidden ring-2 ring-accent ring-offset-2 ring-offset-accent-foreground;
+    @apply outline-hidden ring-2 ring-electric-mint ring-offset-2 ring-offset-surface;
 }
 
-/* \[:where(&)\]:size-4 {
-    @apply size-4;
-} */
+/* Button Pill Shape from .stitch: [data-slot=button] { border-radius: 9999px } */
+[data-flux-button] {
+    border-radius: 9999px;
+}
+
+/* Card Shape from .stitch: rounded-3xl / 1.5rem */
+:where([data-slot="card"], [data-slot="dialog-content"]) {
+    border-radius: 1.5rem;
+}
+
+/* Input Styling from .stitch */
+:where([data-slot="input"], [data-slot="textarea"], [data-slot="select-trigger"], select, input[data-flux-control], textarea[data-flux-control]) {
+    background-color: var(--color-canvas);
+    border-radius: 0.875rem;
+    box-shadow: none;
+}
+
+/* HydroBento Sidebar Styling from .stitch */
+[data-flux-sidebar] {
+    background-color: #161c28;
+    border-color: #222c3d;
+    color: #edf1f7;
+}
+
+.dark [data-flux-sidebar] {
+    background-color: #080e1a;
+    border-color: #1e293b;
+    color: #edf1f7;
+}
+
+[data-flux-sidebar] [data-flux-sidebar-brand],
+[data-flux-sidebar] [data-flux-sidebar-brand] div,
+[data-flux-sidebar] [data-flux-sidebar-brand] span {
+    color: #ffffff !important;
+}
+
+/* Sidebar items, expandable dropdown group buttons, profile triggers, and collapse */
+[data-flux-sidebar] > [data-flux-sidebar-nav] [data-flux-sidebar-item],
+[data-flux-sidebar] ui-disclosure[data-flux-sidebar-group] > button,
+[data-flux-sidebar] [data-flux-sidebar-group-dropdown] > button,
+[data-flux-sidebar] button.group\/disclosure-button,
+[data-flux-sidebar] [data-flux-sidebar-group] button,
+[data-flux-sidebar] [data-flux-sidebar-group] [data-flux-sidebar-item],
+[data-flux-sidebar] [data-flux-profile],
+[data-flux-sidebar] [data-flux-sidebar-collapse] {
+    color: #94a3b8 !important;
+}
+
+[data-flux-sidebar] > [data-flux-sidebar-nav] [data-flux-sidebar-item] span,
+[data-flux-sidebar] > [data-flux-sidebar-nav] [data-flux-sidebar-item] [data-flux-icon],
+[data-flux-sidebar] ui-disclosure[data-flux-sidebar-group] > button *,
+[data-flux-sidebar] [data-flux-sidebar-group-dropdown] > button *,
+[data-flux-sidebar] button.group\/disclosure-button *,
+[data-flux-sidebar] [data-flux-sidebar-group] button *,
+[data-flux-sidebar] [data-flux-sidebar-group] [data-flux-sidebar-item] span,
+[data-flux-sidebar] [data-flux-sidebar-group] [data-flux-sidebar-item] [data-flux-icon],
+[data-flux-sidebar] [data-flux-profile] span,
+[data-flux-sidebar] [data-flux-profile] [data-flux-icon],
+[data-flux-sidebar] [data-flux-sidebar-collapse] [data-flux-icon] {
+    color: #94a3b8 !important;
+}
+
+[data-flux-sidebar] > [data-flux-sidebar-nav] [data-flux-sidebar-item]:hover,
+[data-flux-sidebar] ui-disclosure[data-flux-sidebar-group] > button:hover,
+[data-flux-sidebar] [data-flux-sidebar-group-dropdown] > button:hover,
+[data-flux-sidebar] button.group\/disclosure-button:hover,
+[data-flux-sidebar] [data-flux-sidebar-group] button:hover,
+[data-flux-sidebar] [data-flux-sidebar-group] [data-flux-sidebar-item]:hover,
+[data-flux-sidebar] [data-flux-profile]:hover,
+[data-flux-sidebar] [data-flux-sidebar-collapse]:hover {
+    background-color: #293344 !important;
+    color: #ffffff !important;
+}
+
+[data-flux-sidebar] > [data-flux-sidebar-nav] [data-flux-sidebar-item]:hover span,
+[data-flux-sidebar] > [data-flux-sidebar-nav] [data-flux-sidebar-item]:hover [data-flux-icon],
+[data-flux-sidebar] ui-disclosure[data-flux-sidebar-group] > button:hover *,
+[data-flux-sidebar] [data-flux-sidebar-group-dropdown] > button:hover *,
+[data-flux-sidebar] button.group\/disclosure-button:hover *,
+[data-flux-sidebar] [data-flux-sidebar-group] button:hover *,
+[data-flux-sidebar] [data-flux-sidebar-group] [data-flux-sidebar-item]:hover span,
+[data-flux-sidebar] [data-flux-sidebar-group] [data-flux-sidebar-item]:hover [data-flux-icon],
+[data-flux-sidebar] [data-flux-profile]:hover span,
+[data-flux-sidebar] [data-flux-profile]:hover [data-flux-icon],
+[data-flux-sidebar] [data-flux-sidebar-collapse]:hover [data-flux-icon] {
+    color: #ffffff !important;
+}
+
+[data-flux-sidebar] [data-flux-sidebar-item][data-current] {
+    background-color: #293344 !important;
+    color: #ffffff !important;
+    border-color: #00e29d;
+    position: relative;
+}
+
+[data-flux-sidebar] [data-flux-sidebar-item][data-current] span,
+[data-flux-sidebar] [data-flux-sidebar-item][data-current] [data-flux-icon] {
+    color: #ffffff !important;
+}
+
+[data-flux-sidebar] [data-flux-sidebar-item][data-current]::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 20%;
+    bottom: 20%;
+    width: 3px;
+    border-radius: 0 2px 2px 0;
+    background-color: #00e29d;
+}
+
+[data-flux-sidebar] [data-flux-sidebar-group] > [data-flux-sidebar-group-heading] {
+    color: #7e8493;
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+/* Ensure popup menu inside sidebar retains correct light/dark surface and readable text */
+[data-flux-sidebar] [data-flux-menu] {
+    background-color: var(--color-surface);
+    color: var(--color-ink-950);
+    border-color: var(--color-line);
+}
+
+.dark [data-flux-sidebar] [data-flux-menu] {
+    background-color: #121824;
+    color: #f8f9fb;
+    border-color: #222c3d;
+}
+
+[data-flux-sidebar] [data-flux-menu] [data-flux-menu-item] {
+    color: var(--color-ink-950) !important;
+}
+
+.dark [data-flux-sidebar] [data-flux-menu] [data-flux-menu-item] {
+    color: #f8f9fb !important;
+}
+
+[data-flux-sidebar] [data-flux-menu] [data-flux-menu-item]:hover,
+[data-flux-sidebar] [data-flux-menu] [data-flux-menu-item][data-active] {
+    background-color: var(--color-surface-low) !important;
+    color: var(--color-ink-950) !important;
+}
+
+.dark [data-flux-sidebar] [data-flux-menu] [data-flux-menu-item]:hover,
+.dark [data-flux-sidebar] [data-flux-menu] [data-flux-menu-item][data-active] {
+    background-color: #293344 !important;
+    color: #ffffff !important;
+}
+
+/* Stitch Components: .mobile-hero, .mobile-card, .mobile-bento */
+.mobile-hero {
+    background: #161c28;
+    border: 1px solid #222c3d;
+    box-shadow: var(--shadow-low);
+    border-radius: 1.5rem;
+}
+
+.mobile-card {
+    border: 1px solid var(--color-line);
+    background: var(--color-surface);
+    min-width: 0;
+    box-shadow: var(--shadow-low);
+    border-radius: 1.5rem;
+}
+
+.cms-metric-featured {
+    --color-surface: #161c28;
+    --color-line: #222c3d;
+    --color-ink-950: #ffffff;
+    --color-ink-500: #c4ccd8;
+}
