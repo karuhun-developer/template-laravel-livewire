@@ -1,7 +1,6 @@
 <x-layouts.auth.split :title="$title ?? null">
     {{ $slot }}
 
-
     <x-confirm-modal />
 
     @persist('toast')

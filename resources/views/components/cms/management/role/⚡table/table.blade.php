@@ -1,6 +1,6 @@
 <div>
-    <div class="flex items-center justify-between mb-4">
-        @can('create' . $this->modelInstance)
+    <div class="mb-4 flex items-center justify-between">
+        @can('create'.$this->modelInstance)
             <flux:button
                 variant="primary"
                 icon="plus"
@@ -13,7 +13,7 @@
             </flux:button>
         @endcan
     </div>
-    <div class="flex items-center justify-between mt-5 mb-4 gap-4">
+    <div class="mt-5 mb-4 flex items-center justify-between gap-4">
         <div class="flex items-center gap-2">
             <p class="text-sm text-gray-600">Show</p>
             <flux:select size="sm" wire:model.live.debounce="paginate" placeholder="Per Page">
@@ -40,19 +40,17 @@
 
     <flux:table :paginate="$data" class="min-w-full">
         <flux:table.columns>
-            <flux:table.column>
-                Actions
-            </flux:table.column>
+            <flux:table.column> Actions </flux:table.column>
             <x-loop-th :$searchBy :$paginationOrder :$paginationOrderBy />
         </flux:table.columns>
         <flux:table.rows>
-            @forelse($data as $d)
+            @forelse ($data as $d)
                 <flux:table.row>
                     <flux:table.cell>
                         <flux:dropdown>
                             <flux:button icon:trailing="chevron-down" size="sm">Options</flux:button>
                             <flux:menu>
-                                @can('update' . $this->modelInstance)
+                                @can('update'.$this->modelInstance)
                                     <flux:menu.item
                                         variant="default"
                                         icon="pencil"
@@ -61,45 +59,42 @@
                                             $wire.dispatch('set-action', {
                                                 id: '{{ $d->id }}',
                                             });
-                                        ">
+                                        "
+                                    >
                                         Update
                                     </flux:menu.item>
                                 @endcan
-                                @can('validate' . $this->modelInstance)
+                                @can('validate'.$this->modelInstance)
                                     <flux:menu.item
                                         variant="default"
                                         icon="shield-check"
                                         href="{{ route('cms.management.role.permission') }}?role_id={{ $d->id }}"
-                                        wire:navigate>
+                                        wire:navigate
+                                    >
                                         Permissions
                                     </flux:menu.item>
                                 @endcan
-                                @can('delete' . $this->modelInstance)
+                                @can('delete'.$this->modelInstance)
                                     <flux:menu.item
                                         variant="danger"
                                         icon="trash"
                                         @click="$wire.dispatch('confirm', {
                                             function: 'delete',
                                             id: '{{ $d->id }}',
-                                        })">
+                                        })"
+                                    >
                                         Delete
                                     </flux:menu.item>
                                 @endcan
                             </flux:menu>
                         </flux:dropdown>
                     </flux:table.cell>
-                    <flux:table.cell>
-                        {{ $d->name }}
-                    </flux:table.cell>
-                    <flux:table.cell>
-                        {{ $d->guard_name }}
-                    </flux:table.cell>
+                    <flux:table.cell> {{ $d->name }} </flux:table.cell>
+                    <flux:table.cell> {{ $d->guard_name }} </flux:table.cell>
                 </flux:table.row>
             @empty
                 <flux:table.row>
-                    <flux:table.cell colspan="999" align="center" variant="strong">
-                        No data found.
-                    </flux:table.cell>
+                    <flux:table.cell colspan="999" align="center" variant="strong"> No data found. </flux:table.cell>
                 </flux:table.row>
             @endforelse
         </flux:table.rows>

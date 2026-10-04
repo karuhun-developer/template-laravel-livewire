@@ -1,19 +1,10 @@
-
 <div>
     <!-- Change Password Modal -->
-    <flux:modal
-        name="changePasswordModal"
-        class="max-w-2xl md:min-w-2xl"
-        flyout
-    >
+    <flux:modal name="changePasswordModal" class="max-w-2xl md:min-w-2xl" flyout>
         <form class="space-y-6" wire:submit.prevent="submit">
             <div>
-                <flux:heading size="lg">
-                    Change User Password
-                </flux:heading>
-                <flux:text class="mt-2">
-                    Fill in the new password for the user item below.
-                </flux:text>
+                <flux:heading size="lg"> Change User Password </flux:heading>
+                <flux:text class="mt-2"> Fill in the new password for the user item below. </flux:text>
             </div>
 
             <flux:field>

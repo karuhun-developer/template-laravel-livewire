@@ -1,16 +1,9 @@
-
 <div>
     <!-- Create / Update Modal -->
-    <flux:modal
-        name="defaultModal"
-        class="max-w-2xl md:min-w-2xl"
-        flyout
-    >
+    <flux:modal name="defaultModal" class="max-w-2xl md:min-w-2xl" flyout>
         <form class="space-y-6" wire:submit.prevent="submit">
             <div>
-                <flux:heading size="lg">
-                    {{ $isUpdate ? 'Update' : 'Create' }} User Item
-                </flux:heading>
+                <flux:heading size="lg"> {{ $isUpdate ? 'Update' : 'Create' }} User Item </flux:heading>
                 <flux:text class="mt-2">
                     {{ $isUpdate ? 'Update the details of the user item below.' : 'Fill in the details to create a new user item.' }}
                 </flux:text>
@@ -41,7 +34,7 @@
                 <flux:error name="email" />
             </flux:field>
 
-            @if (!$isUpdate)
+            @if (! $isUpdate)
                 <flux:field>
                     <flux:label badge="Required">Password</flux:label>
                     <flux:input wire:model="password" type="password" />

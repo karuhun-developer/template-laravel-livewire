@@ -15,5 +15,10 @@
         "tailwindcss": "^4.3.0",
         "tom-select": "^2.6.2",
         "vite": "^8.3.1"
+    },
+    "devDependencies": {
+        "prettier": "^3.9.9",
+        "prettier-plugin-blade": "^3.3.3",
+        "prettier-plugin-tailwindcss": "^0.8.1"
     }
 }

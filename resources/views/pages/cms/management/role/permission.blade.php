@@ -15,11 +15,11 @@ render(function (View $view): void {
     $breadcrumbs = [
         [
             'label' => 'Management',
-            'url' => '#'
+            'url' => '#',
         ],
         [
             'label' => 'Role',
-            'url' => route('cms.management.role')
+            'url' => route('cms.management.role'),
         ],
         [
             'label' => 'Permissions',
@@ -35,7 +35,7 @@ render(function (View $view): void {
 
 <x-layouts.app :$title>
     <div class="w-full">
-        <div class="flex justify-between items-center mb-5">
+        <div class="mb-5 flex items-center justify-between">
             <div class="flex items-center gap-4">
                 <flux:button
                     href="{{ route('cms.management.role') }}"
@@ -48,21 +48,19 @@ render(function (View $view): void {
             </div>
             <flux:breadcrumbs>
                 <flux:breadcrumbs.item href="{{ route('cms.dashboard') }}" icon="home" />
-                @foreach($breadcrumbs as $breadcrumb)
-                    @if($breadcrumb['url'])
-                        <flux:breadcrumbs.item href="{{ $breadcrumb['url'] }}">{{ $breadcrumb['label'] }}</flux:breadcrumbs.item>
+                @foreach ($breadcrumbs as $breadcrumb)
+                    @if ($breadcrumb['url'])
+                        <flux:breadcrumbs.item href="{{ $breadcrumb['url'] }}">
+                            {{ $breadcrumb['label'] }}</flux:breadcrumbs.item>
                     @else
                         <flux:breadcrumbs.item>{{ $breadcrumb['label'] }}</flux:breadcrumbs.item>
                     @endif
                 @endforeach
             </flux:breadcrumbs>
         </div>
-        <div class="border-gray-200 mb-6">
-            <flux:text>
-                {{ $description }}
-            </flux:text>
+        <div class="mb-6 border-gray-200">
+            <flux:text> {{ $description }} </flux:text>
         </div>
         <livewire:cms.management.role.permission :$role />
     </div>
 </x-layouts.app>
-

@@ -1,16 +1,9 @@
-
 <div>
     <!-- Create / Update Modal -->
-    <flux:modal
-        name="defaultModal"
-        class="max-w-2xl md:min-w-2xl"
-        flyout
-    >
+    <flux:modal name="defaultModal" class="max-w-2xl md:min-w-2xl" flyout>
         <form class="space-y-6" wire:submit.prevent="submit">
             <div>
-                <flux:heading size="lg">
-                    {{ $isUpdate ? 'Update' : 'Create' }} Permission Item
-                </flux:heading>
+                <flux:heading size="lg"> {{ $isUpdate ? 'Update' : 'Create' }} Permission Item </flux:heading>
                 <flux:text class="mt-2">
                     {{ $isUpdate ? 'Update the details of the permission item below.' : 'Fill in the details to create a new permission item.' }}
                 </flux:text>
@@ -33,7 +26,6 @@
                 </flux:select>
                 <flux:error name="guard_name" />
             </flux:field>
-
 
             <div class="flex">
                 <flux:spacer />

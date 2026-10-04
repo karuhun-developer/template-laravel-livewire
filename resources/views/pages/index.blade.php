@@ -10,5 +10,3 @@ name('home');
 render(function (): RedirectResponse {
     return to_route('cms.dashboard');
 });
-
-?>

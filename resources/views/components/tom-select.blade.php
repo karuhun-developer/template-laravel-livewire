@@ -14,7 +14,8 @@
     @php
         $randId = Str::random(10);
     @endphp
-    <select placeholder="{{ $placeholder }}"
+    <select
+        placeholder="{{ $placeholder }}"
         id="{{ $ref }}"
         x-ref="{{ $ref }}"
         x-data="{
@@ -65,6 +66,6 @@
         x-on:set-tom-value.window="setTomValue($event.detail)"
         x-on:clear-tom-value.window="clearTomValue($event.detail)"
         {{ $attributes->merge(['class' => 'form-control']) }}
-        {{ $attributes ?? '' }}>
-    </select>
+        {{ $attributes ?? '' }}
+    ></select>
 </div>

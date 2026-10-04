@@ -8,7 +8,7 @@
 ])
 
 @php
-$icon = $name ?? $icon;
+    $icon = $name ?? $icon;
 @endphp
 
-<flux:delegate-component :component="'icon.' . $icon">{{ $slot }}</flux:delegate-component>
+<flux:delegate-component :component="'icon.'.$icon">{{ $slot }}</flux:delegate-component>
