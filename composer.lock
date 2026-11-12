@@ -1346,16 +1346,16 @@
         },
         {
             "name": "laravel/folio",
-            "version": "v1.2.0",
+            "version": "v1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/folio.git",
-                "reference": "b79f01771064959ebff7f90ea52ce1bf164bc287"
+                "reference": "017550dbdafefc6d0c87df4aa8f16efc3415656b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/folio/zipball/b79f01771064959ebff7f90ea52ce1bf164bc287",
-                "reference": "b79f01771064959ebff7f90ea52ce1bf164bc287",
+                "url": "https://api.github.com/repos/laravel/folio/zipball/017550dbdafefc6d0c87df4aa8f16efc3415656b",
+                "reference": "017550dbdafefc6d0c87df4aa8f16efc3415656b",
                 "shasum": ""
             },
             "require": {
@@ -1415,7 +1415,7 @@
                 "issues": "https://github.com/laravel/folio/issues",
                 "source": "https://github.com/laravel/folio"
             },
-            "time": "2026-08-13T14:36:22+00:00"
+            "time": "2026-10-14T16:47:18+00:00"
         },
         {
             "name": "laravel/fortify",
