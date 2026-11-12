@@ -5007,16 +5007,16 @@
         },
         {
             "name": "spatie/laravel-activitylog",
-            "version": "5.1.1",
+            "version": "5.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-activitylog.git",
-                "reference": "8ce56d3b9d72f4e4551f4449d236a5ed06e71667"
+                "reference": "3e6f55ac60afa5660980bbe3070e45b1f2ddf478"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-activitylog/zipball/8ce56d3b9d72f4e4551f4449d236a5ed06e71667",
-                "reference": "8ce56d3b9d72f4e4551f4449d236a5ed06e71667",
+                "url": "https://api.github.com/repos/spatie/laravel-activitylog/zipball/3e6f55ac60afa5660980bbe3070e45b1f2ddf478",
+                "reference": "3e6f55ac60afa5660980bbe3070e45b1f2ddf478",
                 "shasum": ""
             },
             "require": {
@@ -5084,7 +5084,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-activitylog/issues",
-                "source": "https://github.com/spatie/laravel-activitylog/tree/5.1.1"
+                "source": "https://github.com/spatie/laravel-activitylog/tree/5.1.4"
             },
             "funding": [
                 {
@@ -5096,7 +5096,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-09-08T12:16:25+00:00"
+            "time": "2026-11-06T10:47:04+00:00"
         },
         {
             "name": "spatie/laravel-medialibrary",
