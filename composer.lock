@@ -3022,16 +3022,16 @@
         },
         {
             "name": "mantix/livewire-jodit-text-editor",
-            "version": "v1.10",
+            "version": "v1.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mantix/livewire-jodit-text-editor.git",
-                "reference": "15232352a03b31c824dda101946b779f118f7ecc"
+                "reference": "1ea952109f5baf09851de687fd0f86c563120d1b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mantix/livewire-jodit-text-editor/zipball/15232352a03b31c824dda101946b779f118f7ecc",
-                "reference": "15232352a03b31c824dda101946b779f118f7ecc",
+                "url": "https://api.github.com/repos/mantix/livewire-jodit-text-editor/zipball/1ea952109f5baf09851de687fd0f86c563120d1b",
+                "reference": "1ea952109f5baf09851de687fd0f86c563120d1b",
                 "shasum": ""
             },
             "require": {
@@ -3077,9 +3077,9 @@
             ],
             "support": {
                 "issues": "https://github.com/mantix/livewire-jodit-text-editor/issues",
-                "source": "https://github.com/mantix/livewire-jodit-text-editor/tree/v1.10"
+                "source": "https://github.com/mantix/livewire-jodit-text-editor/tree/v1.11"
             },
-            "time": "2026-07-30T14:16:25+00:00"
+            "time": "2026-11-09T14:08:21+00:00"
         },
         {
             "name": "monolog/monolog",
