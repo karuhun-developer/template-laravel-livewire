@@ -1349,34 +1349,34 @@
         },
         {
             "name": "laravel/folio",
-            "version": "v1.2.0",
+            "version": "v1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/folio.git",
-                "reference": "b79f01771064959ebff7f90ea52ce1bf164bc287"
+                "reference": "da4e382317f466861a735e65d69723a652eca1af"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/folio/zipball/b79f01771064959ebff7f90ea52ce1bf164bc287",
-                "reference": "b79f01771064959ebff7f90ea52ce1bf164bc287",
+                "url": "https://api.github.com/repos/laravel/folio/zipball/da4e382317f466861a735e65d69723a652eca1af",
+                "reference": "da4e382317f466861a735e65d69723a652eca1af",
                 "shasum": ""
             },
             "require": {
-                "illuminate/console": "^10.19|^11.0|^12.0|^13.0",
-                "illuminate/container": "^10.19|^11.0|^12.0|^13.0",
-                "illuminate/contracts": "^10.19|^11.0|^12.0|^13.0",
-                "illuminate/filesystem": "^10.19|^11.0|^12.0|^13.0",
-                "illuminate/pipeline": "^10.19|^11.0|^12.0|^13.0",
-                "illuminate/routing": "^10.19|^11.0|^12.0|^13.0",
-                "illuminate/support": "^10.19|^11.0|^12.0|^13.0",
-                "illuminate/view": "^10.19|^11.0|^12.0|^13.0",
-                "php": "^8.1",
+                "illuminate/console": "^12.0|^13.0",
+                "illuminate/container": "^12.0|^13.0",
+                "illuminate/contracts": "^12.0|^13.0",
+                "illuminate/filesystem": "^12.0|^13.0",
+                "illuminate/pipeline": "^12.0|^13.0",
+                "illuminate/routing": "^12.0|^13.0",
+                "illuminate/support": "^12.0|^13.0",
+                "illuminate/view": "^12.0|^13.0",
+                "php": "^8.2",
                 "spatie/once": "^3.1",
-                "symfony/console": "^6.0|^7.0|^8.0"
+                "symfony/console": "^7.0|^8.0"
             },
             "require-dev": {
-                "orchestra/testbench": "^8.36|^9.15|^10.8|^11.0",
-                "pestphp/pest": "^2.5|^3.0|^4.0",
+                "orchestra/testbench": "^10.8|^11.0",
+                "pestphp/pest": "^3.0|^4.0",
                 "phpstan/phpstan": "^1.10|^2.1"
             },
             "type": "library",
@@ -1418,7 +1418,7 @@
                 "issues": "https://github.com/laravel/folio/issues",
                 "source": "https://github.com/laravel/folio"
             },
-            "time": "2026-08-13T14:36:22+00:00"
+            "time": "2026-11-11T14:11:33+00:00"
         },
         {
             "name": "laravel/fortify",
